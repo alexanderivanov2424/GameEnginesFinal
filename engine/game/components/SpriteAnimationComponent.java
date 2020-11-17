@@ -1,12 +1,10 @@
 package engine.game.components;
 
 import engine.game.GameObject;
-import engine.game.SpriteLoader;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -25,8 +23,9 @@ public class SpriteAnimationComponent extends Component{
     protected Vec2d size; //size of sprite
 
     protected int frames; //offset on sprite sheet
-    protected Vec2d cropSize; //size of region from which to draw
     protected Vec2d cropStart; //from where the crop starts on the sprite sheet
+    protected Vec2d cropSize; //size of region from which to draw
+    protected Vec2d cropShift; //from where the crop starts on the sprite sheet
 
     protected boolean horizontalFlip = false;
 
@@ -75,16 +74,33 @@ public class SpriteAnimationComponent extends Component{
         this.frameDuration = frameDuration * 1000000000;
     }
 
-    public void resetAnimation(String spriteSheetPath, Vec2d position, Vec2d size, int frames,
-                               Vec2d cropStart, Vec2d cropSize, double frameDuration){
+    public SpriteAnimationComponent(GameObject gameObject, String spriteSheetPath,
+                                    Vec2d position, Vec2d size, int frames,
+                                    Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration) {
+        super(gameObject);
         this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
 
         this.frames = frames;
-        this.cropSize = cropSize;
         this.cropStart = cropStart;
+        this.cropSize = cropSize;
+        this.cropShift = cropShift;
+        this.frameDuration = frameDuration * 1000000000;
+    }
+
+    public void resetAnimation(String spriteSheetPath, Vec2d position, Vec2d size, int frames,
+                               Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration){
+        this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
+        this.spriteSheetPath = spriteSheetPath;
+        this.position = position;
+        this.size = size;
+
+        this.frames = frames;
+        this.cropStart = cropStart;
+        this.cropSize = cropSize;
+        this.cropShift = cropShift;
         this.frameDuration = frameDuration * 1000000000;
 
         currentFrame = 0;
@@ -114,13 +130,15 @@ public class SpriteAnimationComponent extends Component{
 
         if(this.horizontalFlip) {
             g.drawImage(this.spriteSheet,
-                    this.cropStart.x + this.cropSize.x * this.currentFrame, this.cropStart.y,
+                    this.cropStart.x + this.cropShift.x * this.currentFrame,
+                    this.cropStart.y + this.cropShift.y * this.currentFrame,
                     this.cropSize.x, this.cropSize.y,
                     pos.x + this.position.x + this.size.x, pos.y + this.position.y,
                     -this.size.x, this.size.y);
         } else {
             g.drawImage(this.spriteSheet,
-                    this.cropStart.x + this.cropSize.x * this.currentFrame, this.cropStart.y,
+                    this.cropStart.x + this.cropShift.x * this.currentFrame,
+                    this.cropStart.y + this.cropShift.y * this.currentFrame,
                     this.cropSize.x, this.cropSize.y,
                     pos.x + this.position.x, pos.y + this.position.y,
                     this.size.x, this.size.y);
@@ -144,8 +162,9 @@ public class SpriteAnimationComponent extends Component{
         component.setAttribute("size", size.toString());
 
         component.setAttribute("frames", Integer.toString(frames));
-        component.setAttribute("cropSize", cropSize.toString());
         component.setAttribute("cropStart", cropStart.toString());
+        component.setAttribute("cropSize", cropSize.toString());
+        component.setAttribute("cropShift", cropShift.toString());
 
         component.setAttribute("frameDuration", Double.toString(frameDuration / 1000000000));
         component.setAttribute("currentTime", Long.toString(currentTime));
@@ -162,11 +181,12 @@ public class SpriteAnimationComponent extends Component{
         int frames = Integer.parseInt(attr.getNamedItem("frames").getNodeValue());
         Vec2d cropSize = Vec2d.fromString(attr.getNamedItem("cropSize").getNodeValue());
         Vec2d cropStart = Vec2d.fromString(attr.getNamedItem("cropStart").getNodeValue());
+        Vec2d cropShift = Vec2d.fromString(attr.getNamedItem("cropShift").getNodeValue());
 
         double frameDuration = Double.parseDouble(attr.getNamedItem("frameDuration").getNodeValue());
         long currentTime = Long.parseLong(attr.getNamedItem("currentTime").getNodeValue());
         int currentFrame = Integer.parseInt(attr.getNamedItem("currentFrame").getNodeValue());
-        SpriteAnimationComponent c = new SpriteAnimationComponent(g, path, position, size, frames, cropStart, cropSize, frameDuration);
+        SpriteAnimationComponent c = new SpriteAnimationComponent(g, path, position, size, frames, cropStart, cropSize, cropShift, frameDuration);
         c.currentTime = currentTime;
         c.currentFrame = currentFrame;
         return c;
