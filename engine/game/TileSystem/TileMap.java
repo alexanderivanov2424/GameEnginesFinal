@@ -29,9 +29,17 @@ public class TileMap {
 
 
     public void addTilesToGameWorld(GameWorld gameWorld, int layer, Vec2d tileSize){
-        for(int i = 0; i < tiles.length; i++){
-            for(int j = 0; j < tiles[i].length; j++){
-                gameWorld.addGameObject(this.get4DirectionalVariantAt(i,j).constructGameObject(tileSize, gameWorld, layer));
+        if(this.fourDirectional) {
+            for (int i = 0; i < tiles.length; i++) {
+                for (int j = 0; j < tiles[i].length; j++) {
+                    gameWorld.addGameObject(this.get4DirectionalVariantAt(i, j).constructGameObject(tileSize, gameWorld, layer));
+                }
+            }
+        } else {
+            for (int i = 0; i < tiles.length; i++) {
+                for (int j = 0; j < tiles[i].length; j++) {
+                    gameWorld.addGameObject(this.get8DirectionalVariantAt(i, j).constructGameObject(tileSize, gameWorld, layer));
+                }
             }
         }
     }
