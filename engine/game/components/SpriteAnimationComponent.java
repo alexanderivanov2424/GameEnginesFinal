@@ -1,18 +1,10 @@
 package engine.game.components;
 
 import engine.game.GameObject;
-<<<<<<< HEAD
-=======
-import engine.game.SpriteLoader;
->>>>>>> main
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-<<<<<<< HEAD
-=======
-import javafx.scene.paint.Color;
->>>>>>> main
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -84,7 +76,6 @@ public class SpriteAnimationComponent extends Component{
         this.frameDuration = frameDuration * 1000000000;
     }
 
-<<<<<<< HEAD
     public SpriteAnimationComponent(GameObject gameObject, String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames,
                                     Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration) {
