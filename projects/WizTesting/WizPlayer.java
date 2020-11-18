@@ -41,9 +41,6 @@ public class WizPlayer {
         keyPressedComponent.linkKeyCallback( WizPlayer::keyCallback);
         player.addComponent(keyPressedComponent);
 
-        AudioComponent audioComponent = new AudioComponent(player, "laser.wav");
-        player.addComponent(audioComponent);
-
         player.getTransform().position = pos;
         player.getTransform().size = new Vec2d(1.4,1.75);
         return player;
@@ -155,6 +152,8 @@ public class WizPlayer {
 
         projectile.addComponent(new HeightComponent(projectile,7));
         projectile.addComponent(new VelocityComponent(projectile, velocity));
+
+        projectile.addComponent(new AudioComponent(projectile, "laser.wav"));
 
         projectile.getTransform().position = position;
         projectile.getTransform().size = new Vec2d(2,2);
