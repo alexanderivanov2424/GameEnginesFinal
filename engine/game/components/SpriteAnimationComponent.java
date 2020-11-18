@@ -1,10 +1,18 @@
 package engine.game.components;
 
 import engine.game.GameObject;
+<<<<<<< HEAD
+=======
+import engine.game.SpriteLoader;
+>>>>>>> main
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+<<<<<<< HEAD
+=======
+import javafx.scene.paint.Color;
+>>>>>>> main
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -23,9 +31,11 @@ public class SpriteAnimationComponent extends Component{
     protected Vec2d size; //size of sprite
 
     protected int frames; //offset on sprite sheet
+
     protected Vec2d cropStart; //from where the crop starts on the sprite sheet
     protected Vec2d cropSize; //size of region from which to draw
     protected Vec2d cropShift; //from where the crop starts on the sprite sheet
+
 
     protected boolean horizontalFlip = false;
 
@@ -74,6 +84,7 @@ public class SpriteAnimationComponent extends Component{
         this.frameDuration = frameDuration * 1000000000;
     }
 
+<<<<<<< HEAD
     public SpriteAnimationComponent(GameObject gameObject, String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames,
                                     Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration) {
@@ -92,15 +103,18 @@ public class SpriteAnimationComponent extends Component{
 
     public void resetAnimation(String spriteSheetPath, Vec2d position, Vec2d size, int frames,
                                Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration){
+
         this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
 
         this.frames = frames;
+
         this.cropStart = cropStart;
         this.cropSize = cropSize;
         this.cropShift = cropShift;
+
         this.frameDuration = frameDuration * 1000000000;
 
         currentFrame = 0;
@@ -186,6 +200,7 @@ public class SpriteAnimationComponent extends Component{
         double frameDuration = Double.parseDouble(attr.getNamedItem("frameDuration").getNodeValue());
         long currentTime = Long.parseLong(attr.getNamedItem("currentTime").getNodeValue());
         int currentFrame = Integer.parseInt(attr.getNamedItem("currentFrame").getNodeValue());
+
         SpriteAnimationComponent c = new SpriteAnimationComponent(g, path, position, size, frames, cropStart, cropSize, cropShift, frameDuration);
         c.currentTime = currentTime;
         c.currentFrame = currentFrame;

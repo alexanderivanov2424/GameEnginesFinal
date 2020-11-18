@@ -83,6 +83,7 @@ public class WizPlayer {
                     new Vec2d(0,0), new Vec2d(2,2), 5,
                     new Vec2d(0,64), new Vec2d(32,32), new Vec2d(32,0), .1); //door animation
 
+
             DelayEventComponent delayEventComponent = new DelayEventComponent(player, .5);
             delayEventComponent.linkEventCallback(WizPlayer::nextLevel);
             player.addComponent(delayEventComponent);
@@ -141,13 +142,13 @@ public class WizPlayer {
 
         CollisionComponent collisionComponent = new CollisionComponent(projectile, new CircleShape(new Vec2d(.5,.5),.3),
                 false, true,PROJECTILE_LAYER, PROJECTILE_MASK){
-            @Override
-            public boolean caresAboutCollision(GameObject g){
-                HeightComponent height = (HeightComponent) g.getComponent("HeightComponent");
-                if(height == null) return true;
-                return projctile_height < height.value;
-            }
-        };
+                    @Override
+                    public boolean caresAboutCollision(GameObject g){
+                        HeightComponent height = (HeightComponent) g.getComponent("HeightComponent");
+                        if(height == null) return true;
+                        return projctile_height < height.value;
+                    }
+                };
         collisionComponent.linkCollisionCallback(WizPlayer::projectileCollisionCallback);
         projectile.addComponent(collisionComponent);
 
