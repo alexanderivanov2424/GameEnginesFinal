@@ -1,35 +1,40 @@
 package engine.game.TileSystem;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import engine.support.Vec2d;
+
+import java.util.*;
 
 public class Tile {
 
-    //Restriction for 1 direction from given tile.
+
     public interface VariantRestriction{
-        public Set<String> availableVariants(String adjacentType);
+        public String[] getVariantRestriction(String type, int height);
     }
 
+
+    private String tileSheetPath;
+
+
     public String type;
-    private Map<String, TileVariant> variants;
+    private List<TileVariant> variants;
 
     public VariantRestriction up,right,down,left;
     public VariantRestriction up_right,down_right,down_left,up_left;
 
-    public Tile(String type){
+    public Tile(String type, String tileSheetPath){
         this.type = type;
-        this.variants = new HashMap<String, TileVariant>();
+        this.tileSheetPath = tileSheetPath;
+        this.variants = new ArrayList<TileVariant>();
     }
 
-    public Tile(String type, Map<String, TileVariant> variants){
+    public Tile(String type, String tileSheetPath, List<TileVariant> variants){
         this.type = type;
+        this.tileSheetPath = tileSheetPath;
         this.variants = variants;
     }
 
-    public void addVariant(String name, TileVariant variant){
-        this.variants.put(name,variant);
+    public void addVariant(TileVariant variant){
+        this.variants.add(variant);
     }
 
     public void set4DirectionRestrictions(VariantRestriction up, VariantRestriction right,
@@ -54,13 +59,25 @@ public class Tile {
         this.up_left = up_left;
     }
 
-    public Set<String> getVariants(){
-        return this.variants.keySet();
+    public String[] getVariants(){
+        String[] variantNames = new String[this.variants.size()];
+        for(int i =0; i < this.variants.size(); i++){
+            variantNames[i] = this.variants.get(i).variantName;
+        }
+        return variantNames;
     }
 
     public TileVariant getVariant(String variant){
-        return this.variants.get(variant);
+        for(TileVariant tv: this.variants){
+            if(tv.variantName.equals(variant)){
+                return tv;
+            }
+        }
+        return null;
     }
 
+    public String getTileSheetPath(){
+        return tileSheetPath;
+    }
 
 }

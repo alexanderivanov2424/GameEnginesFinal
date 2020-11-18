@@ -72,7 +72,6 @@ public class App extends Application {
             colorBorder, fontNormal));
 
     mainMenu.addUIElement(startButton);
-
   }
 
   private WizGame createGameScreen(Screen gameScreen, GameWorld gameWorld, long seed){

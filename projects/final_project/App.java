@@ -45,11 +45,42 @@ public class App extends Application {
   }
 
   private void createMainMenu(Screen mainMenu){
+    mainMenu.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
+    mainMenu.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"SLIPPY TIME",
+            colorBorder, fontLarge));
 
+    UIButton startButton = new UIButton(new Vec2d(100,100), new Vec2d(400,50), colorMain, colorBorder);
+    startButton.setOnMouseClicked(() -> {
+      this.setCurrentScreen("gameScreen");
+    });
+    startButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"START", colorBorder, fontNormal));
+
+    mainMenu.addUIElement(startButton);
+
+    this.addScreen(mainMenu, "mainMenu");
   }
 
 
-  private void createGameScreen(Screen gameScreen, GameWorld gameWorld, long seed){
+  private void createGameScreen(Screen gameScreen){
+    GameWorld gameWorld = new GameWorld();
+
+    gameScreen.addUIElement(new UIRect(new Vec2d(0,0),
+            new Vec2d(this.currentStageSize.x,this.currentStageSize.y), colorBackground));
+
+
+    UIViewport viewport = new UIViewport(new Vec2d(0,0),
+            new Vec2d(this.originalStageSize.x, this.originalStageSize.y),
+            gameWorld, new Vec2d(0,0),false, 50);
+    gameScreen.addUIElement(viewport);
+
+    Game game = new Game(gameWorld, viewport);
+    game.init();
+
+    /**
+     * Other Game Screen UI below
+     */
+
+    this.addScreen(gameScreen, "gameScreen");
 
   }
 
