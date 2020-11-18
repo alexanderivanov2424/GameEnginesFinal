@@ -32,7 +32,7 @@ public class WizLevelGenerator {
         gameWorld.addGameObject(player);
 
         gameWorld.addGameObject(createSpawn(gameWorld, new Vec2d(2.0 * dungeon.start.x, 2.0 * dungeon.start.y)));
-        gameWorld.addGameObject(createDoor(gameWorld, new Vec2d(2.0 * dungeon.end.x, 2.0 * dungeon.end.y)));
+        gameWorld.addGameObject(createDoor(gameWorld, new Vec2d(2.0 * dungeon.end.x, 2.0 * dungeon.end.y), player));
 
         for(MapGeneration.Room room : dungeon.rooms) {
 
@@ -194,13 +194,14 @@ public class WizLevelGenerator {
     }
 
     //next level door for player
-    private static GameObject createDoor(GameWorld gameWorld, Vec2d pos){
+    private static GameObject createDoor(GameWorld gameWorld, Vec2d pos, GameObject player){
         GameObject door = new GameObject(gameWorld, 1);
         door.addComponent(new SpriteComponent(door, WizGame.getSpritePath("door"),
                 new Vec2d(0,0), new Vec2d(2,2)));
         door.addComponent(new IDComponent(door, "door"));
         door.addComponent(new CollisionComponent(door, new AABShape(new Vec2d(.1,.1),new Vec2d(1.8,1.8)),
                 false, true, TILE_LAYER, TILE_MASK));
+        door.addComponent(new AudioComponent(door, "knock.wav", player, true));
         door.getTransform().position = pos;
         door.getTransform().size = new Vec2d(2,2);
         return door;
