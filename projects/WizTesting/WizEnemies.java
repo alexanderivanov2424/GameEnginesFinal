@@ -78,7 +78,7 @@ public class WizEnemies {
         SpriteAnimationComponent animation = (SpriteAnimationComponent)enemy.getComponent("SpriteAnimationComponent");
         animation.resetAnimation(WizGame.getSpritePath("enemy"),
                 new Vec2d(0,0), new Vec2d(2,2), 5,
-                new Vec2d(0,64), new Vec2d(64,64), .1); //death animation
+                new Vec2d(0,64), new Vec2d(64,64), new Vec2d(64,64), .1); //death animation
         DelayEventComponent delayEventComponent = new DelayEventComponent(enemy, .5);
         delayEventComponent.linkEventCallback(WizEnemies::enemyRemoveCallback);
         enemy.addComponent(delayEventComponent);
@@ -107,7 +107,7 @@ public class WizEnemies {
                 SpriteAnimationComponent animation = (SpriteAnimationComponent)enemy.getComponent("SpriteAnimationComponent");
                 animation.resetAnimation(WizGame.getSpritePath("enemy"),
                         new Vec2d(0,0), new Vec2d(2,2), 5,
-                        new Vec2d(0,0), new Vec2d(64,64), .1); //angry animation
+                        new Vec2d(0,0), new Vec2d(64,64), new Vec2d(64,64), .1); //angry animation
                 return BTNodeStatus.SUCCESS;
             }
 
@@ -166,7 +166,7 @@ public class WizEnemies {
                 SpriteAnimationComponent animation = (SpriteAnimationComponent)enemy.getComponent("SpriteAnimationComponent");
                 animation.resetAnimation(WizGame.getSpritePath("enemy"),
                         new Vec2d(0,0), new Vec2d(2,2), 5,
-                        new Vec2d(0,128), new Vec2d(64,64), .1); //idle animation
+                        new Vec2d(0,128), new Vec2d(64,64), new Vec2d(64,64), .1); //idle animation
                 return BTNodeStatus.SUCCESS;
             }
 

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e07ef792-21b1-45b7-94f8-813e05ea3941" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/AABShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/AABShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/CircleShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/CircleShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/PolygonShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/PolygonShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Ray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Ray.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/ShapeBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/ShapeBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/collisions/Week6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/CollisionCanvas$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/CollisionCanvas$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/CollisionCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/CollisionCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Display$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Display$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Display.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/UIConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/UIConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Vec2d.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Vec2d.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Vec2i.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/Vec2i.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/CollisionFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/CollisionFunctions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week2Reqs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week2Reqs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week3Reqs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week3Reqs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week5Reqs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week5Reqs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week6Reqs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/interfaces/Week6Reqs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/AABShapeDefine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/AABShapeDefine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/CircleShapeDefine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/CircleShapeDefine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/PolygonShapeDefine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/PolygonShapeDefine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/debugger/support/shapes/Shape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/BTCompositeNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/BTCompositeNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/BTNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/BTNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/BTNodeStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/BTNodeStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTActionNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTActionNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTConditionNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTConditionNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTSelectorNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTSelectorNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTSequenceNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/BehaviorTree/Nodes/BTSequenceNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGraph$Heuristic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGraph$Heuristic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGraph$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGraph$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid$GridLocation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid$GridLocation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid$Heuristic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid$Heuristic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/AILibrary/PathFinding/AStarGrid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/MapGeneration$Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/MapGeneration$Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/MapGeneration$RoomDungeon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/MapGeneration$RoomDungeon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/MapGeneration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/MapGeneration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/Screen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIButton$MouseClickedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIButton$MouseClickedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIElement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIElement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIRect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIRect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIText.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIText.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIViewport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/UIToolKit/UIViewport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/GameWorld$CallBack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/GameWorld$CallBack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/GameWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/GameWorld.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/SpriteLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/SpriteLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/Utils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/AABShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/AABShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/CircleShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/CircleShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/PolygonShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/PolygonShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/Ray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/Ray.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/collisionShapes/Shape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/AudioComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/AudioComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/BehaviorTreeComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/BehaviorTreeComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CameraComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CameraComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/ClickableComponent$OnClickedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/ClickableComponent$OnClickedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/ClickableComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/ClickableComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CollisionComponent$OnCollisionFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CollisionComponent$OnCollisionFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CollisionComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CollisionComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/Component.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/Component.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/ConstantForceComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/ConstantForceComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/DelayEventComponent$DelayedEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/DelayEventComponent$DelayedEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/DelayEventComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/DelayEventComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/DraggableComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/DraggableComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/HealthComponent$OnDeath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/HealthComponent$OnDeath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/HealthComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/HealthComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/HeightComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/HeightComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/IDComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/IDComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/KeyPressedComponent$OnKeyFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/KeyPressedComponent$OnKeyFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/KeyPressedComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/KeyPressedComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/MouseClickComponent$OnClickedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/MouseClickComponent$OnClickedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/MouseClickComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/MouseClickComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/PhysicsComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/PhysicsComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/RayComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/RayComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/RaySpriteAnimationComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/RaySpriteAnimationComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/RectComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/RectComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/SpriteAnimationComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/SpriteAnimationComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/SpriteComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/SpriteComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/TimerComponent$OnTimerFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/TimerComponent$OnTimerFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/TimerComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/TimerComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/TransformComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/TransformComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/VelocityComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/VelocityComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/WASDMovementComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/WASDMovementComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/CollisionSystem$CollisionInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/CollisionSystem$CollisionInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/CollisionSystem$CollisionMask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/CollisionSystem$CollisionMask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/CollisionSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/CollisionSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/GeneralSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/GeneralSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/KeyEventSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/KeyEventSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/MouseEventSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/MouseEventSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/RenderSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/RenderSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/SystemFlag.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/SystemFlag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/TickSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/systems/TickSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/CS1971FrontEnd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/CS1971FrontEnd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXFrontEnd$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXFrontEnd$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXFrontEnd$CS1971Canvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXFrontEnd$CS1971Canvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXFrontEnd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FXFrontEnd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FontMetrics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/FontMetrics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/Vec2d.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/Vec2d.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/Vec2i.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/support/Vec2i.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizEnemies.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizLevelGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizLevelGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizPlayer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizPlayer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizPlayer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/WizPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/AlchemyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/AlchemyGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/NinGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/beam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/beam.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/block.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/bump_platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/bump_platform.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/large_platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/large_platform.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/platform.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/player.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/rocks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/assets/rocks.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/nin/saves/save.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard$Cross.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard$Cross.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard$Ring.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard$Ring.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizEnemies.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizLevelGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizLevelGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizPlayer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizPlayer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizPlayer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/wiz/WizPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/WizTesting/WizEnemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/WizEnemies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/WizTesting/WizPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/WizPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/NinGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/PlayerMovementComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/beam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/beam.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/block.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/bump_platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/bump_platform.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/large_platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/large_platform.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/platform.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/player.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/rocks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/assets/rocks.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/nin/saves/save.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kP7gRRMx31UARPYGBTQQ6Mt6RH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/projects/final_project/assets" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Alexander Ivanov\Desktop\Brown 2020\CSCI 1950N\final-project-slippy\projects\final_project\assets" />
+      <recent name="C:\Users\Alexander Ivanov\Desktop\Brown 2020\CSCI 1950N\final-project-slippy\projects\final" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="projects.wiz.Main" />
+      <module name="final-project-slippy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="projects.wiz.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="projects.WizTesting.Main" />
+      <module name="final-project-slippy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="projects.WizTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e07ef792-21b1-45b7-94f8-813e05ea3941" name="Default Changelist" comment="" />
+      <created>1605590483832</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605590483832</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="512" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605590531469">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="512" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605590531469" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1605591264465">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605591264465" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1605682535074">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605682535074" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1605682535073">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605682535073" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1605682535073">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605682535073" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1605682535073">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605682535073" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1605681759747">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605681759747" />
+    <state x="431" y="145" key="search.everywhere.popup" timestamp="1605596453036">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" key="search.everywhere.popup/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605596453036" />
+  </component>
+</project>

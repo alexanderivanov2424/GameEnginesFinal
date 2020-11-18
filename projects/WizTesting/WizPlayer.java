@@ -80,7 +80,7 @@ public class WizPlayer {
                     (SpriteAnimationComponent)player.getComponent("SpriteAnimationComponent");
             animation.resetAnimation( WizGame.getSpritePath("player"),
                     new Vec2d(0,0), new Vec2d(2,2), 5,
-                    new Vec2d(0,64), new Vec2d(32,32), .1); //door animation
+                    new Vec2d(0,64), new Vec2d(32,32), new Vec2d(32,32), .1); //door animation
 
             DelayEventComponent delayEventComponent = new DelayEventComponent(player, .5);
             delayEventComponent.linkEventCallback(WizPlayer::nextLevel);
@@ -100,7 +100,7 @@ public class WizPlayer {
                     (SpriteAnimationComponent)player.getComponent("SpriteAnimationComponent");
             animation.resetAnimation( WizGame.getSpritePath("player"),
                     new Vec2d(0,0), new Vec2d(2,2), 5,
-                    new Vec2d(0,32), new Vec2d(32,32), .1); //death animation
+                    new Vec2d(0,32), new Vec2d(32,32), new Vec2d(32,32), .1); //death animation
 
             DelayEventComponent delayEventComponent = new DelayEventComponent(player, .5);
             delayEventComponent.linkEventCallback(WizPlayer::playerDeath);
