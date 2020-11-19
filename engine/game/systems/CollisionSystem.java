@@ -58,8 +58,8 @@ public class CollisionSystem extends GeneralSystem {
                 boolean c2_cares = 0 != (c2.getCollisionMask() & c1.getCollisionLayer());
 
                 //take into account that solid things only care about solid things.
-                c1_cares = c1_cares && ((c1.isSolid() && c2.isSolid()) || !c1.isSolid());
-                c2_cares = c2_cares && ((c2.isSolid() && c1.isSolid()) || !c2.isSolid());
+                c1_cares = c1_cares && (!c1.isSolid() || c2.isSolid());
+                c2_cares = c2_cares && (!c2.isSolid() || c1.isSolid());
 
                 if(!c1_cares && !c2_cares){
                     continue;

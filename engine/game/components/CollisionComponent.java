@@ -40,15 +40,6 @@ public class CollisionComponent extends Component{
     public boolean hasPhysics = false;
 
 
-    public CollisionComponent(GameObject gameObject, Shape shape, int collisionLayer, int collisionMask,
-                              String onCollisionFunctionClass, String onCollisionFunctionName) {
-        super(gameObject);
-        this.shape = shape;
-        this.collisionLayer = collisionLayer;
-        this.collisionMask = collisionMask;
-
-    }
-
     public CollisionComponent(GameObject gameObject, Shape shape, boolean isStatic, boolean isSolid,
                               int collisionLayer, int collisionMask) {
         super(gameObject);

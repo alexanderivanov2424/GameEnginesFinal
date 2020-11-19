@@ -2,6 +2,7 @@ package engine.game.TileSystem;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.components.Component;
 import engine.support.Vec2d;
 
 import java.util.*;
@@ -37,7 +38,7 @@ public class TileMap {
         return this.heightmap[i][j];
     }
 
-    public void addTilesToGameWorld(GameWorld gameWorld, int layer, double tileSize){
+    public void addTilesToGameWorld(GameWorld gameWorld, int layer, double tileSize, int collisionLayer, int collisionMask){
         if(this.tiles == null){
             System.err.println("Tile Map Not Set");
             return;
@@ -47,8 +48,12 @@ public class TileMap {
                 for (int j = 0; j < tiles[i].length; j++) {
                     Tile t = this.tileTypes.get(tiles[i][j]);
                     TileVariant tv = this.get4DirectionalVariantAt(t, i, j);
-                    gameWorld.addGameObject(tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
-                            new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer));
+                    GameObject tile = tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
+                            new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer);
+                    for(Component c : tv.getCollisionComponents(tile, new Vec2d(tileSize,tileSize), collisionLayer, collisionMask)){
+                        tile.addComponent(c);
+                    }
+                    gameWorld.addGameObject(tile);
                 }
             }
         } else {
@@ -56,8 +61,12 @@ public class TileMap {
                 for (int j = 0; j < tiles[i].length; j++) {
                     Tile t = this.tileTypes.get(tiles[i][j]);
                     TileVariant tv = this.get8DirectionalVariantAt(t, i, j);
-                    gameWorld.addGameObject(tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
-                            new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer));
+                    GameObject tile = tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
+                            new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer);
+                    for(Component c : tv.getCollisionComponents(tile, new Vec2d(tileSize,tileSize), collisionLayer, collisionMask)){
+                        tile.addComponent(c);
+                    }
+                    gameWorld.addGameObject(tile);
                 }
             }
         }

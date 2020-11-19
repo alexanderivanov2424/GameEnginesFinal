@@ -17,6 +17,9 @@ import java.util.ArrayList;
 
 public class Game {
 
+    private static final int TILE_LAYER = CollisionSystem.CollisionMask.layer0;
+    private static final int TILE_MASK = CollisionSystem.CollisionMask.NONE;
+
     private static final int PLAYER_LAYER = CollisionSystem.CollisionMask.layer3;
     private static final int PLAYER_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer1;
 
@@ -39,7 +42,7 @@ public class Game {
 
         TileMap tileMap = LevelTileMaps.createTileMap();
         LevelTileMaps.setTestingLevel(tileMap);
-        tileMap.addTilesToGameWorld(this.gameWorld, 0, 2);
+        tileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
     }
 
     /*

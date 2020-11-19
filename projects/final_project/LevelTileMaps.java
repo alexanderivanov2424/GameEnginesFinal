@@ -14,8 +14,8 @@ public class LevelTileMaps {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
                 {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -26,7 +26,7 @@ public class LevelTileMaps {
         int[][] heights = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 1, 2, 1, 1, 0, 0, 0},
+                {0, 0, 0, 1, 2, 1, 1, 0, 2, 0},
                 {0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
                 {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -113,11 +113,10 @@ public class LevelTileMaps {
 
         wallTile.set4DirectionRestrictions(
                 (String type, int height)->{
-                    if(type.equals("wall")) return new String[]{"up_lr","up_l","up","up_r"};
                     return new String[]{"up_lr","down_lr","up_l","up","up_r","down_l","down","down_r"};
                 },
                 (String type, int height)->{
-                    if(height >= 0 && type=="grass")
+                    if(height >= 0 && type.equals("grass"))
                         return new String[]{"up_lr","down_lr","up_r","down_r"};
                     return new String[]{"up_l","up","down_l","down"};
                 },
@@ -127,7 +126,7 @@ public class LevelTileMaps {
                     return new String[]{"up_lr","down_lr","up_l","up","up_r","down_l","down","down_r"};
                 },
                 (String type, int height)->{
-                    if(height >= 0 && type=="grass")
+                    if(height >= 0 && type.equals("grass"))
                         return new String[]{"up_lr","down_lr","up_l","down_l"};
                     return new String[]{"up","up_r","down","down_r"};
                 });

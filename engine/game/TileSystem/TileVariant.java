@@ -2,8 +2,14 @@ package engine.game.TileSystem;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.collisionShapes.AABShape;
+import engine.game.components.CollisionComponent;
+import engine.game.components.Component;
 import engine.game.components.SpriteComponent;
 import engine.support.Vec2d;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TileVariant {
 
@@ -15,9 +21,52 @@ public abstract class TileVariant {
      */
     public String variantName;
 
+    public double thickness;
+
+    public boolean collision_up, collision_right, collision_down, collision_left;
+
     public TileVariant(String variantName){
         this.variantName = variantName;
+        this.collision_up = false;
+        this.collision_right = false;
+        this.collision_down = false;
+        this.collision_left = false;
     }
 
-    public abstract GameObject constructGameObject(Vec2d position, Vec2d tilesSize, String spriteSheetPath, GameWorld gameWorld, int layer);
+    public TileVariant(boolean collision_up, boolean collision_right, boolean collision_down, boolean collision_left,
+                       double thickness, String variantName){
+        this.variantName = variantName;
+        this.collision_up = collision_up;
+        this.collision_right = collision_right;
+        this.collision_down = collision_down;
+        this.collision_left = collision_left;
+        this.thickness = thickness;
+    }
+
+    public List<Component> getCollisionComponents(GameObject gameObject, Vec2d tileSize, int collisionLayer, int collisionMask){
+        ArrayList<Component> ret = new ArrayList();
+        if(this.collision_up){
+            ret.add(new CollisionComponent(gameObject,
+                    new AABShape(new Vec2d(0,0), new Vec2d(tileSize.x,this.thickness)),
+                    true, true, collisionLayer, collisionMask));
+        }
+        if(this.collision_right){
+            ret.add(new CollisionComponent(gameObject,
+                    new AABShape(new Vec2d(tileSize.x - this.thickness,0), new Vec2d(this.thickness, tileSize.y)),
+                    true, true, collisionLayer, collisionMask));
+        }
+        if(this.collision_down){
+            ret.add(new CollisionComponent(gameObject,
+                    new AABShape(new Vec2d(0, tileSize.y-this.thickness), new Vec2d(tileSize.x,this.thickness)),
+                    true, true, collisionLayer, collisionMask));
+        }
+        if(this.collision_left){
+            ret.add(new CollisionComponent(gameObject,
+                    new AABShape(new Vec2d(0,0), new Vec2d(this.thickness, tileSize.y)),
+                    true, true, collisionLayer, collisionMask));
+        }
+        return ret;
+    }
+
+    public abstract GameObject constructGameObject(Vec2d position, Vec2d tileSize, String spriteSheetPath, GameWorld gameWorld, int layer);
 }
