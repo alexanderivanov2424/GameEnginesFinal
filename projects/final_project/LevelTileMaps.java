@@ -101,16 +101,16 @@ public class LevelTileMaps {
 
         //wall tile
         Tile wallTile = new Tile("wall", Game.getSpritePath("tile_sprite_sheet"));
-        wallTile.addVariant(new SpriteTileVariant("up_lr", new Vec2d(3,1).smult(32), TS));
-        wallTile.addVariant(new SpriteTileVariant("down_lr", new Vec2d(3,2).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"up_lr", new Vec2d(3,1).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"down_lr", new Vec2d(3,2).smult(32), TS));
 
-        wallTile.addVariant(new SpriteTileVariant("up_l", new Vec2d(3,3).smult(32), TS));
-        wallTile.addVariant(new SpriteTileVariant("up", new Vec2d(4,3).smult(32), TS));
-        wallTile.addVariant(new SpriteTileVariant("up_r", new Vec2d(5,3).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"up_l", new Vec2d(3,3).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"up", new Vec2d(4,3).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"up_r", new Vec2d(5,3).smult(32), TS));
 
-        wallTile.addVariant(new SpriteTileVariant("down_l", new Vec2d(3,4).smult(32), TS));
-        wallTile.addVariant(new SpriteTileVariant("down", new Vec2d(4,4).smult(32), TS));
-        wallTile.addVariant(new SpriteTileVariant("down_r", new Vec2d(5,4).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"down_l", new Vec2d(3,4).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"down", new Vec2d(4,4).smult(32), TS));
+        wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"down_r", new Vec2d(5,4).smult(32), TS));
 
         wallTile.set4DirectionRestrictions(
                 (String type, int height)->{
