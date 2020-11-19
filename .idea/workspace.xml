@@ -12,58 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e07ef792-21b1-45b7-94f8-813e05ea3941" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/AnimatedTileVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/AnimatedTileVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/SpriteTileVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/SpriteTileVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/TileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/TileMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/TileVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/TileVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/components/CameraComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/CameraComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/components/SpriteAnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/SpriteAnimationComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/AnimatedTileVariant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/AnimatedTileVariant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/SpriteTileVariant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/SpriteTileVariant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/TileMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/TileMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/TileVariant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/TileSystem/TileVariant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CameraComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/CameraComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/SpriteAnimationComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/engine/game/components/SpriteAnimationComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/WizTesting/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/AlchemyGame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/acid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/air.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/brick.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/death.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/dust.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/earth.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/fire.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/fish.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/gas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/life.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/mud.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/pedestal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/rain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/trash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/alc/assets/water.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/final_project/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/final_project/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/final_project/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/final_project/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/final_project/LevelTileMaps.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-slippy/projects/final_project/LevelTileMaps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard$Cross.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard$Ring.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/GameBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-slippy/projects/tic/TicGame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/WizTesting/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/LevelTileMaps.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/LevelTileMaps.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,22 +129,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605591264465" />
-    <state width="1493" height="103" key="GridCell.Tab.0.bottom" timestamp="1605689626307">
+    <state width="1493" height="11" key="GridCell.Tab.0.bottom" timestamp="1605747103917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="103" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605689626307" />
-    <state width="1493" height="103" key="GridCell.Tab.0.center" timestamp="1605689626307">
+    <state width="1493" height="11" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605747103917" />
+    <state width="1493" height="11" key="GridCell.Tab.0.center" timestamp="1605747103917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="103" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605689626307" />
-    <state width="1493" height="103" key="GridCell.Tab.0.left" timestamp="1605689626307">
+    <state width="1493" height="11" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605747103917" />
+    <state width="1493" height="11" key="GridCell.Tab.0.left" timestamp="1605747103917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="103" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605689626307" />
-    <state width="1493" height="103" key="GridCell.Tab.0.right" timestamp="1605689626307">
+    <state width="1493" height="11" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605747103917" />
+    <state width="1493" height="11" key="GridCell.Tab.0.right" timestamp="1605747103917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="103" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605689626307" />
+    <state width="1493" height="11" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605747103917" />
     <state x="277" y="57" key="SettingsEditor" timestamp="1605681759747">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

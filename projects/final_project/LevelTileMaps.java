@@ -14,7 +14,7 @@ public class LevelTileMaps {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
                 {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -26,7 +26,7 @@ public class LevelTileMaps {
         int[][] heights = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 1, 2, 1, 1, 0, 0, 0},
                 {0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
                 {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -77,22 +77,22 @@ public class LevelTileMaps {
 
         grassTile.set4DirectionRestrictions(
                 (String type, int height)->{
-                    if(height != 0)
+                    if(height > 0)
                         return new String[]{"edge_tl","edge_t","edge_tr","edge_ltr","edge_tb","edge_ltb","edge_ltrb","edge_trb"};
                     return new String[]{"edge_l","edge_none","edge_r","edge_bl","edge_b","edge_br","edge_lr","edge_lrb"};
                 },
                 (String type, int height)->{
-                    if(height != 0)
+                    if(height > 0)
                         return new String[]{"edge_tr","edge_r","edge_br","edge_lr","edge_ltr","edge_ltrb","edge_trb","edge_lrb"};
                     return new String[]{"edge_tl","edge_t","edge_l","edge_none","edge_bl","edge_b","edge_tb","edge_ltb"};
                 },
                 (String type, int height)->{
-                    if(height != 0)
+                    if(height > 0)
                         return new String[]{"edge_bl","edge_b","edge_br","edge_tb","edge_ltb","edge_ltrb","edge_trb","edge_lrb"};
                     return new String[]{"edge_tl","edge_t","edge_tr","edge_l","edge_none","edge_r","edge_lr","edge_ltr"};
                 },
                 (String type, int height)->{
-                    if(height != 0)
+                    if(height > 0)
                         return new String[]{"edge_tl","edge_l","edge_bl","edge_lr","edge_ltr","edge_ltb","edge_ltrb","edge_lrb"};
                     return new String[]{"edge_t","edge_tr","edge_none","edge_r","edge_b","edge_br","edge_tb","edge_trb"};
                 });
@@ -110,6 +110,28 @@ public class LevelTileMaps {
         wallTile.addVariant(new SpriteTileVariant("down_l", new Vec2d(3,4).smult(32), TS));
         wallTile.addVariant(new SpriteTileVariant("down", new Vec2d(4,4).smult(32), TS));
         wallTile.addVariant(new SpriteTileVariant("down_r", new Vec2d(5,4).smult(32), TS));
+
+        wallTile.set4DirectionRestrictions(
+                (String type, int height)->{
+                    if(type.equals("wall")) return new String[]{"up_lr","up_l","up","up_r"};
+                    return new String[]{"up_lr","down_lr","up_l","up","up_r","down_l","down","down_r"};
+                },
+                (String type, int height)->{
+                    if(height >= 0 && type=="grass")
+                        return new String[]{"up_lr","down_lr","up_r","down_r"};
+                    return new String[]{"up_l","up","down_l","down"};
+                },
+                (String type, int height)->{
+                    if(type.equals("wall")) return new String[]{"up_lr","up_l","up","up_r"};
+                    if(type.equals("grass")) return new String[]{"down_lr","down_l","down","down_r"};
+                    return new String[]{"up_lr","down_lr","up_l","up","up_r","down_l","down","down_r"};
+                },
+                (String type, int height)->{
+                    if(height >= 0 && type=="grass")
+                        return new String[]{"up_lr","down_lr","up_l","down_l"};
+                    return new String[]{"up","up_r","down","down_r"};
+                });
+
         tileTypes.add(wallTile);
 
 

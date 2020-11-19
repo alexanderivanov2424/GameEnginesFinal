@@ -66,32 +66,32 @@ public class TileMap {
     private TileVariant get4DirectionalVariantAt(Tile t, int i, int j){
         Set<String> variants = new HashSet<String>(Arrays.asList(t.getVariants()));
         if(j > 0){
-            if(t.up != null) {
-                String[] res = t.up.getVariantRestriction(this.tileTypes.get(tiles[i][j - 1]).type,
+            if(t.left != null) {
+                String[] res = t.left.getVariantRestriction(this.tileTypes.get(tiles[i][j - 1]).type,
                         this.getHeight(i, j) - this.getHeight(i, j - 1));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
             }
         }
         if(i < tiles.length - 1){
-            if(t.right != null) {
-                String[] res = t.right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type,
+            if(t.down != null) {
+                String[] res = t.down.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type,
                         this.getHeight(i, j) - this.getHeight(i+1, j));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
             }
         }
         if(j < tiles[0].length - 1){
-            if(t.down != null) {
-                String[] res = t.down.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type,
+            if(t.right != null) {
+                String[] res = t.right.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type,
                         this.getHeight(i, j) - this.getHeight(i, j+1));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
             }
         }
         if(i > 0){
-            if(t.left != null) {
-                String[] res = t.left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j]).type,
+            if(t.up != null) {
+                String[] res = t.up.getVariantRestriction(this.tileTypes.get(tiles[i-1][j]).type,
                         this.getHeight(i, j) - this.getHeight(i-1, j));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
@@ -107,40 +107,40 @@ public class TileMap {
     private TileVariant get8DirectionalVariantAt(Tile t, int i, int j){
         Set<String> variants = new HashSet<String>(Arrays.asList(t.getVariants()));
         if(j > 0){
-            if(t.up != null) {
-                String[] res = t.up.getVariantRestriction(this.tileTypes.get(tiles[i][j - 1]).type,
+            if(t.left != null) {
+                String[] res = t.left.getVariantRestriction(this.tileTypes.get(tiles[i][j - 1]).type,
                         this.getHeight(i, j) - this.getHeight(i, j - 1));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
             }
         }
         if(i < tiles.length - 1){
-            if(t.right != null) {
-                String[] res = t.right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type,
+            if(t.down != null) {
+                String[] res = t.down.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type,
                         this.getHeight(i, j) - this.getHeight(i+1, j));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
             }
         }
         if(j < tiles[0].length - 1){
-            if(t.down != null) {
-                String[] res = t.down.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type,
+            if(t.right != null) {
+                String[] res = t.right.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type,
                         this.getHeight(i, j) - this.getHeight(i, j+1));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
             }
         }
-        if(i > 0) {
-            if (t.left != null) {
-                String[] res = t.left.getVariantRestriction(this.tileTypes.get(tiles[i - 1][j]).type,
-                        this.getHeight(i, j) - this.getHeight(i - 1, j));
-                if (res != null)
+        if(i > 0){
+            if(t.up != null) {
+                String[] res = t.up.getVariantRestriction(this.tileTypes.get(tiles[i-1][j]).type,
+                        this.getHeight(i, j) - this.getHeight(i-1, j));
+                if(res != null)
                     variants.retainAll(Arrays.asList(res));
             }
         }
         if(j > 0 && i < tiles.length - 1){
-            if(t.up_right != null) {
-                String[] res = t.up_right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j-1]).type,
+            if(t.down_left != null) {
+                String[] res = t.down_left.getVariantRestriction(this.tileTypes.get(tiles[i+1][j-1]).type,
                         this.getHeight(i, j) - this.getHeight(i+1, j-1));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
@@ -155,8 +155,8 @@ public class TileMap {
             }
         }
         if(j < tiles[0].length - 1 && i > 0){
-            if(t.down_left != null) {
-                String[] res = t.down_left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j+1]).type,
+            if(t.up_right != null) {
+                String[] res = t.up_right.getVariantRestriction(this.tileTypes.get(tiles[i-1][j+1]).type,
                         this.getHeight(i, j) - this.getHeight(i-1, j+1));
                 if(res != null)
                     variants.retainAll(Arrays.asList(res));
