@@ -43,6 +43,34 @@ public abstract class TileVariant {
         this.thickness = thickness;
     }
 
+    public TileVariant(boolean collision_up, boolean collision_right, boolean collision_down, boolean collision_left, String variantName){
+        this.variantName = variantName;
+        this.collision_up = collision_up;
+        this.collision_right = collision_right;
+        this.collision_down = collision_down;
+        this.collision_left = collision_left;
+        this.thickness = 0;
+    }
+
+    public TileVariant(int collision_up, int collision_right, int collision_down, int collision_left,
+                       double thickness, String variantName){
+        this.variantName = variantName;
+        this.collision_up = collision_up==1;
+        this.collision_right = collision_right==1;
+        this.collision_down = collision_down==1;
+        this.collision_left = collision_left==1;
+        this.thickness = thickness;
+    }
+
+    public TileVariant(int collision_up, int collision_right, int collision_down, int collision_left, String variantName){
+        this.variantName = variantName;
+        this.collision_up = collision_up==1;
+        this.collision_right = collision_right==1;
+        this.collision_down = collision_down==1;
+        this.collision_left = collision_left==1;
+        this.thickness = 0;
+    }
+
     public List<Component> getCollisionComponents(GameObject gameObject, Vec2d tileSize, int collisionLayer, int collisionMask){
         ArrayList<Component> ret = new ArrayList();
         if(this.collision_up){

@@ -33,6 +33,23 @@ public class Tile {
         this.variants = variants;
     }
 
+    //Point of this it to prevent specifying the thickness individually for all variants.
+    public void setAllVariantCollisionThickness(double thickness){
+        for(int i =0; i < this.variants.size(); i++){
+            this.variants.get(i).thickness = thickness;
+        }
+    }
+
+    //Set thickness for specific variant.
+    public void setVariantCollisionThickness(String name, double thickness){
+        for(int i =0; i < this.variants.size(); i++){
+            if(this.variants.get(i).variantName.equals(name)){
+                this.variants.get(i).thickness = thickness;
+                return;
+            }
+        }
+    }
+
     public void addVariant(TileVariant variant){
         this.variants.add(variant);
     }

@@ -17,6 +17,14 @@ public class SpriteTileVariant extends TileVariant{
         this.cropSize = cropSize;
     }
 
+    public SpriteTileVariant(int collision_up, int collision_right, int collision_down, int collision_left,
+                             String variantName, Vec2d cropStart, Vec2d cropSize){
+        super(collision_up, collision_right, collision_down, collision_left, variantName);
+        this.variantName = variantName;
+        this.cropStart = cropStart;
+        this.cropSize = cropSize;
+    }
+
     public GameObject constructGameObject(Vec2d position, Vec2d tilesSize, String spriteSheetPath, GameWorld gameWorld, int layer){
         GameObject tile = new GameObject(gameWorld, layer);
         SpriteComponent sprite = new SpriteComponent(tile, spriteSheetPath, new Vec2d(0,0), tilesSize, cropStart, cropSize);

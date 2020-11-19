@@ -73,7 +73,7 @@ public class CollisionSystem extends GeneralSystem {
                 Vec2d MTV = c2.collide(c1);
 
                 if(MTV == null) continue;
-                //System.out.println(MTV);
+
                 if(Double.isNaN(MTV.x) || Double.isNaN(MTV.y)){
                     new Exception().printStackTrace();
                     System.exit(0);

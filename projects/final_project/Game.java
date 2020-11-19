@@ -61,9 +61,9 @@ public class Game {
         player.addComponent(new WASDMovementComponent(player,10));
         player.addComponent(new CameraComponent(player, 0));
 
-//        player.addComponent(new SpriteAnimationComponent(player, Game.getSpritePath("player"),
-//                new Vec2d(0,0), new Vec2d(2,2), 5,
-//                new Vec2d(0,0), new Vec2d(32,32), .1));//normal animation
+        player.addComponent(new SpriteAnimationComponent(player, Game.getSpritePath("player"),
+                new Vec2d(0,0), new Vec2d(2,2), 5,
+                new Vec2d(0,0), new Vec2d(32,32), .1));//normal animation
 
         player.addComponent(new CollisionComponent(player, new AABShape(new Vec2d(.3,.25),new Vec2d(1.4,1.75)),
                 false, true, PLAYER_LAYER, PLAYER_MASK));

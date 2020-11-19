@@ -57,23 +57,23 @@ public class LevelTileMaps {
 
         //grass tile
         Tile grassTile = new Tile("grass", Game.getSpritePath("tile_sprite_sheet"));
-        grassTile.addVariant(new SpriteTileVariant("edge_tl", new Vec2d(0,1).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_t", new Vec2d(1,1).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_tr", new Vec2d(2,1).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_l", new Vec2d(0,2).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_none", new Vec2d(1,2).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_r", new Vec2d(2,2).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_bl", new Vec2d(0,3).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_b", new Vec2d(1,3).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_br", new Vec2d(2,3).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,0,0,1,"edge_tl", new Vec2d(0,1).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,0,0,0,"edge_t", new Vec2d(1,1).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,1,0,0,"edge_tr", new Vec2d(2,1).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,0,0,1,"edge_l", new Vec2d(0,2).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,0,0,0,"edge_none", new Vec2d(1,2).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,1,0,0,"edge_r", new Vec2d(2,2).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,0,1,1,"edge_bl", new Vec2d(0,3).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,0,1,0,"edge_b", new Vec2d(1,3).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,1,1,0,"edge_br", new Vec2d(2,3).smult(32), TS));
 
-        grassTile.addVariant(new SpriteTileVariant("edge_lr", new Vec2d(0,4).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_ltr", new Vec2d(1,4).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_tb", new Vec2d(2,4).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_ltb", new Vec2d(0,5).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_ltrb", new Vec2d(1,5).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_trb", new Vec2d(2,5).smult(32), TS));
-        grassTile.addVariant(new SpriteTileVariant("edge_lrb", new Vec2d(1,6).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,1,0,1,"edge_lr", new Vec2d(0,4).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,1,0,1,"edge_ltr", new Vec2d(1,4).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,0,1,0,"edge_tb", new Vec2d(2,4).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,0,1,1,"edge_ltb", new Vec2d(0,5).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,1,1,1,"edge_ltrb", new Vec2d(1,5).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(1,1,1,0,"edge_trb", new Vec2d(2,5).smult(32), TS));
+        grassTile.addVariant(new SpriteTileVariant(0,1,1,1,"edge_lrb", new Vec2d(1,6).smult(32), TS));
 
         grassTile.set4DirectionRestrictions(
                 (String type, int height)->{
@@ -96,6 +96,7 @@ public class LevelTileMaps {
                         return new String[]{"edge_tl","edge_l","edge_bl","edge_lr","edge_ltr","edge_ltb","edge_ltrb","edge_lrb"};
                     return new String[]{"edge_t","edge_tr","edge_none","edge_r","edge_b","edge_br","edge_tb","edge_trb"};
                 });
+        grassTile.setAllVariantCollisionThickness(.1);
         tileTypes.add(grassTile);
 
         //wall tile
@@ -130,7 +131,7 @@ public class LevelTileMaps {
                         return new String[]{"up_lr","down_lr","up_l","down_l"};
                     return new String[]{"up","up_r","down","down_r"};
                 });
-
+        wallTile.setAllVariantCollisionThickness(.1);
         tileTypes.add(wallTile);
 
 
