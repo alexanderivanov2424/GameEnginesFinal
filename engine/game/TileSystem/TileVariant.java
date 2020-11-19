@@ -19,5 +19,5 @@ public abstract class TileVariant {
         this.variantName = variantName;
     }
 
-    public abstract GameObject constructGameObject(Vec2d tilesSize, String spriteSheetPath, GameWorld gameWorld, int layer);
+    public abstract GameObject constructGameObject(Vec2d position, Vec2d tilesSize, String spriteSheetPath, GameWorld gameWorld, int layer);
 }

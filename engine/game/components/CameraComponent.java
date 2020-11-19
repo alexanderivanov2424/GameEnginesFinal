@@ -31,6 +31,10 @@ public class CameraComponent extends Component{
 
     @Override
     public void onLateTick(){
+        if(this.viewport == null){
+            System.err.println("Viewport not found. Maybe you forgot to link the viewport with the gameworld.");
+            return;
+        }
         Vec2d pos = this.gameObject.getTransform().position;
         Vec2d size = this.gameObject.getTransform().size;
         this.viewport.setGamePosition(new Vec2d(pos.x + size.x/2, pos.y+ size.y/2));

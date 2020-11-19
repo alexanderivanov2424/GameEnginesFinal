@@ -28,7 +28,7 @@ public class TileMap {
         this.tiles = tiles;
     }
 
-    public void setTiles(int[][] heightmap){
+    public void setHeights(int[][] heightmap){
         this.heightmap = heightmap;
     }
 
@@ -37,7 +37,7 @@ public class TileMap {
         return this.heightmap[i][j];
     }
 
-    public void addTilesToGameWorld(GameWorld gameWorld, int layer, Vec2d tileSize){
+    public void addTilesToGameWorld(GameWorld gameWorld, int layer, double tileSize){
         if(this.tiles == null){
             System.err.println("Tile Map Not Set");
             return;
@@ -47,7 +47,8 @@ public class TileMap {
                 for (int j = 0; j < tiles[i].length; j++) {
                     Tile t = this.tileTypes.get(tiles[i][j]);
                     TileVariant tv = this.get4DirectionalVariantAt(t, i, j);
-                    gameWorld.addGameObject(tv.constructGameObject(tileSize, t.getTileSheetPath(), gameWorld, layer));
+                    gameWorld.addGameObject(tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
+                            new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer));
                 }
             }
         } else {
@@ -55,7 +56,8 @@ public class TileMap {
                 for (int j = 0; j < tiles[i].length; j++) {
                     Tile t = this.tileTypes.get(tiles[i][j]);
                     TileVariant tv = this.get8DirectionalVariantAt(t, i, j);
-                    gameWorld.addGameObject(tv.constructGameObject(tileSize, t.getTileSheetPath(), gameWorld, layer));
+                    gameWorld.addGameObject(tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
+                            new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer));
                 }
             }
         }
@@ -64,20 +66,36 @@ public class TileMap {
     private TileVariant get4DirectionalVariantAt(Tile t, int i, int j){
         Set<String> variants = new HashSet<String>(Arrays.asList(t.getVariants()));
         if(j > 0){
-            variants.retainAll(Arrays.asList(
-                    t.up.getVariantRestriction(this.tileTypes.get(tiles[i][j-1]).type, this.getHeight(i,j))));
+            if(t.up != null) {
+                String[] res = t.up.getVariantRestriction(this.tileTypes.get(tiles[i][j - 1]).type,
+                        this.getHeight(i, j) - this.getHeight(i, j - 1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(i < tiles.length - 1){
-            variants.retainAll(Arrays.asList(
-                    t.right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type, this.getHeight(i,j))));
+            if(t.right != null) {
+                String[] res = t.right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type,
+                        this.getHeight(i, j) - this.getHeight(i+1, j));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(j < tiles[0].length - 1){
-            variants.retainAll(Arrays.asList(
-                    t.down.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type, this.getHeight(i,j))));
+            if(t.down != null) {
+                String[] res = t.down.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type,
+                        this.getHeight(i, j) - this.getHeight(i, j+1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(i > 0){
-            variants.retainAll(Arrays.asList(
-                    t.left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j]).type, this.getHeight(i,j))));
+            if(t.left != null) {
+                String[] res = t.left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j]).type,
+                        this.getHeight(i, j) - this.getHeight(i-1, j));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(variants.size() == 0){
             System.err.println("No Tile Options Left for tile: " + t.type + " at " + i + "," + j);
@@ -89,37 +107,68 @@ public class TileMap {
     private TileVariant get8DirectionalVariantAt(Tile t, int i, int j){
         Set<String> variants = new HashSet<String>(Arrays.asList(t.getVariants()));
         if(j > 0){
-            variants.retainAll(Arrays.asList(
-                    t.up.getVariantRestriction(this.tileTypes.get(tiles[i][j-1]).type, this.getHeight(i,j))));
+            if(t.up != null) {
+                String[] res = t.up.getVariantRestriction(this.tileTypes.get(tiles[i][j - 1]).type,
+                        this.getHeight(i, j) - this.getHeight(i, j - 1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(i < tiles.length - 1){
-            variants.retainAll(Arrays.asList(
-                    t.right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type, this.getHeight(i,j))));
+            if(t.right != null) {
+                String[] res = t.right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j]).type,
+                        this.getHeight(i, j) - this.getHeight(i+1, j));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(j < tiles[0].length - 1){
-            variants.retainAll(Arrays.asList(
-                    t.down.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type, this.getHeight(i,j))));
+            if(t.down != null) {
+                String[] res = t.down.getVariantRestriction(this.tileTypes.get(tiles[i][j+1]).type,
+                        this.getHeight(i, j) - this.getHeight(i, j+1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
-        if(i > 0){
-            variants.retainAll(Arrays.asList(
-                    t.left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j]).type, this.getHeight(i,j))));
+        if(i > 0) {
+            if (t.left != null) {
+                String[] res = t.left.getVariantRestriction(this.tileTypes.get(tiles[i - 1][j]).type,
+                        this.getHeight(i, j) - this.getHeight(i - 1, j));
+                if (res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
-
         if(j > 0 && i < tiles.length - 1){
-            variants.retainAll(Arrays.asList(
-                    t.up_right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j-1]).type, this.getHeight(i,j))));
+            if(t.up_right != null) {
+                String[] res = t.up_right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j-1]).type,
+                        this.getHeight(i, j) - this.getHeight(i+1, j-1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(j < tiles[0].length - 1 && i < tiles.length - 1){
-            variants.retainAll(Arrays.asList(
-                    t.down_right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j+1]).type, this.getHeight(i,j))));
+            if(t.down_right != null) {
+                String[] res = t.down_right.getVariantRestriction(this.tileTypes.get(tiles[i+1][j+1]).type,
+                        this.getHeight(i, j) - this.getHeight(i+1, j+1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(j < tiles[0].length - 1 && i > 0){
-            variants.retainAll(Arrays.asList(
-                    t.down_left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j+1]).type, this.getHeight(i,j))));
+            if(t.down_left != null) {
+                String[] res = t.down_left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j+1]).type,
+                        this.getHeight(i, j) - this.getHeight(i-1, j+1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(i > 0 && j > 0){
-            variants.retainAll(Arrays.asList(
-                    t.up_left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j]).type, this.getHeight(i,j))));
+            if(t.up_left != null) {
+                String[] res = t.up_left.getVariantRestriction(this.tileTypes.get(tiles[i-1][j-1]).type,
+                        this.getHeight(i, j) - this.getHeight(i-1, j-1));
+                if(res != null)
+                    variants.retainAll(Arrays.asList(res));
+            }
         }
         if(variants.size() == 0){
             System.err.println("No Tile Options Left for tile: " + t.type + " at " + i + "," + j);

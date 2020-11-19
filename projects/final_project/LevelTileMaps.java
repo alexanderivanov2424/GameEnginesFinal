@@ -9,16 +9,49 @@ import java.util.ArrayList;
 
 public class LevelTileMaps {
 
-    public static String[][] getTestingLevel(){
+    public static void setTestingLevel(TileMap tileMap){
+        int[][] tiles_int = new int[][]{
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        };
 
+        int[][] heights = new int[][]{
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        };
 
+        String[] index = new String[]{"grass", "wall"};
+        String[][] tiles = new String[tiles_int.length][tiles_int[0].length];
+        for(int i = 0; i < tiles_int.length; i++){
+            for(int j = 0; j < tiles_int[0].length; j++){
+                tiles[i][j] = index[tiles_int[i][j]];
+            }
+        }
 
-        return null;
+        tileMap.setTiles(tiles);
+        tileMap.setHeights(heights);
+
     }
 
 
     public static TileMap createTileMap(){
-        ArrayList<Tile> tileTypes = new ArrayList<Tile>();
+        ArrayList<Tile> tileTypes = new ArrayList<>();
 
         Vec2d TS = new Vec2d(32,32);
 
@@ -41,10 +74,32 @@ public class LevelTileMaps {
         grassTile.addVariant(new SpriteTileVariant("edge_ltrb", new Vec2d(1,5).smult(32), TS));
         grassTile.addVariant(new SpriteTileVariant("edge_trb", new Vec2d(2,5).smult(32), TS));
         grassTile.addVariant(new SpriteTileVariant("edge_lrb", new Vec2d(1,6).smult(32), TS));
+
+        grassTile.set4DirectionRestrictions(
+                (String type, int height)->{
+                    if(height != 0)
+                        return new String[]{"edge_tl","edge_t","edge_tr","edge_ltr","edge_tb","edge_ltb","edge_ltrb","edge_trb"};
+                    return new String[]{"edge_l","edge_none","edge_r","edge_bl","edge_b","edge_br","edge_lr","edge_lrb"};
+                },
+                (String type, int height)->{
+                    if(height != 0)
+                        return new String[]{"edge_tr","edge_r","edge_br","edge_lr","edge_ltr","edge_ltrb","edge_trb","edge_lrb"};
+                    return new String[]{"edge_tl","edge_t","edge_l","edge_none","edge_bl","edge_b","edge_tb","edge_ltb"};
+                },
+                (String type, int height)->{
+                    if(height != 0)
+                        return new String[]{"edge_bl","edge_b","edge_br","edge_tb","edge_ltb","edge_ltrb","edge_trb","edge_lrb"};
+                    return new String[]{"edge_tl","edge_t","edge_tr","edge_l","edge_none","edge_r","edge_lr","edge_ltr"};
+                },
+                (String type, int height)->{
+                    if(height != 0)
+                        return new String[]{"edge_tl","edge_l","edge_bl","edge_lr","edge_ltr","edge_ltb","edge_ltrb","edge_lrb"};
+                    return new String[]{"edge_t","edge_tr","edge_none","edge_r","edge_b","edge_br","edge_tb","edge_trb"};
+                });
         tileTypes.add(grassTile);
 
         //wall tile
-        Tile wallTile = new Tile("grass", Game.getSpritePath("tile_sprite_sheet"));
+        Tile wallTile = new Tile("wall", Game.getSpritePath("tile_sprite_sheet"));
         wallTile.addVariant(new SpriteTileVariant("up_lr", new Vec2d(3,1).smult(32), TS));
         wallTile.addVariant(new SpriteTileVariant("down_lr", new Vec2d(3,2).smult(32), TS));
 

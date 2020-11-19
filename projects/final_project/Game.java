@@ -3,6 +3,7 @@ package projects.final_project;
 import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.SpriteLoader;
 import engine.game.TileSystem.SpriteTileVariant;
 import engine.game.TileSystem.Tile;
 import engine.game.TileSystem.TileMap;
@@ -21,16 +22,24 @@ public class Game {
 
     private GameWorld gameWorld;
     private UIViewport viewport;
+    private SpriteLoader spriteLoader;
 
     public Game(GameWorld gameWorld, UIViewport viewport) {
         this.gameWorld = gameWorld;
         this.viewport = viewport;
+
+        this.spriteLoader = new SpriteLoader();
+        gameWorld.setSpriteLoader(spriteLoader);
+
+        gameWorld.linkViewport(0, viewport);
     }
 
     public void init() {
         this.gameWorld.addGameObject(createPlayer(this.gameWorld,new Vec2d(0,0)));
 
-
+        TileMap tileMap = LevelTileMaps.createTileMap();
+        LevelTileMaps.setTestingLevel(tileMap);
+        tileMap.addTilesToGameWorld(this.gameWorld, 0, 2);
     }
 
     /*
@@ -49,8 +58,9 @@ public class Game {
         player.addComponent(new WASDMovementComponent(player,10));
         player.addComponent(new CameraComponent(player, 0));
 
-        player.addComponent(new SpriteAnimationComponent(player, Game.getSpritePath("player"),
-                new Vec2d(0,0), new Vec2d(2,2), 5, new Vec2d(0,0), new Vec2d(32,32), .1));//normal animation
+//        player.addComponent(new SpriteAnimationComponent(player, Game.getSpritePath("player"),
+//                new Vec2d(0,0), new Vec2d(2,2), 5,
+//                new Vec2d(0,0), new Vec2d(32,32), .1));//normal animation
 
         player.addComponent(new CollisionComponent(player, new AABShape(new Vec2d(.3,.25),new Vec2d(1.4,1.75)),
                 false, true, PLAYER_LAYER, PLAYER_MASK));

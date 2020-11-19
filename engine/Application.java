@@ -55,6 +55,7 @@ public class Application extends FXFrontEnd {
   }
 
   public void setCurrentScreen(String tag){
+    if(this.screens.get(tag) == null) return;
     this.currentScreen = this.screens.get(tag);
     this.currentScreenTag = tag;
     this.onResize(this.currentStageSize);

@@ -8,7 +8,7 @@ public class Tile {
 
 
     public interface VariantRestriction{
-        public String[] getVariantRestriction(String type, int height);
+        String[] getVariantRestriction(String type, int height);
     }
 
 

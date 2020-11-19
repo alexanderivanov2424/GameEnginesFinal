@@ -57,8 +57,9 @@ public class SpriteAnimationComponent extends Component{
         this.size = size;
 
         this.frames = frames;
-        this.cropSize = cropSize;
         this.cropStart = new Vec2d(0,0);
+        this.cropSize = cropSize;
+        this.cropShift = cropSize;
         this.frameDuration = frameDuration * 1000000000;
     }
 
@@ -71,8 +72,9 @@ public class SpriteAnimationComponent extends Component{
         this.size = size;
 
         this.frames = frames;
-        this.cropSize = cropSize;
         this.cropStart = cropStart;
+        this.cropSize = cropSize;
+        this.cropShift = cropSize;
         this.frameDuration = frameDuration * 1000000000;
     }
 

@@ -23,10 +23,12 @@ public class AnimatedTileVariant extends SpriteTileVariant{
     }
 
     @Override
-    public GameObject constructGameObject(Vec2d tilesSize, String spriteSheetPath, GameWorld gameWorld, int layer){
+    public GameObject constructGameObject(Vec2d position, Vec2d tilesSize, String spriteSheetPath, GameWorld gameWorld, int layer){
         GameObject tile = new GameObject(gameWorld, layer);
         SpriteComponent sprite = new SpriteComponent(tile, spriteSheetPath, new Vec2d(0,0), tilesSize, cropStart, cropSize);
         tile.addComponent(sprite);
+        tile.getTransform().position = position;
+        tile.getTransform().size = tilesSize;
         return tile;
     }
 }

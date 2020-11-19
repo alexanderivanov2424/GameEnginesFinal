@@ -37,9 +37,10 @@ public class App extends Application {
   protected void onStartup() {
     super.onStartup();
     Screen mainMenu = new Screen();
+    Screen gameScreen = new Screen();
 
     createMainMenu(mainMenu);
-
+    createGameScreen(gameScreen);
 
     this.setCurrentScreen("mainMenu");
   }
