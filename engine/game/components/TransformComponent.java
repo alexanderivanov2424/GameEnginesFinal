@@ -12,8 +12,8 @@ public class TransformComponent extends Component {
     public Vec2d position;
     public Vec2d size;
 
-    public TransformComponent(GameObject gameObject){
-        super(gameObject);
+    public TransformComponent(){
+        super();
         this.position = new Vec2d(0,0);
         this.size = new Vec2d(0,0);
     }
@@ -35,9 +35,9 @@ public class TransformComponent extends Component {
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
-        TransformComponent c = new TransformComponent(g);
+        TransformComponent c = new TransformComponent();
         c.position = Vec2d.fromString(attr.getNamedItem("position").getNodeValue());
         c.size = Vec2d.fromString(attr.getNamedItem("size").getNodeValue());
         return c;

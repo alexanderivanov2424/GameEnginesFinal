@@ -40,9 +40,8 @@ public class CollisionComponent extends Component{
     public boolean hasPhysics = false;
 
 
-    public CollisionComponent(GameObject gameObject, Shape shape, boolean isStatic, boolean isSolid,
+    public CollisionComponent(Shape shape, boolean isStatic, boolean isSolid,
                               int collisionLayer, int collisionMask) {
-        super(gameObject);
         this.shape = shape;
         this.isStatic = isStatic;
         this.isSolid = isSolid;
@@ -136,7 +135,7 @@ public class CollisionComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Node child = n.getChildNodes().item(0);
         Shape shape = Shape.loadFromXML((Element)child);
@@ -146,7 +145,7 @@ public class CollisionComponent extends Component{
         boolean isStatic = Boolean.parseBoolean(attr.getNamedItem("isStatic").getNodeValue());
         boolean isSolid = Boolean.parseBoolean(attr.getNamedItem("isSolid").getNodeValue());
         boolean hasPhysics = Boolean.parseBoolean(attr.getNamedItem("hasPhysics").getNodeValue());
-        CollisionComponent c = new CollisionComponent(g, shape, isStatic, isSolid, collisionLayer, collisionMask);
+        CollisionComponent c = new CollisionComponent(shape, isStatic, isSolid, collisionLayer, collisionMask);
         c.hasPhysics = hasPhysics;
         c.NOT_FULLY_LOADED();
         return c;

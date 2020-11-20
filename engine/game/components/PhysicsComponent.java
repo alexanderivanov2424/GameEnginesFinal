@@ -25,17 +25,17 @@ public class PhysicsComponent extends CollisionComponent{
 
     double restitution = 1;
 
-    public PhysicsComponent(GameObject gameObject, Shape shape, double mass, double restitution, int collisionLayer, int collisionMask) {
-        super(gameObject, shape, false, true, collisionLayer, collisionMask);
+    public PhysicsComponent(Shape shape, double mass, double restitution, int collisionLayer, int collisionMask) {
+        super(shape, false, true, collisionLayer, collisionMask);
         this.mass = mass;
         this.restitution = restitution;
         hasPhysics = true;
         assert(mass != 0);
     }
 
-    public PhysicsComponent(GameObject gameObject, Shape shape, double mass, double restitution, boolean isStatic,
+    public PhysicsComponent(Shape shape, double mass, double restitution, boolean isStatic,
                             int collisionLayer, int collisionMask) {
-        super(gameObject, shape, isStatic, true, collisionLayer, collisionMask);
+        super(shape, isStatic, true, collisionLayer, collisionMask);
         this.mass = mass;
         this.restitution = restitution;
         hasPhysics = true;
@@ -136,7 +136,7 @@ public class PhysicsComponent extends CollisionComponent{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Node child = n.getChildNodes().item(1);
         Shape shape = Shape.loadFromXML((Element)child);
@@ -152,7 +152,7 @@ public class PhysicsComponent extends CollisionComponent{
         Vec2d force = Vec2d.fromString(attr.getNamedItem("force").getNodeValue());
         Vec2d deltaV = Vec2d.fromString(attr.getNamedItem("deltaV").getNodeValue());
         Double restitution = Double.parseDouble(attr.getNamedItem("restitution").getNodeValue());
-        PhysicsComponent c = new PhysicsComponent(g, shape, mass, restitution, isStatic, collisionLayer, collisionMask);
+        PhysicsComponent c = new PhysicsComponent(shape, mass, restitution, isStatic, collisionLayer, collisionMask);
         c.isSolid = isSolid;
         c.hasPhysics = hasPhysics;
         c.velocity = velocity;

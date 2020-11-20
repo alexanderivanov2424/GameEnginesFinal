@@ -19,8 +19,8 @@ public class CameraComponent extends Component{
     //TODO add smoothness
     //TODO add option for level bounds (camera cant go past certain point but player can.
 
-    public CameraComponent(GameObject gameObject, int viewport_id) {
-        super(gameObject);
+    public CameraComponent(int viewport_id) {
+        super();
         this.viewport_id = viewport_id;
         this.viewport = gameObject.gameWorld.getViewport(viewport_id);
     }
@@ -56,10 +56,10 @@ public class CameraComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         int viewport_id = Integer.parseInt(attr.getNamedItem("viewport_id").getNodeValue());
-        CameraComponent c = new CameraComponent(g, viewport_id);
+        CameraComponent c = new CameraComponent(viewport_id);
         return c;
     }
 }

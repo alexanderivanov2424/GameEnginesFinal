@@ -15,8 +15,8 @@ public class WASDMovementComponent extends Component{
 
     private double speed; // per second
 
-    public WASDMovementComponent(GameObject gameObject, double speed) {
-        super(gameObject);
+    public WASDMovementComponent(double speed) {
+        super();
         this.speed = speed;
     }
 
@@ -59,10 +59,10 @@ public class WASDMovementComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Double speed = Double.parseDouble(attr.getNamedItem("speed").getNodeValue());
-        WASDMovementComponent c = new WASDMovementComponent(g, speed);
+        WASDMovementComponent c = new WASDMovementComponent(speed);
         return c;
     }
 }

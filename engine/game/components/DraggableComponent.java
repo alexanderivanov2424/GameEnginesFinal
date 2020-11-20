@@ -13,8 +13,8 @@ public class DraggableComponent extends Component{
     private Vec2d holdLocation = new Vec2d(0,0);
     private Boolean dragging = false;
 
-    public DraggableComponent(GameObject gameObject) {
-        super(gameObject);
+    public DraggableComponent() {
+        super();
     }
 
     @Override
@@ -61,11 +61,11 @@ public class DraggableComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Vec2d holdLocation = Vec2d.fromString(attr.getNamedItem("holdLocation").getNodeValue());
         boolean dragging = Boolean.parseBoolean(attr.getNamedItem("dragging").getNodeValue());
-        DraggableComponent c = new DraggableComponent(g);
+        DraggableComponent c = new DraggableComponent();
         c.holdLocation = holdLocation;
         c.dragging = dragging;
         return c;

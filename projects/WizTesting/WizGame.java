@@ -11,7 +11,6 @@ public class WizGame {
 
     private GameWorld gameWorld;
     private UIViewport viewport;
-    private SpriteLoader spriteLoader;
 
     private int difficulty = 0;
 
@@ -22,8 +21,6 @@ public class WizGame {
         this.viewport = viewport;
         this.seed = seed;
 
-        spriteLoader = new SpriteLoader();
-        gameWorld.setSpriteLoader(spriteLoader);
         gameWorld.linkViewport(0, viewport);
     }
 

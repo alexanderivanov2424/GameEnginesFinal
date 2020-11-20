@@ -24,9 +24,9 @@ public class SpriteComponent extends Component{
     protected boolean horizontalFlip = false;
 
 
-    public SpriteComponent(GameObject gameObject, String spritePath, Vec2d position, Vec2d size) {
-        super(gameObject);
-        this.sprite = gameObject.gameWorld.getSpriteLoader().loadImage(spritePath);
+    public SpriteComponent(String spritePath, Vec2d position, Vec2d size) {
+        super();
+        this.sprite = SpriteLoader.loadImage(spritePath);
         this.spriteSheetPath = spritePath;
         this.position = position;
         this.size = size;
@@ -35,10 +35,10 @@ public class SpriteComponent extends Component{
         this.cropSize = new Vec2d(this.sprite.getWidth(),this.sprite.getHeight());
     }
 
-    public SpriteComponent(GameObject gameObject, String spritePath,
+    public SpriteComponent(String spritePath,
                            Vec2d position, Vec2d size, Vec2d offset, Vec2d cropSize) {
-        super(gameObject);
-        this.sprite = gameObject.gameWorld.getSpriteLoader().loadImage(spritePath);
+        super();
+        this.sprite = SpriteLoader.loadImage(spritePath);
         this.spriteSheetPath = spritePath;
         this.position = position;
         this.size = size;
@@ -48,7 +48,7 @@ public class SpriteComponent extends Component{
     }
 
     public void resetSprite(String spritePath, Vec2d position, Vec2d size, Vec2d offset, Vec2d cropSize){
-        this.sprite = gameObject.gameWorld.getSpriteLoader().loadImage(spritePath);
+        this.sprite = SpriteLoader.loadImage(spritePath);
         this.spriteSheetPath = spritePath;
         this.position = position;
         this.size = size;
@@ -97,7 +97,7 @@ public class SpriteComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         String path = attr.getNamedItem("spriteSheetPath").getNodeValue();
         Vec2d position = Vec2d.fromString(attr.getNamedItem("position").getNodeValue());
@@ -107,7 +107,7 @@ public class SpriteComponent extends Component{
         Vec2d cropSize = Vec2d.fromString(attr.getNamedItem("cropSize").getNodeValue());
 
         Boolean horizontalFlip = Boolean.parseBoolean(attr.getNamedItem("horizontalFlip").getNodeValue());
-        SpriteComponent c = new SpriteComponent(g, path, position, size, offset, cropSize);
+        SpriteComponent c = new SpriteComponent(path, position, size, offset, cropSize);
         c.horizontalFlip = horizontalFlip;
         return c;
     }

@@ -12,8 +12,8 @@ public class BehaviorTreeComponent extends Component{
 
     private BTNode root;
 
-    public BehaviorTreeComponent(GameObject gameObject, BTNode root) {
-        super(gameObject);
+    public BehaviorTreeComponent(BTNode root) {
+        super();
         this.root = root;
     }
 
@@ -37,7 +37,7 @@ public class BehaviorTreeComponent extends Component{
     }
 
 
-    public static Component loadFromXML(Element n, GameObject g) {
-        return new BehaviorTreeComponent(g,null);
+    public static Component loadFromXML(Element n) {
+        return new BehaviorTreeComponent(null);
     }
 }

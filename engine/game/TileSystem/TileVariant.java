@@ -74,23 +74,19 @@ public abstract class TileVariant {
     public List<Component> getCollisionComponents(GameObject gameObject, Vec2d tileSize, int collisionLayer, int collisionMask){
         ArrayList<Component> ret = new ArrayList();
         if(this.collision_up){
-            ret.add(new CollisionComponent(gameObject,
-                    new AABShape(new Vec2d(0,0), new Vec2d(tileSize.x,this.thickness)),
+            ret.add(new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(tileSize.x,this.thickness)),
                     true, true, collisionLayer, collisionMask));
         }
         if(this.collision_right){
-            ret.add(new CollisionComponent(gameObject,
-                    new AABShape(new Vec2d(tileSize.x - this.thickness,0), new Vec2d(this.thickness, tileSize.y)),
+            ret.add(new CollisionComponent(new AABShape(new Vec2d(tileSize.x - this.thickness,0), new Vec2d(this.thickness, tileSize.y)),
                     true, true, collisionLayer, collisionMask));
         }
         if(this.collision_down){
-            ret.add(new CollisionComponent(gameObject,
-                    new AABShape(new Vec2d(0, tileSize.y-this.thickness), new Vec2d(tileSize.x,this.thickness)),
+            ret.add(new CollisionComponent(new AABShape(new Vec2d(0, tileSize.y-this.thickness), new Vec2d(tileSize.x,this.thickness)),
                     true, true, collisionLayer, collisionMask));
         }
         if(this.collision_left){
-            ret.add(new CollisionComponent(gameObject,
-                    new AABShape(new Vec2d(0,0), new Vec2d(this.thickness, tileSize.y)),
+            ret.add(new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(this.thickness, tileSize.y)),
                     true, true, collisionLayer, collisionMask));
         }
         return ret;

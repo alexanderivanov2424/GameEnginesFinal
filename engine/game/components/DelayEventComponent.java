@@ -19,8 +19,8 @@ public class DelayEventComponent extends Component{
 
     private double timer = 0; //variable used for clock
 
-    public DelayEventComponent(GameObject gameObject, double seconds) {
-        super(gameObject);
+    public DelayEventComponent(double seconds) {
+        super();
         this.timer = seconds;
     }
 
@@ -61,10 +61,10 @@ public class DelayEventComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         double time = Double.parseDouble(attr.getNamedItem("time").getNodeValue());
-        DelayEventComponent c = new DelayEventComponent(g, time);
+        DelayEventComponent c = new DelayEventComponent(time);
         c.NOT_FULLY_LOADED();
         return c;
     }

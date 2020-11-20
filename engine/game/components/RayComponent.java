@@ -20,8 +20,8 @@ public class RayComponent extends Component{
 
     public double length = -1;
 
-    public RayComponent(GameObject gameObject, Ray ray, boolean ignore_self) {
-        super(gameObject);
+    public RayComponent(Ray ray, boolean ignore_self) {
+        super();
         this.ray = ray;
         this.ignore_self = ignore_self;
     }
@@ -65,14 +65,14 @@ public class RayComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Node child = n.getChildNodes().item(1);
         Ray ray = Ray.loadFromXML((Element)child);
 
         double length = Double.parseDouble(attr.getNamedItem("length").getNodeValue());
         boolean ignore_self = Boolean.parseBoolean(attr.getNamedItem("ignore_self").getNodeValue());
-        RayComponent c = new RayComponent(g, ray, ignore_self);
+        RayComponent c = new RayComponent(ray, ignore_self);
         c.length = length;
         return c;
     }

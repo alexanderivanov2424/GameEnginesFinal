@@ -25,11 +25,6 @@ public abstract class Component {
 
     public boolean NOT_FULLY_LOADED = false;
 
-    //Game Object adds Component which needs the game object as input
-    public Component(GameObject gameObject) {
-        this.gameObject = gameObject;
-    }
-
     public void disable(){
         this.disabled = true;
     }
@@ -44,6 +39,10 @@ public abstract class Component {
 
     public GameObject getGameObject(){
         return this.gameObject;
+    }
+
+    public void setGameObject(GameObject g){
+        this.gameObject = g;
     }
 
     public abstract int getSystemFlags();
@@ -84,14 +83,12 @@ public abstract class Component {
         return component;
     }
 
-    public static Component getComponentFromXML(Element n, GameObject g) throws ClassNotFoundException, NoSuchMethodException,
+    public static Component getComponentFromXML(Element n) throws ClassNotFoundException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException {
         Class cls = Class.forName(n.getTagName());
-        Class[] cArg = new Class[2];
-        cArg[0] = Element.class;
-        cArg[1] = GameObject.class;
+        Class[] cArg = new Class[]{Element.class};
         Method m = cls.getMethod("loadFromXML", cArg);
-        return (Component) m.invoke(null,n,g);
+        return (Component) m.invoke(null,n);
     }
 
     public void NOT_FULLY_LOADED(){

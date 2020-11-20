@@ -1,6 +1,7 @@
 package engine.game.components;
 
 import engine.game.GameObject;
+import engine.game.SpriteLoader;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -37,11 +38,11 @@ public class RaySpriteAnimationComponent extends Component {
     private long currentTime = 0;
     private int currentFrame = 0;
 
-    public RaySpriteAnimationComponent(GameObject gameObject, RayComponent rayComponent, String spriteSheetPath, Vec2d position, Vec2d size,
+    public RaySpriteAnimationComponent(RayComponent rayComponent, String spriteSheetPath, Vec2d position, Vec2d size,
                                        Vec2d srcCropStart, Vec2d srcCropSize, Vec2d lengthCropStart, Vec2d lengthCropSize,
                                        Vec2d dstCropStart, Vec2d dstCropSize, int frames, double frameDuration){
-        super(gameObject);
-        this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
+        super();
+        this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
 
         this.position = position;
@@ -67,7 +68,7 @@ public class RaySpriteAnimationComponent extends Component {
     public void resetAnimation(RayComponent rayComponent, String spriteSheetPath, Vec2d position, Vec2d size,
                                Vec2d srcCropStart, Vec2d srcCropSize, Vec2d lengthCropStart, Vec2d lengthCropSize,
                                Vec2d dstCropStart, Vec2d dstCropSize, int frames, double frameDuration){
-        this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
+        this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
 
         this.position = position;
@@ -171,7 +172,7 @@ public class RaySpriteAnimationComponent extends Component {
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         String path = attr.getNamedItem("spriteSheetPath").getNodeValue();
         Vec2d position = Vec2d.fromString(attr.getNamedItem("position").getNodeValue());
@@ -194,7 +195,7 @@ public class RaySpriteAnimationComponent extends Component {
         double frameDuration = Double.parseDouble(attr.getNamedItem("frameDuration").getNodeValue());
         long currentTime = Long.parseLong(attr.getNamedItem("currentTime").getNodeValue());
         int currentFrame = Integer.parseInt(attr.getNamedItem("currentFrame").getNodeValue());
-        RaySpriteAnimationComponent c = new RaySpriteAnimationComponent(g, null, path, position, size,
+        RaySpriteAnimationComponent c = new RaySpriteAnimationComponent(null, path, position, size,
                 srcCropStart, srcCropSize, lengthCropStart, lengthCropSize, dstCropStart, dstCropSize, frames, frameDuration);
         c.src_image = src_image;
         c.length_image = length_image;

@@ -25,19 +25,19 @@ public class WizPlayer {
     public static GameObject createPlayer(WizGame wizGame, GameWorld gameWorld, Vec2d pos){
         WizPlayer.wizGame = wizGame;
         GameObject player = new GameObject(gameWorld, 3);
-        player.addComponent(new WASDMovementComponent(player,10));
-        player.addComponent(new CameraComponent(player, 0));
+        player.addComponent(new WASDMovementComponent(10));
+        player.addComponent(new CameraComponent(0));
 
-        player.addComponent(new SpriteAnimationComponent(player, WizGame.getSpritePath("player"),
+        player.addComponent(new SpriteAnimationComponent(WizGame.getSpritePath("player"),
                 new Vec2d(0,0), new Vec2d(2,2), 5, new Vec2d(0,0), new Vec2d(32,32), .1));//normal animation
 
-        player.addComponent(new CollisionComponent(player, new AABShape(new Vec2d(.3,.25),new Vec2d(1.4,1.75)),
+        player.addComponent(new CollisionComponent(new AABShape(new Vec2d(.3,.25),new Vec2d(1.4,1.75)),
                 false, true, PLAYER_LAYER, PLAYER_MASK));
-        MouseClickComponent mouseClickComponent = new MouseClickComponent(player);
+        MouseClickComponent mouseClickComponent = new MouseClickComponent();
         mouseClickComponent.linkClickCallback( WizPlayer::clickCallback);
         player.addComponent(mouseClickComponent);
 
-        KeyPressedComponent keyPressedComponent = new KeyPressedComponent(player);
+        KeyPressedComponent keyPressedComponent = new KeyPressedComponent();
         keyPressedComponent.linkKeyCallback( WizPlayer::keyCallback);
         player.addComponent(keyPressedComponent);
 
@@ -82,7 +82,7 @@ public class WizPlayer {
                     new Vec2d(0,0), new Vec2d(2,2), 5,
                     new Vec2d(0,64), new Vec2d(32,32), new Vec2d(32,32), .1); //door animation
 
-            DelayEventComponent delayEventComponent = new DelayEventComponent(player, .5);
+            DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
             delayEventComponent.linkEventCallback(WizPlayer::nextLevel);
             player.addComponent(delayEventComponent);
 
@@ -102,7 +102,7 @@ public class WizPlayer {
                     new Vec2d(0,0), new Vec2d(2,2), 5,
                     new Vec2d(0,32), new Vec2d(32,32), new Vec2d(32,32), .1); //death animation
 
-            DelayEventComponent delayEventComponent = new DelayEventComponent(player, .5);
+            DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
             delayEventComponent.linkEventCallback(WizPlayer::playerDeath);
             player.addComponent(delayEventComponent);
 
@@ -120,10 +120,10 @@ public class WizPlayer {
     //pushable box for player
     private static GameObject createBox(GameWorld gameWorld, Vec2d pos){
         GameObject box = new GameObject(gameWorld, 4);
-        box.addComponent(new SpriteComponent(box, WizGame.getSpritePath("block"),
+        box.addComponent(new SpriteComponent(WizGame.getSpritePath("block"),
                 new Vec2d(0,0), new Vec2d(2,2)));
 
-        box.addComponent(new CollisionComponent(box, new AABShape(new Vec2d(0,0),new Vec2d(2,2)),
+        box.addComponent(new CollisionComponent(new AABShape(new Vec2d(0,0),new Vec2d(2,2)),
                 false, true, PLAYER_LAYER, PLAYER_MASK));
         box.getTransform().position = pos;
         box.getTransform().size = new Vec2d(2,2);
@@ -135,10 +135,10 @@ public class WizPlayer {
         double projctile_height = 3;
 
         GameObject projectile = new GameObject(gameWorld, 2);
-        projectile.addComponent(new SpriteComponent(projectile, WizGame.getSpritePath("projectile"),
+        projectile.addComponent(new SpriteComponent(WizGame.getSpritePath("projectile"),
                 new Vec2d(0,0), new Vec2d(1,1)));
 
-        CollisionComponent collisionComponent = new CollisionComponent(projectile, new CircleShape(new Vec2d(.5,.5),.3),
+        CollisionComponent collisionComponent = new CollisionComponent(new CircleShape(new Vec2d(.5,.5),.3),
                 false, true,PROJECTILE_LAYER, PROJECTILE_MASK){
                     @Override
                     public boolean caresAboutCollision(GameObject g){
@@ -150,10 +150,10 @@ public class WizPlayer {
         collisionComponent.linkCollisionCallback(WizPlayer::projectileCollisionCallback);
         projectile.addComponent(collisionComponent);
 
-        projectile.addComponent(new HeightComponent(projectile,7));
-        projectile.addComponent(new VelocityComponent(projectile, velocity));
+        projectile.addComponent(new HeightComponent(7));
+        projectile.addComponent(new VelocityComponent(velocity));
 
-        projectile.addComponent(new AudioComponent(projectile, "laser.wav"));
+        projectile.addComponent(new AudioComponent("laser.wav"));
 
         projectile.getTransform().position = position;
         projectile.getTransform().size = new Vec2d(2,2);
@@ -179,10 +179,10 @@ public class WizPlayer {
         double projctile_height = 7;
 
         GameObject projectile = new GameObject(gameWorld, 2);
-        projectile.addComponent(new SpriteComponent(projectile, WizGame.getSpritePath("projectile2"),
+        projectile.addComponent(new SpriteComponent(WizGame.getSpritePath("projectile2"),
                 new Vec2d(0,0), new Vec2d(1,1)));
 
-        CollisionComponent collisionComponent = new CollisionComponent(projectile, new CircleShape(new Vec2d(.5,.5),.3),
+        CollisionComponent collisionComponent = new CollisionComponent(new CircleShape(new Vec2d(.5,.5),.3),
                 false, true, PROJECTILE_LAYER, PROJECTILE_MASK){
             @Override
             public boolean caresAboutCollision(GameObject g){
@@ -193,8 +193,8 @@ public class WizPlayer {
         };
         collisionComponent.linkCollisionCallback(WizPlayer::bigProjectileCollisionCallback);
         projectile.addComponent(collisionComponent);
-        projectile.addComponent(new HeightComponent(projectile,7));
-        projectile.addComponent(new VelocityComponent(projectile, velocity));
+        projectile.addComponent(new HeightComponent(7));
+        projectile.addComponent(new VelocityComponent(velocity));
 
         projectile.getTransform().position = position;
         projectile.getTransform().size = new Vec2d(2,2);

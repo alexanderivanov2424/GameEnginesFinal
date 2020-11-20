@@ -21,8 +21,8 @@ public class ClickableComponent extends Component{
 
     private boolean dragging = false;
 
-    public ClickableComponent(GameObject gameObject) {
-        super(gameObject);
+    public ClickableComponent() {
+        super();
     }
 
     public void linkClickCallback(OnClickedFunction onClickedFunction){
@@ -67,9 +67,9 @@ public class ClickableComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
-        ClickableComponent c = new ClickableComponent(g);
+        ClickableComponent c = new ClickableComponent();
         c.NOT_FULLY_LOADED();
         return c;
     }

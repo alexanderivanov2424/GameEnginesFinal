@@ -17,8 +17,8 @@ public class KeyPressedComponent extends Component{
 
     private OnKeyFunction onKeyFunction;
 
-    public KeyPressedComponent(GameObject gameObject) {
-        super(gameObject);
+    public KeyPressedComponent() {
+        super();
     }
 
     public void linkKeyCallback(OnKeyFunction onKeyFunction){
@@ -47,9 +47,9 @@ public class KeyPressedComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
-        KeyPressedComponent c = new KeyPressedComponent(g);
+        KeyPressedComponent c = new KeyPressedComponent();
         c.NOT_FULLY_LOADED();
         return c;
     }

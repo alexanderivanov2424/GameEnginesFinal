@@ -11,8 +11,8 @@ public class HeightComponent extends Component{
 
     public double value;
 
-    public HeightComponent(GameObject gameObject, double value) {
-        super(gameObject);
+    public HeightComponent(double value) {
+        super();
         this.value = value;
     }
 
@@ -32,10 +32,10 @@ public class HeightComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Double value = Double.parseDouble(attr.getNamedItem("value").getNodeValue());
-        HeightComponent c = new HeightComponent(g, value);
+        HeightComponent c = new HeightComponent(value);
         return c;
     }
 }

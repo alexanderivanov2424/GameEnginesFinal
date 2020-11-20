@@ -25,16 +25,13 @@ public class Game {
 
     private GameWorld gameWorld;
     private UIViewport viewport;
-    private SpriteLoader spriteLoader;
 
     public Game(GameWorld gameWorld, UIViewport viewport) {
         this.gameWorld = gameWorld;
         this.viewport = viewport;
 
-        this.spriteLoader = new SpriteLoader();
-        gameWorld.setSpriteLoader(spriteLoader);
 
-        gameWorld.linkViewport(0, viewport);
+        gameWorld.linkViewport(0, this.viewport);
     }
 
     public void init() {
@@ -58,14 +55,14 @@ public class Game {
     //creates player
     public static GameObject createPlayer(GameWorld gameWorld, Vec2d pos){
         GameObject player = new GameObject(gameWorld, 3);
-        player.addComponent(new WASDMovementComponent(player,10));
-        player.addComponent(new CameraComponent(player, 0));
+        player.addComponent(new WASDMovementComponent(10));
+        player.addComponent(new CameraComponent(0));
 
-        player.addComponent(new SpriteAnimationComponent(player, Game.getSpritePath("player"),
+        player.addComponent(new SpriteAnimationComponent(Game.getSpritePath("player"),
                 new Vec2d(0,0), new Vec2d(2,2), 5,
                 new Vec2d(0,0), new Vec2d(32,32), .1));//normal animation
 
-        player.addComponent(new CollisionComponent(player, new AABShape(new Vec2d(.3,.25),new Vec2d(1.4,1.75)),
+        player.addComponent(new CollisionComponent(new AABShape(new Vec2d(.3,.25),new Vec2d(1.4,1.75)),
                 false, true, PLAYER_LAYER, PLAYER_MASK));
 
         player.getTransform().position = pos;

@@ -13,13 +13,13 @@ public class ConstantForceComponent extends Component{
     private PhysicsComponent physicsComponent = null;
     private Vec2d force;
 
-    public ConstantForceComponent(GameObject gameObject, Vec2d force) {
-        super(gameObject);
+    public ConstantForceComponent(Vec2d force) {
+        super();
         this.force = force;
     }
 
-    public ConstantForceComponent(GameObject gameObject, Vec2d force, PhysicsComponent physicsComponent) {
-        super(gameObject);
+    public ConstantForceComponent(Vec2d force, PhysicsComponent physicsComponent) {
+        super();
         this.physicsComponent = physicsComponent;
         this.force = force;
     }
@@ -38,7 +38,7 @@ public class ConstantForceComponent extends Component{
     }
 
     @Override
-    public void onLateTick(){};
+    public void onLateTick(){}
 
     @Override
     public int getSystemFlags() {
@@ -56,10 +56,10 @@ public class ConstantForceComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Vec2d force = Vec2d.fromString(attr.getNamedItem("force").getNodeValue());
-        ConstantForceComponent c = new ConstantForceComponent(g,force);
+        ConstantForceComponent c = new ConstantForceComponent(force);
         return c;
     }
 }

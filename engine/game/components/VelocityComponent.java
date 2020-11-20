@@ -11,8 +11,8 @@ public class VelocityComponent extends Component{
 
     public Vec2d velocity;
 
-    public VelocityComponent(GameObject gameObject, Vec2d velocity) {
-        super(gameObject);
+    public VelocityComponent(Vec2d velocity) {
+        super();
         this.velocity = velocity;
     }
 
@@ -43,9 +43,9 @@ public class VelocityComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
-        VelocityComponent c = new VelocityComponent(g, Vec2d.fromString(attr.getNamedItem("velocity").getNodeValue()));
+        VelocityComponent c = new VelocityComponent(Vec2d.fromString(attr.getNamedItem("velocity").getNodeValue()));
         return c;
     }
 }

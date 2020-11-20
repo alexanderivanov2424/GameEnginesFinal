@@ -12,8 +12,8 @@ import org.w3c.dom.NamedNodeMap;
 public class RectComponent extends Component{
 
     private Color color;
-    public RectComponent(GameObject gameObject, Color color) {
-        super(gameObject);
+    public RectComponent(Color color) {
+        super();
         this.color = color;
     }
 
@@ -42,11 +42,11 @@ public class RectComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         //TODO essentially never use this. Need to parse color properly. For now default to red
         //Color value = Color.parseColor(attr.getNamedItem("value").getNodeValue());
-        RectComponent c = new RectComponent(g, Color.RED);
+        RectComponent c = new RectComponent(Color.RED);
         return c;
     }
 }

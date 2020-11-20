@@ -13,8 +13,8 @@ public class AudioComponent extends Component {
     protected FloatControl gainControl;
     protected GameObject source;
 
-    public AudioComponent(GameObject gameObject, String filePath, GameObject source, boolean loop) {
-        super(gameObject);
+    public AudioComponent(String filePath, GameObject source, boolean loop) {
+        super();
 
         this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
         this.source = source;
@@ -33,8 +33,8 @@ public class AudioComponent extends Component {
         clip.start();
     }
 
-    public AudioComponent(GameObject gameObject, String filePath, GameObject source) {
-        super(gameObject);
+    public AudioComponent(String filePath, GameObject source) {
+        super();
 
         this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
         this.source = source;
@@ -52,8 +52,8 @@ public class AudioComponent extends Component {
         clip.start();
     }
 
-    public AudioComponent(GameObject gameObject, String filePath) {
-        super(gameObject);
+    public AudioComponent(String filePath) {
+        super();
 
         this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
         Clip clip = setup();
@@ -61,8 +61,8 @@ public class AudioComponent extends Component {
         clip.start();
     }
 
-    public AudioComponent(GameObject gameObject, String filePath, boolean loop) {
-        super(gameObject);
+    public AudioComponent(String filePath, boolean loop) {
+        super();
 
         this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
 

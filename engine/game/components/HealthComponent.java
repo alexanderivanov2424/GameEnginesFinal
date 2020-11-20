@@ -19,8 +19,8 @@ public class HealthComponent extends Component{
 
     private boolean done = false;
 
-    public HealthComponent(GameObject gameObject, double health) {
-        super(gameObject);
+    public HealthComponent(double health) {
+        super();
         this.health = health;
     }
 
@@ -65,7 +65,7 @@ public class HealthComponent extends Component{
         NamedNodeMap attr = n.getAttributes();
         Double health = Double.parseDouble(attr.getNamedItem("health").getNodeValue());
         boolean done = Boolean.parseBoolean(attr.getNamedItem("done").getNodeValue());
-        HealthComponent c = new HealthComponent(g, health);
+        HealthComponent c = new HealthComponent(health);
         c.NOT_FULLY_LOADED();
         c.done = done;
         return c;

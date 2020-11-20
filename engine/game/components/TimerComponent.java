@@ -19,8 +19,8 @@ public class TimerComponent extends Component{
 
     private double time = 0; //variable used for clock
 
-    public TimerComponent(GameObject gameObject, double seconds) {
-        super(gameObject);
+    public TimerComponent(double seconds) {
+        super();
         this.cycleTime = seconds;
     }
 
@@ -58,11 +58,11 @@ public class TimerComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         double cycleTime = Double.parseDouble(attr.getNamedItem("cycleTime").getNodeValue());
         double time = Double.parseDouble(attr.getNamedItem("time").getNodeValue());
-        TimerComponent c = new TimerComponent(g, cycleTime);
+        TimerComponent c = new TimerComponent(cycleTime);
         c.time = time;
         return c;
     }

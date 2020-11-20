@@ -24,11 +24,10 @@ public class WizEnemies {
     //spawner that creates enemies when near player
     public static GameObject createSpawner(GameWorld gameWorld, double spawnTime, Vec2d pos, GameObject player, int[][] grid){
         GameObject spawner = new GameObject(gameWorld, 2);
-        spawner.addComponent(new SpriteComponent(spawner, WizGame.getSpritePath("spawner"),
+        spawner.addComponent(new SpriteComponent(WizGame.getSpritePath("spawner"),
                 new Vec2d(0,0), new Vec2d(2,2)));
-        spawner.addComponent(new IDComponent(spawner, "spawner"));
-        spawner.addComponent(new TimerComponent(spawner, spawnTime
-        ));
+        spawner.addComponent(new IDComponent("spawner"));
+        spawner.addComponent(new TimerComponent(spawnTime));
 
         spawner.getTransform().position = pos;
         spawner.getTransform().size = new Vec2d(2,2);
@@ -50,18 +49,18 @@ public class WizEnemies {
     //stationary enemy that kills player on contact
     public static GameObject createEnemy(GameWorld gameWorld, Vec2d pos, GameObject player, int[][] grid){
         GameObject enemy = new GameObject(gameWorld, 2);
-        enemy.addComponent(new SpriteAnimationComponent(enemy, WizGame.getSpritePath("enemy"),
+        enemy.addComponent(new SpriteAnimationComponent(WizGame.getSpritePath("enemy"),
                 new Vec2d(0,0), new Vec2d(2,2), 5, new Vec2d(0,128), new Vec2d(64,64), .1));
-        enemy.addComponent(new IDComponent(enemy, "enemy"));
-        enemy.addComponent(new CollisionComponent(enemy, new AABShape(new Vec2d(.3,.3),new Vec2d(1.4,1.4)),
+        enemy.addComponent(new IDComponent("enemy"));
+        enemy.addComponent(new CollisionComponent(new AABShape(new Vec2d(.3,.3),new Vec2d(1.4,1.4)),
                 false, true, ENEMY_LAYER, ENEMY_MASK));
 
-        HealthComponent healthComponent = new HealthComponent(enemy, 5);
+        HealthComponent healthComponent = new HealthComponent(5);
         healthComponent.linkDeathCallback(WizEnemies::enemyDeathCallback);
         enemy.addComponent(healthComponent);
 
-        enemy.addComponent(new BehaviorTreeComponent(enemy, createEnemyAI(enemy,player,grid)));
-        enemy.addComponent(new HeightComponent(enemy,100));
+        enemy.addComponent(new BehaviorTreeComponent(createEnemyAI(enemy,player,grid)));
+        enemy.addComponent(new HeightComponent(100));
         enemy.getTransform().position = pos;
         enemy.getTransform().size = new Vec2d(2,2);
         return enemy;
@@ -75,7 +74,7 @@ public class WizEnemies {
         animation.resetAnimation(WizGame.getSpritePath("enemy"),
                 new Vec2d(0,0), new Vec2d(2,2), 5,
                 new Vec2d(0,64), new Vec2d(64,64),new Vec2d(64,0), .1); //death animation
-        DelayEventComponent delayEventComponent = new DelayEventComponent(enemy, .5);
+        DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
         delayEventComponent.linkEventCallback(WizEnemies::enemyRemoveCallback);
         enemy.addComponent(delayEventComponent);
     }

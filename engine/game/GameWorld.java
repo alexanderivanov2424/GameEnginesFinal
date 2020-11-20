@@ -53,8 +53,6 @@ public class GameWorld {
     private List<GameObject> addQueue;
     private List<GameObject> removeQueue;
 
-    private SpriteLoader spriteLoader; //Shared Sprite Loader for all gameObjects.
-
     private Map<Integer, UIViewport> viewportMap = new HashMap<Integer, UIViewport>();
 
 
@@ -64,14 +62,6 @@ public class GameWorld {
 
         addQueue = new ArrayList<GameObject>();
         removeQueue = new ArrayList<GameObject>();
-    }
-
-    public void setSpriteLoader(SpriteLoader spriteLoader){
-        this.spriteLoader = spriteLoader;
-    }
-
-    public SpriteLoader getSpriteLoader(){
-        return this.spriteLoader;
     }
 
     public void linkViewport(int id, UIViewport viewport){
@@ -324,7 +314,7 @@ public class GameWorld {
                     if(component.getNodeType() != Node.ELEMENT_NODE) continue;
                     try {
                         Element element = (Element) component;
-                        Component c = Component.getComponentFromXML(element, g);
+                        Component c = Component.getComponentFromXML(element);
                         if(c.NOT_FULLY_LOADED){
                             partiallyLoadedComponents.add(c);
                         }

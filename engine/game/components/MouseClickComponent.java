@@ -16,8 +16,8 @@ public class MouseClickComponent extends Component{
 
     private OnClickedFunction onClickedFunction;
 
-    public MouseClickComponent(GameObject gameObject) {
-        super(gameObject);
+    public MouseClickComponent() {
+        super();
     }
 
     public void linkClickCallback(OnClickedFunction onClick){
@@ -46,9 +46,9 @@ public class MouseClickComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
-        MouseClickComponent c = new MouseClickComponent(g);
+        MouseClickComponent c = new MouseClickComponent();
         c.NOT_FULLY_LOADED();
         return c;
     }

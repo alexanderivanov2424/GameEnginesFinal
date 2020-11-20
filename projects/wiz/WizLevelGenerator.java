@@ -89,79 +89,79 @@ public class WizLevelGenerator {
         //map[i][j] == 1 means this tile is a wall and the correct texture needs to be rendered.
         if(map[i][j] == 0) {
             if(Math.random() > .1) {
-                tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+                tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                         new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(34, 0), new Vec2d(32, 32)));
             } else {
                 if(Math.random() < .5) {
-                    tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+                    tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                             new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(34, 34), new Vec2d(32, 32)));
                     is_low_tile = true;
                  } else {
-                    tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+                    tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                             new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(34, 68), new Vec2d(32, 32)));
                 }
             }
         } else if(getAbove(map, i,j) == 0 && getBelow(map,i,j) == 0){
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(68,68), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 4/3)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 4/3)),
                     true, true, TILE_LAYER, TILE_MASK));
         } else if(getRight(map, i,j) == 0 && getBelow(map,i,j) == 0){
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(68,34), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 4/3)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 4/3)),
                     true, true, TILE_LAYER, TILE_MASK));
             ((SpriteComponent)tile.getComponent("SpriteComponent")).flipHorizontally();
         } else if(getLeft(map, i,j) == 0 && getBelow(map,i,j) == 0){
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(68,34), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 4/3)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 4/3)),
                     true, true, TILE_LAYER, TILE_MASK));
         } else if(getAbove(map, i,j) == 0){
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(0,68), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
                     true, true, TILE_LAYER, TILE_MASK));
         } else if(getBelow(map, i,j) == 0){
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(68,0), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
                     true, true,TILE_LAYER, TILE_MASK));
         } else if(getRight(map, i,j) == 0){
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(0,34), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
                     true, true, TILE_LAYER, TILE_MASK));
         } else if(getLeft(map, i,j) == 0){
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(0,34), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
                     true, true, TILE_LAYER, TILE_MASK));
             ((SpriteComponent)tile.getComponent("SpriteComponent")).flipHorizontally();
         } else {
-            tile.addComponent(new SpriteComponent(tile, WizGame.getSpritePath("tiles"),
+            tile.addComponent(new SpriteComponent(WizGame.getSpritePath("tiles"),
                     new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(0,0), new Vec2d(32, 32)));
-            tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
+            tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(0, 0), new Vec2d(2, 2)),
                     true, true,TILE_LAYER, TILE_MASK));
         }
 
 
         if(map[i][j] == 1) {
-            tile.addComponent(new IDComponent(tile, "wall"));
-            tile.addComponent(new HeightComponent(tile,10));
+            tile.addComponent(new IDComponent("wall"));
+            tile.addComponent(new HeightComponent(10));
         } else {
             if(is_low_tile){
                 map[i][j] = 1;
-                tile.addComponent(new CollisionComponent(tile, new AABShape(new Vec2d(.2, .2), new Vec2d(1.6, 1.6)),
+                tile.addComponent(new CollisionComponent(new AABShape(new Vec2d(.2, .2), new Vec2d(1.6, 1.6)),
                         true, true, TILE_LAYER, TILE_MASK));
-                HealthComponent healthComponent = new HealthComponent(tile, 5);
+                HealthComponent healthComponent = new HealthComponent(5);
                 healthComponent.linkDeathCallback(WizLevelGenerator::tileBreakCallback);
                 tile.addComponent(healthComponent);
-                tile.addComponent(new HeightComponent(tile,5));
-                tile.addComponent(new IDComponent(tile, "wall"));
+                tile.addComponent(new HeightComponent(5));
+                tile.addComponent(new IDComponent("wall"));
             } else {
-                tile.addComponent(new HeightComponent(tile,0));
-                tile.addComponent(new IDComponent(tile, "grass"));
+                tile.addComponent(new HeightComponent(0));
+                tile.addComponent(new IDComponent("grass"));
             }
         }
 
@@ -186,7 +186,7 @@ public class WizLevelGenerator {
     //spawn square for player
     private static GameObject createSpawn(GameWorld gameWorld, Vec2d pos){
         GameObject box = new GameObject(gameWorld, 1);
-        box.addComponent(new SpriteComponent(box, WizGame.getSpritePath("spawn"),
+        box.addComponent(new SpriteComponent(WizGame.getSpritePath("spawn"),
                 new Vec2d(0,0), new Vec2d(2,2)));
         box.getTransform().position = pos;
         box.getTransform().size = new Vec2d(2,2);
@@ -196,10 +196,10 @@ public class WizLevelGenerator {
     //next level door for player
     private static GameObject createDoor(GameWorld gameWorld, Vec2d pos){
         GameObject door = new GameObject(gameWorld, 1);
-        door.addComponent(new SpriteComponent(door, WizGame.getSpritePath("door"),
+        door.addComponent(new SpriteComponent(WizGame.getSpritePath("door"),
                 new Vec2d(0,0), new Vec2d(2,2)));
-        door.addComponent(new IDComponent(door, "door"));
-        door.addComponent(new CollisionComponent(door, new AABShape(new Vec2d(.1,.1),new Vec2d(1.8,1.8)),
+        door.addComponent(new IDComponent("door"));
+        door.addComponent(new CollisionComponent(new AABShape(new Vec2d(.1,.1),new Vec2d(1.8,1.8)),
                 false, true, TILE_LAYER, TILE_MASK));
         door.getTransform().position = pos;
         door.getTransform().size = new Vec2d(2,2);

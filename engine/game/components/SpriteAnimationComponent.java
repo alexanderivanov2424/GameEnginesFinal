@@ -1,6 +1,7 @@
 package engine.game.components;
 
 import engine.game.GameObject;
+import engine.game.SpriteLoader;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,7 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
-public class SpriteAnimationComponent extends Component{
+public class SpriteAnimationComponent extends AnimationComponent{
 
     //TODO Frames should be fully custom (spacing and offset)
     //TODO handle multiple animation sequences
@@ -40,7 +41,6 @@ public class SpriteAnimationComponent extends Component{
      * Creates an animation component using a sprite sheet.
      * Sprite sheet is assumed to contain frames of the animation side by side horizontally.
      * Frames are also assumed to start as high up as possible.
-     * @param gameObject gameObject
      * @param spriteSheetPath path to spriteSheet
      * @param position position of sprite relative to gameobject
      * @param size size to render the sprite
@@ -48,10 +48,10 @@ public class SpriteAnimationComponent extends Component{
      * @param cropSize width and height of each frame
      * @param frameDuration Durations of a frame in seconds
      */
-    public SpriteAnimationComponent(GameObject gameObject, String spriteSheetPath,
+    public SpriteAnimationComponent(String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames, Vec2d cropSize, double frameDuration) {
-        super(gameObject);
-        this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
+        super();
+        this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
@@ -63,10 +63,10 @@ public class SpriteAnimationComponent extends Component{
         this.frameDuration = frameDuration * 1000000000;
     }
 
-    public SpriteAnimationComponent(GameObject gameObject, String spriteSheetPath,
+    public SpriteAnimationComponent(String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames, Vec2d cropStart, Vec2d cropSize, double frameDuration) {
-        super(gameObject);
-        this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
+        super();
+        this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
@@ -78,11 +78,11 @@ public class SpriteAnimationComponent extends Component{
         this.frameDuration = frameDuration * 1000000000;
     }
 
-    public SpriteAnimationComponent(GameObject gameObject, String spriteSheetPath,
+    public SpriteAnimationComponent(String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames,
                                     Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration) {
-        super(gameObject);
-        this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
+        super();
+        this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
@@ -97,7 +97,7 @@ public class SpriteAnimationComponent extends Component{
     public void resetAnimation(String spriteSheetPath, Vec2d position, Vec2d size, int frames,
                                Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration){
 
-        this.spriteSheet = gameObject.gameWorld.getSpriteLoader().loadImage(spriteSheetPath);
+        this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
@@ -153,11 +153,6 @@ public class SpriteAnimationComponent extends Component{
     }
 
     @Override
-    public int getSystemFlags() {
-        return SystemFlag.RenderSystem | SystemFlag.TickSystem;
-    }
-
-    @Override
     public String getTag() {
         return "SpriteAnimationComponent";
     }
@@ -179,7 +174,7 @@ public class SpriteAnimationComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         String path = attr.getNamedItem("spriteSheetPath").getNodeValue();
         Vec2d position = Vec2d.fromString(attr.getNamedItem("position").getNodeValue());
@@ -194,7 +189,7 @@ public class SpriteAnimationComponent extends Component{
         long currentTime = Long.parseLong(attr.getNamedItem("currentTime").getNodeValue());
         int currentFrame = Integer.parseInt(attr.getNamedItem("currentFrame").getNodeValue());
 
-        SpriteAnimationComponent c = new SpriteAnimationComponent(g, path, position, size, frames, cropStart, cropSize, cropShift, frameDuration);
+        SpriteAnimationComponent c = new SpriteAnimationComponent(path, position, size, frames, cropStart, cropSize, cropShift, frameDuration);
         c.currentTime = currentTime;
         c.currentFrame = currentFrame;
         return c;

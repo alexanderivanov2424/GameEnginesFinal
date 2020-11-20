@@ -12,7 +12,7 @@ public class GameObject {
 
     public List<Component> componentList;
 
-    private TransformComponent transformComponent = new TransformComponent(this);
+    private TransformComponent transformComponent = new TransformComponent();
 
     private int layer = 0;
 
@@ -34,6 +34,7 @@ public class GameObject {
 
     public void addComponent(Component c){
         this.componentList.add(c);
+        c.setGameObject(this);
     }
 
     public void removeComponent(Component c){

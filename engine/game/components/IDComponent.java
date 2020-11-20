@@ -8,8 +8,8 @@ import org.w3c.dom.NamedNodeMap;
 public class IDComponent extends Component{
     private String id;
 
-    public IDComponent(GameObject gameObject, String id) {
-        super(gameObject);
+    public IDComponent(String id) {
+        super();
         this.id = id;
     }
 
@@ -33,9 +33,9 @@ public class IDComponent extends Component{
         return component;
     }
 
-    public static Component loadFromXML(Element n, GameObject g) {
+    public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
-        IDComponent c = new IDComponent(g, attr.getNamedItem("id").getNodeValue());
+        IDComponent c = new IDComponent(attr.getNamedItem("id").getNodeValue());
         return c;
     }
 }
