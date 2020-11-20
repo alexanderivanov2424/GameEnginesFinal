@@ -2,6 +2,7 @@ package engine.game.components;
 
 import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
+import engine.game.GameWorld;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
@@ -22,11 +23,13 @@ public class CameraComponent extends Component{
     public CameraComponent(int viewport_id) {
         super();
         this.viewport_id = viewport_id;
-        this.viewport = gameObject.gameWorld.getViewport(viewport_id);
     }
 
     @Override
     public void onTick(long nanosSincePreviousTick){
+        if(this.viewport == null){
+            this.viewport = this.gameObject.gameWorld.getViewport(viewport_id);
+        }
     }
 
     @Override
