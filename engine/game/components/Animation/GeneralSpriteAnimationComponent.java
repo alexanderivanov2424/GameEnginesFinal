@@ -1,16 +1,15 @@
-package engine.game.components;
+package engine.game.components.Animation;
 
-import engine.game.GameObject;
 import engine.game.SpriteLoader;
-import engine.game.systems.SystemFlag;
+import engine.game.components.Animation.AnimationComponent;
+import engine.game.components.Component;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 
-public class GeneralSpriteAnimationComponent extends AnimationComponent{
+public class GeneralSpriteAnimationComponent extends AnimationComponent {
 
     //TODO Frames should be fully custom (spacing and offset)
     //TODO handle multiple animation sequences
@@ -85,12 +84,23 @@ public class GeneralSpriteAnimationComponent extends AnimationComponent{
         this.horizontalFlip = horizontalFlip;
     }
 
+    public void restart(){
+        currentFrame = 0;
+        currentTime = 0;
+    }
+
     @Override
     public void onTick(long nanosSincePreviousTick){
         this.currentTime -= nanosSincePreviousTick;
-        while(this.currentTime < 0){
-            this.currentTime += this.frameDuration;
-            this.currentFrame = (this.currentFrame + 1)%this.frames;
+        justFinished = false; // only set to true when transitioning back to first frame.
+        if(this.currentTime < 0) {
+            while (this.currentTime < 0) {
+                this.currentTime += this.frameDuration;
+                this.currentFrame = (this.currentFrame + 1) % this.frames;
+            }
+            if(!justFinished && this.currentFrame == 0){
+                this.justFinished = true;
+            }
         }
     }
 

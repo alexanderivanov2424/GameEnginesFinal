@@ -1,7 +1,8 @@
-package engine.game.components;
+package engine.game.components.Animation;
 
-import engine.game.GameObject;
 import engine.game.SpriteLoader;
+import engine.game.components.Component;
+import engine.game.components.RayComponent;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
-public class RaySpriteAnimationComponent extends Component {
+public class RaySpriteAnimationComponent extends AnimationComponent {
 
     protected Image spriteSheet;
     protected String spriteSheetPath;
@@ -95,12 +96,23 @@ public class RaySpriteAnimationComponent extends Component {
         this.rayComponent = rayComponent;
     }
 
+    public void restart(){
+        currentFrame = 0;
+        currentTime = 0;
+    }
+
     @Override
     public void onTick(long nanosSincePreviousTick){
         this.currentTime -= nanosSincePreviousTick;
-        while(this.currentTime < 0){
-            this.currentTime += this.frameDuration;
-            this.currentFrame = (this.currentFrame + 1)%this.frames;
+        justFinished = false; // only set to true when transitioning back to first frame.
+        if(this.currentTime < 0) {
+            while (this.currentTime < 0) {
+                this.currentTime += this.frameDuration;
+                this.currentFrame = (this.currentFrame + 1) % this.frames;
+            }
+            if(!justFinished && this.currentFrame == 0){
+                this.justFinished = true;
+            }
         }
     }
 
@@ -136,6 +148,7 @@ public class RaySpriteAnimationComponent extends Component {
 
         g.restore();
     }
+
 
     @Override
     public int getSystemFlags() {

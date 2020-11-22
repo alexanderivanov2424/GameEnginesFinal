@@ -11,6 +11,7 @@ import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
 import engine.game.components.*;
+import engine.game.components.Animation.SpriteAnimationComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import engine.support.Vec2i;

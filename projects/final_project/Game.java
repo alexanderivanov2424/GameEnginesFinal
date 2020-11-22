@@ -3,17 +3,14 @@ package projects.final_project;
 import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
-import engine.game.SpriteLoader;
-import engine.game.TileSystem.SpriteTileVariant;
-import engine.game.TileSystem.Tile;
 import engine.game.TileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
 import engine.game.components.*;
+import engine.game.components.Animation.SpriteAnimationComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Game {
 
