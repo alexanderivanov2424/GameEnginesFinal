@@ -10,7 +10,7 @@ First CheckPoint:
 Nothing Playable just yet.
 
 - Tile System
-    - Most Related code is in the TileSystem folder under engine/game/
+    - Most Related code is in the TileSystem folder under engine/finalGame/
     - Testing code is in projects/final_project
 - Sound Engine
     - Related code is in the Audio Component

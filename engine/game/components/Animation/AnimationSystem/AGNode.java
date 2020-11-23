@@ -1,5 +1,6 @@
 package engine.game.components.Animation.AnimationSystem;
 
+import engine.game.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class AGNode {
@@ -19,6 +20,8 @@ public abstract class AGNode {
     public abstract boolean justFinished();
 
     public abstract void restart();
+
+    public abstract void setGameObject(GameObject g);
 
     public abstract void onTick(long nanosSincePreviousTick);
 

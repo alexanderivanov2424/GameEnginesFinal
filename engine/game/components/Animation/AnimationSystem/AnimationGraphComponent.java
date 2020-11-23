@@ -1,7 +1,9 @@
 package engine.game.components.Animation.AnimationSystem;
 
+import engine.game.GameObject;
 import engine.game.components.Animation.AnimationComponent;
 import engine.game.components.Component;
+import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -41,11 +43,13 @@ public class AnimationGraphComponent extends Component {
     }
 
     public void queueAnimation(String name){
+        if(this.nodes[this.currentNode].name.equals(name)) return;
         this.nextAnimation = name;
         this.transitionWithInterupt = false;
     }
 
     public void queueAnimation(String name, boolean transitionWithInterupt){
+        if(this.nodes[this.currentNode].name.equals(name)) return;
         this.nextAnimation = name;
         this.transitionWithInterupt = transitionWithInterupt;
     }
@@ -84,13 +88,21 @@ public class AnimationGraphComponent extends Component {
     }
 
     @Override
+    public void setGameObject(GameObject g) {
+        super.setGameObject(g);
+        for(int i = 0; i < nodes.length; i++){
+            nodes[i].setGameObject(g);
+        }
+    }
+
+    @Override
     public int getSystemFlags() {
-        return 0;
+        return SystemFlag.RenderSystem | SystemFlag.TickSystem;
     }
 
     @Override
     public String getTag() {
-        return null;
+        return "AnimationGraphComponent";
     }
 
 }

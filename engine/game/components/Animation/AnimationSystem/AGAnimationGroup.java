@@ -1,5 +1,6 @@
 package engine.game.components.Animation.AnimationSystem;
 
+import engine.game.GameObject;
 import engine.game.components.Animation.AnimationComponent;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,6 +17,14 @@ public class AGAnimationGroup  extends AGNode {
 
     public AGAnimationGroup(String name, AnimationComponent[] animationComponents, Vec2d[] stateSpacePosition) {
         super(name);
+        this.animationComponents = animationComponents;
+        this.stateSpacePosition = stateSpacePosition;
+        assert(animationComponents.length == stateSpacePosition.length);
+        assert(animationComponents.length>0);
+    }
+
+    public AGAnimationGroup(String name, String onFinishTransitionTo, AnimationComponent[] animationComponents, Vec2d[] stateSpacePosition){
+        super(name, onFinishTransitionTo);
         this.animationComponents = animationComponents;
         this.stateSpacePosition = stateSpacePosition;
         assert(animationComponents.length == stateSpacePosition.length);
@@ -39,8 +48,8 @@ public class AGAnimationGroup  extends AGNode {
     public void onTick(long nanosSincePreviousTick) {
         if(stateUpdated){
             int original_animation = this.current_animation;
-            double mag = this.state.minus(stateSpacePosition[0]).mag();
-            for(int i = 1; i < stateSpacePosition.length; i++){
+            double mag = this.state.minus(stateSpacePosition[this.current_animation]).mag();
+            for(int i = 0; i < stateSpacePosition.length; i++){
                 double m = this.state.minus(stateSpacePosition[i]).mag();
                 if(m < mag){
                     mag = m;
@@ -53,6 +62,12 @@ public class AGAnimationGroup  extends AGNode {
             }
         }
         animationComponents[this.current_animation].onTick(nanosSincePreviousTick);
+    }
+
+    public void setGameObject(GameObject g){
+        for(AnimationComponent ac: this.animationComponents){
+            ac.setGameObject(g);
+        }
     }
 
     @Override

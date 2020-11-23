@@ -74,8 +74,8 @@ public class App extends Application {
             gameWorld, new Vec2d(0,0),false, 50);
     gameScreen.addUIElement(viewport);
 
-    Game game = new Game(gameWorld, viewport);
-    game.init();
+    FinalGame finalGame = new FinalGame(gameWorld, viewport);
+    finalGame.init();
 
     /**
      * Other Game Screen UI below

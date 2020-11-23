@@ -56,7 +56,7 @@ public class LevelTileMaps {
         Vec2d TS = new Vec2d(32,32);
 
         //grass tile
-        Tile grassTile = new Tile("grass", Game.getSpritePath("tile_sprite_sheet"));
+        Tile grassTile = new Tile("grass", FinalGame.getSpritePath("tile_sprite_sheet"));
         grassTile.addVariant(new SpriteTileVariant(1,0,0,1,"edge_tl", new Vec2d(0,1).smult(32), TS));
         grassTile.addVariant(new SpriteTileVariant(1,0,0,0,"edge_t", new Vec2d(1,1).smult(32), TS));
         grassTile.addVariant(new SpriteTileVariant(1,1,0,0,"edge_tr", new Vec2d(2,1).smult(32), TS));
@@ -100,7 +100,7 @@ public class LevelTileMaps {
         tileTypes.add(grassTile);
 
         //wall tile
-        Tile wallTile = new Tile("wall", Game.getSpritePath("tile_sprite_sheet"));
+        Tile wallTile = new Tile("wall", FinalGame.getSpritePath("tile_sprite_sheet"));
         wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"up_lr", new Vec2d(3,1).smult(32), TS));
         wallTile.addVariant(new SpriteTileVariant(1,1,1,1,"down_lr", new Vec2d(3,2).smult(32), TS));
 
