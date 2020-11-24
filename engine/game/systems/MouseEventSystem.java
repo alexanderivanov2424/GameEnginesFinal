@@ -8,6 +8,10 @@ import javafx.scene.input.ScrollEvent;
 
 public class MouseEventSystem extends GeneralSystem{
 
+    public int getSystemFlag(){
+        return SystemFlag.MouseEventSystem;
+    }
+
     public void onMouseClicked(Vec2d e) {
         for(Component o : this.components){
             if(o.isDisabled()) continue;

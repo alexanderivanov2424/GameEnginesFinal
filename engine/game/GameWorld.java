@@ -35,9 +35,6 @@ import java.util.*;
 
 public class GameWorld {
 
-    //TODO add tileMap and special support for tiles
-
-
     //TODO handle inputs faster than ticks.
     private Set<KeyCode> keyState;
     private Vec2d mousePosition = new Vec2d(0,0);
@@ -48,6 +45,8 @@ public class GameWorld {
     private CollisionSystem collisionSystem = new CollisionSystem();
     private KeyEventSystem keyEventSystem = new KeyEventSystem();
     private MouseEventSystem mouseEventSystem = new MouseEventSystem();
+
+    private GeneralSystem[] systemsList = {tickSystem, renderSystem, collisionSystem, keyEventSystem, mouseEventSystem};
 
     private List<GameObject> gameObjects;
     private List<GameObject> addQueue;
@@ -106,21 +105,26 @@ public class GameWorld {
         this.gameObjects.add(gameObject);
         for(Component c : gameObject.componentList) {
             int flags = c.getSystemFlags();
-            if ((flags & SystemFlag.TickSystem) != 0) {
-                this.tickSystem.addComponent(c);
+            for(GeneralSystem system : systemsList){
+                if ((flags & system.getSystemFlag()) != 0) {
+                    system.addComponent(c);
+                }
             }
-            if ((flags & SystemFlag.RenderSystem) != 0) {
-                this.renderSystem.addComponent(c);
-            }
-            if ((flags & SystemFlag.CollisionSystem) != 0) {
-                this.collisionSystem.addComponent(c);
-            }
-            if ((flags & SystemFlag.KeyEventSystem) != 0) {
-                this.keyEventSystem.addComponent(c);
-            }
-            if ((flags & SystemFlag.MouseEventSystem) != 0) {
-                this.mouseEventSystem.addComponent(c);
-            }
+//            if ((flags & SystemFlag.TickSystem) != 0) {
+//                this.tickSystem.addComponent(c);
+//            }
+//            if ((flags & SystemFlag.RenderSystem) != 0) {
+//                this.renderSystem.addComponent(c);
+//            }
+//            if ((flags & SystemFlag.CollisionSystem) != 0) {
+//                this.collisionSystem.addComponent(c);
+//            }
+//            if ((flags & SystemFlag.KeyEventSystem) != 0) {
+//                this.keyEventSystem.addComponent(c);
+//            }
+//            if ((flags & SystemFlag.MouseEventSystem) != 0) {
+//                this.mouseEventSystem.addComponent(c);
+//            }
         }
     }
     //TODO rewrite to loop over systems in list
@@ -128,21 +132,26 @@ public class GameWorld {
     private void deprocessGameObject(GameObject gameObject){
         for(Component c : gameObject.componentList) {
             int flags = c.getSystemFlags();
-            if ((flags & SystemFlag.TickSystem) != 0) {
-                this.tickSystem.removeComponent(c);
+            for(GeneralSystem system : systemsList){
+                if ((flags & system.getSystemFlag()) != 0) {
+                    system.removeComponent(c);
+                }
             }
-            if ((flags & SystemFlag.RenderSystem) != 0) {
-                this.renderSystem.removeComponent(c);
-            }
-            if ((flags & SystemFlag.CollisionSystem) != 0) {
-                this.collisionSystem.removeComponent(c);
-            }
-            if ((flags & SystemFlag.KeyEventSystem) != 0) {
-                this.keyEventSystem.removeComponent(c);
-            }
-            if ((flags & SystemFlag.MouseEventSystem) != 0) {
-                this.mouseEventSystem.removeComponent(c);
-            }
+//            if ((flags & SystemFlag.TickSystem) != 0) {
+//                this.tickSystem.removeComponent(c);
+//            }
+//            if ((flags & SystemFlag.RenderSystem) != 0) {
+//                this.renderSystem.removeComponent(c);
+//            }
+//            if ((flags & SystemFlag.CollisionSystem) != 0) {
+//                this.collisionSystem.removeComponent(c);
+//            }
+//            if ((flags & SystemFlag.KeyEventSystem) != 0) {
+//                this.keyEventSystem.removeComponent(c);
+//            }
+//            if ((flags & SystemFlag.MouseEventSystem) != 0) {
+//                this.mouseEventSystem.removeComponent(c);
+//            }
         }
         this.gameObjects.remove(gameObject);
     }

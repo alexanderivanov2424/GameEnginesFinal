@@ -20,7 +20,7 @@ public class AnimationGraphComponent extends Component {
     private boolean transitionWithInterupt = false;
 
 
-    //TODO Animations should have flag for if they are interuptable
+    //TODO Animations should have flag for if they are interruptible
     //TODO there should be a proper queue for animations and a "fade out" time
     //Should function like key input system in smash.
 
@@ -62,7 +62,7 @@ public class AnimationGraphComponent extends Component {
 
     public void onTick(long nanosSincePreviousTick) {
         AGNode current = this.nodes[this.currentNode];
-        if(transitionWithInterupt && this.nextAnimation != null){
+        if(current.interruptible && transitionWithInterupt && this.nextAnimation != null){
             current.restart();
             transitionToQueuedAnimation();
         }

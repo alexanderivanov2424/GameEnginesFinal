@@ -13,6 +13,10 @@ public class RenderSystem extends GeneralSystem {
 
     private Map<Integer,List<Component>> layers = new HashMap<Integer,List<Component>>();
 
+    public int getSystemFlag(){
+        return SystemFlag.RenderSystem;
+    }
+
     public void onDraw(GraphicsContext g){
         List<Integer> orderedLayers = new ArrayList<Integer>(layers.keySet());
         Collections.sort(orderedLayers);

@@ -1,6 +1,6 @@
 package engine.game.systems;
 
-public class SystemFlag {;
+public class SystemFlag {
     public static final int None = 0;
     public static final int RenderSystem = 1;
     public static final int TickSystem = 2;

@@ -33,7 +33,7 @@ public class Player {
 
         player.addComponent(new PlayerMovementComponent(5,agc));
 
-        player.addComponent(new CollisionComponent(new AABShape(new Vec2d(.3,.25),new Vec2d(1.4,1.75)),
+        player.addComponent(new CollisionComponent(new AABShape(new Vec2d(.3,1.5),new Vec2d(1.4,.5)),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
 
         player.getTransform().position = pos;
@@ -61,25 +61,28 @@ public class Player {
                 new Vec2d(0,0), PLAYER_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .1);
         AnimationComponent attack_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .1);
         AnimationComponent attack_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .1);
         AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .1);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
                 new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        idle.setInterruptible(true);
 
         AGAnimationGroup walk = new AGAnimationGroup("walk",
                 new AnimationComponent[]{walk_up, walk_left, walk_down, walk_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        walk.setInterruptible(true);
 
         AGAnimationGroup attack = new AGAnimationGroup("attack", "idle",
                 new AnimationComponent[]{attack_up, attack_left, attack_down, attack_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        attack.setInterruptible(false);
 
         AGNode[] animationNodes = new AGNode[]{idle, walk, attack};
         return new AnimationGraphComponent(animationNodes);
@@ -117,7 +120,7 @@ public class Player {
             if(D) dx -= speed * dt;
 
             if(!(W || A || S || D || ATTACK)){
-                this.animationGraphComponent.queueAnimation("idle");
+                this.animationGraphComponent.queueAnimation("idle", true);
             } else if(!ATTACK) {
                 this.direction = new Vec2d(-dx, -dy);
                 this.animationGraphComponent.queueAnimation("walk");

@@ -5,7 +5,7 @@ import engine.game.components.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeneralSystem {
+public abstract class GeneralSystem {
     protected List<Component> components;
 
     public GeneralSystem(){
@@ -19,4 +19,6 @@ public class GeneralSystem {
     public void removeComponent(Component c) {
         this.components.remove(c);
     }
+
+    public abstract int getSystemFlag();
 }

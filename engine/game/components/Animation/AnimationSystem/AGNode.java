@@ -8,6 +8,8 @@ public abstract class AGNode {
 
     public String onFinishTransitionTo = null;
 
+    public boolean interruptible = false;
+
     public AGNode(String name){
         this.name = name;
     }
@@ -15,6 +17,10 @@ public abstract class AGNode {
     public AGNode(String name, String onFinishTransitionTo){
         this.name = name;
         this.onFinishTransitionTo = onFinishTransitionTo;
+    }
+
+    public void setInterruptible(boolean interruptible){
+        this.interruptible = interruptible;
     }
 
     public abstract boolean justFinished();

@@ -16,13 +16,15 @@ import java.util.List;
 
 public class CollisionSystem extends GeneralSystem {
 
-
-
     private List<RayComponent> rays;
 
     public CollisionSystem(){
         super();
         rays = new ArrayList<RayComponent>();
+    }
+
+    public int getSystemFlag(){
+        return SystemFlag.CollisionSystem;
     }
 
     @Override
