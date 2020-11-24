@@ -45,6 +45,10 @@ public class Screen {
         this.root.onDraw(g);
     }
 
+    protected void onLateDraw(GraphicsContext g) {
+        this.root.onLateDraw(g);
+    }
+
     /**
      * Called when a key is typed.
      * @param e		an FX {@link KeyEvent} representing the input event.

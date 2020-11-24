@@ -12,6 +12,7 @@ import org.w3c.dom.NamedNodeMap;
 public class RectComponent extends Component{
 
     private Color color;
+
     public RectComponent(Color color) {
         super();
         this.color = color;

@@ -27,6 +27,18 @@ public class RenderSystem extends GeneralSystem {
             }
         }
     }
+
+    public void onLateDraw(GraphicsContext g) {
+        List<Integer> orderedLayers = new ArrayList<Integer>(layers.keySet());
+        Collections.sort(orderedLayers);
+        for(int layer : orderedLayers){
+            for(Component o : layers.get(layer)){
+                if(o.isDisabled()) continue;
+                o.onLateDraw(g);
+            }
+        }
+    }
+
     @Override
     public void addComponent(Component o){
         super.addComponent(o);

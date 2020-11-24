@@ -55,6 +55,8 @@ public abstract class Component {
 
     public void onDraw(GraphicsContext g){};
 
+    public void onLateDraw(GraphicsContext g){};
+
     /*
      *
      * Key and Mouse events are passed down from GameObject

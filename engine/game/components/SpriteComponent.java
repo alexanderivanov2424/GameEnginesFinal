@@ -5,6 +5,7 @@ import engine.game.SpriteLoader;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -65,6 +66,7 @@ public class SpriteComponent extends Component{
     public void onDraw(GraphicsContext g){
 
         Vec2d pos = this.gameObject.getTransform().position;
+
 
         if(this.horizontalFlip){
             g.drawImage(this.sprite, this.offset.x, this.offset.y, this.cropSize.x, this.cropSize.y,
