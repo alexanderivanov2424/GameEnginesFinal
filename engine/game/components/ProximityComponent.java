@@ -2,7 +2,6 @@ package engine.game.components;
 
 import engine.game.GameObject;
 import engine.game.systems.SystemFlag;
-import projects.final_project.Game;
 
 public class ProximityComponent extends Component {
 
@@ -14,11 +13,8 @@ public class ProximityComponent extends Component {
     private double distance, trigger;
     private GameObject other;
 
-    public ProximityComponent(GameObject gameObject, GameObject other, double trigger) {
-        super(gameObject);
-
+    public ProximityComponent(GameObject other, double trigger) {
         this.other = other;
-        distance = other.getTransform().position.dist(gameObject.getTransform().position);
         this.trigger = trigger;
     }
 
@@ -31,7 +27,7 @@ public class ProximityComponent extends Component {
         distance = other.getTransform().position.dist(gameObject.getTransform().position);
         if(distance < trigger){
             if(withinRange != null)
-                System.out.println("player pos: " +other.getTransform().position);
+                //System.out.println("player pos: " +other.getTransform().position);
                 this.withinRange.withinRange(this.gameObject, distance);
         }
     }

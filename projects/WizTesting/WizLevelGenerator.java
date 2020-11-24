@@ -34,7 +34,7 @@ public class WizLevelGenerator {
         createTiles(gameWorld, dungeon.map);
         createFog(gameWorld, dungeon.map);
 
-        player = WizPlayer.createPlayer(wizGame, gameWorld, new Vec2d(0,0));
+        //player = WizPlayer.createPlayer(wizGame, gameWorld, new Vec2d(0,0));
         player.getTransform().position = new Vec2d(2.0 * dungeon.start.x, 2.0 * dungeon.start.y);
         gameWorld.addGameObject(player);
 
@@ -64,8 +64,7 @@ public class WizLevelGenerator {
     public static void createFog(GameWorld gameWorld, int[][] map){
         for(int i = 0; i< map.length;i++){
             for(int j = 0; j< map[0].length;j++){
-                if(i==2 && j==2)
-                    addFogTile(gameWorld, new Vec2d(i * 2, j * 2));
+                addFogTile(gameWorld, new Vec2d(i * 2, j * 2));
             }
         }
     }
@@ -99,10 +98,16 @@ public class WizLevelGenerator {
         GameObject fog = new GameObject(gameWorld);
         fog.getTransform().position = pos;
         fog.getTransform().size = new Vec2d(2,2);
-        fog.addComponent(new LateRectComponent(fog, Color.rgb(0,0,0,0.8)));
-        ProximityComponent proximityComponent = new ProximityComponent(fog, player, 6);
+
+        LateRectComponent lateRectComponent = new LateRectComponent(Color.rgb(0,0,0,0.8));
+        lateRectComponent.setGameObject(fog);
+        fog.addComponent(lateRectComponent);
+
+        ProximityComponent proximityComponent = new ProximityComponent(player, 10);
+        proximityComponent.setGameObject(fog);
         proximityComponent.linkProximityCallback(WizLevelGenerator::fogBreakCallback);
         fog.addComponent(proximityComponent);
+
         gameWorld.addGameObject(fog);
 
         //every tick, set the fog's color(transparency) based on proximity to objects with
@@ -211,18 +216,18 @@ public class WizLevelGenerator {
         //map[i][j] = 0;  //TODO need way to know which tile this is.
     }
 
-    //Distance is less than 6.
+    //Distance is less than 10.
     private static void fogBreakCallback(GameObject fogTile, double distance) {
 
         LateRectComponent fog = (LateRectComponent)fogTile.getComponent("LateRectComponent");
         //The shorter the distance, the smaller the opacity.
 
-        if(distance < 3) {
-            fog.setColor(Color.rgb(255,255,255,0));
+        if(distance < 6) {
+            fog.setColor(Color.rgb(0,0,0,0));
         }
         else {
-            //0.26 = .8/(6-3)
-            fog.setColor(Color.rgb(255,255,255,(distance-3)*0.26));
+            //0.19 = .8/(10-6)
+            fog.setColor(Color.rgb(0,0,0,(distance-6)*0.19));
         }
 
     }

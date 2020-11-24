@@ -10,8 +10,7 @@ public class LightComponent extends Component {
 
     protected double distance;
 
-    public LightComponent(GameObject gameObject, double distance) {
-        super(gameObject);
+    public LightComponent(double distance) {
 
         this.distance = distance;
     }

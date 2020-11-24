@@ -10,8 +10,7 @@ public class LateRectComponent extends Component {
 
     private Color color;
 
-    public LateRectComponent(GameObject gameObject, Color color) {
-        super(gameObject);
+    public LateRectComponent(Color color) {
         this.color = color;
     }
 
