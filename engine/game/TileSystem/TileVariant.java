@@ -3,6 +3,7 @@ package engine.game.TileSystem;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
+import engine.game.collisionShapes.Shape;
 import engine.game.components.CollisionComponent;
 import engine.game.components.Component;
 import engine.game.components.SpriteComponent;
@@ -24,6 +25,8 @@ public abstract class TileVariant {
     public double thickness;
 
     public boolean collision_up, collision_right, collision_down, collision_left;
+
+    public Shape collisionShape;
 
     public TileVariant(String variantName){
         this.variantName = variantName;
@@ -71,8 +74,19 @@ public abstract class TileVariant {
         this.thickness = 0;
     }
 
+    public TileVariant(Shape shape, String variantName){
+        this.variantName = variantName;
+        this.collisionShape = shape;
+        this.thickness = 0;
+    }
+
     public List<Component> getCollisionComponents(GameObject gameObject, Vec2d tileSize, int collisionLayer, int collisionMask){
         ArrayList<Component> ret = new ArrayList();
+        if(this.collisionShape != null){
+            ret.add(new CollisionComponent(this.collisionShape, true, true, collisionLayer, collisionMask));
+            return ret;
+        }
+        //if no shape is specified use booleans
         if(this.collision_up){
             ret.add(new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(tileSize.x,this.thickness)),
                     true, true, collisionLayer, collisionMask));
