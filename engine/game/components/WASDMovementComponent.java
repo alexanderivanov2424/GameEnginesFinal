@@ -38,6 +38,7 @@ public class WASDMovementComponent extends Component{
 
         Vec2d pos = this.gameObject.getTransform().position;
         this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
+        System.out.println(this.gameObject.getTransform().position);
     }
     @Override
     public void onLateTick(){};

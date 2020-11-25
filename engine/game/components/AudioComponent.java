@@ -86,7 +86,6 @@ public class AudioComponent extends Component {
             else {
                 gainControl.setValue(-0.8f*dist);
             }
-            System.out.println(dist);
         }
 
     }

@@ -86,6 +86,12 @@ public class UIElement {
         }
     }
 
+    public void onLateDraw(GraphicsContext g) {
+        for(UIElement child : this.children){
+            child.onLateDraw(g);
+        }
+    }
+
     /**
      * Called when a key is typed.
      * @param e		an FX {@link KeyEvent} representing the input event.

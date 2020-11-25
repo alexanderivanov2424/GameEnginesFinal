@@ -8,6 +8,7 @@ import engine.game.components.*;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import engine.support.Vec2i;
+import javafx.scene.paint.Color;
 
 public class WizLevelGenerator {
 
@@ -15,6 +16,8 @@ public class WizLevelGenerator {
     private static final int TILE_MASK = CollisionSystem.CollisionMask.NONE;
 
     private static int[][] map;
+
+    private static GameObject player;
 
     private static double calculateSpawnRate(int difficulty){
         if(difficulty == 0) return 10;
@@ -24,11 +27,15 @@ public class WizLevelGenerator {
     public static void resetLevel(WizGame wizGame, GameWorld gameWorld, long seed, int difficulty){
         gameWorld.clearAllGameObjects();
 
+        player = WizPlayer.createPlayer(wizGame, gameWorld, new Vec2d(0,0));
+
         MapGeneration.RoomDungeon dungeon = MapGeneration.generateDungeonMap(
                 new Vec2i(30,30), new Vec2i(5,5), 3, seed);
         createTiles(gameWorld, dungeon.map);
+        createFog(gameWorld, dungeon.map);
 
-        GameObject player = WizPlayer.createPlayer(wizGame, gameWorld, new Vec2d(2.0 * dungeon.start.x, 2.0 * dungeon.start.y));
+        //player = WizPlayer.createPlayer(wizGame, gameWorld, new Vec2d(0,0));
+        player.getTransform().position = new Vec2d(2.0 * dungeon.start.x, 2.0 * dungeon.start.y);
         gameWorld.addGameObject(player);
 
         gameWorld.addGameObject(createSpawn(gameWorld, new Vec2d(2.0 * dungeon.start.x, 2.0 * dungeon.start.y)));
@@ -50,6 +57,14 @@ public class WizLevelGenerator {
             for(int j = 0; j< map[0].length;j++){
                 WizLevelGenerator.map = map;
                 addTile(gameWorld, i, j, new Vec2d(i * 2, j * 2));
+            }
+        }
+    }
+
+    public static void createFog(GameWorld gameWorld, int[][] map){
+        for(int i = 0; i< map.length;i++){
+            for(int j = 0; j< map[0].length;j++){
+                addFogTile(gameWorld, new Vec2d(i * 2, j * 2));
             }
         }
     }
@@ -77,6 +92,25 @@ public class WizLevelGenerator {
             return map[i-1][j];
         }
         return 1;
+    }
+
+    private static void addFogTile(GameWorld gameWorld, Vec2d pos) {
+        GameObject fog = new GameObject(gameWorld);
+        fog.getTransform().position = pos;
+        fog.getTransform().size = new Vec2d(2,2);
+
+        LateRectComponent lateRectComponent = new LateRectComponent(Color.rgb(0,0,0,0.8));
+        lateRectComponent.setGameObject(fog);
+        fog.addComponent(lateRectComponent);
+
+        ProximityComponent proximityComponent = new ProximityComponent(player, 10);
+        proximityComponent.setGameObject(fog);
+        proximityComponent.linkProximityCallback(WizLevelGenerator::fogBreakCallback);
+        fog.addComponent(proximityComponent);
+
+        gameWorld.addGameObject(fog);
+
+        //every tick, set the fog's color(transparency) based on proximity to objects with
     }
 
     private static void addTile(GameWorld gameWorld, int i, int j, Vec2d pos){
@@ -180,6 +214,22 @@ public class WizLevelGenerator {
         collision.setCollisionLayer(CollisionSystem.CollisionMask.NONE);
         collision.setCollisionMask(CollisionSystem.CollisionMask.NONE);
         //map[i][j] = 0;  //TODO need way to know which tile this is.
+    }
+
+    //Distance is less than 10.
+    private static void fogBreakCallback(GameObject fogTile, double distance) {
+
+        LateRectComponent fog = (LateRectComponent)fogTile.getComponent("LateRectComponent");
+        //The shorter the distance, the smaller the opacity.
+
+        if(distance < 6) {
+            fog.setColor(Color.rgb(0,0,0,0));
+        }
+        else {
+            //0.19 = .8/(10-6)
+            fog.setColor(Color.rgb(0,0,0,(distance-6)*0.19));
+        }
+
     }
 
 

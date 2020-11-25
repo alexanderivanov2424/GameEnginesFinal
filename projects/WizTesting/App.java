@@ -64,7 +64,7 @@ public class App extends Application {
   private void addButton(Screen mainMenu, Vec2d pos, long seed){
     UIButton startButton = new UIButton(pos, new Vec2d(400,50), colorMain, colorBorder);
     startButton.setOnMouseClicked(() -> {
-      GameWorld gameWorld = new GameWorld();
+      GameWorld gameWorld = new WizGameWorld();
       createGameScreen(new Screen(), gameWorld, seed);
       this.setCurrentScreen("gameScreen");
     });

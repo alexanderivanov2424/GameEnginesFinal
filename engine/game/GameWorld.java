@@ -40,11 +40,11 @@ public class GameWorld {
     private Vec2d mousePosition = new Vec2d(0,0);
     private boolean mouseDown = false;
 
-    private TickSystem tickSystem = new TickSystem();
-    private RenderSystem renderSystem = new RenderSystem();
-    private CollisionSystem collisionSystem = new CollisionSystem();
-    private KeyEventSystem keyEventSystem = new KeyEventSystem();
-    private MouseEventSystem mouseEventSystem = new MouseEventSystem();
+    protected TickSystem tickSystem = new TickSystem();
+    protected RenderSystem renderSystem = new RenderSystem();
+    protected CollisionSystem collisionSystem = new CollisionSystem();
+    protected KeyEventSystem keyEventSystem = new KeyEventSystem();
+    protected MouseEventSystem mouseEventSystem = new MouseEventSystem();
 
     private GeneralSystem[] systemsList = {tickSystem, renderSystem, collisionSystem, keyEventSystem, mouseEventSystem};
 
@@ -100,6 +100,9 @@ public class GameWorld {
         //TODO update javafx?? version 12 should have this
         //g.setImageSmoothing(this.imageSmoothing);
         this.renderSystem.onDraw(g);
+    }
+    public void onLateDraw(GraphicsContext g) {
+        this.renderSystem.onLateDraw(g);
     }
 
     public void addGameObject(GameObject gameObject){
