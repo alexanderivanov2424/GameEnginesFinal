@@ -9,6 +9,7 @@ import engine.game.components.*;
 import engine.game.components.Animation.SpriteAnimationComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
+import projects.final_project.levels.*;
 
 import java.io.File;
 
@@ -34,7 +35,7 @@ public class FinalGame {
     public void init() {
         this.gameWorld.addGameObject(Player.createPlayer(this.gameWorld,new Vec2d(0,0)));
 
-        TileMap tileMap = LevelTileMaps.createTileMap();
+        TileMap tileMap = OverworldTileMap.createTileMap();
         LevelTileMaps.setTestingLevel(tileMap);
         tileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
     }
