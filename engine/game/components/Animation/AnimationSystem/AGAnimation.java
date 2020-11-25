@@ -3,6 +3,8 @@ package engine.game.components.Animation.AnimationSystem;
 import engine.game.GameObject;
 import engine.game.components.Animation.AnimationComponent;
 import javafx.scene.canvas.GraphicsContext;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public abstract class AGAnimation extends AGNode {
     private AnimationComponent animationComponent;
@@ -39,6 +41,17 @@ public abstract class AGAnimation extends AGNode {
 
     public void onDraw(GraphicsContext g){
         animationComponent.onDraw(g);
+    }
+
+    public Element getXML(Document doc){
+        Element component = doc.createElement(this.getClass().getName());
+        component.appendChild(animationComponent.getXML(doc));
+        return component;
+    }
+
+
+    public static AGNode loadFromXML(Element n){
+        return null; //TODO
     }
 
 }

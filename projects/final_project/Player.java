@@ -3,15 +3,12 @@ package projects.final_project;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
+import engine.game.components.*;
 import engine.game.components.Animation.AnimationComponent;
 import engine.game.components.Animation.AnimationSystem.AGAnimationGroup;
 import engine.game.components.Animation.AnimationSystem.AGNode;
 import engine.game.components.Animation.AnimationSystem.AnimationGraphComponent;
 import engine.game.components.Animation.SpriteAnimationComponent;
-import engine.game.components.CameraComponent;
-import engine.game.components.CollisionComponent;
-import engine.game.components.Component;
-import engine.game.components.WASDMovementComponent;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
@@ -35,6 +32,18 @@ public class Player {
 
         player.addComponent(new CollisionComponent(new AABShape(new Vec2d(.3,1.5),new Vec2d(1.4,.5)),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
+
+        TextBoxComponent textBoxComponent = new TextBoxComponent(0, new Vec2d(0,-1),
+                "Hey, you...\nYou're finally awake", .1, .2, .2, 1);
+        textBoxComponent.setCenterImage(FinalGame.getSpritePath("textbox"),
+                new Vec2d(270,375), new Vec2d(25,25), new Vec2d(0,0));
+        textBoxComponent.setCornerImage(FinalGame.getSpritePath("textbox"),
+                new Vec2d(254,359), new Vec2d(13,13), new Vec2d(.25,.25));
+        textBoxComponent.setHorizontalEdgeImage(FinalGame.getSpritePath("textbox"),
+                new Vec2d(271,359), new Vec2d(25,13), new Vec2d(.25,.25));
+        textBoxComponent.setVerticalEdgeImage(FinalGame.getSpritePath("textbox"),
+                new Vec2d(254,375), new Vec2d(13,25), new Vec2d(.25,.25));
+        player.addComponent(textBoxComponent);
 
         player.getTransform().position = pos;
         player.getTransform().size = new Vec2d(1.4,1.75);
@@ -61,13 +70,13 @@ public class Player {
                 new Vec2d(0,0), PLAYER_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .1);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .1);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .1);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .1);
+                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
                 new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},
@@ -131,6 +140,17 @@ public class Player {
 
             Vec2d pos = this.gameObject.getTransform().position;
             this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
+
+
+            TextBoxComponent tb = (TextBoxComponent)this.gameObject.getComponent("TextBoxComponent");
+            if(tb != null){
+                if(keyState.contains(KeyCode.I)){
+                    tb.open();
+                }
+                if(keyState.contains(KeyCode.K)){
+                    tb.close();
+                }
+            }
         }
 
         @Override

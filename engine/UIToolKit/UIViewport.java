@@ -110,6 +110,10 @@ public class UIViewport extends UIElement{
         return new Vec2d(point.getX(),point.getY());
     }
 
+    public double getScale(){
+        return this.scale;
+    }
+
     public void setGamePosition(Vec2d gamePosition){
         this.gamePosition = gamePosition;
     }

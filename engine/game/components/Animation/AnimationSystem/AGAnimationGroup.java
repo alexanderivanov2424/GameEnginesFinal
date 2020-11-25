@@ -4,6 +4,8 @@ import engine.game.GameObject;
 import engine.game.components.Animation.AnimationComponent;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class AGAnimationGroup  extends AGNode {
 
@@ -78,5 +80,23 @@ public class AGAnimationGroup  extends AGNode {
     @Override
     public void onDraw(GraphicsContext g) {
         animationComponents[this.current_animation].onDraw(g);
+    }
+
+    public Element getXML(Document doc){
+        Element component = doc.createElement(this.getClass().getName());
+        component.setAttribute("state", state.toString());
+        component.setAttribute("current_animation", Integer.toString(current_animation));
+        component.setAttribute("stateUpdated", Boolean.toString(stateUpdated));
+        for(int i = 0; i < this.animationComponents.length; i++){
+            Element p = doc.createElement("AnimationGroupElement");
+            p.setAttribute("stateSpacePosition", this.stateSpacePosition[i].toString());
+            p.appendChild(this.animationComponents[i].getXML(doc));
+            component.appendChild(p);
+        }
+        return component;
+    }
+
+    public static AGNode loadFromXML(Element n){
+        return null; //TODO
     }
 }

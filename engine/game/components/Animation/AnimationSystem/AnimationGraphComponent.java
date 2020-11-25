@@ -6,6 +6,8 @@ import engine.game.components.Component;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.HashMap;
 
@@ -103,6 +105,23 @@ public class AnimationGraphComponent extends Component {
     @Override
     public String getTag() {
         return "AnimationGraphComponent";
+    }
+
+    public Element getXML(Document doc){
+        Element component = doc.createElement(this.getClass().getName());
+        component.setAttribute("currentNode", Integer.toString(currentNode));
+        component.setAttribute("nextAnimation", nextAnimation);
+        component.setAttribute("cropSize", Boolean.toString(transitionWithInterupt));
+        for(AGNode n : nodes){
+            component.appendChild(n.getXML(doc));
+        }
+        return component;
+    }
+
+
+
+    public static Component loadFromXML(Element n) {
+        return null; //TODO
     }
 
 }

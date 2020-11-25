@@ -1,7 +1,10 @@
 package engine.game.components.Animation.AnimationSystem;
 
 import engine.game.GameObject;
+import engine.game.components.Component;
 import javafx.scene.canvas.GraphicsContext;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public abstract class AGNode {
     public String name;
@@ -34,5 +37,7 @@ public abstract class AGNode {
     public abstract void onLateTick();
 
     public abstract void onDraw(GraphicsContext g);
+
+    public abstract Element getXML(Document doc);
 
 }

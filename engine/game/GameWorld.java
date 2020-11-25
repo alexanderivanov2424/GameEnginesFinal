@@ -54,6 +54,10 @@ public class GameWorld {
 
     private Map<Integer, UIViewport> viewportMap = new HashMap<Integer, UIViewport>();
 
+    private boolean imageSmoothing = false;
+
+    //Only one region can be loaded at a time
+    private Region region = null;
 
     public GameWorld(){
         keyState = new HashSet<KeyCode>();
@@ -61,6 +65,10 @@ public class GameWorld {
 
         addQueue = new ArrayList<GameObject>();
         removeQueue = new ArrayList<GameObject>();
+    }
+
+    public void setImageSmoothing(boolean imageSmoothing){
+        this.imageSmoothing = imageSmoothing;
     }
 
     public void linkViewport(int id, UIViewport viewport){
@@ -89,18 +97,45 @@ public class GameWorld {
     }
 
     public void onDraw(GraphicsContext g) {
+        //TODO update javafx?? version 12 should have this
+        //g.setImageSmoothing(this.imageSmoothing);
         this.renderSystem.onDraw(g);
     }
 
     public void addGameObject(GameObject gameObject){
         this.addQueue.add(gameObject);
+        if(this.region != null){
+            this.region.addGameObject(gameObject);
+        }
     }
     public void removeGameObject(GameObject gameObject){
         this.removeQueue.add(gameObject);
+        if(this.region != null){
+            this.region.removeGameObject(gameObject);
+        }
     }
 
-    //TODO rewrite to loop over systems in list
-    //Checking cases looks bad
+    public void addGameObjectToRootWorld(GameObject gameObject){
+        this.addQueue.add(gameObject);
+
+    }
+    public void removeGameObjectFromRootWorld(GameObject gameObject){
+        this.removeQueue.add(gameObject);
+    }
+
+    public void loadRegion(Region region){
+        if(this.region != null){//Only one region can be loaded at a time
+            this.unloadRegion();
+        }
+        this.region = region;
+        this.addQueue.addAll(region.getGameObjects());
+    }
+
+    public void unloadRegion(){
+        this.removeQueue.addAll(this.region.getGameObjects());
+        this.region = null;
+    }
+
     private void processGameObject(GameObject gameObject){
         this.gameObjects.add(gameObject);
         for(Component c : gameObject.componentList) {
@@ -110,25 +145,9 @@ public class GameWorld {
                     system.addComponent(c);
                 }
             }
-//            if ((flags & SystemFlag.TickSystem) != 0) {
-//                this.tickSystem.addComponent(c);
-//            }
-//            if ((flags & SystemFlag.RenderSystem) != 0) {
-//                this.renderSystem.addComponent(c);
-//            }
-//            if ((flags & SystemFlag.CollisionSystem) != 0) {
-//                this.collisionSystem.addComponent(c);
-//            }
-//            if ((flags & SystemFlag.KeyEventSystem) != 0) {
-//                this.keyEventSystem.addComponent(c);
-//            }
-//            if ((flags & SystemFlag.MouseEventSystem) != 0) {
-//                this.mouseEventSystem.addComponent(c);
-//            }
         }
     }
-    //TODO rewrite to loop over systems in list
-    //Checking cases looks bad
+
     private void deprocessGameObject(GameObject gameObject){
         for(Component c : gameObject.componentList) {
             int flags = c.getSystemFlags();
@@ -137,21 +156,6 @@ public class GameWorld {
                     system.removeComponent(c);
                 }
             }
-//            if ((flags & SystemFlag.TickSystem) != 0) {
-//                this.tickSystem.removeComponent(c);
-//            }
-//            if ((flags & SystemFlag.RenderSystem) != 0) {
-//                this.renderSystem.removeComponent(c);
-//            }
-//            if ((flags & SystemFlag.CollisionSystem) != 0) {
-//                this.collisionSystem.removeComponent(c);
-//            }
-//            if ((flags & SystemFlag.KeyEventSystem) != 0) {
-//                this.keyEventSystem.removeComponent(c);
-//            }
-//            if ((flags & SystemFlag.MouseEventSystem) != 0) {
-//                this.mouseEventSystem.removeComponent(c);
-//            }
         }
         this.gameObjects.remove(gameObject);
     }

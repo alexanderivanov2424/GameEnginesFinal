@@ -73,8 +73,7 @@ public class SpriteComponent extends Component{
             g.drawImage(this.sprite, this.offset.x, this.offset.y, this.cropSize.x, this.cropSize.y,
                     pos.x + this.position.x, pos.y + this.position.y, this.size.x, this.size.y);
         }
-
-    };
+    }
 
     @Override
     public int getSystemFlags() {

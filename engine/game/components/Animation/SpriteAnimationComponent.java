@@ -138,7 +138,7 @@ public class SpriteAnimationComponent extends AnimationComponent {
     }
 
     @Override
-    public void onLateTick(){};
+    public void onLateTick(){}
 
     @Override
     public void onDraw(GraphicsContext g){
