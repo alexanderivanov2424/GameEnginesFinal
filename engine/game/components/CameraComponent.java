@@ -17,12 +17,30 @@ public class CameraComponent extends Component{
     private int viewport_id;
     private UIViewport viewport;
 
+    private Vec2d horizontalRange;
+    private Vec2d verticalRange;
+
     //TODO add smoothness
-    //TODO add option for level bounds (camera cant go past certain point but player can.
+    //TODO add option for level bounds (camera cant go past certain point but player can).
 
     public CameraComponent(int viewport_id) {
         super();
         this.viewport_id = viewport_id;
+    }
+
+    public CameraComponent(int viewport_id, Vec2d horizontalRange, Vec2d verticalRange) {
+        super();
+        this.viewport_id = viewport_id;
+        this.horizontalRange = horizontalRange;
+        this.verticalRange = verticalRange;
+    }
+
+    public void setHorizontalRange(Vec2d horizontalRange){
+        this.horizontalRange = horizontalRange;
+    }
+
+    public void setVerticalRange(Vec2d verticalRange){
+        this.verticalRange = verticalRange;
     }
 
     @Override
@@ -40,7 +58,13 @@ public class CameraComponent extends Component{
         }
         Vec2d pos = this.gameObject.getTransform().position;
         Vec2d size = this.gameObject.getTransform().size;
-        this.viewport.setGamePosition(new Vec2d(pos.x + size.x/2, pos.y+ size.y/2));
+        double camera_x = pos.x + size.x/2;
+        double camera_y = pos.y+ size.y/2;
+        if(horizontalRange != null)
+            camera_x = Math.max(this.horizontalRange.x, Math.min(this.horizontalRange.y,camera_x));
+        if(verticalRange != null)
+            camera_y = Math.max(this.verticalRange.x, Math.min(this.verticalRange.y,camera_y));
+        this.viewport.setGamePosition(new Vec2d(camera_x, camera_y));
     };
 
     @Override

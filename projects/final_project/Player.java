@@ -24,7 +24,7 @@ public class Player {
     public static GameObject createPlayer(GameWorld gameWorld, Vec2d pos){
         GameObject player = new GameObject(gameWorld, 3);
 
-        player.addComponent(new CameraComponent(0));
+        player.addComponent(new CameraComponent(0, new Vec2d(0,16), new Vec2d(0, 16)));
         AnimationGraphComponent agc = createPlayerAnimationGraph();
         player.addComponent(agc);
 

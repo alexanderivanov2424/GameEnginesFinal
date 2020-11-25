@@ -25,7 +25,7 @@ public class UIViewport extends UIElement{
 
     private double panRate = .5;
 
-    private boolean interactable =false;
+    private boolean interactable = false;
 
     //TODO have nice way to specify if viewport should support panning
 
@@ -217,6 +217,7 @@ public class UIViewport extends UIElement{
     @Override
     public void onMouseWheelMoved(ScrollEvent e, Vec2d shift) {
         this.gameWorld.onMouseWheelMoved(e);
+        if(!scalable) return;
         if(this.mouseInBounds(e.getX() + shift.x, e.getY() + shift.y)){
             double scroll = e.getDeltaY();
             this.scale *= 1 + .005 * scroll;
