@@ -1,4 +1,4 @@
-package projects.final_project.levels;
+package projects.final_project.levels.TileMaps;
 
 import engine.game.TileSystem.SpriteTileVariant;
 import engine.game.TileSystem.Tile;

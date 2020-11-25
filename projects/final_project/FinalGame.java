@@ -4,12 +4,10 @@ import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.TileSystem.TileMap;
-import engine.game.collisionShapes.AABShape;
-import engine.game.components.*;
-import engine.game.components.Animation.SpriteAnimationComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import projects.final_project.levels.*;
+import projects.final_project.levels.TileMaps.*;
 
 import java.io.File;
 
@@ -39,7 +37,7 @@ public class FinalGame {
 
         /*TileMap tileMap = LevelTileMaps.createTileMap();
         LevelTileMaps.setTestingLevel(tileMap);*/
-        TileMap tileMap = LevelTileMaps.createCaveTileMap();
+        TileMap tileMap = CaveTileMap.createCaveTileMap();
         LevelTileMaps.setCaveLevel(tileMap, player, gameWorld);
         tileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
     }
