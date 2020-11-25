@@ -33,10 +33,14 @@ public class FinalGame {
     }
 
     public void init() {
-        this.gameWorld.addGameObject(Player.createPlayer(this.gameWorld,new Vec2d(0,0)));
+        GameObject player = Player.createPlayer(this.gameWorld,new Vec2d(3,3));
+        this.gameWorld.addGameObject(player);
 
-        TileMap tileMap = OverworldTileMap.createTileMap();
-        LevelTileMaps.setTestingLevel(tileMap);
+
+        /*TileMap tileMap = LevelTileMaps.createTileMap();
+        LevelTileMaps.setTestingLevel(tileMap);*/
+        TileMap tileMap = LevelTileMaps.createCaveTileMap();
+        LevelTileMaps.setCaveLevel(tileMap, player, gameWorld);
         tileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
     }
 
