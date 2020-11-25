@@ -14,9 +14,9 @@ public class LevelTileMaps {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 1, 0, 0, 0, 1, 0},
-                {0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
-                {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 1, 0, 2, 1},
+                {0, 0, 1, 2, 2, 1, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -26,9 +26,9 @@ public class LevelTileMaps {
         int[][] heights = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 1, 2, 1, 1, 0, 2, 0},
-                {0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
-                {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+                {0, 0, 1, 1, 2, 1, 1, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 1, 0, 1, 1},
+                {0, 0, 1, 1, 1, 1, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -36,7 +36,7 @@ public class LevelTileMaps {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         };
 
-        String[] index = new String[]{"grass", "wall"};
+        String[] index = new String[]{"grass", "wall", "stairsV"};
         String[][] tiles = new String[tiles_int.length][tiles_int[0].length];
         for(int i = 0; i < tiles_int.length; i++){
             for(int j = 0; j < tiles_int[0].length; j++){
@@ -87,6 +87,9 @@ public class LevelTileMaps {
                     return new String[]{"edge_tl","edge_t","edge_l","edge_none","edge_bl","edge_b","edge_tb","edge_ltb"};
                 },
                 (String type, int height)->{
+                    if(type.equals("stairsV")){
+                        return new String[]{"edge_tl","edge_t","edge_tr","edge_l","edge_none","edge_r","edge_lr","edge_ltr"};
+                    }
                     if(height > 0)
                         return new String[]{"edge_bl","edge_b","edge_br","edge_tb","edge_ltb","edge_ltrb","edge_trb","edge_lrb"};
                     return new String[]{"edge_tl","edge_t","edge_tr","edge_l","edge_none","edge_r","edge_lr","edge_ltr"};
@@ -133,6 +136,66 @@ public class LevelTileMaps {
                 });
         wallTile.setAllVariantCollisionThickness(.1);
         tileTypes.add(wallTile);
+
+        //stairs up tile
+        Tile stairsV = new Tile("stairsV", FinalGame.getSpritePath("tile_sprite_sheet"));
+        stairsV.addVariant(new SpriteTileVariant(0,0,0,1,"stairv_tl_grass", new Vec2d(11,1).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,0,"stairv_tr_grass", new Vec2d(12,1).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,1,"stairv_tlr_grass", new Vec2d(13,1).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,0,0,0,"stairv_t_grass", new Vec2d(14,1).smult(32), TS));
+
+        stairsV.addVariant(new SpriteTileVariant(0,0,0,1,"stairv_l_grass", new Vec2d(11,2).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,0,"stairv_r_grass", new Vec2d(12,2).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,1,"stairv_lr_grass", new Vec2d(13,2).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,0,0,0,"stairv", new Vec2d(14,2).smult(32), TS));
+
+        stairsV.addVariant(new SpriteTileVariant(0,0,0,0,"stairv_b_grass", new Vec2d(14,3).smult(32), TS));
+
+        stairsV.addVariant(new SpriteTileVariant(0,0,0,1,"stairv_l_wall", new Vec2d(11,6).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,0,"stairv_r_wall", new Vec2d(12,6).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,1,"stairv_lr_wall", new Vec2d(13,6).smult(32), TS));
+
+        stairsV.addVariant(new SpriteTileVariant(0,0,0,1,"stairv_l_wall_b_grass", new Vec2d(11,10).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,0,"stairv_r_wall_b_grass", new Vec2d(12,10).smult(32), TS));
+        stairsV.addVariant(new SpriteTileVariant(0,1,0,1,"stairv_lr_wall_b_grass", new Vec2d(13,10).smult(32), TS));
+
+        stairsV.set4DirectionRestrictions(
+                (String type, int height)->{
+                    if(type.equals("grass")){
+                        return null;
+                    }
+                    return new String[]{"stairv_l_grass","stairv_r_grass","stairv_lr_grass","stairv_b_grass","stairv",
+                            "stairv_l_wall","stairv_r_wall","stairv_lr_wall",
+                            "stairv_l_wall_b_grass","stairv_r_wall_b_grass","stairv_lr_wall_b_grass"};
+                },
+                (String type, int height)->{
+                    if(type.equals("grass")  && height == 1)
+                        return new String[]{"stairv_tr_grass","stairv_tlr_grass","stairv_r_grass","stairv_lr_grass"};
+                    if(type.equals("stairsV"))
+                        return new String[]{"stairv_tl_grass", "stairv_t_grass", "stairv_l_grass", "stairv", "stairv_b_grass",
+                        "stairv_l_wall","stairv_l_wall_b_grass"};
+                    return new String[]{"stairv_r_wall","stairv_lr_wall",
+                            "stairv_r_wall_b_grass","stairv_lr_wall_b_grass"};
+                },
+                (String type, int height)->{
+                    if(type.equals("grass")){
+                        return null;
+                    }
+                    return new String[]{"stairv_l_grass","stairv_r_grass","stairv_lr_grass","stairv_b_grass","stairv",
+                            "stairv_l_wall","stairv_r_wall","stairv_lr_wall",
+                            "stairv_tl_grass","stairv_tr_grass","stairv_tlr_grass", "stairv_t_grass"};
+                },
+                (String type, int height)->{
+                    if(type.equals("grass") && height == 1)
+                        return new String[]{"stairv_tl_grass","stairv_tlr_grass","stairv_l_grass","stairv_lr_grass"};
+                    if(type.equals("stairsV"))
+                        return new String[]{"stairv_tr_grass", "stairv_t_grass", "stairv_r_grass", "stairv", "stairv_b_grass",
+                                "stairv_r_wall","stairv_r_wall_b_grass"};
+                    return new String[]{"stairv_l_wall","stairv_lr_wall",
+                            "stairv_l_wall_b_grass","stairv_lr_wall_b_grass"};
+                });
+        stairsV.setAllVariantCollisionThickness(.1);
+        tileTypes.add(stairsV);
 
 
         TileMap tileMap = new TileMap(tileTypes, true);
