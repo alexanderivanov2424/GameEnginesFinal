@@ -32,11 +32,9 @@ public class Player {
         player.addComponent(new PlayerMovementComponent(5,agc));
 
         LightComponent lightComponent = new LightComponent(Color.BLACK, 2);
-        lightComponent.setGameObject(player);
         player.addComponent(lightComponent);
 
         DrawFogComponent drawFogComponent = new DrawFogComponent();
-        drawFogComponent.setGameObject(player);
         player.addComponent(drawFogComponent);
 
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),

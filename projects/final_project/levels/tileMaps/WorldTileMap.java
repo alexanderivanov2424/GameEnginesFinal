@@ -97,8 +97,34 @@ public class WorldTileMap {
                         return new String[]{"up_lr","down_lr","up_l","down_l"};
                     return new String[]{"up","up_r","down","down_r"};
                 });
-
         tileTypes.add(wallTile);
+
+        //caveDoor tile
+        Tile caveDoorTile = new Tile("caveDoor", FinalGame.getSpritePath("tile_sprite_sheet"));
+        caveDoorTile.addVariant(new SpriteTileVariant(1,1,0,1,"gap_l", new Vec2d(6,1).smult(32), TS));
+        caveDoorTile.addVariant(new SpriteTileVariant(1,1,0,1,"gap_r", new Vec2d(6,2).smult(32), TS));
+        caveDoorTile.addVariant(new SpriteTileVariant(1,1,0,1,"gap_lr", new Vec2d(6,3).smult(32), TS));
+        caveDoorTile.addVariant(new SpriteTileVariant(1,1,0,1,"gap_none", new Vec2d(6,4).smult(32), TS));
+
+        caveDoorTile.set4DirectionRestrictions(
+                (String type, int height)->{
+                    return null;
+                },
+                (String type, int height)->{
+                    if(height >= 0 && type.equals("grass"))
+                        return new String[]{"gap_lr","gap_r"};
+                    return new String[]{"gap_l","gap_none"};
+                },
+                (String type, int height)->{
+                    return null;
+                },
+                (String type, int height)->{
+                    if(height >= 0 && type.equals("grass"))
+                        return new String[]{"gap_lr","gap_l"};
+                    return new String[]{"gap_r","gap_none"};
+                });
+        caveDoorTile.setAllVariantCollisionThickness(.25);
+        tileTypes.add(caveDoorTile);
 
         //stairs up tile
         Tile stairsV = new Tile("stairsV", FinalGame.getSpritePath("tile_sprite_sheet"));
