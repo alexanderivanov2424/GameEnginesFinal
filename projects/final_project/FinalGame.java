@@ -7,9 +7,8 @@ import engine.game.Region;
 import engine.game.TileSystem.TileMap;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
-import projects.final_project.levels.CaveLevel;
+import projects.final_project.levels.*;
 import projects.final_project.levels.tileMaps.*;
-import projects.final_project.levels.TutorialLevel;
 
 import java.io.File;
 
@@ -47,23 +46,31 @@ public class FinalGame {
 
 
         //create cave Region
-        Region cave = new Region();
-        gameWorld.loadRegion(cave);
+        Levels.cave = new Region();
+        gameWorld.loadRegion(Levels.cave);
         CaveLevel.setCaveLevel(caveTileMap, player, gameWorld);
         caveTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         gameWorld.unloadRegion();
 
-        //create cave Region
-        Region tutorial1 = new Region();
-        gameWorld.loadRegion(tutorial1);
-        TutorialLevel.setTutorialLevel1(worldTileMap);
+        //create area1 Region
+        Levels.area1 = new Region();
+        gameWorld.loadRegion(Levels.area1 );
+        Area1.setTiles(worldTileMap);
         worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
-        TutorialLevel.addGameObjects(gameWorld);
+        Area1.addGameObjects(gameWorld);
+        gameWorld.unloadRegion();
+
+        //create area2 Region
+        Levels.area2 = new Region();
+        gameWorld.loadRegion(Levels.area2 );
+        Area2.setTiles(worldTileMap);
+        worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
+        Area2.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
         //TODO give the viewport proper limiting instead of the camera component.
         // Makes more sense given that we are loading and unloading regions.
-        gameWorld.loadRegion(tutorial1);
+        gameWorld.loadRegion(Levels.area1);
     }
 
     /*

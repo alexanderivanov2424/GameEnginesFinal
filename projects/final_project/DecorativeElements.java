@@ -1,4 +1,4 @@
-package projects.final_project.levels;
+package projects.final_project;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
@@ -9,7 +9,7 @@ import engine.game.components.SpriteComponent;
 import engine.support.Vec2d;
 import projects.final_project.FinalGame;
 
-public class Decorative {
+public class DecorativeElements {
 
     public static void placeTree(GameWorld gameWorld, Vec2d pos){
         GameObject tree = new GameObject(gameWorld, 2);

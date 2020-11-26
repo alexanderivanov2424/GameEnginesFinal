@@ -97,7 +97,7 @@ public class WorldTileMap {
                         return new String[]{"up_lr","down_lr","up_l","down_l"};
                     return new String[]{"up","up_r","down","down_r"};
                 });
-        
+
         tileTypes.add(wallTile);
 
         //stairs up tile
