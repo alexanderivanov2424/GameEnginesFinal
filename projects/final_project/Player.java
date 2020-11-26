@@ -151,7 +151,7 @@ public class Player {
                     if(object.getTransform().position.dist(this.getGameObject().getTransform().position) < 4) {
                         if(! (object.getComponent("HealthComponent") == null)) {
                             HealthComponent healthComponent = (HealthComponent)object.getComponent("HealthComponent");
-                            healthComponent.hit(.5);
+                            healthComponent.hit(.1);
                         }
                     }
                 }
