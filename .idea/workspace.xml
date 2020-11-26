@@ -12,14 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="af822c5d-616a-4757-99b4-148efcbef835" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/UIToolKit/UIViewport.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/UIToolKit/UIViewport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/GameWorld.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/game/components/DrawFogComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/DrawFogComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/components/LightComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/LightComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/game/systems/LightingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/systems/LightingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/DecorativeElements.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/DecorativeElements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

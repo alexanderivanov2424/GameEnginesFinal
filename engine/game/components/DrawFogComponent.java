@@ -44,17 +44,6 @@ public class DrawFogComponent extends Component {
                 g.fillRect(i,j, resolution, resolution);
             }
         }
-
-//        double[][] lightMap = gameObject.gameWorld.getLightingSystem().getLightMap();
-//        gameObject.getTransform().position.sdiv((float)size);
-//
-//
-//        for(int i = 0; i < lightMap.length; i++) {
-//            for(int j = 0; j < lightMap[0].length; j++) {
-//                g.setFill(Color.rgb(0,0,0,1-lightMap[i][j]));
-//                g.fillRect(size*i, size*j, size, size);
-//            }
-//        }
     }
 
     @Override
