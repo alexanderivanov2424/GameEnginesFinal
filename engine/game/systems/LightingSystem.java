@@ -9,8 +9,8 @@ import java.util.Arrays;
 //Keeps track of all light sources and calculates the brightness at different points.
 public class LightingSystem extends GeneralSystem {
 
-    private double[][] lightMap = new double[70][70];
-    private double squareSize = 0.2;
+//    private double[][] lightMap = new double[70][70];
+//    private double squareSize = 0.2;
 
     public int getSystemFlag(){
         return SystemFlag.LightingSystem;
@@ -18,56 +18,67 @@ public class LightingSystem extends GeneralSystem {
 
     //Every tick update brightness of each region based on the lightComponent's locations.
     //0 is black, 1.0 is transparent. (Opposite of Color opacity.)
-    public void onTick(long nanosSincePreviousTick){
-        //For each light component
-        for(int i =0; i < this.components.size(); i++){
-            if(this.components.get(i).isDisabled()) continue;
+//    public void onTick(long nanosSincePreviousTick){
+//        //For each light component
+//        for(int i =0; i < this.components.size(); i++){
+//            if(this.components.get(i).isDisabled()) continue;
+//
+//            //If within a certain radius, completely bright
+//            //If between a certain distance range, gradient
+//            //Completely dark otherwise.
+//            for(int n = 0; n < lightMap.length; n++) {
+//                for(int m = 0; m < lightMap[0].length; m++) {
+//                    LightComponent lightComponent = (LightComponent)this.components.get(i);
+//                    Vec2d source_pos = lightComponent.getGameObject().getTransform().position.plus(lightComponent.getOffset());
+//                    double distance = source_pos.dist((float)squareSize*n, (float)squareSize*m);
+//
+//                    if(distance < 3) {
+//                        lightMap[n][m] = 1;
+//                    }
+//                    else if(distance >= 3 && distance < 7) {
+//                        lightMap[n][m] = 1-((distance-3)*.25);
+//                    }
+//                    else {
+//                        lightMap[n][m] = 0;
+//                    }
+//                }
+//            }
+//        }
+//        /*System.out.println("lightmap: ");
+//        for(int i = 0; i<16; i++)
+//        {
+//            for(int j = 0; j<16; j++)
+//            {
+//                System.out.print(lightMap[i][j]);
+//            }
+//            System.out.println();
+//        }*/
+//    }
 
-            //If within a certain radius, completely bright
-            //If between a certain distance range, gradient
-            //Completely dark otherwise.
-            for(int n = 0; n < lightMap.length; n++) {
-                for(int m = 0; m < lightMap[0].length; m++) {
-                    LightComponent lightComponent = (LightComponent)this.components.get(i);
-                    Vec2d source_pos = lightComponent.getGameObject().getTransform().position.plus(lightComponent.getOffset());
-                    double distance = source_pos.dist((float)squareSize*n, (float)squareSize*m);
-
-                    if(distance < 3) {
-                        lightMap[n][m] = 1;
-                    }
-                    else if(distance >= 3 && distance < 7) {
-                        lightMap[n][m] = 1-((distance-3)*.25);
-                    }
-                    else {
-                        lightMap[n][m] = 0;
-                    }
-                }
-            }
+    public double getBrightnessAt(Vec2d location){
+        //TODO when lights have colors need to do proper color mixing here instead of just adding the colors together
+        double totalBrightness = 0;
+        for(int i =0; i < this.components.size(); i++) {
+            if (this.components.get(i).isDisabled()) continue;
+            LightComponent lightComponent = (LightComponent)this.components.get(i);
+            totalBrightness += lightComponent.getBrightnessAtLocation(location);
         }
-        /*System.out.println("lightmap: ");
-        for(int i = 0; i<16; i++)
-        {
-            for(int j = 0; j<16; j++)
-            {
-                System.out.print(lightMap[i][j]);
-            }
-            System.out.println();
-        }*/
+        return Math.min(totalBrightness,1);
     }
 
-    public double[][] getLightMap() {
-        return lightMap;
-    }
-
-    public double getSquareSize() {
-        return squareSize;
-    }
-
-    public void setLightMap(double[][] lightMap) {
-        this.lightMap = lightMap;
-    }
-
-    public void setSquareSize(double squareSize) {
-        this.squareSize = squareSize;
-    }
+//    public double[][] getLightMap() {
+//        return lightMap;
+//    }
+//
+//    public double getSquareSize() {
+//        return squareSize;
+//    }
+//
+//    public void setLightMap(double[][] lightMap) {
+//        this.lightMap = lightMap;
+//    }
+//
+//    public void setSquareSize(double squareSize) {
+//        this.squareSize = squareSize;
+//    }
 }

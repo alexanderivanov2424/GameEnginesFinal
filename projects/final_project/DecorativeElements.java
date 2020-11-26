@@ -5,8 +5,10 @@ import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.CollisionComponent;
+import engine.game.components.LightComponent;
 import engine.game.components.SpriteComponent;
 import engine.support.Vec2d;
+import javafx.scene.paint.Color;
 import projects.final_project.FinalGame;
 
 public class DecorativeElements {
@@ -53,6 +55,9 @@ public class DecorativeElements {
         SpriteComponent sprite = new SpriteComponent(FinalGame.getSpritePath("tile_sprite_sheet"),
                 new Vec2d(0,0), new Vec2d(2,2), new Vec2d(4-size,14).smult(32), new Vec2d(32,32));
         rocks.addComponent(sprite);
+
+        LightComponent lightComponent = new LightComponent(Color.WHITE, 3, new Vec2d(1,1.5));
+        rocks.addComponent(lightComponent);
 
         rocks.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1), 2.0/((double)size+1.0)), true, true,
                 FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));

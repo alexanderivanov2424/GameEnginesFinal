@@ -5,6 +5,8 @@ import engine.game.GameWorld;
 import engine.game.TileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
 import engine.game.components.CollisionComponent;
+import engine.game.components.DrawFogComponent;
+import engine.game.components.LightComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import projects.final_project.DecorativeElements;
@@ -117,6 +119,8 @@ public class Area2 {
         collisionInfo.gameObjectOther.gameWorld.unloadRegion();
         collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.cave);
         collisionInfo.gameObjectOther.getTransform().position = new Vec2d(5,5);
+        DrawFogComponent fog = (DrawFogComponent)collisionInfo.gameObjectOther.getComponent("DrawFogComponent");
+        fog.enable();
         //TODO start fadein animation
     }
 

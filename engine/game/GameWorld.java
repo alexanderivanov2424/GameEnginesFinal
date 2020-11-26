@@ -90,7 +90,7 @@ public class GameWorld {
         }
         this.tickSystem.onTick(nanosSincePreviousTick);
         this.collisionSystem.onTick(nanosSincePreviousTick);
-        this.lightingSystem.onTick(nanosSincePreviousTick);
+        //this.lightingSystem.onTick(nanosSincePreviousTick);
     }
 
     public void onLateTick(){

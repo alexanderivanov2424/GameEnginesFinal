@@ -126,6 +126,14 @@ public class UIViewport extends UIElement{
         return new Vec2d(point.getX(),point.getY());
     }
 
+    public Vec2d getGameWorldViewCorner(){
+        return this.gamePosition.plus(this.size.smult(-1 / (2 * this.scale)));
+    }
+
+    public Vec2d getGameWorldViewSize(){
+        return this.size.smult(1/this.scale);
+    }
+
     public double getScale(){
         return this.scale;
     }
