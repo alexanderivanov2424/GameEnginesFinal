@@ -2,6 +2,7 @@ package projects.final_project.levels;
 
 import engine.game.GameWorld;
 import engine.game.TileSystem.TileMap;
+import engine.support.Vec2d;
 
 public class TutorialLevel {
 
@@ -64,7 +65,10 @@ public class TutorialLevel {
         tileMap.setHeights(heights);
     }
 
-    public void addGameObjects(GameWorld gameWorld){
+    public static void addGameObjects(GameWorld gameWorld){
+        //TODO need to add rendering order first
+        //Decorative.placeTree(gameWorld, new Vec2d(12,32));
 
+        Decorative.placeRocks(gameWorld,new Vec2d(12,32), 2);
     }
 }

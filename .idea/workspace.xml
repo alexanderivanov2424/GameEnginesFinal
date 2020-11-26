@@ -11,14 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e07ef792-21b1-45b7-94f8-813e05ea3941" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/projects/final_project/levels/Decorative.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/TileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/TileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/SpriteTileVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/SpriteTileVariant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/FinalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/FinalGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/TileMaps/CaveTileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/CaveTileMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/TileMaps/WorldTileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/WorldTileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Decorative.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Decorative.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/levels/TutorialLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/TutorialLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/WorldTileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/WorldTileMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,25 +171,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605591264465" />
-    <state width="1493" height="68" key="GridCell.Tab.0.bottom" timestamp="1606354505009">
+    <state width="1493" height="68" key="GridCell.Tab.0.bottom" timestamp="1606356754049">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="68" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606354505009" />
+    <state width="1493" height="68" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606356754049" />
     <state width="1993" height="37" key="GridCell.Tab.0.bottom/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606348000463" />
-    <state width="1493" height="68" key="GridCell.Tab.0.center" timestamp="1606354505009">
+    <state width="1493" height="68" key="GridCell.Tab.0.center" timestamp="1606356754048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="68" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606354505009" />
+    <state width="1493" height="68" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606356754048" />
     <state width="1993" height="37" key="GridCell.Tab.0.center/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606348000463" />
-    <state width="1493" height="68" key="GridCell.Tab.0.left" timestamp="1606354505009">
+    <state width="1493" height="68" key="GridCell.Tab.0.left" timestamp="1606356754048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="68" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606354505009" />
+    <state width="1493" height="68" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606356754048" />
     <state width="1993" height="37" key="GridCell.Tab.0.left/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606348000463" />
-    <state width="1493" height="68" key="GridCell.Tab.0.right" timestamp="1606354505009">
+    <state width="1493" height="68" key="GridCell.Tab.0.right" timestamp="1606356754048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="68" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606354505009" />
+    <state width="1493" height="68" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606356754048" />
     <state width="1993" height="37" key="GridCell.Tab.0.right/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606348000463" />
     <state x="277" y="57" key="SettingsEditor" timestamp="1605764974872">
       <screen x="0" y="0" width="1536" height="824" />

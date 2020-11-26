@@ -21,6 +21,9 @@ public class FinalGame {
     public static final int PLAYER_LAYER = CollisionSystem.CollisionMask.layer3;
     public static final int PLAYER_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer1;
 
+    public static final int OBJECT_LAYER = CollisionSystem.CollisionMask.layer1;
+    public static final int OBJECT_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer1 | CollisionSystem.CollisionMask.layer3;
+
     private GameWorld gameWorld;
     private UIViewport viewport;
 
@@ -55,6 +58,7 @@ public class FinalGame {
         gameWorld.loadRegion(tutorial1);
         TutorialLevel.setTutorialLevel1(worldTileMap);
         worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
+        TutorialLevel.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
         //TODO give the viewport proper limiting instead of the camera component.

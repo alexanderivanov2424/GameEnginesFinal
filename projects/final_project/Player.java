@@ -3,6 +3,7 @@ package projects.final_project;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
+import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.Animation.AnimationComponent;
 import engine.game.components.Animation.AnimationSystem.AGAnimationGroup;
@@ -30,7 +31,7 @@ public class Player {
 
         player.addComponent(new PlayerMovementComponent(5,agc));
 
-        player.addComponent(new CollisionComponent(new AABShape(new Vec2d(.3,1.5),new Vec2d(1.4,.5)),
+        player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
 
         TextBoxComponent textBoxComponent = new TextBoxComponent(0, new Vec2d(0,-1),
