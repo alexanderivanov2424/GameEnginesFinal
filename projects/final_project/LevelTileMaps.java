@@ -29,10 +29,12 @@ public class LevelTileMaps {
                 {1, 0, 0, 0, 0, 1, 1},
                 {1, 0, 0, 0, 0, 0, 1},
                 {1, 0, 0, 0, 0, 0, 1},
+                {1, 1, 0, 0, 0, 0, 1},
                 {1, 1, 1, 1, 1, 1, 1},
         };
 
         int[][] heights = new int[][]{
+                {0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0},
@@ -46,8 +48,7 @@ public class LevelTileMaps {
         for(int i = 0; i < tiles_int.length; i++){
             for(int j = 0; j < tiles_int[0].length; j++){
                 tiles[i][j] = index[tiles_int[i][j]];
-                //TODO
-                //addFogTile(gameWorld, new Vec2d(i,j), player);
+                addFogTile(gameWorld, new Vec2d(i,j).smult(2), player);
             }
         }
 
@@ -64,7 +65,7 @@ public class LevelTileMaps {
         lateRectComponent.setGameObject(fog);
         fog.addComponent(lateRectComponent);
 
-        ProximityComponent proximityComponent = new ProximityComponent(player, 10);
+        ProximityComponent proximityComponent = new ProximityComponent(player, 5);
         proximityComponent.setGameObject(fog);
         proximityComponent.linkProximityCallback(LevelTileMaps::fogBreakCallback);
         fog.addComponent(proximityComponent);
@@ -74,18 +75,18 @@ public class LevelTileMaps {
         //every tick, set the fog's color(transparency) based on proximity to objects with
     }
 
-    //Distance is less than 10.
+    //Distance is less than 5.
     private static void fogBreakCallback(GameObject fogTile, double distance) {
 
         LateRectComponent fog = (LateRectComponent)fogTile.getComponent("LateRectComponent");
         //The shorter the distance, the smaller the opacity.
 
-        if(distance < 6) {
+        if(distance < 3) {
             fog.setColor(Color.rgb(0,0,0,0));
         }
         else {
-            //0.19 = .8/(10-6)
-            fog.setColor(Color.rgb(0,0,0,(distance-6)*0.19));
+            //0.39 = .8/(5-3)
+            fog.setColor(Color.rgb(0,0,0,(distance-3)*0.39));
         }
 
     }
