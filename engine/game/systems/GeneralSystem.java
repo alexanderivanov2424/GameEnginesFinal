@@ -20,5 +20,9 @@ public abstract class GeneralSystem {
         this.components.remove(c);
     }
 
+    public boolean hasComponent(Component c) {
+        return this.components.contains(c);
+    }
+
     public abstract int getSystemFlag();
 }

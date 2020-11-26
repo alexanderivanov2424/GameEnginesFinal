@@ -13,10 +13,13 @@ public class LightComponent extends Component {
 
     protected Color color = Color.rgb(255,255,255,0.0);
 
+    private Vec2d offset;
 
-    public LightComponent(Color color, double brightness) {
+
+    public LightComponent(Color color, double brightness, Vec2d offset) {
         this.brightness = brightness;
         this.color = color;
+        this.offset = offset;
     }
 
     @Override
@@ -44,6 +47,10 @@ public class LightComponent extends Component {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public Vec2d getOffset(){
+        return this.offset;
     }
 
 }

@@ -31,10 +31,10 @@ public class Player {
 
         player.addComponent(new PlayerMovementComponent(5,agc));
 
-        LightComponent lightComponent = new LightComponent(Color.BLACK, 2);
+        LightComponent lightComponent = new LightComponent(Color.BLACK, 2, new Vec2d(1,1));
         player.addComponent(lightComponent);
 
-        DrawFogComponent drawFogComponent = new DrawFogComponent();
+        DrawFogComponent drawFogComponent = new DrawFogComponent(0, new Vec2d(0,0), .02);
         player.addComponent(drawFogComponent);
 
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),
@@ -160,7 +160,7 @@ public class Player {
 
             Vec2d pos = this.gameObject.getTransform().position;
             this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
-            System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
+            //System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
 
             TextBoxComponent tb = (TextBoxComponent)this.gameObject.getComponent("TextBoxComponent");
             if(tb != null){

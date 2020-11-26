@@ -151,6 +151,7 @@ public class GameWorld {
                 }
             }
         }
+        gameObject.setLOADED_INTO_GAMEWORLD(true);
     }
 
     private void deprocessGameObject(GameObject gameObject){
@@ -163,6 +164,25 @@ public class GameWorld {
             }
         }
         this.gameObjects.remove(gameObject);
+        gameObject.setLOADED_INTO_GAMEWORLD(false);
+    }
+
+    public void processComponet(Component componet){
+        int flags = componet.getSystemFlags();
+        for(GeneralSystem system : systemsList){
+            if ((flags & system.getSystemFlag()) != 0 && !system.hasComponent(componet)) {
+                system.addComponent(componet);
+            }
+        }
+    }
+
+    public void deprocessComponet(Component componet){
+        int flags = componet.getSystemFlags();
+        for(GeneralSystem system : systemsList){
+            if ((flags & system.getSystemFlag()) != 0 && system.hasComponent(componet)) {
+                system.removeComponent(componet);
+            }
+        }
     }
 
     public List<GameObject> getGameObjects(){

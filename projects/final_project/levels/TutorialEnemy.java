@@ -48,7 +48,7 @@ public class TutorialEnemy {
 
     private static void enemyDeathCallback(GameObject enemy){
         CollisionComponent collision = (CollisionComponent)enemy.getComponent("CollisionComponent");
-        collision.setCollisionLayer(CollisionSystem.CollisionMask.NONE);
+        collision.disable();
 
         DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
         delayEventComponent.linkEventCallback(TutorialEnemy::enemyRemoveCallback);

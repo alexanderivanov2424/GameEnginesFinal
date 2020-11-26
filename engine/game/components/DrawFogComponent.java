@@ -1,11 +1,22 @@
 package engine.game.components;
 
 import engine.game.systems.SystemFlag;
+import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 
 public class DrawFogComponent extends Component {
+
+    private int viewport_id;
+    private Vec2d offset; //center offset from gameObject
+    private double resolution; //TODO need to move this over from the lighting system.
+
+    public DrawFogComponent(int viewport_id, Vec2d offset, double resolution){
+        this.viewport_id = 0;
+        this.offset = offset;
+        this.resolution = resolution;
+    }
 
     //Draws fog around the object based on information from the lighting system.
     public void onLateDraw(GraphicsContext g){

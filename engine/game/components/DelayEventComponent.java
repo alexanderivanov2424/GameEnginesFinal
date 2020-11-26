@@ -31,9 +31,7 @@ public class DelayEventComponent extends Component{
     @Override
     public void onTick(long nanosSincePreviousTick){
         this.timer -= nanosSincePreviousTick/1000000000.0;
-        System.out.println("TICK");
         if(this.timer <= 0){
-            System.out.println("GOOD");
             if(this.delayedEvent != null) {
                 this.delayedEvent.execute(this.gameObject);
             }

@@ -11,14 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e07ef792-21b1-45b7-94f8-813e05ea3941" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/projects/final_project/levels/Levels.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/FinalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/FinalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/GameWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/DelayEventComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/DelayEventComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/DrawFogComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/DrawFogComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/LightComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/LightComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/systems/GeneralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/systems/GeneralSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/systems/LightingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/systems/LightingSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Decorative.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/DecorativeElements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/TutorialLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/WorldTileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/WorldTileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/TutorialEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/TutorialEnemy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,25 +203,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1605591264465" />
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1606363402848">
+    <state width="1493" height="209" key="GridCell.Tab.0.bottom" timestamp="1606364487087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606363402848" />
+    <state width="1493" height="209" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606364487087" />
     <state width="1993" height="156" key="GridCell.Tab.0.bottom/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606360545194" />
-    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1606363402847">
+    <state width="1493" height="209" key="GridCell.Tab.0.center" timestamp="1606364487087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606363402847" />
+    <state width="1493" height="209" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606364487087" />
     <state width="1993" height="156" key="GridCell.Tab.0.center/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606360545194" />
-    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1606363402847">
+    <state width="1493" height="209" key="GridCell.Tab.0.left" timestamp="1606364487087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606363402847" />
+    <state width="1493" height="209" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606364487087" />
     <state width="1993" height="156" key="GridCell.Tab.0.left/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606360545194" />
-    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1606363402847">
+    <state width="1493" height="209" key="GridCell.Tab.0.right" timestamp="1606364487087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606363402847" />
+    <state width="1493" height="209" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606364487087" />
     <state width="1993" height="156" key="GridCell.Tab.0.right/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606360545194" />
     <state width="1993" height="68" key="GridCell.Tab.1.bottom" timestamp="1606359848080">
       <screen x="0" y="0" width="2048" height="1112" />

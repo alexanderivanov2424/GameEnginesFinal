@@ -28,8 +28,9 @@ public class LightingSystem extends GeneralSystem {
             //Completely dark otherwise.
             for(int n = 0; n < lightMap.length; n++) {
                 for(int m = 0; m < lightMap[0].length; m++) {
-                    double distance = this.components.get(i).getGameObject().getTransform().position.
-                            dist((float)squareSize*n, (float)squareSize*m);
+                    LightComponent lightComponent = (LightComponent)this.components.get(i);
+                    Vec2d source_pos = lightComponent.getGameObject().getTransform().position.plus(lightComponent.getOffset());
+                    double distance = source_pos.dist((float)squareSize*n, (float)squareSize*m);
 
                     if(distance < 3) {
                         lightMap[n][m] = 1;

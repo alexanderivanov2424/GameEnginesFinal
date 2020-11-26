@@ -18,6 +18,8 @@ public class GameObject {
 
     public GameWorld gameWorld;
 
+    private boolean LOADED_INTO_GAMEWORLD = false;
+
     public GameObject(GameWorld gameWorld){
         this.gameWorld = gameWorld;
         componentList = new ArrayList<Component>();
@@ -35,6 +37,9 @@ public class GameObject {
     public void addComponent(Component c){
         this.componentList.add(c);
         c.setGameObject(this);
+        if(this.LOADED_INTO_GAMEWORLD){ //need to send component to proper system
+            this.gameWorld.processComponet(c);
+        }
     }
 
     public void removeComponent(Component c){
@@ -42,6 +47,9 @@ public class GameObject {
             return;
         }
         this.componentList.remove(c);
+        if(this.LOADED_INTO_GAMEWORLD){ //need to send component to proper system
+            this.gameWorld.deprocessComponet(c);
+        }
     }
 
     public Component getComponent(String s){
@@ -62,6 +70,9 @@ public class GameObject {
         return this.transformComponent;
     }
 
+    public void setLOADED_INTO_GAMEWORLD(boolean value){
+        this.LOADED_INTO_GAMEWORLD = value;
+    }
 
     public Element getXML(Document doc) {
         Element gameObject = doc.createElement("GameObject");
