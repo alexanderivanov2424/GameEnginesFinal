@@ -13,6 +13,7 @@ import engine.game.components.Animation.SpriteAnimationComponent;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
 import java.util.Set;
 
@@ -30,6 +31,14 @@ public class Player {
         player.addComponent(agc);
 
         player.addComponent(new PlayerMovementComponent(5,agc));
+
+        LightComponent lightComponent = new LightComponent(Color.BLACK, 2);
+        lightComponent.setGameObject(player);
+        player.addComponent(lightComponent);
+
+        DrawLightComponent drawLightComponent = new DrawLightComponent();
+        drawLightComponent.setGameObject(player);
+        player.addComponent(drawLightComponent);
 
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
