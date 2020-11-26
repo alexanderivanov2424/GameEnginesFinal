@@ -53,7 +53,7 @@ public class FinalGame {
         caveTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         gameWorld.unloadRegion();
 
-        //create cave Region
+        //create tutorial Region
         Region tutorial1 = new Region();
         gameWorld.loadRegion(tutorial1);
         TutorialLevel.setTutorialLevel1(worldTileMap);

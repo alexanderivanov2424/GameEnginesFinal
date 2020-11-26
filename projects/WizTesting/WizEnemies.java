@@ -52,7 +52,6 @@ public class WizEnemies {
 //        gameWorld.addGameObject(createEnemy(gameWorld, pos.plus(offset), player, grid));
     }
 
-    //stationary enemy that kills player on contact
     public static GameObject createEnemy(GameWorld gameWorld, Vec2d pos, GameObject player, int[][] grid){
         GameObject enemy = new GameObject(gameWorld, 2);
         enemy.addComponent(new SpriteAnimationComponent(WizGame.getSpritePath("enemy"),

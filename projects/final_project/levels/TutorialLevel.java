@@ -70,5 +70,6 @@ public class TutorialLevel {
         //Decorative.placeTree(gameWorld, new Vec2d(12,32));
 
         Decorative.placeRocks(gameWorld,new Vec2d(12,32), 2);
+        TutorialEnemy.placeEnemy(gameWorld, new Vec2d(14,32));
     }
 }
