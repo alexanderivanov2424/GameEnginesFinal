@@ -7,4 +7,5 @@ public class SystemFlag {
     public static final int CollisionSystem = 4;
     public static final int KeyEventSystem = 8;
     public static final int MouseEventSystem = 16;
+    public static final int LightingSystem = 32;
 }

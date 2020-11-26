@@ -5,27 +5,45 @@ import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.paint.Color;
 
 public class LightComponent extends Component {
 
-    protected double distance;
+    protected double brightness;
 
-    public LightComponent(double distance) {
+    protected Color color = Color.rgb(255,255,255,0.0);
 
-        this.distance = distance;
+
+    public LightComponent(Color color, double brightness) {
+        this.brightness = brightness;
+        this.color = color;
     }
 
     @Override
     public int getSystemFlags() {
-        return SystemFlag.TickSystem;
+        return SystemFlag.LightingSystem;
     }
 
     @Override
     public String getTag() {
-        return "DefogComponent";
+        return "LightComponent";
     }
 
-    public double getDistance() {
-        return distance;
+
+    public double getBrightness() {
+        return brightness;
     }
+
+    public void setBrightness(double brightness) {
+        this.brightness = brightness;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
 }
