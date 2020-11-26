@@ -1,27 +1,15 @@
-package projects.final_project;
+package projects.final_project.levels;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
-import engine.game.TileSystem.SpriteTileVariant;
-import engine.game.TileSystem.Tile;
 import engine.game.TileSystem.TileMap;
 import engine.game.components.LateRectComponent;
 import engine.game.components.ProximityComponent;
 import engine.support.Vec2d;
 import javafx.scene.paint.Color;
-import projects.WizTesting.WizLevelGenerator;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
+public class CaveLevel {
 
-public class LevelTileMaps {
-
-    //TODO this file should eventually be removed
-
-    /*
-    IMPORTANT
-    functions like this to feed an array into a tile map depend on the tilemap. Not every tilemap has every type of tile.
-     */
     public static void setCaveLevel(TileMap tileMap, GameObject player, GameWorld gameWorld){
         int[][] tiles_int = new int[][]{
                 {1, 1, 1, 1, 1, 1, 1},
@@ -67,7 +55,7 @@ public class LevelTileMaps {
 
         ProximityComponent proximityComponent = new ProximityComponent(player, 5);
         proximityComponent.setGameObject(fog);
-        proximityComponent.linkProximityCallback(LevelTileMaps::fogBreakCallback);
+        proximityComponent.linkProximityCallback(CaveLevel::fogBreakCallback);
         fog.addComponent(proximityComponent);
 
         gameWorld.addGameObject(fog);

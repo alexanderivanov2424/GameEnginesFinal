@@ -8,7 +8,7 @@ import projects.final_project.FinalGame;
 
 import java.util.ArrayList;
 
-public class OverworldTileMap {
+public class WorldTileMap {
 
     public static TileMap createTileMap(){
         ArrayList<Tile> tileTypes = new ArrayList<>();

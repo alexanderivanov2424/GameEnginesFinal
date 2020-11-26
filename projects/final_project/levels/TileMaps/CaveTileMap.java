@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class CaveTileMap {
 
-    public static TileMap createCaveTileMap(){
+    public static TileMap createTileMap(){
         ArrayList<Tile> tileTypes = new ArrayList<>();
 
         Vec2d TS = new Vec2d(24,24);

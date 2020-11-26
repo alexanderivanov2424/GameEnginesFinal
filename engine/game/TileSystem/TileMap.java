@@ -85,6 +85,11 @@ public class TileMap {
                     for(Component c : tv.getCollisionComponents(tile, new Vec2d(tileSize,tileSize), collisionLayer, collisionMask)){
                         tile.addComponent(c);
                     }
+                    List<Component> additionalComponents = this.tileComponents.get(i * this.tiles.length * j);
+                    if(additionalComponents != null)
+                        for(Component c : additionalComponents){
+                            tile.addComponent(c);
+                        }
                     gameWorld.addGameObject(tile);
                 }
             }

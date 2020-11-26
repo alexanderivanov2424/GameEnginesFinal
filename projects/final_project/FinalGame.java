@@ -3,11 +3,13 @@ package projects.final_project;
 import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.Region;
 import engine.game.TileSystem.TileMap;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
-import projects.final_project.levels.*;
+import projects.final_project.levels.CaveLevel;
 import projects.final_project.levels.TileMaps.*;
+import projects.final_project.levels.TutorialLevel;
 
 import java.io.File;
 
@@ -37,9 +39,26 @@ public class FinalGame {
 
         /*TileMap tileMap = LevelTileMaps.createTileMap();
         LevelTileMaps.setTestingLevel(tileMap);*/
-        TileMap tileMap = CaveTileMap.createCaveTileMap();
-        LevelTileMaps.setCaveLevel(tileMap, player, gameWorld);
-        tileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
+        TileMap caveTileMap = CaveTileMap.createTileMap();
+        TileMap worldTileMap = WorldTileMap.createTileMap();
+
+
+        //create cave Region
+        Region cave = new Region();
+        gameWorld.loadRegion(cave);
+        CaveLevel.setCaveLevel(caveTileMap, player, gameWorld);
+        caveTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
+        gameWorld.unloadRegion();
+
+        //create cave Region
+        Region tutorial1 = new Region();
+        gameWorld.loadRegion(tutorial1);
+        TutorialLevel.setTestingLevel(worldTileMap);
+        worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
+        gameWorld.unloadRegion();
+
+
+        gameWorld.loadRegion(tutorial1);
     }
 
     /*

@@ -6,6 +6,8 @@ import java.util.*;
 
 public class Tile {
 
+    //TODO add general variant restriction call
+
 
     public interface VariantRestriction{
         String[] getVariantRestriction(String type, int height);
