@@ -36,7 +36,7 @@ public class CaveLevel {
         for(int i = 0; i < tiles_int.length; i++){
             for(int j = 0; j < tiles_int[0].length; j++){
                 tiles[i][j] = index[tiles_int[i][j]];
-                addFogTile(gameWorld, new Vec2d(i,j).smult(2), player);
+                //addFogTile(gameWorld, new Vec2d(i,j).smult(2), player);
             }
         }
 

@@ -2,7 +2,6 @@ package projects.final_project;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
-import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.Animation.AnimationComponent;
@@ -13,6 +12,7 @@ import engine.game.components.Animation.SpriteAnimationComponent;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
 import java.util.Set;
 
@@ -30,6 +30,14 @@ public class Player {
         player.addComponent(agc);
 
         player.addComponent(new PlayerMovementComponent(5,agc));
+
+        LightComponent lightComponent = new LightComponent(Color.BLACK, 2);
+        lightComponent.setGameObject(player);
+        player.addComponent(lightComponent);
+
+        DrawFogComponent drawFogComponent = new DrawFogComponent();
+        drawFogComponent.setGameObject(player);
+        player.addComponent(drawFogComponent);
 
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));

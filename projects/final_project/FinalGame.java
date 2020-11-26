@@ -64,6 +64,7 @@ public class FinalGame {
         Levels.area2 = new Region();
         gameWorld.loadRegion(Levels.area2 );
         Area2.setTiles(worldTileMap);
+
         worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         Area2.addGameObjects(gameWorld);
         gameWorld.unloadRegion();

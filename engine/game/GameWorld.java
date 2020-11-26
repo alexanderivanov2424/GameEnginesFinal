@@ -45,8 +45,10 @@ public class GameWorld {
     protected CollisionSystem collisionSystem = new CollisionSystem();
     protected KeyEventSystem keyEventSystem = new KeyEventSystem();
     protected MouseEventSystem mouseEventSystem = new MouseEventSystem();
+    protected LightingSystem lightingSystem = new LightingSystem();
 
-    private GeneralSystem[] systemsList = {tickSystem, renderSystem, collisionSystem, keyEventSystem, mouseEventSystem};
+    private GeneralSystem[] systemsList = {tickSystem, renderSystem, collisionSystem, keyEventSystem, mouseEventSystem
+            ,lightingSystem};
 
     private List<GameObject> gameObjects;
     private List<GameObject> addQueue;
@@ -88,12 +90,12 @@ public class GameWorld {
         }
         this.tickSystem.onTick(nanosSincePreviousTick);
         this.collisionSystem.onTick(nanosSincePreviousTick);
+        this.lightingSystem.onTick(nanosSincePreviousTick);
     }
 
     public void onLateTick(){
         this.tickSystem.onLateTick();
         this.collisionSystem.onLateTick();
-
     }
 
     public void onDraw(GraphicsContext g) {
@@ -371,5 +373,9 @@ public class GameWorld {
         }
 
 
+    }
+
+    public LightingSystem getLightingSystem() {
+        return lightingSystem;
     }
 }
