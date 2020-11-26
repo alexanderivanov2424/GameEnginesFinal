@@ -12,12 +12,15 @@ public class TileMap {
     private String[][] tiles;
     private int[][] heightmap;
 
+    private HashMap<Integer, List<Component>> tileComponents;
+
     private HashMap<String, Tile> tileTypes;
 
     private boolean fourDirectional;
 
     public TileMap(List<Tile> tileTypes, boolean fourDirectional){
         this.tileTypes = new HashMap<String, Tile>();
+        this.tileComponents = new HashMap<Integer, List<Component>>();
         this.fourDirectional = fourDirectional;
 
         for(Tile t: tileTypes){
@@ -27,6 +30,17 @@ public class TileMap {
 
     public void setTiles(String[][] tiles){
         this.tiles = tiles;
+    }
+
+    public void addComponentToTile(int i, int j, Component c){
+        if(this.tiles == null){
+            System.err.println("Component not added at " + i + " " + j + ". Tiles need to be added first.");
+            return;
+        }
+        if(this.tileComponents.get(i * this.tiles.length * j) == null){
+            this.tileComponents.put(i * this.tiles.length * j, new ArrayList<Component>());
+        }
+        this.tileComponents.get(i * this.tiles.length * j).add(c);
     }
 
     public void setHeights(int[][] heightmap){
