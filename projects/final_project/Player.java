@@ -2,7 +2,6 @@ package projects.final_project;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
-import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.Animation.AnimationComponent;
@@ -36,9 +35,9 @@ public class Player {
         lightComponent.setGameObject(player);
         player.addComponent(lightComponent);
 
-        DrawLightComponent drawLightComponent = new DrawLightComponent();
-        drawLightComponent.setGameObject(player);
-        player.addComponent(drawLightComponent);
+        DrawFogComponent drawFogComponent = new DrawFogComponent();
+        drawFogComponent.setGameObject(player);
+        player.addComponent(drawFogComponent);
 
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));

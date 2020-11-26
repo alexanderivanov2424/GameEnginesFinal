@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 
-public class DrawLightComponent extends Component {
+public class DrawFogComponent extends Component {
 
     //Draws fog around the object based on information from the lighting system.
     public void onLateDraw(GraphicsContext g){
@@ -30,6 +30,6 @@ public class DrawLightComponent extends Component {
 
     @Override
     public String getTag() {
-        return "FogComponent";
+        return "DrawFogComponent";
     }
 }
