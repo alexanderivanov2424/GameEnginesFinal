@@ -8,7 +8,7 @@ import engine.game.TileSystem.TileMap;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import projects.final_project.levels.CaveLevel;
-import projects.final_project.levels.TileMaps.*;
+import projects.final_project.levels.tileMaps.*;
 import projects.final_project.levels.TutorialLevel;
 
 import java.io.File;
@@ -33,7 +33,7 @@ public class FinalGame {
     }
 
     public void init() {
-        GameObject player = Player.createPlayer(this.gameWorld,new Vec2d(3,3));
+        GameObject player = Player.createPlayer(this.gameWorld,new Vec2d(5,30));
         this.gameWorld.addGameObject(player);
 
 
@@ -53,11 +53,12 @@ public class FinalGame {
         //create cave Region
         Region tutorial1 = new Region();
         gameWorld.loadRegion(tutorial1);
-        TutorialLevel.setTestingLevel(worldTileMap);
+        TutorialLevel.setTutorialLevel1(worldTileMap);
         worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         gameWorld.unloadRegion();
 
-
+        //TODO give the viewport proper limiting instead of the camera component.
+        // Makes more sense given that we are loading and unloading regions.
         gameWorld.loadRegion(tutorial1);
     }
 

@@ -9,6 +9,8 @@ import java.util.*;
 
 public class TileMap {
 
+    private Vec2d offset = new Vec2d(0,0);
+
     private String[][] tiles;
     private int[][] heightmap;
 
@@ -30,6 +32,10 @@ public class TileMap {
 
     public void setTiles(String[][] tiles){
         this.tiles = tiles;
+    }
+
+    public void setOffset(Vec2d offset){
+        this.offset = offset;
     }
 
     public void addComponentToTile(int i, int j, Component c){
