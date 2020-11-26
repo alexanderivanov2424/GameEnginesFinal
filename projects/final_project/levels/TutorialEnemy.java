@@ -50,10 +50,6 @@ public class TutorialEnemy {
         CollisionComponent collision = (CollisionComponent)enemy.getComponent("CollisionComponent");
         collision.setCollisionLayer(CollisionSystem.CollisionMask.NONE);
 
-        SpriteAnimationComponent animation = (SpriteAnimationComponent)enemy.getComponent("SpriteAnimationComponent");
-        animation.resetAnimation(FinalGame.getSpritePath("enemy"),
-                new Vec2d(0,0), new Vec2d(2,2), 5,
-                new Vec2d(0,64), new Vec2d(64,64), new Vec2d(64,64), .1); //death animation
         DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
         delayEventComponent.linkEventCallback(TutorialEnemy::enemyRemoveCallback);
         enemy.addComponent(delayEventComponent);
