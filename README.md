@@ -6,6 +6,8 @@ Alexander Ivanov: B01540800
 
 Second Checkpoint:
 
+Playtesting reports are in projects/PlaytestingReports
+
 We currently have a small playable demo where you start off as a character in a map.
 This map has an exit on the right side which takes you to a new map with an enemy.
 These maps are built using the TileSystem.
