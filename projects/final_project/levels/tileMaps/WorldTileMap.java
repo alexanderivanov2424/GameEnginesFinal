@@ -187,7 +187,7 @@ public class WorldTileMap {
         tileTypes.add(stairsV);
 
 
-        TileMap tileMap = new TileMap(tileTypes, true);
+        TileMap tileMap = new TileMap(tileTypes, TileMap.RestrictionMethod.FourDirectional);
         return tileMap;
     }
 }

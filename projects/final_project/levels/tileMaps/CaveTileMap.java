@@ -78,6 +78,6 @@ public class CaveTileMap {
         wallTile.setAllVariantCollisionThickness(.1);
         tileTypes.add(wallTile);
 
-        return new TileMap(tileTypes, true);
+        return new TileMap(tileTypes, TileMap.RestrictionMethod.EightDirectional);
     }
 }

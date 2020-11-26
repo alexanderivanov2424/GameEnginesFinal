@@ -3,7 +3,7 @@ package engine.game.components;
 import engine.game.GameObject;
 import engine.game.collisionShapes.Shape;
 import engine.game.systems.SystemFlag;
-import jdk.internal.org.objectweb.asm.commons.Method;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;

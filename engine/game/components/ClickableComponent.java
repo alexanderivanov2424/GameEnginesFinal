@@ -3,7 +3,7 @@ package engine.game.components;
 import engine.game.GameObject;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
-import jdk.internal.org.objectweb.asm.commons.Method;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;

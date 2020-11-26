@@ -18,12 +18,14 @@ public class TileMap {
 
     private HashMap<String, Tile> tileTypes;
 
-    private boolean fourDirectional;
+    public enum RestrictionMethod{FourDirectional, EightDirectional, General}
 
-    public TileMap(List<Tile> tileTypes, boolean fourDirectional){
+    private RestrictionMethod restriction;
+
+    public TileMap(List<Tile> tileTypes, RestrictionMethod restriction){
         this.tileTypes = new HashMap<String, Tile>();
         this.tileComponents = new HashMap<Integer, List<Component>>();
-        this.fourDirectional = fourDirectional;
+        this.restriction = restriction;
 
         for(Tile t: tileTypes){
             this.tileTypes.put(t.type,t);
@@ -43,10 +45,10 @@ public class TileMap {
             System.err.println("Component not added at " + i + " " + j + ". Tiles need to be added first.");
             return;
         }
-        if(this.tileComponents.get(i * this.tiles.length * j) == null){
-            this.tileComponents.put(i * this.tiles.length * j, new ArrayList<Component>());
+        if(this.tileComponents.get(i * this.tiles.length + j) == null){
+            this.tileComponents.put(i * this.tiles.length + j, new ArrayList<Component>());
         }
-        this.tileComponents.get(i * this.tiles.length * j).add(c);
+        this.tileComponents.get(i * this.tiles.length + j).add(c);
     }
 
     public void setHeights(int[][] heightmap){
@@ -63,17 +65,19 @@ public class TileMap {
             System.err.println("Tile Map Not Set");
             return;
         }
-        if(this.fourDirectional) {
+
+        if(this.restriction == RestrictionMethod.FourDirectional) {
             for (int i = 0; i < tiles.length; i++) {
                 for (int j = 0; j < tiles[i].length; j++) {
                     Tile t = this.tileTypes.get(tiles[i][j]);
                     TileVariant tv = this.get4DirectionalVariantAt(t, i, j);
+                    if(tv == null) continue;
                     GameObject tile = tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
                             new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer);
                     for(Component c : tv.getCollisionComponents(tile, new Vec2d(tileSize,tileSize), collisionLayer, collisionMask)){
                         tile.addComponent(c);
                     }
-                    List<Component> additionalComponents = this.tileComponents.get(i * this.tiles.length * j);
+                    List<Component> additionalComponents = this.tileComponents.get(i * this.tiles.length + j);
                     if(additionalComponents != null)
                     for(Component c : additionalComponents){
                         tile.addComponent(c);
@@ -81,17 +85,18 @@ public class TileMap {
                     gameWorld.addGameObject(tile);
                 }
             }
-        } else {
+        } else if(this.restriction == RestrictionMethod.EightDirectional){
             for (int i = 0; i < tiles.length; i++) {
                 for (int j = 0; j < tiles[i].length; j++) {
                     Tile t = this.tileTypes.get(tiles[i][j]);
                     TileVariant tv = this.get8DirectionalVariantAt(t, i, j);
+                    if(tv == null) continue;
                     GameObject tile = tv.constructGameObject(new Vec2d(j,i).smult(tileSize),
                             new Vec2d(tileSize,tileSize), t.getTileSheetPath(), gameWorld, layer);
                     for(Component c : tv.getCollisionComponents(tile, new Vec2d(tileSize,tileSize), collisionLayer, collisionMask)){
                         tile.addComponent(c);
                     }
-                    List<Component> additionalComponents = this.tileComponents.get(i * this.tiles.length * j);
+                    List<Component> additionalComponents = this.tileComponents.get(i * this.tiles.length + j);
                     if(additionalComponents != null)
                         for(Component c : additionalComponents){
                             tile.addComponent(c);
@@ -99,6 +104,8 @@ public class TileMap {
                     gameWorld.addGameObject(tile);
                 }
             }
+        } else if(this.restriction == RestrictionMethod.General){
+            System.err.println("NOT YET IMPLEMENTED");
         }
     }
 

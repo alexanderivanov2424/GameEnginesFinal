@@ -3,7 +3,6 @@ package engine.game;
 import engine.UIToolKit.UIViewport;
 import engine.game.components.Component;
 import engine.game.components.TransformComponent;
-import engine.game.systems.SystemFlag;
 import engine.game.systems.*;
 
 import engine.support.Vec2d;
@@ -100,7 +99,7 @@ public class GameWorld {
 
     public void onDraw(GraphicsContext g) {
         //TODO update javafx?? version 12 should have this
-        //g.setImageSmoothing(this.imageSmoothing);
+        g.setImageSmoothing(this.imageSmoothing);
         this.renderSystem.onDraw(g);
     }
     public void onLateDraw(GraphicsContext g) {
