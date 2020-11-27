@@ -183,7 +183,7 @@ public class WorldTileMap {
                     return new String[]{"stairv_l_wall","stairv_lr_wall",
                             "stairv_l_wall_b_grass","stairv_lr_wall_b_grass"};
                 });
-        stairsV.setAllVariantCollisionThickness(.1);
+        stairsV.setAllVariantCollisionThickness(.5);
         tileTypes.add(stairsV);
 
 

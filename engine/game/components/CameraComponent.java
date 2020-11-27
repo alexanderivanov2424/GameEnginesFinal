@@ -58,12 +58,14 @@ public class CameraComponent extends Component{
         }
         Vec2d pos = this.gameObject.getTransform().position;
         Vec2d size = this.gameObject.getTransform().size;
+        Vec2d view_size = this.viewport.getGameWorldViewSize();
+
         double camera_x = pos.x + size.x/2;
         double camera_y = pos.y+ size.y/2;
         if(horizontalRange != null)
-            camera_x = Math.max(this.horizontalRange.x, Math.min(this.horizontalRange.y,camera_x));
+            camera_x = Math.max(this.horizontalRange.x+view_size.x/2, Math.min(this.horizontalRange.y-view_size.x/2,camera_x));
         if(verticalRange != null)
-            camera_y = Math.max(this.verticalRange.x, Math.min(this.verticalRange.y,camera_y));
+            camera_y = Math.max(this.verticalRange.x+view_size.y/2, Math.min(this.verticalRange.y-view_size.y/2,camera_y));
         this.viewport.setGamePosition(new Vec2d(camera_x, camera_y));
     };
 
