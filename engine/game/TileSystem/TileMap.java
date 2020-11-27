@@ -235,35 +235,35 @@ public class TileMap {
         int[] heights = new int[8];
         if(j > 0 || this.exteriorType != null) {
             types[6] = j > 0 ? this.tileTypes.get(tiles[i][j - 1]).type : this.exteriorType;
-            heights[6] = j > 0 ? this.getHeight(i, j - 1) : this.exteriorHeight;
+            heights[6] = j > 0 ?  this.getHeight(i, j) - this.getHeight(i, j - 1) : this.exteriorHeight;
         }
         if(i < tiles.length - 1 || this.exteriorType != null){
             types[4] = i < tiles.length - 1 ? this.tileTypes.get(tiles[i + 1][j]).type : this.exteriorType;
-            heights[4] = i < tiles.length - 1 ? this.getHeight(i + 1, j) : this.exteriorHeight;
+            heights[4] = i < tiles.length - 1 ? this.getHeight(i, j) - this.getHeight(i + 1, j) : this.exteriorHeight;
         }
         if(j < tiles[0].length - 1 || this.exteriorType != null){
             types[2] = j < tiles[0].length - 1 ? this.tileTypes.get(tiles[i][j+1]).type : this.exteriorType;
-            heights[2] = j < tiles[0].length - 1 ? this.getHeight(i, j+1) : this.exteriorHeight;
+            heights[2] = j < tiles[0].length - 1 ? this.getHeight(i, j) - this.getHeight(i, j+1) : this.exteriorHeight;
         }
         if(i > 0 || this.exteriorType != null){
             types[0] = i > 0 ? this.tileTypes.get(tiles[i-1][j]).type : this.exteriorType;
-            heights[0] = i > 0 ? this.getHeight(i-1, j) : this.exteriorHeight;
+            heights[0] = i > 0 ? this.getHeight(i, j) - this.getHeight(i-1, j) : this.exteriorHeight;
         }
         if((j > 0 && i < tiles.length - 1) || this.exteriorType != null){
             types[5] = j > 0 && i < tiles.length - 1 ? this.tileTypes.get(tiles[i+1][j-1]).type : this.exteriorType;
-            heights[5] = j > 0 && i < tiles.length - 1 ? this.getHeight(i+1, j-1) : this.exteriorHeight;
+            heights[5] = j > 0 && i < tiles.length - 1 ? this.getHeight(i, j) - this.getHeight(i+1, j-1) : this.exteriorHeight;
         }
         if((j < tiles[0].length - 1 && i < tiles.length - 1) || this.exteriorType != null){
             types[3] = j < tiles[0].length - 1 && i < tiles.length - 1 ? this.tileTypes.get(tiles[i+1][j+1]).type : this.exteriorType;
-            heights[3] = j < tiles[0].length - 1 && i < tiles.length - 1 ? this.getHeight(i+1, j+1) : this.exteriorHeight;
+            heights[3] = j < tiles[0].length - 1 && i < tiles.length - 1 ? this.getHeight(i, j) - this.getHeight(i+1, j+1) : this.exteriorHeight;
         }
         if((j < tiles[0].length - 1 && i > 0) || this.exteriorType != null){
             types[1] = j < tiles[0].length - 1 && i > 0 ? this.tileTypes.get(tiles[i-1][j+1]).type : this.exteriorType;
-            heights[1] = j < tiles[0].length - 1 && i > 0 ? this.getHeight(i-1, j+1) : this.exteriorHeight;
+            heights[1] = j < tiles[0].length - 1 && i > 0 ? this.getHeight(i, j) - this.getHeight(i-1, j+1) : this.exteriorHeight;
         }
         if((i > 0 && j > 0) || this.exteriorType != null){
             types[7] = i > 0 && j > 0 ? this.tileTypes.get(tiles[i-1][j-1]).type : this.exteriorType;
-            heights[7] = i > 0 && j > 0 ? this.getHeight(i-1, j-1) : this.exteriorHeight;
+            heights[7] = i > 0 && j > 0 ? this.getHeight(i, j) - this.getHeight(i-1, j-1) : this.exteriorHeight;
         }
         if(t.generalRestriction != null) {
             String[] res = t.generalRestriction.getVariantRestriction(types, heights);

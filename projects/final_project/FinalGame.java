@@ -39,7 +39,7 @@ public class FinalGame {
         GameObject player = Player.createPlayer(this.gameWorld,new Vec2d(5,30));
         this.gameWorld.addGameObject(player);
 
-        this.gameWorld.getRoot().addComponent(new ShakeEffect(1,5));
+        this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));
 
 
         /*TileMap tileMap = LevelTileMaps.createTileMap();
