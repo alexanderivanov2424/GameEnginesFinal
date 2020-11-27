@@ -35,7 +35,7 @@ public class Player {
         player.addComponent(lightComponent);
 
         DrawFogComponent drawFogComponent = new DrawFogComponent(0, new Vec2d(0,0), .05);
-        //drawFogComponent.disable();
+        drawFogComponent.disable();
         player.addComponent(drawFogComponent);
 
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),

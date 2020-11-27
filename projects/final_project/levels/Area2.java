@@ -6,10 +6,9 @@ import engine.game.TileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
 import engine.game.components.CollisionComponent;
 import engine.game.components.DrawFogComponent;
-import engine.game.components.LightComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
-import projects.final_project.DecorativeElements;
+import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
 
 public class Area2 {
@@ -77,7 +76,7 @@ public class Area2 {
         //TODO need to add rendering order first
         //Decorative.placeTree(gameWorld, new Vec2d(12,32));
 
-        DecorativeElements.placeRocks(gameWorld,new Vec2d(12,32), 2);
+        NaturalElements.placeRocks(gameWorld,new Vec2d(12,32), 2);
         TutorialEnemy.placeEnemy(gameWorld, new Vec2d(20, 20));
 
         placeWarpToArea1(gameWorld);
