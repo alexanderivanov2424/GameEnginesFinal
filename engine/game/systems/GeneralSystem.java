@@ -1,5 +1,6 @@
 package engine.game.systems;
 
+import engine.game.GameObject;
 import engine.game.components.Component;
 
 import java.util.ArrayList;

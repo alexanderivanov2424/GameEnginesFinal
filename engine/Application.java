@@ -106,18 +106,6 @@ public class Application extends FXFrontEnd {
 
   }
 
-  protected void onLateDraw(GraphicsContext g) {
-    g.translate(this.shift.x,this.shift.y);
-    this.currentScreen.onLateDraw(g);
-    g.translate(-this.shift.x,-this.shift.y);
-
-    g.setFill(Color.BLACK);
-    g.fillRect(0,0, shift.x,this.currentStageSize.y);
-    g.fillRect(this.currentStageSize.x-shift.x,0, shift.x,this.currentStageSize.y);
-    g.fillRect(0,0, this.currentStageSize.x,shift.y);
-    g.fillRect(0,this.currentStageSize.y-shift.y, this.currentStageSize.x,shift.y);
-  }
-
   /**
    * Called when a key is typed.
    * @param e		an FX {@link KeyEvent} representing the input event.

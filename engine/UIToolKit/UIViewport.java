@@ -85,22 +85,6 @@ public class UIViewport extends UIElement{
         super.onDraw(g);
     }
 
-    @Override
-    public void onLateDraw(GraphicsContext g) {
-        Vec2d pos = this.getOffset();
-
-        g.save();
-
-        Affine affine = g.getTransform();
-        affine.appendTranslation(pos.x + this.size.x/2,pos.y + this.size.y/2);
-        affine.appendScale(this.scale,this.scale);
-        affine.appendTranslation(-this.gamePosition.x,-this.gamePosition.y);
-        g.setTransform(affine);
-        this.gameWorld.onLateDraw(g);
-        g.restore();
-        super.onDraw(g);
-    }
-
     private Vec2d screenToGame(Vec2d screenPos){
         Vec2d pos = this.getOffset();
 

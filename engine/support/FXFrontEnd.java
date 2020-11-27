@@ -262,7 +262,6 @@ public abstract class FXFrontEnd extends CS1971FrontEnd {
 			GraphicsContext g = canvas.getGraphicsContext2D();
 			g.clearRect(0, 0, currentStageSize.x, currentStageSize.y);
 			onDraw(g);
-			onLateDraw(g);
 		}
 		
 	}

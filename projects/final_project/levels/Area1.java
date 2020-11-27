@@ -69,6 +69,7 @@ public class Area1 {
 
         tileMap.setTiles(tiles);
         tileMap.setHeights(heights);
+        tileMap.setExteriorTile("grass",1);
     }
 
     public static void addGameObjects(GameWorld gameWorld){

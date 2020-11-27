@@ -45,9 +45,10 @@ public class GameWorld {
     protected KeyEventSystem keyEventSystem = new KeyEventSystem();
     protected MouseEventSystem mouseEventSystem = new MouseEventSystem();
     protected LightingSystem lightingSystem = new LightingSystem();
+    protected ScreenEffectSystem screenEffectSystem = new ScreenEffectSystem();
 
     private GeneralSystem[] systemsList = {tickSystem, renderSystem, collisionSystem, keyEventSystem, mouseEventSystem
-            ,lightingSystem};
+            ,lightingSystem, screenEffectSystem};
 
     private List<GameObject> gameObjects;
     private List<GameObject> addQueue;
@@ -57,15 +58,21 @@ public class GameWorld {
 
     private boolean imageSmoothing = false;
 
+    //Root GameObject in gameworld. Can be used to add global components
+    private GameObject root;
+
     //Only one region can be loaded at a time
     private Region region = null;
 
     public GameWorld(){
-        keyState = new HashSet<KeyCode>();
-        gameObjects = new ArrayList<GameObject>();
+        this.keyState = new HashSet<KeyCode>();
+        this.gameObjects = new ArrayList<GameObject>();
 
-        addQueue = new ArrayList<GameObject>();
-        removeQueue = new ArrayList<GameObject>();
+        this.addQueue = new ArrayList<GameObject>();
+        this.removeQueue = new ArrayList<GameObject>();
+
+        this.root = new GameObject(this,-9999);//arbitrary negative layer
+        this.addGameObject(this.root);
     }
 
     public void setImageSmoothing(boolean imageSmoothing){
@@ -89,7 +96,7 @@ public class GameWorld {
         }
         this.tickSystem.onTick(nanosSincePreviousTick);
         this.collisionSystem.onTick(nanosSincePreviousTick);
-        //this.lightingSystem.onTick(nanosSincePreviousTick);
+        this.screenEffectSystem.onTick(nanosSincePreviousTick);
     }
 
     public void onLateTick(){
@@ -98,13 +105,14 @@ public class GameWorld {
     }
 
     public void onDraw(GraphicsContext g) {
-        //TODO update javafx?? version 12 should have this
         g.setImageSmoothing(this.imageSmoothing);
+
+        this.screenEffectSystem.preEffect(g);
         this.renderSystem.onDraw(g);
-    }
-    public void onLateDraw(GraphicsContext g) {
         this.renderSystem.onLateDraw(g);
+        this.screenEffectSystem.postEffect(g);
     }
+
 
     public void addGameObject(GameObject gameObject){
         this.addQueue.add(gameObject);
@@ -140,6 +148,10 @@ public class GameWorld {
         this.region = null;
     }
 
+    public GameObject getRoot(){
+        return root;
+    }
+
     private void processGameObject(GameObject gameObject){
         this.gameObjects.add(gameObject);
         for(Component c : gameObject.componentList) {
@@ -166,11 +178,11 @@ public class GameWorld {
         gameObject.setLOADED_INTO_GAMEWORLD(false);
     }
 
-    public void processComponet(Component componet){
-        int flags = componet.getSystemFlags();
+    public void processComponent(Component component){
+        int flags = component.getSystemFlags();
         for(GeneralSystem system : systemsList){
-            if ((flags & system.getSystemFlag()) != 0 && !system.hasComponent(componet)) {
-                system.addComponent(componet);
+            if ((flags & system.getSystemFlag()) != 0 && !system.hasComponent(component)) {
+                system.addComponent(component);
             }
         }
     }

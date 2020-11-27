@@ -42,6 +42,7 @@ public class CaveLevel {
 
         tileMap.setTiles(tiles);
         tileMap.setHeights(heights);
+        tileMap.setExteriorTile("wall",0);
     }
 
     private static void addFogTile(GameWorld gameWorld, Vec2d pos, GameObject player) {

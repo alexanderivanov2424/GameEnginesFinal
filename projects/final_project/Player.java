@@ -34,7 +34,7 @@ public class Player {
         LightComponent lightComponent = new LightComponent(Color.WHITE, 5, new Vec2d(1,1.5));
         player.addComponent(lightComponent);
 
-        DrawFogComponent drawFogComponent = new DrawFogComponent(0, new Vec2d(0,0), .05);
+        DrawFogComponent drawFogComponent = new DrawFogComponent(0, new Vec2d(0,0), .05, 1);
         drawFogComponent.disable();
         player.addComponent(drawFogComponent);
 

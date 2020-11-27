@@ -118,8 +118,6 @@ public abstract class CS1971FrontEnd {
 	 * @param g		a {@link GraphicsContext} object used for drawing.
 	 */
 	protected abstract void onDraw(GraphicsContext g);
-
-	protected abstract void onLateDraw(GraphicsContext g);
 	
 	/**
 	 * @param e		an FX {@link KeyEvent} representing the input event.

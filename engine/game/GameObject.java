@@ -38,7 +38,7 @@ public class GameObject {
         this.componentList.add(c);
         c.setGameObject(this);
         if(this.LOADED_INTO_GAMEWORLD){ //need to send component to proper system
-            this.gameWorld.processComponet(c);
+            this.gameWorld.processComponent(c);
         }
     }
 

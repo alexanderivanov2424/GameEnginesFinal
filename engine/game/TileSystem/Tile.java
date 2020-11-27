@@ -6,13 +6,16 @@ import java.util.*;
 
 public class Tile {
 
-    //TODO add general variant restriction call
-
-
+    //for single direction like "up" or "bottom left"
     public interface VariantRestriction{
         String[] getVariantRestriction(String type, int height);
     }
 
+    //given tiles types for 8 directions and heights determine variant
+    //order is clockwise from up. ex: up, up_right, right, down_right, ...
+    public interface GeneralVariantRestriction{
+        String[] getVariantRestriction(String[] types, int[] height);
+    }
 
     private String tileSheetPath;
 
@@ -22,6 +25,7 @@ public class Tile {
 
     public VariantRestriction up,right,down,left;
     public VariantRestriction up_right,down_right,down_left,up_left;
+    public GeneralVariantRestriction generalRestriction;
 
     public Tile(String type, String tileSheetPath){
         this.type = type;
@@ -76,6 +80,10 @@ public class Tile {
         this.down_right = down_right;
         this.down_left = down_left;
         this.up_left = up_left;
+    }
+
+    public void setGeneralRestrictions(GeneralVariantRestriction generalRestriction){
+        this.generalRestriction = generalRestriction;
     }
 
     public String[] getVariants(){
