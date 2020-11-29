@@ -1,6 +1,4 @@
-package engine.game.TileSystem;
-
-import engine.support.Vec2d;
+package engine.game.tileSystem;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package engine.game.TileSystem;
+package engine.game.tileSystem;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
@@ -6,7 +6,6 @@ import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.Shape;
 import engine.game.components.CollisionComponent;
 import engine.game.components.Component;
-import engine.game.components.SpriteComponent;
 import engine.support.Vec2d;
 
 import java.util.ArrayList;

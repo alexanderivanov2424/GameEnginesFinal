@@ -11,10 +11,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af822c5d-616a-4757-99b4-148efcbef835" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/game/components/Animation/AnimationSystem/TestAnimationComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/game/components/animation/AnimationComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/game/components/animation/AnimationField.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/TileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/TileSystem/TileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/AnimatedTileVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/tileSystem/AnimatedTileVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/SpriteTileVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/tileSystem/SpriteTileVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/tileSystem/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/TileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/tileSystem/TileInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/TileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/tileSystem/TileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/TileSystem/TileVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/tileSystem/TileVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/AnimationComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/AnimationSystem/AGAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/animation/animationGraph/AGAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/AnimationSystem/AGAnimationGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/animation/animationGraph/AGAnimationGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/AnimationSystem/AGNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/animation/animationGraph/AGNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/AnimationSystem/AnimationGraphComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/animation/animationGraph/AnimationGraphComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/AnimationSystem/TestAnimationComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/GeneralSpriteAnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/animation/GeneralSpriteAnimationComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/RaySpriteAnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/animation/RaySpriteAnimationComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/Animation/SpriteAnimationComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/animation/SpriteAnimationComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/ScreenEffects/ScreenEffectComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/screenEffects/ScreenEffectComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/ScreenEffects/ShakeEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/screenEffects/ShakeEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/systems/ScreenEffectSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/systems/ScreenEffectSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/WizTesting/WizEnemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/WizEnemies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/WizTesting/WizPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/WizPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/FinalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/FinalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area1.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/CaveLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/CaveLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/TutorialEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/TutorialEnemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/CaveTileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/CaveTileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/WorldTileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/tileMaps/WorldTileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/wiz/WizEnemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/wiz/WizEnemies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/wiz/WizPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/wiz/WizPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,30 +133,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="673" y="106" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606427343741" />
+    <state x="254" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606623449404">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="254" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606623449404" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606623310276">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606623310276" />
     <state x="861" y="188" key="FileChooserDialogImpl" timestamp="1606431934903">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="861" y="188" key="FileChooserDialogImpl/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606431934903" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1606511732620">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1606615983410">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606511732620" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615983410" />
     <state width="1993" height="156" key="GridCell.Tab.0.bottom/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1606511732620">
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1606615983410">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606511732620" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615983410" />
     <state width="1993" height="156" key="GridCell.Tab.0.center/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1606511732620">
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1606615983410">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606511732620" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615983410" />
     <state width="1993" height="156" key="GridCell.Tab.0.left/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1606511732620">
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1606615983410">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606511732620" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615983410" />
     <state width="1993" height="156" key="GridCell.Tab.0.right/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1606615108462">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615108462" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1606615108462">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615108462" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1606615108462">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615108462" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1606615108462">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606615108462" />
     <state x="169" y="91" key="IDE.errors.dialog" timestamp="1606428335474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -136,6 +189,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="222" y="0" width="1186" height="824" key="SettingsEditor/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606509655707" />
+    <state x="432" y="109" key="VCS.ChangeListViewerDialog" timestamp="1606614867131">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="432" y="109" key="VCS.ChangeListViewerDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606614867131" />
     <state x="477" y="145" width="581" height="534" key="find.popup" timestamp="1606463247597">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

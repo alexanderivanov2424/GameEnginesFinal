@@ -1,4 +1,4 @@
-package engine.game.components.Animation;
+package engine.game.components.animation;
 
 import engine.game.SpriteLoader;
 import engine.game.components.Component;
@@ -19,7 +19,6 @@ public class RaySpriteAnimationComponent extends AnimationComponent {
     protected Vec2d position, size;
     protected RayComponent rayComponent;
 
-    protected int frames; //offset on sprite sheet
     //3 parts to sprite source, length (stretched), destination
     protected boolean src_image = true;
     protected Vec2d srcCropStart;
@@ -33,16 +32,10 @@ public class RaySpriteAnimationComponent extends AnimationComponent {
     protected Vec2d dstCropStart;
     protected Vec2d dstCropSize;
 
-
-    protected double frameDuration;
-
-    private long currentTime = 0;
-    private int currentFrame = 0;
-
     public RaySpriteAnimationComponent(RayComponent rayComponent, String spriteSheetPath, Vec2d position, Vec2d size,
                                        Vec2d srcCropStart, Vec2d srcCropSize, Vec2d lengthCropStart, Vec2d lengthCropSize,
                                        Vec2d dstCropStart, Vec2d dstCropSize, int frames, double frameDuration){
-        super();
+        super(frames, frameDuration);
         this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
 
@@ -61,9 +54,6 @@ public class RaySpriteAnimationComponent extends AnimationComponent {
         if(dstCropStart == null || dstCropSize == null) dst_image=false;
         this.dstCropStart = dstCropStart;
         this.dstCropSize = dstCropSize;
-
-        this.frames = frames;
-        this.frameDuration = frameDuration * 1000000000;
     }
 
     public void resetAnimation(RayComponent rayComponent, String spriteSheetPath, Vec2d position, Vec2d size,
@@ -88,33 +78,12 @@ public class RaySpriteAnimationComponent extends AnimationComponent {
         this.dstCropStart = dstCropStart;
         this.dstCropSize = dstCropSize;
 
-        this.frames = frames;
-        this.frameDuration = frameDuration * 1000000000;
     }
 
     public void setRayComponent(RayComponent rayComponent){
         this.rayComponent = rayComponent;
     }
 
-    public void restart(){
-        currentFrame = 0;
-        currentTime = 0;
-    }
-
-    @Override
-    public void onTick(long nanosSincePreviousTick){
-        this.currentTime -= nanosSincePreviousTick;
-        justFinished = false; // only set to true when transitioning back to first frame.
-        if(this.currentTime < 0) {
-            while (this.currentTime < 0) {
-                this.currentTime += this.frameDuration;
-                this.currentFrame = (this.currentFrame + 1) % this.frames;
-            }
-            if(!justFinished && this.currentFrame == 0){
-                this.justFinished = true;
-            }
-        }
-    }
 
     @Override
     public void onDraw(GraphicsContext g){
@@ -130,19 +99,19 @@ public class RaySpriteAnimationComponent extends AnimationComponent {
 
         if(this.length_image)
             g.drawImage(this.spriteSheet,
-                    this.lengthCropStart.x + this.lengthCropSize.x * this.currentFrame, this.lengthCropStart.y,
+                    this.lengthCropStart.x + this.lengthCropSize.x * this.currentStep, this.lengthCropStart.y,
                     this.lengthCropSize.x, this.lengthCropSize.y, 0, -this.size.y/2,
                     length, this.size.y);
 
         if(this.src_image)
             g.drawImage(this.spriteSheet,
-                    this.srcCropStart.x + this.srcCropSize.x * this.currentFrame, this.srcCropStart.y,
+                    this.srcCropStart.x + this.srcCropSize.x * this.currentStep, this.srcCropStart.y,
                     this.srcCropSize.x, this.srcCropSize.y, 0, -this.size.y/2,
                     this.size.x, this.size.y);
 
         if(this.dst_image && rayComponent.length != -1)
             g.drawImage(this.spriteSheet,
-                    this.dstCropStart.x + this.dstCropSize.x * this.currentFrame, this.dstCropStart.y,
+                    this.dstCropStart.x + this.dstCropSize.x * this.currentStep, this.dstCropStart.y,
                     this.dstCropSize.x, this.dstCropSize.y, length - this.size.x, -this.size.y/2,
                     this.size.x, this.size.y);
 
@@ -178,10 +147,10 @@ public class RaySpriteAnimationComponent extends AnimationComponent {
         component.setAttribute("dstCropStart", dstCropStart.toString());
         component.setAttribute("dstCropSize", dstCropSize.toString());
 
-        component.setAttribute("frames", Integer.toString(frames));
+        component.setAttribute("frames", Integer.toString(this.steps));
         component.setAttribute("frameDuration", Double.toString(frameDuration / 1000000000));
         component.setAttribute("currentTime", Long.toString(currentTime));
-        component.setAttribute("currentFrame", Integer.toString(currentFrame));
+        component.setAttribute("currentFrame", Integer.toString(currentStep));
         return component;
     }
 
@@ -214,7 +183,7 @@ public class RaySpriteAnimationComponent extends AnimationComponent {
         c.length_image = length_image;
         c.dst_image = dst_image;
         c.currentTime = currentTime;
-        c.currentFrame = currentFrame;
+        c.currentStep = currentFrame;
         c.NOT_FULLY_LOADED();
         return c;
     }

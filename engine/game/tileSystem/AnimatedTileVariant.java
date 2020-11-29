@@ -1,4 +1,4 @@
-package engine.game.TileSystem;
+package engine.game.tileSystem;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;

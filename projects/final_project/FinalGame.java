@@ -4,8 +4,8 @@ import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.Region;
-import engine.game.TileSystem.TileMap;
-import engine.game.components.ScreenEffects.ShakeEffect;
+import engine.game.tileSystem.TileMap;
+import engine.game.components.screenEffects.ShakeEffect;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import projects.final_project.levels.*;
@@ -39,7 +39,7 @@ public class FinalGame {
         GameObject player = Player.createPlayer(this.gameWorld,new Vec2d(5,30));
         this.gameWorld.addGameObject(player);
 
-        this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));
+        //this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));
 
 
         /*TileMap tileMap = LevelTileMaps.createTileMap();

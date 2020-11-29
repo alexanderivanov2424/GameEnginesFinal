@@ -1,7 +1,6 @@
-package engine.game.components.Animation;
+package engine.game.components.animation;
 
 import engine.game.SpriteLoader;
-import engine.game.components.Animation.AnimationComponent;
 import engine.game.components.Component;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -25,19 +24,12 @@ public class GeneralSpriteAnimationComponent extends AnimationComponent {
     protected Vec2d[] cropStart; //from where the crop starts on the sprite sheet
     protected Vec2d[] cropSize; //size of region from which to draw
 
-    protected int frames;
-
     protected boolean[] horizontalFlip;
-
-    protected double frameDuration;
-
-    private long currentTime = 0;
-    private int currentFrame = 0;
 
 
     public GeneralSpriteAnimationComponent(String spriteSheetPath, Vec2d position[], Vec2d size[],
                                            Vec2d[] cropStart, Vec2d[] cropSize, double frameDuration) {
-        super();
+        super(position.length, frameDuration);
         this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
@@ -51,8 +43,6 @@ public class GeneralSpriteAnimationComponent extends AnimationComponent {
         assert(this.position.length == this.size.length);
         assert(this.position.length == this.cropStart.length);
         assert(this.position.length == this.cropSize.length);
-
-        frames = this.position.length;
     }
 
     public void resetAnimation(String spriteSheetPath, Vec2d position[], Vec2d size[],
@@ -67,63 +57,35 @@ public class GeneralSpriteAnimationComponent extends AnimationComponent {
         this.cropStart = cropStart;
         this.cropSize = cropSize;
 
-        this.frameDuration = frameDuration * 1000000000;
-
-        currentFrame = 0;
-        currentTime = 0;
 
         horizontalFlip = new boolean[this.position.length];
         assert(this.position.length == this.size.length);
         assert(this.position.length == this.cropStart.length);
         assert(this.position.length == this.cropSize.length);
 
-        frames = this.position.length;
     }
 
     public void setHorizontalFlip(boolean[] horizontalFlip){
         this.horizontalFlip = horizontalFlip;
     }
 
-    public void restart(){
-        currentFrame = 0;
-        currentTime = 0;
-    }
-
-    @Override
-    public void onTick(long nanosSincePreviousTick){
-        this.currentTime -= nanosSincePreviousTick;
-        justFinished = false; // only set to true when transitioning back to first frame.
-        if(this.currentTime < 0) {
-            while (this.currentTime < 0) {
-                this.currentTime += this.frameDuration;
-                this.currentFrame = (this.currentFrame + 1) % this.frames;
-            }
-            if(!justFinished && this.currentFrame == 0){
-                this.justFinished = true;
-            }
-        }
-    }
-
-    @Override
-    public void onLateTick(){};
-
     @Override
     public void onDraw(GraphicsContext g){
         Vec2d pos = this.gameObject.getTransform().position;
         Vec2d size = this.gameObject.getTransform().size;
 
-        if(this.horizontalFlip[currentFrame]) {
+        if(this.horizontalFlip[this.currentStep]) {
             g.drawImage(this.spriteSheet,
-                    this.cropStart[currentFrame].x,this.cropStart[currentFrame].y,
-                    this.cropSize[currentFrame].x, this.cropSize[currentFrame].y,
-                    pos.x + this.position[currentFrame].x + this.size[currentFrame].x, pos.y + this.position[currentFrame].y,
-                    -this.size[currentFrame].x, this.size[currentFrame].y);
+                    this.cropStart[currentStep].x,this.cropStart[currentStep].y,
+                    this.cropSize[currentStep].x, this.cropSize[currentStep].y,
+                    pos.x + this.position[currentStep].x + this.size[currentStep].x, pos.y + this.position[currentStep].y,
+                    -this.size[currentStep].x, this.size[currentStep].y);
         } else {
             g.drawImage(this.spriteSheet,
-                    this.cropStart[currentFrame].x, this.cropStart[currentFrame].y,
-                    this.cropSize[currentFrame].x, this.cropSize[currentFrame].y,
-                    pos.x + this.position[currentFrame].x, pos.y + this.position[currentFrame].y,
-                    this.size[currentFrame].x, this.size[currentFrame].y);
+                    this.cropStart[currentStep].x, this.cropStart[currentStep].y,
+                    this.cropSize[currentStep].x, this.cropSize[currentStep].y,
+                    pos.x + this.position[currentStep].x, pos.y + this.position[currentStep].y,
+                    this.size[currentStep].x, this.size[currentStep].y);
         }
     }
 

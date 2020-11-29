@@ -1,23 +1,12 @@
 package projects.final_project.levels;
 
-import engine.AILibrary.BehaviorTree.BTNode;
-import engine.AILibrary.BehaviorTree.BTNodeStatus;
-import engine.AILibrary.BehaviorTree.Nodes.BTActionNode;
-import engine.AILibrary.BehaviorTree.Nodes.BTConditionNode;
-import engine.AILibrary.BehaviorTree.Nodes.BTSelectorNode;
-import engine.AILibrary.BehaviorTree.Nodes.BTSequenceNode;
-import engine.AILibrary.PathFinding.AStarGrid;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
 import engine.game.components.*;
-import engine.game.components.Animation.SpriteAnimationComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
-import engine.support.Vec2i;
 import projects.final_project.FinalGame;
-
-import java.util.List;
 
 public class TutorialEnemy {
 

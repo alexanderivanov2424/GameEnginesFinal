@@ -1,8 +1,8 @@
 package projects.final_project.levels.tileMaps;
 
-import engine.game.TileSystem.SpriteTileVariant;
-import engine.game.TileSystem.Tile;
-import engine.game.TileSystem.TileMap;
+import engine.game.tileSystem.SpriteTileVariant;
+import engine.game.tileSystem.Tile;
+import engine.game.tileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.Shape;
 import engine.support.Vec2d;

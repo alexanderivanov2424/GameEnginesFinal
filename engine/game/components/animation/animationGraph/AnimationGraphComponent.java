@@ -1,7 +1,6 @@
-package engine.game.components.Animation.AnimationSystem;
+package engine.game.components.animation.animationGraph;
 
 import engine.game.GameObject;
-import engine.game.components.Animation.AnimationComponent;
 import engine.game.components.Component;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;

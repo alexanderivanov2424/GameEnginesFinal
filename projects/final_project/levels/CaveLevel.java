@@ -2,7 +2,7 @@ package projects.final_project.levels;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
-import engine.game.TileSystem.TileMap;
+import engine.game.tileSystem.TileMap;
 import engine.game.components.LateRectComponent;
 import engine.game.components.ProximityComponent;
 import engine.support.Vec2d;

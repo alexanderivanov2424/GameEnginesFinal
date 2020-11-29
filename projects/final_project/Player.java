@@ -4,11 +4,11 @@ import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
-import engine.game.components.Animation.AnimationComponent;
-import engine.game.components.Animation.AnimationSystem.AGAnimationGroup;
-import engine.game.components.Animation.AnimationSystem.AGNode;
-import engine.game.components.Animation.AnimationSystem.AnimationGraphComponent;
-import engine.game.components.Animation.SpriteAnimationComponent;
+import engine.game.components.animation.animationGraph.AGAnimationGroup;
+import engine.game.components.animation.animationGraph.AGNode;
+import engine.game.components.animation.animationGraph.AnimationGraphComponent;
+import engine.game.components.animation.SpriteAnimationComponent;
+import engine.game.components.animation.AnimationComponent;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
@@ -26,7 +26,8 @@ public class Player {
         GameObject player = new GameObject(gameWorld, 3);
 
         player.addComponent(new CameraComponent(0, new Vec2d(0,40), new Vec2d(0, 40)));
-        AnimationGraphComponent agc = createPlayerAnimationGraph();
+
+        AnimationGraphComponent agc = getPlayerAnimationGraph();
         player.addComponent(agc);
 
         player.addComponent(new PlayerMovementComponent(5,agc));
@@ -58,7 +59,7 @@ public class Player {
         return player;
     }
 
-    private static AnimationGraphComponent createPlayerAnimationGraph(){
+    private static AnimationGraphComponent getPlayerAnimationGraph(){
         AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
                 new Vec2d(0,0), PLAYER_SIZE, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
@@ -102,7 +103,9 @@ public class Player {
         attack.setInterruptible(false);
 
         AGNode[] animationNodes = new AGNode[]{idle, walk, attack};
-        return new AnimationGraphComponent(animationNodes);
+        AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
+
+        return agc;
     }
 
     private static class PlayerMovementComponent extends Component{
@@ -117,6 +120,7 @@ public class Player {
             this.speed = speed;
             this.animationGraphComponent = animationGraphComponent;
         }
+
 
         @Override
         public void onTick(long nanosSincePreviousTick){

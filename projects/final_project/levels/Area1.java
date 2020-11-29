@@ -2,7 +2,7 @@ package projects.final_project.levels;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
-import engine.game.TileSystem.TileMap;
+import engine.game.tileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
 import engine.game.components.CollisionComponent;
 import engine.game.systems.CollisionSystem;

@@ -1,4 +1,4 @@
-package engine.game.components.Animation;
+package engine.game.components.animation;
 
 import engine.game.SpriteLoader;
 import engine.game.components.Component;
@@ -22,19 +22,12 @@ public class SpriteAnimationComponent extends AnimationComponent {
     protected Vec2d position; //relative position to game object
     protected Vec2d size; //size of sprite
 
-    protected int frames; //offset on sprite sheet
-
     protected Vec2d cropStart; //from where the crop starts on the sprite sheet
     protected Vec2d cropSize; //size of region from which to draw
     protected Vec2d cropShift; //from where the crop starts on the sprite sheet
 
-
     protected boolean horizontalFlip = false;
 
-    protected double frameDuration;
-
-    private long currentTime = 0;
-    private int currentFrame = 0;
 
     /**
      * Creates an animation component using a sprite sheet.
@@ -49,48 +42,43 @@ public class SpriteAnimationComponent extends AnimationComponent {
      */
     public SpriteAnimationComponent(String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames, Vec2d cropSize, double frameDuration) {
-        super();
+        super(frames, frameDuration);
         this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
 
-        this.frames = frames;
         this.cropStart = new Vec2d(0,0);
         this.cropSize = cropSize;
         this.cropShift = cropSize;
-        this.frameDuration = frameDuration * 1000000000;
     }
 
     public SpriteAnimationComponent(String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames, Vec2d cropStart, Vec2d cropSize, double frameDuration) {
-        super();
+        super(frames, frameDuration);
         this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
 
-        this.frames = frames;
         this.cropStart = cropStart;
         this.cropSize = cropSize;
         this.cropShift = cropSize;
-        this.frameDuration = frameDuration * 1000000000;
     }
 
     public SpriteAnimationComponent(String spriteSheetPath,
                                     Vec2d position, Vec2d size, int frames,
                                     Vec2d cropStart, Vec2d cropSize, Vec2d cropShift, double frameDuration) {
-        super();
+        super(frames, frameDuration);
         this.spriteSheet = SpriteLoader.loadImage(spriteSheetPath);
         this.spriteSheetPath = spriteSheetPath;
         this.position = position;
         this.size = size;
 
-        this.frames = frames;
+
         this.cropStart = cropStart;
         this.cropSize = cropSize;
         this.cropShift = cropShift;
-        this.frameDuration = frameDuration * 1000000000;
     }
 
     public void resetAnimation(String spriteSheetPath, Vec2d position, Vec2d size, int frames,
@@ -101,44 +89,17 @@ public class SpriteAnimationComponent extends AnimationComponent {
         this.position = position;
         this.size = size;
 
-        this.frames = frames;
 
         this.cropStart = cropStart;
         this.cropSize = cropSize;
         this.cropShift = cropShift;
 
-        this.frameDuration = frameDuration * 1000000000;
-
-        currentFrame = 0;
-        currentTime = 0;
+        this.restart();
     }
 
     public void setHorizontalFlip(boolean horizontalFlip){
         this.horizontalFlip = horizontalFlip;
     }
-
-    public void restart(){
-        currentFrame = 0;
-        currentTime = 0;
-    }
-
-    @Override
-    public void onTick(long nanosSincePreviousTick){
-        this.currentTime -= nanosSincePreviousTick;
-        justFinished = false; // only set to true when transitioning back to first frame.
-        if(this.currentTime < 0) {
-            while (this.currentTime < 0) {
-                this.currentTime += this.frameDuration;
-                this.currentFrame = (this.currentFrame + 1) % this.frames;
-            }
-            if(!justFinished && this.currentFrame == 0){
-                this.justFinished = true;
-            }
-        }
-    }
-
-    @Override
-    public void onLateTick(){}
 
     @Override
     public void onDraw(GraphicsContext g){
@@ -147,15 +108,15 @@ public class SpriteAnimationComponent extends AnimationComponent {
 
         if(this.horizontalFlip) {
             g.drawImage(this.spriteSheet,
-                    this.cropStart.x + this.cropShift.x * this.currentFrame,
-                    this.cropStart.y + this.cropShift.y * this.currentFrame,
+                    this.cropStart.x + this.cropShift.x * this.currentStep,
+                    this.cropStart.y + this.cropShift.y * this.currentStep,
                     this.cropSize.x, this.cropSize.y,
                     pos.x + this.position.x + this.size.x, pos.y + this.position.y,
                     -this.size.x, this.size.y);
         } else {
             g.drawImage(this.spriteSheet,
-                    this.cropStart.x + this.cropShift.x * this.currentFrame,
-                    this.cropStart.y + this.cropShift.y * this.currentFrame,
+                    this.cropStart.x + this.cropShift.x * this.currentStep,
+                    this.cropStart.y + this.cropShift.y * this.currentStep,
                     this.cropSize.x, this.cropSize.y,
                     pos.x + this.position.x, pos.y + this.position.y,
                     this.size.x, this.size.y);
@@ -173,14 +134,14 @@ public class SpriteAnimationComponent extends AnimationComponent {
         component.setAttribute("position", position.toString());
         component.setAttribute("size", size.toString());
 
-        component.setAttribute("frames", Integer.toString(frames));
+        component.setAttribute("frames", Integer.toString(this.steps));
         component.setAttribute("cropStart", cropStart.toString());
         component.setAttribute("cropSize", cropSize.toString());
         component.setAttribute("cropShift", cropShift.toString());
 
         component.setAttribute("frameDuration", Double.toString(frameDuration / 1000000000));
-        component.setAttribute("currentTime", Long.toString(currentTime));
-        component.setAttribute("currentFrame", Integer.toString(currentFrame));
+        component.setAttribute("currentTime", Long.toString(this.currentTime));
+        component.setAttribute("currentFrame", Integer.toString(currentStep));
         return component;
     }
 
@@ -201,7 +162,7 @@ public class SpriteAnimationComponent extends AnimationComponent {
 
         SpriteAnimationComponent c = new SpriteAnimationComponent(path, position, size, frames, cropStart, cropSize, cropShift, frameDuration);
         c.currentTime = currentTime;
-        c.currentFrame = currentFrame;
+        c.currentStep = currentFrame;
         return c;
     }
 }

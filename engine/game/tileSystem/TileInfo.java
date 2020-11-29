@@ -1,4 +1,4 @@
-package engine.game.TileSystem;
+package engine.game.tileSystem;
 
 public class TileInfo{
     public String type;

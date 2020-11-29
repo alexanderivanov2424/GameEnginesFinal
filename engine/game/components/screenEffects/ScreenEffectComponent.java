@@ -1,4 +1,4 @@
-package engine.game.components.ScreenEffects;
+package engine.game.components.screenEffects;
 
 import engine.game.components.Component;
 import engine.game.systems.SystemFlag;

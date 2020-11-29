@@ -1,7 +1,6 @@
 package engine.game.systems;
 
-import engine.game.components.Component;
-import engine.game.components.ScreenEffects.ScreenEffectComponent;
+import engine.game.components.screenEffects.ScreenEffectComponent;
 import javafx.scene.canvas.GraphicsContext;
 
 public class ScreenEffectSystem extends GeneralSystem{

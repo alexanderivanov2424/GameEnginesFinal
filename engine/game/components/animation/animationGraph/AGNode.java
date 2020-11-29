@@ -1,7 +1,6 @@
-package engine.game.components.Animation.AnimationSystem;
+package engine.game.components.animation.animationGraph;
 
 import engine.game.GameObject;
-import engine.game.components.Component;
 import javafx.scene.canvas.GraphicsContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

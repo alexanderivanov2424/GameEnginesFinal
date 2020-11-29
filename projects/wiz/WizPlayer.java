@@ -5,7 +5,7 @@ import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
-import engine.game.components.Animation.SpriteAnimationComponent;
+import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyEvent;
