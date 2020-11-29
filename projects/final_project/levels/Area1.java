@@ -23,7 +23,7 @@ public class Area1 {
                 {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
                 {0, 0, 0, 1, 2, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -31,7 +31,7 @@ public class Area1 {
                 {0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
@@ -46,16 +46,16 @@ public class Area1 {
                 {1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
                 {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
                 {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0},
-                {1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 0, 0, 0, 0, 0},
-                {1, 1, 0, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
-                {1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0, 1, 1},
-                {1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1},
+                {1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 0, 0, 0, 0, 0},
+                {1, 0, 0, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
+                {1, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0, 1, 1},
+                {1, 0, 0, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1},
                 {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1},
                 {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
                 {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                {1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
         };
 
@@ -74,9 +74,38 @@ public class Area1 {
 
     public static void addGameObjects(GameWorld gameWorld){
         //TODO need to add rendering order first
-        //Decorative.placeTree(gameWorld, new Vec2d(12,32));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(11,31));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(10,38));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(22,33));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(5,9));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(8,10));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(27,23));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(11,21));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(27,11));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(30,13));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(34,9));
 
-        NaturalElements.placeRocks(gameWorld,new Vec2d(12,32), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(14,32), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(5,23), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(29,35), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(30,33), 3);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(32,33), 1);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(34,30), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(34,34), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(35,32), 1);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(13,15), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(23,25), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(7,21), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(10,23), 3);
+
+        NaturalElements.placeYellowFlowers(gameWorld, 0, new Vec2d(6.3,15.6), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 1, new Vec2d(23,21), 2);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(15,23), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(13,23), 0);
+        NaturalElements.placeRedFlowers(gameWorld, 0, new Vec2d(33,11), 0);
+        NaturalElements.placeRedFlowers(gameWorld, 1, new Vec2d(19,9), 2);
+
+
         placeWarpToArea2(gameWorld);
     }
 

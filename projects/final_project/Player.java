@@ -23,7 +23,7 @@ public class Player {
 
     //creates player
     public static GameObject createPlayer(GameWorld gameWorld, Vec2d pos){
-        GameObject player = new GameObject(gameWorld, 3);
+        GameObject player = new GameObject(gameWorld, 1);
 
         player.addComponent(new CameraComponent(0, new Vec2d(0,40), new Vec2d(0, 40)));
 
@@ -39,7 +39,7 @@ public class Player {
         drawFogComponent.disable();
         player.addComponent(drawFogComponent);
 
-        player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(1,1.75),.25),
+        player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
 
         TextBoxComponent textBoxComponent = new TextBoxComponent(0, new Vec2d(0,-1),
@@ -60,32 +60,33 @@ public class Player {
     }
 
     private static AnimationGraphComponent getPlayerAnimationGraph(){
+        Vec2d spriteOffset = new Vec2d(-1,-2);
         AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 1, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 9, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
-                new Vec2d(0,0), PLAYER_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
                 new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},
@@ -165,7 +166,7 @@ public class Player {
 
             Vec2d pos = this.gameObject.getTransform().position;
             this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
-            //System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
+            System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
 
             TextBoxComponent tb = (TextBoxComponent)this.gameObject.getComponent("TextBoxComponent");
             if(tb != null){

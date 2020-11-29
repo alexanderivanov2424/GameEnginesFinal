@@ -45,6 +45,8 @@ public abstract class Component {
         this.gameObject = g;
     }
 
+    public double getRenderOrdering(){return this.gameObject.getTransform().position.y;}
+
     public abstract int getSystemFlags();
 
     public abstract String getTag();

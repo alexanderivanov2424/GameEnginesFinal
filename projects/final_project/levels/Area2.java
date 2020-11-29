@@ -77,7 +77,7 @@ public class Area2 {
         //TODO need to add rendering order first
         //Decorative.placeTree(gameWorld, new Vec2d(12,32));
 
-        NaturalElements.placeRocks(gameWorld,new Vec2d(12,32), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(12,32), 2);
         TutorialEnemy.placeEnemy(gameWorld, new Vec2d(20, 20));
 
         placeWarpToArea1(gameWorld);
