@@ -19,6 +19,10 @@ public class AABShape extends Shape{
         return new Vec2d(this.position.x + this.parentPosition.x, this.position.y + this.parentPosition.y);
     }
 
+    public Vec2d getRelativePosition(){
+        return this.position;
+    }
+
     public Vec2d getSize(){
         return this.size;
     }

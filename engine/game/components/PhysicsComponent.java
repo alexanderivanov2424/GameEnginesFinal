@@ -42,6 +42,23 @@ public class PhysicsComponent extends CollisionComponent{
         assert(mass != 0);
     }
 
+    public PhysicsComponent(Vec2d position, Shape shape, double mass, double restitution, int collisionLayer, int collisionMask) {
+        super(position, shape, false, true, collisionLayer, collisionMask);
+        this.mass = mass;
+        this.restitution = restitution;
+        hasPhysics = true;
+        assert(mass != 0);
+    }
+
+    public PhysicsComponent(Vec2d position, Shape shape, double mass, double restitution, boolean isStatic,
+                            int collisionLayer, int collisionMask) {
+        super(position, shape, isStatic, true, collisionLayer, collisionMask);
+        this.mass = mass;
+        this.restitution = restitution;
+        hasPhysics = true;
+        assert(mass != 0);
+    }
+
     public void linkCollisionCallback(OnCollisionFunction onCollisionFunction){
         this.onCollisionFunction = onCollisionFunction;
     }

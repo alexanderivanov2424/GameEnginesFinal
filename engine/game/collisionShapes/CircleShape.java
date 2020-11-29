@@ -18,6 +18,9 @@ public class CircleShape extends Shape{
         //return actual position not position relative to parent component
         return new Vec2d(this.center.x + this.parentPosition.x, this.center.y + this.parentPosition.y);
     }
+    public Vec2d getRelativeCenter(){
+        return this.center;
+    }
 
     public double getRadius(){
         return this.radius;

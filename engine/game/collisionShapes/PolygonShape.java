@@ -50,6 +50,10 @@ public class PolygonShape extends Shape{
         return p;
     }
 
+    public Vec2d[] getRelativePoints(){
+        return this.points;
+    }
+
     @Override
     public Vec2d collides(Shape o) {
         return o.collidesPolygon(this);

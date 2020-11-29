@@ -1,9 +1,11 @@
 package engine.game.components;
 
+import engine.game.DebugFlags;
 import engine.game.GameObject;
 import engine.game.Utils;
 import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
+import engine.game.collisionShapes.PolygonShape;
 import engine.game.collisionShapes.Shape;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
@@ -29,6 +31,7 @@ public class CollisionComponent extends Component{
 
     protected OnCollisionFunction onCollisionFunction;
 
+    protected Vec2d position;
     protected Shape shape;
 
     protected int collisionLayer = 0;
@@ -42,6 +45,17 @@ public class CollisionComponent extends Component{
 
     public CollisionComponent(Shape shape, boolean isStatic, boolean isSolid,
                               int collisionLayer, int collisionMask) {
+        this.position = new Vec2d(0,0);
+        this.shape = shape;
+        this.isStatic = isStatic;
+        this.isSolid = isSolid;
+        this.collisionLayer = collisionLayer;
+        this.collisionMask = collisionMask;
+    }
+
+    public CollisionComponent(Vec2d position, Shape shape, boolean isStatic, boolean isSolid,
+                              int collisionLayer, int collisionMask) {
+        this.position = position;
         this.shape = shape;
         this.isStatic = isStatic;
         this.isSolid = isSolid;
@@ -60,8 +74,8 @@ public class CollisionComponent extends Component{
      */
     public Vec2d collide(CollisionComponent c){
         //need to set parent positions for shapes to collide properly.
-        this.shape.parentPosition = this.gameObject.getTransform().position;
-        c.shape.parentPosition = c.gameObject.getTransform().position;
+        this.shape.parentPosition = this.gameObject.getTransform().position.plus(this.position);
+        c.shape.parentPosition = c.gameObject.getTransform().position.plus(c.position);
         return this.shape.collides(c.shape);
     }
 
@@ -107,6 +121,9 @@ public class CollisionComponent extends Component{
 
     @Override
     public int getSystemFlags() {
+        if(DebugFlags.COLLISION_DEBUG){
+            return SystemFlag.CollisionSystem | SystemFlag.RenderSystem;
+        }
         return SystemFlag.CollisionSystem;
     }
 
@@ -117,10 +134,22 @@ public class CollisionComponent extends Component{
 
 
     @Override
-    public void onDraw(GraphicsContext g){
-
-        Vec2d pos = this.gameObject.getTransform().position;
-
+    public void onLateDraw(GraphicsContext g){
+        Vec2d pos = this.gameObject.getTransform().position.plus(this.position);
+        if(this.shape instanceof AABShape){
+            g.setStroke(Color.RED);
+            g.setLineWidth(.1);
+            g.strokeRect(pos.x + ((AABShape) this.shape).getRelativePosition().x,
+                    pos.y + ((AABShape) this.shape).getRelativePosition().y,
+                    ((AABShape) this.shape).getSize().x,((AABShape) this.shape).getSize().y);
+        } else if(this.shape instanceof CircleShape){
+            g.setStroke(Color.RED);
+            double R = ((CircleShape) this.shape).getRadius();
+            g.strokeOval(pos.x + ((CircleShape) this.shape).getRelativeCenter().x - R,
+                    pos.y + ((CircleShape) this.shape).getRelativeCenter().y - R, 2*R, 2*R);
+        } else if(this.shape instanceof PolygonShape){
+            System.err.println("POLYGON COLLISION DEBUG NOT YET IMPLEMENTED");
+        }
 
     }
 
