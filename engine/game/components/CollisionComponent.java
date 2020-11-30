@@ -132,18 +132,19 @@ public class CollisionComponent extends Component{
         return "CollisionComponent";
     }
 
-
     @Override
     public void onLateDraw(GraphicsContext g){
         Vec2d pos = this.gameObject.getTransform().position.plus(this.position);
+        Color color = this.isSolid ? Color.RED : Color.BLUE;
         if(this.shape instanceof AABShape){
-            g.setStroke(Color.RED);
-            g.setLineWidth(.1);
+            g.setStroke(color);
+            g.setLineWidth(.05);
             g.strokeRect(pos.x + ((AABShape) this.shape).getRelativePosition().x,
                     pos.y + ((AABShape) this.shape).getRelativePosition().y,
                     ((AABShape) this.shape).getSize().x,((AABShape) this.shape).getSize().y);
         } else if(this.shape instanceof CircleShape){
-            g.setStroke(Color.RED);
+            g.setStroke(color);
+            g.setLineWidth(.05);
             double R = ((CircleShape) this.shape).getRadius();
             g.strokeOval(pos.x + ((CircleShape) this.shape).getRelativeCenter().x - R,
                     pos.y + ((CircleShape) this.shape).getRelativeCenter().y - R, 2*R, 2*R);
