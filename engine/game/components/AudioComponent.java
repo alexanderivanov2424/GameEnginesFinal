@@ -74,7 +74,6 @@ public class AudioComponent extends Component {
 
     @Override
     public void onTick(long nanosSincePreviousTick){
-        System.out.println(clip);
 
         if(source != null) {
             //Based on the game object's position from the source, reduce volume
