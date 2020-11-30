@@ -16,7 +16,7 @@ public class AudioComponent extends Component {
     public AudioComponent(String filePath, GameObject source, boolean loop) {
         super();
 
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
         this.source = source;
 
         Clip clip = setup();
@@ -36,7 +36,7 @@ public class AudioComponent extends Component {
     public AudioComponent(String filePath, GameObject source) {
         super();
 
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
         this.source = source;
 
         Clip clip = setup();
@@ -55,7 +55,7 @@ public class AudioComponent extends Component {
     public AudioComponent(String filePath) {
         super();
 
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
         Clip clip = setup();
 
         clip.start();
@@ -64,7 +64,7 @@ public class AudioComponent extends Component {
     public AudioComponent(String filePath, boolean loop) {
         super();
 
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
 
         Clip clip = setup();
 
