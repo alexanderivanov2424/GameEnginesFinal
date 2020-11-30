@@ -11,6 +11,7 @@ public class BackgroundMusic {
         GameObject music = new GameObject(gameWorld);
 
         AudioComponent bgm1 = new AudioComponent("bgm1.wav", true);
+        bgm1.start();
 
         music.addComponent(bgm1);
 

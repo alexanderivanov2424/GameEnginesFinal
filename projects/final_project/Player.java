@@ -19,7 +19,7 @@ import java.util.Set;
 public class Player {
 
     public static final Vec2d PLAYER_SIZE = new Vec2d(2,2);
-
+    protected static AudioComponent swing;
 
     //creates player
     public static GameObject createPlayer(GameWorld gameWorld, Vec2d pos){
@@ -38,6 +38,9 @@ public class Player {
         DrawFogComponent drawFogComponent = new DrawFogComponent(0, new Vec2d(0,0), .05, 1);
         drawFogComponent.disable();
         player.addComponent(drawFogComponent);
+
+        swing = new AudioComponent("swing.wav", true);
+        player.addComponent(swing);
 
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
@@ -142,12 +145,16 @@ public class Player {
             if(D) dx -= speed * dt;
 
             if(!(W || A || S || D || ATTACK)){
+                swing.stop();
                 this.animationGraphComponent.queueAnimation("idle", true);
             } else if(!ATTACK) {
+                swing.stop();
                 this.direction = new Vec2d(-dx, -dy);
                 this.animationGraphComponent.queueAnimation("walk");
             } else {
                 this.animationGraphComponent.queueAnimation("attack", true);
+
+                swing.start();
 
                 for(GameObject object : gameObject.gameWorld.getGameObjects()) {
 
@@ -166,7 +173,7 @@ public class Player {
 
             Vec2d pos = this.gameObject.getTransform().position;
             this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
-            System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
+            //System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
 
             TextBoxComponent tb = (TextBoxComponent)this.gameObject.getComponent("TextBoxComponent");
             if(tb != null){
