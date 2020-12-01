@@ -127,7 +127,7 @@ public class Area1 {
         //TODO start fadeout animation
         collisionInfo.gameObjectOther.gameWorld.unloadRegion();
         collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.area2);
-        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(1,18);
+        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(3,18);
         //TODO start fadein animation
     }
 }
