@@ -2,7 +2,6 @@ package projects.final_project.levels;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
-import engine.game.collisionShapes.CircleShape;
 import engine.game.components.SpriteComponent;
 import engine.game.tileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
@@ -126,7 +125,8 @@ public class Area2 {
         NaturalElements.placeTree(gameWorld, 1, new Vec2d(38,9));
 
 
-        TutorialEnemy.placeEnemy(gameWorld, new Vec2d(20, 20));
+        Enemies.placeGoomba(gameWorld, new Vec2d(20, 24));
+        Enemies.placeGoomba(gameWorld, new Vec2d(22, 26));
 
         placeWarpToArea1(gameWorld);
         placeWarpToCave(gameWorld);
