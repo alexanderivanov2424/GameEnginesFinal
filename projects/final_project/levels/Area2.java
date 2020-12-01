@@ -79,8 +79,53 @@ public class Area2 {
         //TODO need to add rendering order first
         //Decorative.placeTree(gameWorld, new Vec2d(12,32));
 
-        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(12,32), 2);
         placeHouse(gameWorld, new Vec2d(6,1), 1);
+
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(12,32), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(5,23), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(29,35), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(25,6), 3);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(28,12), 1);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(27,14), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(34,25), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(35,32), 1);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(13,15), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(23,25), 2);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(15,21), 4);
+        NaturalElements.placeRocks(gameWorld, 1, new Vec2d(10,23), 3);
+
+        NaturalElements.placeYellowFlowers(gameWorld, 0, new Vec2d(6.3,15.6), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 1, new Vec2d(23,21), 2);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(13,23), 0);
+        NaturalElements.placeRedFlowers(gameWorld, 0, new Vec2d(33,11), 0);
+        NaturalElements.placeRedFlowers(gameWorld, 1, new Vec2d(19,9), 2);
+
+
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(13,27), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(13,29), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(15,27), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(15,29), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(17,27), 1);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(17,29), 1);
+
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(19,27), 0);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(19,29), 0);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(11,31), 0);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(13,31), 0);
+        NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(11,29), 0);
+
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(9,31));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(25,38));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(31,33));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(2,9));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(6,14));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(27,19));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(11,21));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(24,11));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(30,13));
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(38,9));
+
+
         TutorialEnemy.placeEnemy(gameWorld, new Vec2d(20, 20));
 
         placeWarpToArea1(gameWorld);
@@ -166,9 +211,9 @@ public class Area2 {
                 new Vec2d(5,5), new Vec2d(2,2), new Vec2d(16,4).smult(32), new Vec2d(32,32));
 
         SpriteComponent front_topLeft = new SpriteComponent(FinalGame.getSpritePath("tile_sprite_sheet"),
-                new Vec2d(1,7), new Vec2d(2,2), new Vec2d(15,8).smult(32), new Vec2d(32,32));
+                new Vec2d(1,7), new Vec2d(2,2), new Vec2d(17,6).smult(32), new Vec2d(32,32));
         SpriteComponent front_topRight = new SpriteComponent(FinalGame.getSpritePath("tile_sprite_sheet"),
-                new Vec2d(7,7), new Vec2d(2,2), new Vec2d(16,8).smult(32), new Vec2d(32,32));
+                new Vec2d(7,7), new Vec2d(2,2), new Vec2d(18,6).smult(32), new Vec2d(32,32));
         SpriteComponent front_topV2 = new SpriteComponent(FinalGame.getSpritePath("tile_sprite_sheet"),
                 new Vec2d(3,7), new Vec2d(2,2), new Vec2d(16,9).smult(32), new Vec2d(32,32));
         SpriteComponent door = new SpriteComponent(FinalGame.getSpritePath("tile_sprite_sheet"),
