@@ -59,7 +59,7 @@ public class NaturalElements {
                 new Vec2d(-1,-1), new Vec2d(2,2), new Vec2d(4-size,14).smult(32), new Vec2d(32,32));
         rocks.addComponent(sprite);
 
-        rocks.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,0), 2.0/((double)size+1.0)), true, true,
+        rocks.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,0), ((double)size)/6.0), true, true,
                 FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
 
         rocks.getTransform().position = pos;
