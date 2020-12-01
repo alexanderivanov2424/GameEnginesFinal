@@ -7,6 +7,7 @@ import engine.game.collisionShapes.AABShape;
 import engine.game.components.CollisionComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
+import projects.final_project.BackgroundMusic;
 import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
 
@@ -105,6 +106,8 @@ public class Area1 {
         NaturalElements.placeRedFlowers(gameWorld, 0, new Vec2d(33,11), 0);
         NaturalElements.placeRedFlowers(gameWorld, 1, new Vec2d(19,9), 2);
 
+        BackgroundMusic.playBGM1(gameWorld);
+
 
         placeWarpToArea2(gameWorld);
     }
@@ -124,7 +127,7 @@ public class Area1 {
         //TODO start fadeout animation
         collisionInfo.gameObjectOther.gameWorld.unloadRegion();
         collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.area2);
-        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(1,18);
+        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(3,18);
         //TODO start fadein animation
     }
 }

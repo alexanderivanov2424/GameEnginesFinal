@@ -12,61 +12,56 @@ public class AudioComponent extends Component {
     protected String filePath;
     protected FloatControl gainControl;
     protected GameObject source;
+    protected Clip clip;
+    protected boolean loop;
 
     public AudioComponent(String filePath, GameObject source, boolean loop) {
         super();
-
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
         this.source = source;
-
-        Clip clip = setup();
-
-        gainControl =
-                (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
-        gainControl.setValue(-80.0f);
-
-        if(loop) {
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        }
-
-        clip.start();
+        this.loop = loop;
     }
 
     public AudioComponent(String filePath, GameObject source) {
         super();
-
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
         this.source = source;
-
-        Clip clip = setup();
-
-
-
-
-        gainControl =
-                (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(-80.0f);
-
-
-        clip.start();
     }
 
     public AudioComponent(String filePath) {
         super();
-
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
-        Clip clip = setup();
-
-        clip.start();
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
     }
 
     public AudioComponent(String filePath, boolean loop) {
         super();
+        this.filePath = "projects/final_project/assets/sounds/" + filePath;
+        this.loop = loop;
+    }
 
-        this.filePath = "projects/WizTesting/assets/Sounds/" + filePath;
+    //Stops the clip
+    public void stop() {
+        if(clip != null) {
+            clip.stop();
+        }
+    }
 
-        Clip clip = setup();
+    //Starts the clip from the very beginning
+    public void start() {
+        if(clip == null) {
+            clip = setup();
+
+            if(source != null) {
+                gainControl =
+                        (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
+                gainControl.setValue(-80.0f);
+            }
+
+            if(loop) {
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+            }
+        }
 
         if(loop) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -75,8 +70,11 @@ public class AudioComponent extends Component {
         clip.start();
     }
 
+
+
     @Override
     public void onTick(long nanosSincePreviousTick){
+
         if(source != null) {
             //Based on the game object's position from the source, reduce volume
             float dist = (float)gameObject.getTransform().position.dist(source.getTransform().position);

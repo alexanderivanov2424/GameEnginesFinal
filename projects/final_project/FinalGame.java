@@ -74,7 +74,7 @@ public class FinalGame {
 
         //TODO give the viewport proper limiting instead of the camera component.
         // Makes more sense given that we are loading and unloading regions.
-        gameWorld.loadRegion(Levels.area1);
+        gameWorld.loadRegion(Levels.area2);
     }
 
     /*
