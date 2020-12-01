@@ -10,6 +10,7 @@ import engine.support.Vec2d;
 import projects.final_project.BackgroundMusic;
 import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
+import projects.final_project.characters.OldMan;
 
 public class Area1 {
 
@@ -108,6 +109,7 @@ public class Area1 {
 
         BackgroundMusic.playBGM1(gameWorld);
 
+        OldMan.placeOldMan(gameWorld, new Vec2d(7,33));
 
         placeWarpToArea2(gameWorld);
     }
@@ -118,7 +120,7 @@ public class Area1 {
                 true, false, CollisionSystem.CollisionMask.NONE, FinalGame.PLAYER_LAYER);// only cares about player collision
         collisionComponent.linkCollisionCallback(Area1::WarpToArea2);
         warp.addComponent(collisionComponent);
-        warp.getTransform().position = new Vec2d(39, 18);
+        warp.getTransform().position = new Vec2d(37, 18);
 
         gameWorld.addGameObject(warp);
     }
@@ -127,7 +129,7 @@ public class Area1 {
         //TODO start fadeout animation
         collisionInfo.gameObjectOther.gameWorld.unloadRegion();
         collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.area2);
-        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(3,18);
+        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(2,20);
         //TODO start fadein animation
     }
 }

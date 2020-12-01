@@ -34,7 +34,7 @@ public class Area2 {
                 {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
@@ -102,7 +102,7 @@ public class Area2 {
         //TODO start fadeout animation
         collisionInfo.gameObjectOther.gameWorld.unloadRegion();
         collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.area1);
-        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(36,18);
+        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(36,20);
         //TODO start fadein animation
     }
 

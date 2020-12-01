@@ -10,8 +10,6 @@ public abstract class ScreenEffectComponent extends Component {
 
     public abstract void postEffect(GraphicsContext g);
 
-    public abstract void onTick(long nanosSincePreviousTick);
-
     @Override
     public int getSystemFlags() {
         return SystemFlag.ScreenEffectSystem;

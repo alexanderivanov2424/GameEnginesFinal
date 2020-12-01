@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -11,7 +14,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af822c5d-616a-4757-99b4-148efcbef835" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/projects/final_project/characters/DialogComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/final_project/characters/DialogNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/final_project/characters/OldMan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/UIToolKit/UIViewport.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/UIToolKit/UIViewport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/CameraComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/CameraComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/TextBoxComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/TextBoxComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/game/components/screenEffects/ScreenEffectComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/screenEffects/ScreenEffectComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/WizTesting/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/WizTesting/WizPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/WizPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/characters/Characters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/DialogComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/FinalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/FinalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area1.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/wiz/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/wiz/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/wiz/WizPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/wiz/WizPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +78,7 @@
       <module name="final-project-slippy" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="projects.final_project.*" />
+          <option name="PATTERN" value="projects.final_project.characters.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,18 +116,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1606508164995">
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1606800555583">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606508164995" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606800555583" />
     <state x="673" y="106" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1606427343741">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="673" y="106" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606427343741" />
-    <state x="254" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606623449404">
+    <state x="132" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606853279984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="254" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606623449404" />
+    <state x="132" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606853279984" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606623310276">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -115,28 +136,28 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="861" y="188" key="FileChooserDialogImpl/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606431934903" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1606717564244">
+    <state width="1493" height="337" key="GridCell.Tab.0.bottom" timestamp="1606867085173">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606717564244" />
+    <state width="1493" height="337" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606867085173" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606689978460" />
     <state width="1993" height="156" key="GridCell.Tab.0.bottom/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1606717564244">
+    <state width="1493" height="337" key="GridCell.Tab.0.center" timestamp="1606867085173">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606717564244" />
+    <state width="1493" height="337" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606867085173" />
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606689978459" />
     <state width="1993" height="156" key="GridCell.Tab.0.center/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1606717564244">
+    <state width="1493" height="337" key="GridCell.Tab.0.left" timestamp="1606867085173">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606717564244" />
+    <state width="1493" height="337" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606867085173" />
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606689978458" />
     <state width="1993" height="156" key="GridCell.Tab.0.left/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1606717564244">
+    <state width="1493" height="337" key="GridCell.Tab.0.right" timestamp="1606867085173">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606717564244" />
+    <state width="1493" height="337" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606867085173" />
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606689978460" />
     <state width="1993" height="156" key="GridCell.Tab.0.right/0.0.2048.1112/-1920.130.1920.1040@0.0.2048.1112" timestamp="1606364237041" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1606615108462">
@@ -171,9 +192,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="145" width="581" height="592" key="find.popup/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606625239301" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606671203688">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606854909216">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606671203688" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606854909216" />
   </component>
 </project>

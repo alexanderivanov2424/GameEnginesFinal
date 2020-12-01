@@ -27,7 +27,7 @@ public class WizPlayer {
         WizPlayer.wizGame = wizGame;
         GameObject player = new GameObject(gameWorld, 3);
         player.addComponent(new WASDMovementComponent(10));
-        player.addComponent(new CameraComponent(0));
+        player.addComponent(new CameraComponent(0, new Vec2d(0,0)));
 
         player.addComponent(new SpriteAnimationComponent(WizGame.getSpritePath("player"),
                 new Vec2d(0,0), new Vec2d(2,2), 5, new Vec2d(0,0), new Vec2d(32,32), .1));//normal animation

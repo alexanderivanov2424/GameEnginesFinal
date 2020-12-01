@@ -4,6 +4,7 @@ import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.Region;
+import engine.game.components.CollisionComponent;
 import engine.game.tileSystem.TileMap;
 import engine.game.components.screenEffects.ShakeEffect;
 import engine.game.systems.CollisionSystem;
@@ -23,6 +24,12 @@ public class FinalGame {
 
     public static final int OBJECT_LAYER = CollisionSystem.CollisionMask.layer1;
     public static final int OBJECT_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer1 | CollisionSystem.CollisionMask.layer3;
+
+    public static final int ATTACK_LAYER = CollisionSystem.CollisionMask.layer4;
+    public static final int ATTACK_MASK = CollisionSystem.CollisionMask.layer4;
+
+    public static final int TALK_LAYER = CollisionSystem.CollisionMask.layer5;
+    public static final int TALK_MASK = CollisionSystem.CollisionMask.layer5;
 
     private GameWorld gameWorld;
     private UIViewport viewport;
@@ -72,9 +79,7 @@ public class FinalGame {
         Area2.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
-        //TODO give the viewport proper limiting instead of the camera component.
-        // Makes more sense given that we are loading and unloading regions.
-        gameWorld.loadRegion(Levels.area2);
+        gameWorld.loadRegion(Levels.area1);
     }
 
     /*

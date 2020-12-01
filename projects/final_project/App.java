@@ -71,7 +71,7 @@ public class App extends Application {
 
     UIViewport viewport = new UIViewport(new Vec2d(0,0),
             new Vec2d(this.originalStageSize.x, this.originalStageSize.y),
-            gameWorld, new Vec2d(0,0),false, 50);
+            gameWorld, new Vec2d(0,0), 50, true);
     gameScreen.addUIElement(viewport);
 
     FinalGame finalGame = new FinalGame(gameWorld, viewport);

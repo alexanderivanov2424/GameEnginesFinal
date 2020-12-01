@@ -9,6 +9,7 @@ import engine.game.components.animation.animationGraph.AGNode;
 import engine.game.components.animation.animationGraph.AnimationGraphComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.AnimationComponent;
+import engine.game.components.TextBoxComponent;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
@@ -25,7 +26,7 @@ public class Player {
     public static GameObject createPlayer(GameWorld gameWorld, Vec2d pos){
         GameObject player = new GameObject(gameWorld, 1);
 
-        player.addComponent(new CameraComponent(0, new Vec2d(0,40), new Vec2d(0, 40)));
+        player.addComponent(new CameraComponent(0, new Vec2d(0,0), new Vec2d(0,40), new Vec2d(0, 40)));
 
         AnimationGraphComponent agc = getPlayerAnimationGraph();
         player.addComponent(agc);
@@ -45,17 +46,17 @@ public class Player {
         player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
 
-        TextBoxComponent textBoxComponent = new TextBoxComponent(0, new Vec2d(0,-1),
-                "Hey, you...\nYou're finally awake", .1, .2, .2, 1);
-        textBoxComponent.setCenterImage(FinalGame.getSpritePath("textbox"),
-                new Vec2d(270,375), new Vec2d(25,25), new Vec2d(0,0));
-        textBoxComponent.setCornerImage(FinalGame.getSpritePath("textbox"),
-                new Vec2d(254,359), new Vec2d(13,13), new Vec2d(.25,.25));
-        textBoxComponent.setHorizontalEdgeImage(FinalGame.getSpritePath("textbox"),
-                new Vec2d(271,359), new Vec2d(25,13), new Vec2d(.25,.25));
-        textBoxComponent.setVerticalEdgeImage(FinalGame.getSpritePath("textbox"),
-                new Vec2d(254,375), new Vec2d(13,25), new Vec2d(.25,.25));
-        player.addComponent(textBoxComponent);
+        //TALKING TRIGGER
+        //TODO this is very bad design needs to be fixed at some point
+        // need to somehow differentiate between multiple components of same type. Maybe give components names?
+        CollisionComponent talkTrigger = new CollisionComponent(new CircleShape(new Vec2d(0,0),1),
+                false, false, FinalGame.TALK_LAYER, FinalGame.TALK_MASK){
+                    @Override
+                    public String getTag() {
+                        return "TalkCollisionComponent";
+                    }
+                };
+        player.addComponent(talkTrigger);
 
         player.getTransform().position = pos;
         player.getTransform().size = new Vec2d(1.4,1.75);
@@ -139,9 +140,10 @@ public class Player {
             boolean S = keyState.contains(KeyCode.S);
             boolean D = keyState.contains(KeyCode.D);
             boolean ATTACK = keyState.contains(KeyCode.SPACE);
+            boolean E = keyState.contains(KeyCode.E);
             if(W) dy += speed * dt;
-            if(A) dx += speed * dt;
             if(S) dy -= speed * dt;
+            if(A) dx += speed * dt;
             if(D) dx -= speed * dt;
 
             if(!(W || A || S || D || ATTACK)){
@@ -151,6 +153,10 @@ public class Player {
                 swing.stop();
                 this.direction = new Vec2d(-dx, -dy);
                 this.animationGraphComponent.queueAnimation("walk");
+
+                Vec2d pos = this.gameObject.getTransform().position;
+                this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
+                //System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
             } else {
                 this.animationGraphComponent.queueAnimation("attack", true);
 
@@ -166,14 +172,19 @@ public class Player {
                         }
                     }
                 }
+            }
 
-
+            CollisionComponent talk = (CollisionComponent)this.gameObject.getComponent("TalkCollisionComponent");
+            if(talk != null){
+                if(E){
+                    talk.enable();
+                } else {
+                    talk.disable();
+                }
             }
             this.animationGraphComponent.updateState(this.direction);
 
-            Vec2d pos = this.gameObject.getTransform().position;
-            this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
-            //System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
+
 
             TextBoxComponent tb = (TextBoxComponent)this.gameObject.getComponent("TextBoxComponent");
             if(tb != null){
