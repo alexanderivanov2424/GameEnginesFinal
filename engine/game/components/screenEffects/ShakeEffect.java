@@ -5,11 +5,11 @@ import javafx.scene.canvas.GraphicsContext;
 public class ShakeEffect extends ScreenEffectComponent{
 
     private double magnitude;
-    private double lifespan;
+    private double duration;
 
-    public ShakeEffect(double magnitude, double lifespan){
+    public ShakeEffect(double magnitude, double duration){
         this.magnitude = magnitude;
-        this.lifespan = lifespan;
+        this.duration = duration;
     }
 
     @Override
@@ -26,8 +26,8 @@ public class ShakeEffect extends ScreenEffectComponent{
 
     @Override
     public void onTick(long nanosSincePreviousTick) {
-        this.lifespan -= nanosSincePreviousTick/1000000000.0;
-        if(lifespan <= 0){
+        this.duration -= nanosSincePreviousTick/1000000000.0;
+        if(duration <= 0){
             this.gameObject.removeComponent(this);
         }
     }
