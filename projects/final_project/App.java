@@ -6,7 +6,9 @@ import engine.UIToolKit.UIButton;
 import engine.UIToolKit.UIRect;
 import engine.UIToolKit.UIText;
 import engine.UIToolKit.UIViewport;
+import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.components.HealthComponent;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -49,10 +51,10 @@ public class App extends Application {
 
   private void createMainMenu(Screen mainMenu){
     mainMenu.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
-    mainMenu.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"SLIPPY TIME",
+    mainMenu.addUIElement(new UIText(new Vec2d(20,50), new Vec2d(400, 50),"SLIPPY TIME",
             colorBorder, fontLarge));
 
-    UIButton startButton = new UIButton(new Vec2d(100,100), new Vec2d(400,50), colorMain, colorBorder);
+    UIButton startButton = new UIButton(new Vec2d(20,70), new Vec2d(400,50), colorMain, colorBorder);
     startButton.setOnMouseClicked(() -> {
       this.setCurrentScreen("gameScreen");
     });
@@ -60,10 +62,10 @@ public class App extends Application {
 
     mainMenu.addUIElement(startButton);
 
-    mainMenu.addUIElement(new UIText(new Vec2d(100,230), new Vec2d(400, 50),"CONTROLS:",
+    mainMenu.addUIElement(new UIText(new Vec2d(20,200), new Vec2d(400, 50),"CONTROLS:",
             Color.BLACK, fontLarge));
-    mainMenu.addUIElement(new UIText(new Vec2d(100,280), new Vec2d(400, 500),"Use WASD to move, and " +
-            "press the space bar to attack.",
+    mainMenu.addUIElement(new UIText(new Vec2d(20,250), new Vec2d(300, 500),"Use WASD to move, and " +
+            "press the space bar to attack.\nYou can also press E to interact.",
             Color.BLACK, fontNormal));
 
     this.addScreen(mainMenu, "mainMenu");
@@ -92,7 +94,9 @@ public class App extends Application {
     //Health bar UI
     gameScreen.addUIElement(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"HP",
             Color.BLACK, fontHP));
-
+    gameScreen.addUIElement(new HPRect(new Vec2d(62,6), new Vec2d(140, 30),
+            Color.rgb(204,89,89,0.6),
+            finalGame.getPlayer()));
 
 
     this.addScreen(gameScreen, "gameScreen");
@@ -102,16 +106,18 @@ public class App extends Application {
   private static class HPRect extends UIRect {
 
     private double maxSize = size.x;
+    private GameObject player;
 
-    public HPRect(Vec2d position, Vec2d size, Color color) {
+    public HPRect(Vec2d position, Vec2d size, Color color, GameObject player) {
       super(position, size, color);
+      this.player = player;
     }
 
     @Override
     public void onDraw(GraphicsContext g) {
       Vec2d pos = this.getOffset();
 
-      //this.size.x = maxSize * player.
+      size.x = (maxSize * ((HealthComponent)(player.getComponent("HealthComponent"))).getHealth()/10);
 
       g.setFill(this.color);
       g.fillRect(pos.x,pos.y,this.size.x,this.size.y);

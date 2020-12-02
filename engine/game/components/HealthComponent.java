@@ -15,6 +15,7 @@ public class HealthComponent extends Component{
     }
 
     private OnDeath onDeath;
+
     private double health;
 
     private boolean done = false;
@@ -69,5 +70,9 @@ public class HealthComponent extends Component{
         c.NOT_FULLY_LOADED();
         c.done = done;
         return c;
+    }
+
+    public double getHealth() {
+        return health;
     }
 }

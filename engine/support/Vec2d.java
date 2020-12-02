@@ -33,7 +33,8 @@ public final class Vec2d implements Serializable {
 	 * Since {@link Vec2d} instances are immutable, their x and y fields may be
 	 * accessed without getters.
 	 */
-	public final double x, y;
+	public double x;
+    public final double y;
 
 	/**
 	 * Constructor. Creates a new instance from a value

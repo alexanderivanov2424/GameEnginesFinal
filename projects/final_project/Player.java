@@ -87,8 +87,7 @@ public class Player {
         if(id != null && id.getId().equals("goomba")){
             //TODO HURT ANIMATION
 
-            player.getTransform().position = player.getTransform().position.plus(collisionInfo.MTV.smult(8));
-            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(1);
+            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.1);
 
             /*DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
             delayEventComponent.linkEventCallback(WizPlayer::playerDeath);
@@ -222,7 +221,8 @@ public class Player {
                 for(GameObject object : gameObject.gameWorld.getGameObjects()) {
 
                     //TODO very scuffed way of doing damage
-                    if(object.getTransform().position.dist(this.getGameObject().getTransform().position) < 4) {
+                    if(!object.equals(this.getGameObject()) &&
+                            object.getTransform().position.dist(this.getGameObject().getTransform().position) < 4) {
                         if(! (object.getComponent("HealthComponent") == null)) {
                             HealthComponent healthComponent = (HealthComponent)object.getComponent("HealthComponent");
                             healthComponent.hit(.1);

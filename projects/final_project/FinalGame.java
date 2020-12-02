@@ -33,6 +33,7 @@ public class FinalGame {
 
     private GameWorld gameWorld;
     private UIViewport viewport;
+    private GameObject player;
 
     public FinalGame(GameWorld gameWorld, UIViewport viewport) {
         this.gameWorld = gameWorld;
@@ -43,7 +44,7 @@ public class FinalGame {
     }
 
     public void init() {
-        GameObject player = Player.createPlayer(this.gameWorld,new Vec2d(3,37));
+        player = Player.createPlayer(this.gameWorld,new Vec2d(3,37));
         this.gameWorld.addGameObject(player);
 
         //this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));
@@ -91,4 +92,7 @@ public class FinalGame {
         return sprite.toString();
     }
 
+    public GameObject getPlayer() {
+        return player;
+    }
 }
