@@ -5,6 +5,7 @@ import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.Region;
 import engine.game.components.CollisionComponent;
+import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.tileSystem.TileMap;
 import engine.game.components.screenEffects.ShakeEffect;
 import engine.game.systems.CollisionSystem;
@@ -48,7 +49,6 @@ public class FinalGame {
         this.gameWorld.addGameObject(player);
 
         //this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));
-
 
         /*TileMap tileMap = LevelTileMaps.createTileMap();
         LevelTileMaps.setTestingLevel(tileMap);*/

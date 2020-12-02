@@ -3,6 +3,7 @@ package projects.final_project.levels;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.components.SpriteComponent;
+import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.tileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
 import engine.game.components.CollisionComponent;
@@ -12,6 +13,7 @@ import engine.support.Vec2d;
 import projects.final_project.BackgroundMusic;
 import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
+import projects.final_project.Player;
 
 import java.nio.channels.GatheringByteChannel;
 
@@ -143,49 +145,58 @@ public class Area2 {
         GameObject warp = new GameObject(gameWorld, 0);
         CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(1,2)),
                 true, false, CollisionSystem.CollisionMask.NONE, FinalGame.PLAYER_LAYER);// only cares about player collision
-        collisionComponent.linkCollisionCallback(Area2::WarpToArea1);
+        collisionComponent.linkCollisionCallback(Area2::FadeOutArea2_Area1);
         warp.addComponent(collisionComponent);
         warp.getTransform().position = new Vec2d(0,18);
 
         gameWorld.addGameObject(warp);
     }
 
-    public static void WarpToArea1(CollisionSystem.CollisionInfo collisionInfo){
-        //TODO start fadeout animation
-        collisionInfo.gameObjectOther.gameWorld.unloadRegion();
-        collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.area1);
-        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(36,20);
-        //TODO start fadein animation
+    public static void LoadArea1(GameObject gameObject){
+        gameObject.gameWorld.unloadRegion();
+        gameObject.gameWorld.loadRegion(Levels.area1);
+        gameObject.getTransform().position = new Vec2d(38,20);
+        Player.isBetweenAreas = false;
+    }
+
+    public static void FadeOutArea2_Area1(CollisionSystem.CollisionInfo collisionInfo){
+        if(!Player.isBetweenAreas) {
+            Player.isBetweenAreas = true;
+            FadeOutEffect fadeout = new FadeOutEffect(0, .5);
+            fadeout.linkEventCallback(Area2::LoadArea1);
+            collisionInfo.gameObjectOther.addComponent(fadeout);
+        }
     }
 
     public static void placeWarpToCave(GameWorld gameWorld){
         GameObject warp = new GameObject(gameWorld, 0);
         CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(2,1)),
                 true, false, CollisionSystem.CollisionMask.NONE, FinalGame.PLAYER_LAYER);// only cares about player collision
-        collisionComponent.linkCollisionCallback(Area2::WarpToCave);
-
+        collisionComponent.linkCollisionCallback(Area2::FadeOutArea2_Cave1);
         warp.addComponent(collisionComponent);
-        warp.getTransform().position = new Vec2d(32,6);
+        warp.getTransform().position = new Vec2d(32,7);
 
         gameWorld.addGameObject(warp);
     }
 
-    public static void WarpToCave(CollisionSystem.CollisionInfo collisionInfo){
-        //TODO start fadeout animation
-        collisionInfo.gameObjectOther.gameWorld.unloadRegion();
-        collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.cave);
-        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(5,5);
-        DrawFogComponent fog = (DrawFogComponent)collisionInfo.gameObjectOther.getComponent("DrawFogComponent");
+
+    public static void LoadCave1(GameObject gameObject){
+        gameObject.gameWorld.unloadRegion();
+        gameObject.gameWorld.loadRegion(Levels.cave);
+        gameObject.getTransform().position = new Vec2d(5,5);
+        DrawFogComponent fog = (DrawFogComponent)gameObject.getComponent("DrawFogComponent");
         fog.enable();
-
-        //Play bgm 2
-        BackgroundMusic.stopBGM(Area2.gameWorld);
-        BackgroundMusic.playBGM2(Area2.gameWorld);
-
-
-        //TODO start fadein animation
+        Player.isBetweenAreas = false;
     }
 
+    public static void FadeOutArea2_Cave1(CollisionSystem.CollisionInfo collisionInfo){
+        if(!Player.isBetweenAreas) {
+            Player.isBetweenAreas = true;
+            FadeOutEffect fadeout = new FadeOutEffect(0, .5);
+            fadeout.linkEventCallback(Area2::LoadCave1);
+            collisionInfo.gameObjectOther.addComponent(fadeout);
+        }
+    }
 
     /**
      * Places house into the game world

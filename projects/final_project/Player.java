@@ -22,6 +22,8 @@ import java.util.Set;
 
 public class Player {
 
+    public static boolean isBetweenAreas = false;
+
     public static final Vec2d PLAYER_SIZE = new Vec2d(2,2);
     protected static AudioComponent swing;
 
@@ -45,7 +47,7 @@ public class Player {
 
         player.addComponent(new PlayerMovementComponent(5,agc));
 
-        LightComponent lightComponent = new LightComponent(Color.WHITE, 5, new Vec2d(1,1.5));
+        LightComponent lightComponent = new LightComponent(Color.WHITE, 5, new Vec2d(0,0));
         player.addComponent(lightComponent);
 
         DrawFogComponent drawFogComponent = new DrawFogComponent(0, new Vec2d(0,0), .05, 1);
