@@ -10,11 +10,16 @@ import engine.game.components.CollisionComponent;
 import engine.game.components.DrawFogComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
+import projects.final_project.BackgroundMusic;
 import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
 import projects.final_project.Player;
 
+import java.nio.channels.GatheringByteChannel;
+
 public class Area2 {
+
+    private static GameWorld gameWorld;
 
     public static void setTiles(TileMap tileMap){
         int[][] tiles_int = new int[][]{
@@ -79,6 +84,8 @@ public class Area2 {
     public static void addGameObjects(GameWorld gameWorld){
         //TODO need to add rendering order first
         //Decorative.placeTree(gameWorld, new Vec2d(12,32));
+
+        Area2.gameWorld = gameWorld;
 
         placeHouse(gameWorld, new Vec2d(6,1), 1);
 
@@ -190,17 +197,6 @@ public class Area2 {
             collisionInfo.gameObjectOther.addComponent(fadeout);
         }
     }
-//
-//    public static void WarpToCave(CollisionSystem.CollisionInfo collisionInfo){
-//        //TODO start fadeout animation
-//        collisionInfo.gameObjectOther.gameWorld.unloadRegion();
-//        collisionInfo.gameObjectOther.gameWorld.loadRegion(Levels.cave);
-//        collisionInfo.gameObjectOther.getTransform().position = new Vec2d(5,5);
-//        DrawFogComponent fog = (DrawFogComponent)collisionInfo.gameObjectOther.getComponent("DrawFogComponent");
-//        fog.enable();
-//        //TODO start fadein animation
-//    }
-
 
     /**
      * Places house into the game world

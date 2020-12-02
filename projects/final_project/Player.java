@@ -10,10 +10,13 @@ import engine.game.components.animation.animationGraph.AnimationGraphComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.AnimationComponent;
 import engine.game.components.TextBoxComponent;
+import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import projects.WizTesting.WizGame;
+import projects.WizTesting.WizPlayer;
 
 import java.util.Set;
 
@@ -54,8 +57,13 @@ public class Player {
         swing = new AudioComponent("swing.wav", true);
         player.addComponent(swing);
 
-        player.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
-                false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK));
+        CollisionComponent hitbox = new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
+                false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK);
+        hitbox.linkCollisionCallback(Player::PlayerCollisionCallback);
+        player.addComponent(hitbox);
+
+        HealthComponent healthComponent = new HealthComponent(10);
+        player.addComponent(healthComponent);
 
         //TALKING TRIGGER
         //TODO this is very bad design needs to be fixed at some point
@@ -73,6 +81,23 @@ public class Player {
         player.getTransform().size = new Vec2d(1.4,1.75);
         return player;
     }
+
+    private static void PlayerCollisionCallback(CollisionSystem.CollisionInfo collisionInfo){
+        GameObject player = collisionInfo.gameObjectSelf;
+        IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
+
+        if(id != null && id.getId().equals("goomba")){
+            //TODO HURT ANIMATION
+
+            player.getTransform().position = player.getTransform().position.plus(collisionInfo.MTV.smult(8));
+            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(1);
+
+            /*DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
+            delayEventComponent.linkEventCallback(WizPlayer::playerDeath);
+            player.addComponent(delayEventComponent);*/
+        }
+    }
+
 
     private static AnimationGraphComponent getPlayerAnimationGraph(CollisionComponent playerAttackBox){
         Vec2d spriteOffset = new Vec2d(-1,-2);
