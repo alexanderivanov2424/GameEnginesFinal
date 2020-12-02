@@ -29,7 +29,12 @@ public class Player {
         player.addComponent(new CameraComponent(0, new Vec2d(0,0), new Vec2d(0,40), new Vec2d(0, 40)));
 
         CollisionComponent attackHitBox = new CollisionComponent(new CircleShape(new Vec2d(0,0),1),
-                false, false, FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
+                false, false, FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK){
+                    @Override
+                    public String getTag() {
+                return "AttackCollisionComponent";
+            }
+                };
         player.addComponent(attackHitBox);
 
         AnimationGraphComponent agc = getPlayerAnimationGraph(attackHitBox);
