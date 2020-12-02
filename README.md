@@ -3,6 +3,14 @@ Miru Yang: B01530353
 
 Alexander Ivanov: B01540800
 
+Third Checkpoint:
+
+Playtesting reports are in projects/PlaytestingReports
+
+
+
+
+------------------------------------------
 
 Second Checkpoint:
 
@@ -34,9 +42,6 @@ interesting for playtesters and isn't just a map or two with not much to interac
     LightComponent classes.
     - There is also some code in engine/game/systems/LightingSystem
     
- 
-
-
 ------------------------------------------
 
 First CheckPoint:
