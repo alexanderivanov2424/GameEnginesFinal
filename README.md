@@ -7,7 +7,18 @@ Third Checkpoint:
 
 Playtesting reports are in projects/PlaytestingReports
 
+We currently have a demo with a couple of more decorated areas and natural elements. There's
+also a character with some dialogue options and the beginning of a story.
 
+We added dialogue, a bunch of decorative objects, enemies, and are currently in the process
+of making multiple attacks with their own collision components. Additionally, we added music/audio
+as well as an HP bar for the player. To help us debug, we added a debug mode which can be turned
+on or off by changing the file DebugFlags in Engine/game/DebugFlags.
+
+For the final handin, we hope to add a full story/npcs, more enemies, better combat, more interactivity,
+and a cave area.
+
+Our engine features from previous weeks can be found below.
 
 
 ------------------------------------------
