@@ -9,10 +9,15 @@ import engine.game.components.CollisionComponent;
 import engine.game.components.DrawFogComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
+import projects.final_project.BackgroundMusic;
 import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
 
+import java.nio.channels.GatheringByteChannel;
+
 public class Area2 {
+
+    private static GameWorld gameWorld;
 
     public static void setTiles(TileMap tileMap){
         int[][] tiles_int = new int[][]{
@@ -77,6 +82,8 @@ public class Area2 {
     public static void addGameObjects(GameWorld gameWorld){
         //TODO need to add rendering order first
         //Decorative.placeTree(gameWorld, new Vec2d(12,32));
+
+        Area2.gameWorld = gameWorld;
 
         placeHouse(gameWorld, new Vec2d(6,1), 1);
 
@@ -156,6 +163,7 @@ public class Area2 {
         CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(2,1)),
                 true, false, CollisionSystem.CollisionMask.NONE, FinalGame.PLAYER_LAYER);// only cares about player collision
         collisionComponent.linkCollisionCallback(Area2::WarpToCave);
+
         warp.addComponent(collisionComponent);
         warp.getTransform().position = new Vec2d(32,6);
 
@@ -169,6 +177,12 @@ public class Area2 {
         collisionInfo.gameObjectOther.getTransform().position = new Vec2d(5,5);
         DrawFogComponent fog = (DrawFogComponent)collisionInfo.gameObjectOther.getComponent("DrawFogComponent");
         fog.enable();
+
+        //Play bgm 2
+        BackgroundMusic.stopBGM(Area2.gameWorld);
+        BackgroundMusic.playBGM2(Area2.gameWorld);
+
+
         //TODO start fadein animation
     }
 
