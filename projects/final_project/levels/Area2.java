@@ -187,6 +187,8 @@ public class Area2 {
         DrawFogComponent fog = (DrawFogComponent)gameObject.getComponent("DrawFogComponent");
         fog.enable();
         Player.isBetweenAreas = false;
+        BackgroundMusic.stopBGM(gameWorld);
+        BackgroundMusic.playBGM2(gameWorld);
     }
 
     public static void FadeOutArea2_Cave1(CollisionSystem.CollisionInfo collisionInfo){

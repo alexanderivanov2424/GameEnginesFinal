@@ -51,7 +51,7 @@ public class Enemies {
         CollisionComponent collision = (CollisionComponent)enemy.getComponent("CollisionComponent");
         collision.disable();
 
-        DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
+        DelayEventComponent delayEventComponent = new DelayEventComponent(.1);
         delayEventComponent.linkEventCallback(Enemies::enemyRemoveCallback);
         enemy.addComponent(delayEventComponent);
     }

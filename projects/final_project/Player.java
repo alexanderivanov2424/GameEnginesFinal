@@ -15,9 +15,8 @@ import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import projects.WizTesting.WizGame;
-import projects.WizTesting.WizPlayer;
 
+import java.util.Optional;
 import java.util.Set;
 
 public class Player {
@@ -63,6 +62,7 @@ public class Player {
         player.addComponent(hitbox);
 
         HealthComponent healthComponent = new HealthComponent(10);
+        healthComponent.linkDeathCallback(Player::playerDeathCallback);
         player.addComponent(healthComponent);
 
         //TALKING TRIGGER
@@ -97,6 +97,10 @@ public class Player {
         }
     }
 
+    private static void playerDeathCallback(GameObject player){
+        //TODO game over/restart
+        System.out.println("you dead");
+    }
 
     private static AnimationGraphComponent getPlayerAnimationGraph(CollisionComponent playerAttackBox){
         Vec2d spriteOffset = new Vec2d(-1,-2);
