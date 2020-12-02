@@ -16,7 +16,7 @@ as well as an HP bar for the player. To help us debug, we added a debug mode whi
 on or off by changing the file DebugFlags in Engine/game/DebugFlags.
 
 For the final handin, we hope to add a full story/npcs, more enemies, better combat, more interactivity,
-and a cave area.
+and a cave area. We also want to add some more art in the main menu to make it look nice!
 
 Our engine features from previous weeks can be found below.
 
