@@ -58,6 +58,12 @@ public class App extends Application {
 
     mainMenu.addUIElement(startButton);
 
+    mainMenu.addUIElement(new UIText(new Vec2d(100,230), new Vec2d(400, 50),"CONTROLS:",
+            Color.BLACK, fontLarge));
+    mainMenu.addUIElement(new UIText(new Vec2d(100,280), new Vec2d(400, 500),"Use WASD to move, and " +
+            "press the space bar to attack.",
+            Color.BLACK, fontNormal));
+
     this.addScreen(mainMenu, "mainMenu");
   }
 
