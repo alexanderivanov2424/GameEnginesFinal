@@ -40,13 +40,13 @@ public class OldMan {
     }
 
     private static DialogNode getDialog(){
-        DialogNode dialog = new DialogNode("Hey you! You're finally asleep!",3);
+        DialogNode dialog = new DialogNode("Hey you! You're finally asleep!");
         DialogNode quest = new DialogNode("Quickly now! You must save the town...");
         DialogNode question = new DialogNode("Do you even know what is happening?");
 
         DialogNode A = new DialogNode("The evil villain, Slippy the Toad, has invaded our lands. \n" +
                 "You are the only person in these parts that has the power to take him on in battle.\n" +
-                "Be warned! He has many followers corrupted to his evil ways");
+                "Be warned! He has many followers that have been corrupted to his evil ways");
         DialogNode B = new DialogNode("Good, good! Jabralter must have already told you everything.");
 
         DialogNode sendoff = new DialogNode("Now go, defeat Slippy and his henchmen!\n" +

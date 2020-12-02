@@ -95,7 +95,8 @@ public class App extends Application {
             "WASD - to move Up, Left, Down, and Right\n" +
             "Space Bar - to attack\n" +
             "E - to talk\n" +
-            "I/J or Arrow Keys - to select dialog options";
+            "I/J or Arrow Keys - to change dialog options\n" +
+            "Enter - to select dialog option";
     controlsScreen.addUIElement(new UIText(new Vec2d(100,120), new Vec2d(400, 500),text, Color.BLACK, fontNormal));
 
 
