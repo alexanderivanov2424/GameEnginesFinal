@@ -7,6 +7,7 @@ import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.collisionShapes.PolygonShape;
 import engine.game.collisionShapes.Shape;
+import engine.game.components.animation.AnimationField;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
@@ -31,7 +32,7 @@ public class CollisionComponent extends Component{
 
     protected OnCollisionFunction onCollisionFunction;
 
-    protected Vec2d position;
+    public AnimationField<Vec2d> position;
     protected Shape shape;
 
     protected int collisionLayer = 0;
@@ -45,7 +46,7 @@ public class CollisionComponent extends Component{
 
     public CollisionComponent(Shape shape, boolean isStatic, boolean isSolid,
                               int collisionLayer, int collisionMask) {
-        this.position = new Vec2d(0,0);
+        this.position = new AnimationField<Vec2d>(new Vec2d(0,0));
         this.shape = shape;
         this.isStatic = isStatic;
         this.isSolid = isSolid;
@@ -55,7 +56,7 @@ public class CollisionComponent extends Component{
 
     public CollisionComponent(Vec2d position, Shape shape, boolean isStatic, boolean isSolid,
                               int collisionLayer, int collisionMask) {
-        this.position = position;
+        this.position = new AnimationField<Vec2d>(position);
         this.shape = shape;
         this.isStatic = isStatic;
         this.isSolid = isSolid;
@@ -74,8 +75,8 @@ public class CollisionComponent extends Component{
      */
     public Vec2d collide(CollisionComponent c){
         //need to set parent positions for shapes to collide properly.
-        this.shape.parentPosition = this.gameObject.getTransform().position.plus(this.position);
-        c.shape.parentPosition = c.gameObject.getTransform().position.plus(c.position);
+        this.shape.parentPosition = this.gameObject.getTransform().position.plus(this.position.value);
+        c.shape.parentPosition = c.gameObject.getTransform().position.plus(c.position.value);
         return this.shape.collides(c.shape);
     }
 
@@ -134,7 +135,7 @@ public class CollisionComponent extends Component{
 
     @Override
     public void onLateDraw(GraphicsContext g){
-        Vec2d pos = this.gameObject.getTransform().position.plus(this.position);
+        Vec2d pos = this.gameObject.getTransform().position.plus(this.position.value);
         Color color = this.isSolid ? Color.RED : Color.BLUE;
         if(this.shape instanceof AABShape){
             g.setStroke(color);

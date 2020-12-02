@@ -2,6 +2,7 @@ package engine.game.components;
 
 import engine.UIToolKit.UIElement;
 import engine.game.GameObject;
+import engine.game.components.animation.AnimationField;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -21,20 +22,20 @@ public abstract class Component {
 
     protected GameObject gameObject;
 
-    protected boolean disabled = false;
+    public AnimationField<Boolean> disabled = new AnimationField<Boolean>(false);
 
     public boolean NOT_FULLY_LOADED = false;
 
     public void disable(){
-        this.disabled = true;
+        this.disabled.value = true;
     }
 
     public void enable(){
-        this.disabled = false;
+        this.disabled.value = false;
     }
 
     public boolean isDisabled(){
-        return this.disabled;
+        return this.disabled.value;
     }
 
     public GameObject getGameObject(){

@@ -28,7 +28,11 @@ public class Player {
 
         player.addComponent(new CameraComponent(0, new Vec2d(0,0), new Vec2d(0,40), new Vec2d(0, 40)));
 
-        AnimationGraphComponent agc = getPlayerAnimationGraph();
+        CollisionComponent attackHitBox = new CollisionComponent(new CircleShape(new Vec2d(0,0),1),
+                false, false, FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
+        player.addComponent(attackHitBox);
+
+        AnimationGraphComponent agc = getPlayerAnimationGraph(attackHitBox);
         player.addComponent(agc);
 
         player.addComponent(new PlayerMovementComponent(5,agc));
@@ -63,7 +67,7 @@ public class Player {
         return player;
     }
 
-    private static AnimationGraphComponent getPlayerAnimationGraph(){
+    private static AnimationGraphComponent getPlayerAnimationGraph(CollisionComponent playerAttackBox){
         Vec2d spriteOffset = new Vec2d(-1,-2);
         AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
                 spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
@@ -73,6 +77,10 @@ public class Player {
                 spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
                 spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        idle_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
 
         AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
                 spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
@@ -82,6 +90,10 @@ public class Player {
                 spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
                 spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        walk_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
 
         AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
                 spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
@@ -91,6 +103,21 @@ public class Player {
                 spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
                 spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        attack_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,true});
+        attack_up.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(0,-1),new Vec2d(0,-2),new Vec2d(0,-3),new Vec2d(0,-2),new Vec2d(0,-1),new Vec2d(0,0)});
+
+        attack_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,true});
+        attack_left.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(-1,0),new Vec2d(-2,0),new Vec2d(-3,0),new Vec2d(-2,0),new Vec2d(-1,0),new Vec2d(0,0)});
+
+        attack_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,true});
+        attack_down.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(0,1),new Vec2d(0,2),new Vec2d(0,3),new Vec2d(0,2),new Vec2d(0,1),new Vec2d(0,0)});
+
+        attack_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,true});
+        attack_right.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(1,0),new Vec2d(2,0),new Vec2d(3,0),new Vec2d(2,0),new Vec2d(1,0),new Vec2d(0,0)});
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
                 new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},
