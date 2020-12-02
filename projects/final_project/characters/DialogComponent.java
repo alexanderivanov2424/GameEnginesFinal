@@ -96,6 +96,7 @@ public class DialogComponent extends ScreenEffectComponent {
 
     @Override
     public void onKeyPressed(KeyEvent e) {
+        if(this.currentNode == null) return;
         if(e.getCode() == KeyCode.ENTER){
             this.transition();
         }
