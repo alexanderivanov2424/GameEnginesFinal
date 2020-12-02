@@ -75,7 +75,7 @@ public class AudioComponent extends Component {
     @Override
     public void onTick(long nanosSincePreviousTick){
 
-        if(source != null) {
+        if(source != null && gainControl != null) {
             //Based on the game object's position from the source, reduce volume
             float dist = (float)gameObject.getTransform().position.dist(source.getTransform().position);
             if(-0.8f*dist < -80.0f) {

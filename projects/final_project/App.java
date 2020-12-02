@@ -8,6 +8,7 @@ import engine.UIToolKit.UIText;
 import engine.UIToolKit.UIViewport;
 import engine.game.GameWorld;
 import engine.support.Vec2d;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -21,6 +22,7 @@ public class App extends Application {
 
   private final Font fontLarge = Font.font("Ariel", FontWeight.BOLD, 50);
   private final Font fontNormal = Font.font("Ariel", FontWeight.NORMAL, 30);
+  private final Font fontHP = Font.font("Ariel", FontWeight.BOLD, 30);
 
   public App(String title) {
     super(title);
@@ -87,8 +89,34 @@ public class App extends Application {
      * Other Game Screen UI below
      */
 
+    //Health bar UI
+    gameScreen.addUIElement(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"HP",
+            Color.BLACK, fontHP));
+
+
+
     this.addScreen(gameScreen, "gameScreen");
 
+  }
+
+  private static class HPRect extends UIRect {
+
+    private double maxSize = size.x;
+
+    public HPRect(Vec2d position, Vec2d size, Color color) {
+      super(position, size, color);
+    }
+
+    @Override
+    public void onDraw(GraphicsContext g) {
+      Vec2d pos = this.getOffset();
+
+      //this.size.x = maxSize * player.
+
+      g.setFill(this.color);
+      g.fillRect(pos.x,pos.y,this.size.x,this.size.y);
+      super.onDraw(g);
+    }
   }
 
 }

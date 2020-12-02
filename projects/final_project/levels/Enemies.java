@@ -40,6 +40,8 @@ public class Enemies {
         healthComponent.linkDeathCallback(Enemies::enemyDeathCallback);
         enemy.addComponent(healthComponent);
 
+        enemy.addComponent(new IDComponent("goomba"));
+
         enemy.getTransform().position = pos;
         enemy.getTransform().size = new Vec2d(2,2);
         gameWorld.addGameObject(enemy);
