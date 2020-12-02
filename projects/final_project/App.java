@@ -58,7 +58,8 @@ public class App extends Application {
   private void createMainMenu(Screen mainMenu){
     mainMenu.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
 
-    mainMenu.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"S L I P P Y ' s   D E M I S E'",
+    mainMenu.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"S L I P P Y ' S   D E M I S E'",
+
             colorBorder, fontLarge));
 
     UIButton startButton = new UIButton(new Vec2d(100,120), new Vec2d(250,50), colorMain, colorBorder);

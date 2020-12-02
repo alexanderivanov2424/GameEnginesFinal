@@ -14,16 +14,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af822c5d-616a-4757-99b4-148efcbef835" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/projects/final_project/assets/sounds/bgm2.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/components/AudioComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/AudioComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INSTRUCTIONS" beforeDir="false" afterPath="$PROJECT_DIR$/INSTRUCTIONS" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/PlaytestingReports" beforeDir="false" afterPath="$PROJECT_DIR$/projects/PlaytestingReports" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/BackgroundMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/BackgroundMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/assets/sounds/sources" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/assets/sounds/sources" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/CaveLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/CaveLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Enemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Enemies.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,5 +133,23 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1493" height="248" key="GridCell.Tab.0.bottom" timestamp="1606877259203">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="248" key="GridCell.Tab.0.bottom/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606877259203" />
+    <state width="1493" height="248" key="GridCell.Tab.0.center" timestamp="1606877259203">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="248" key="GridCell.Tab.0.center/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606877259203" />
+    <state width="1493" height="248" key="GridCell.Tab.0.left" timestamp="1606877259202">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="248" key="GridCell.Tab.0.left/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606877259202" />
+    <state width="1493" height="248" key="GridCell.Tab.0.right" timestamp="1606877259203">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="248" key="GridCell.Tab.0.right/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1606877259203" />
   </component>
 </project>
