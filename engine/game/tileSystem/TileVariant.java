@@ -3,6 +3,7 @@ package engine.game.tileSystem;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
+import engine.game.collisionShapes.PolygonShape;
 import engine.game.collisionShapes.Shape;
 import engine.game.components.CollisionComponent;
 import engine.game.components.Component;
@@ -81,6 +82,7 @@ public abstract class TileVariant {
 
     public List<Component> getCollisionComponents(GameObject gameObject, Vec2d tileSize, int collisionLayer, int collisionMask){
         ArrayList<Component> ret = new ArrayList();
+
         if(this.collisionShape != null){
             ret.add(new CollisionComponent(this.collisionShape, true, true, collisionLayer, collisionMask));
             return ret;

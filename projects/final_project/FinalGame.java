@@ -59,13 +59,13 @@ public class FinalGame {
         //create cave Region
         Levels.cave = new Region();
         gameWorld.loadRegion(Levels.cave);
-        CaveLevel.setCaveLevel(caveTileMap, player, gameWorld);
+        CaveLevel.setCaveLevel(caveTileMap);
         caveTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         gameWorld.unloadRegion();
 
         //create area1 Region
         Levels.area1 = new Region();
-        gameWorld.loadRegion(Levels.area1 );
+        gameWorld.loadRegion(Levels.area1);
         Area1.setTiles(worldTileMap);
         worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         Area1.addGameObjects(gameWorld);
@@ -79,6 +79,8 @@ public class FinalGame {
         worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         Area2.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
+
+        gameWorld.processQueues();
 
         gameWorld.loadRegion(Levels.area1);
     }

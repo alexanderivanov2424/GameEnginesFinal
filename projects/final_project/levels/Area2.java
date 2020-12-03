@@ -2,7 +2,9 @@ package projects.final_project.levels;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.components.CameraComponent;
 import engine.game.components.SpriteComponent;
+import engine.game.components.screenEffects.FadeInEffect;
 import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.tileSystem.TileMap;
 import engine.game.collisionShapes.AABShape;
@@ -153,6 +155,7 @@ public class Area2 {
     }
 
     public static void LoadArea1(GameObject gameObject){
+        gameObject.addComponent(new FadeInEffect(0, 1));
         gameObject.gameWorld.unloadRegion();
         gameObject.gameWorld.loadRegion(Levels.area1);
         gameObject.getTransform().position = new Vec2d(38,20);
@@ -181,14 +184,18 @@ public class Area2 {
 
 
     public static void LoadCave1(GameObject gameObject){
+        gameObject.addComponent(new FadeInEffect(0, 1));
         gameObject.gameWorld.unloadRegion();
         gameObject.gameWorld.loadRegion(Levels.cave);
         gameObject.getTransform().position = new Vec2d(5,5);
         DrawFogComponent fog = (DrawFogComponent)gameObject.getComponent("DrawFogComponent");
         fog.enable();
-        Player.isBetweenAreas = false;
+        CameraComponent camera = (CameraComponent)gameObject.getComponent("CameraComponent");
+        camera.setHorizontalRange(new Vec2d(0,60));
+        camera.setVerticalRange(new Vec2d(0,30));
         BackgroundMusic.stopBGM(gameWorld);
         BackgroundMusic.playBGM2(gameWorld);
+        Player.isBetweenAreas = false;
     }
 
     public static void FadeOutArea2_Cave1(CollisionSystem.CollisionInfo collisionInfo){
@@ -275,6 +282,42 @@ public class Area2 {
         house.getTransform().position = pos;
 
         gameWorld.addGameObject(house);
+    }
+
+    public static void placeWarpToHouse(GameWorld gameWorld){
+        GameObject warp = new GameObject(gameWorld, 0);
+        CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(2,1)),
+                true, false, CollisionSystem.CollisionMask.NONE, FinalGame.PLAYER_LAYER);// only cares about player collision
+        collisionComponent.linkCollisionCallback(Area2::FadeOutArea2_House);
+        warp.addComponent(collisionComponent);
+        warp.getTransform().position = new Vec2d(32,7);
+
+        gameWorld.addGameObject(warp);
+    }
+
+
+    public static void LoadHouse(GameObject gameObject){
+        gameObject.addComponent(new FadeInEffect(0, 1));
+        gameObject.gameWorld.unloadRegion();
+        gameObject.gameWorld.loadRegion(Levels.cave);
+        gameObject.getTransform().position = new Vec2d(5,5);
+        DrawFogComponent fog = (DrawFogComponent)gameObject.getComponent("DrawFogComponent");
+        fog.enable();
+        CameraComponent camera = (CameraComponent)gameObject.getComponent("CameraComponent");
+        camera.setHorizontalRange(new Vec2d(0,0));
+        camera.setVerticalRange(new Vec2d(0,0));
+        BackgroundMusic.stopBGM(gameWorld);
+        BackgroundMusic.playBGM2(gameWorld);
+        Player.isBetweenAreas = false;
+    }
+
+    public static void FadeOutArea2_House(CollisionSystem.CollisionInfo collisionInfo){
+        if(!Player.isBetweenAreas) {
+            Player.isBetweenAreas = true;
+            FadeOutEffect fadeout = new FadeOutEffect(0, .5);
+            fadeout.linkEventCallback(Area2::LoadHouse);
+            collisionInfo.gameObjectOther.addComponent(fadeout);
+        }
     }
 
 

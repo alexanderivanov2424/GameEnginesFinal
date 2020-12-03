@@ -9,10 +9,7 @@ import engine.game.collisionShapes.AABShape;
 import engine.game.components.CollisionComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
-import projects.final_project.BackgroundMusic;
-import projects.final_project.NaturalElements;
-import projects.final_project.FinalGame;
-import projects.final_project.Player;
+import projects.final_project.*;
 import projects.final_project.characters.OldMan;
 
 public class Area1 {
@@ -114,6 +111,8 @@ public class Area1 {
 
         OldMan.placeOldMan(gameWorld, new Vec2d(7,33));
 
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(7,35));
+
         placeWarpToArea2(gameWorld);
     }
 
@@ -129,6 +128,7 @@ public class Area1 {
     }
 
     public static void LoadArea2(GameObject gameObject){
+        gameObject.addComponent(new FadeInEffect(0, 1));
         gameObject.gameWorld.unloadRegion();
         gameObject.gameWorld.loadRegion(Levels.area2);
 

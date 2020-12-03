@@ -88,15 +88,19 @@ public class GameWorld {
     }
 
     public void onTick(long nanosSincePreviousTick) {
+        processQueues();
+        this.tickSystem.onTick(nanosSincePreviousTick);
+        this.collisionSystem.onTick(nanosSincePreviousTick);
+        this.screenEffectSystem.onTick(nanosSincePreviousTick);
+    }
+
+    public void processQueues(){
         while(!addQueue.isEmpty()) {
             this.processGameObject(this.addQueue.remove(0));
         }
         while(!removeQueue.isEmpty()) {
             this.deprocessGameObject(this.removeQueue.remove(0));
         }
-        this.tickSystem.onTick(nanosSincePreviousTick);
-        this.collisionSystem.onTick(nanosSincePreviousTick);
-        this.screenEffectSystem.onTick(nanosSincePreviousTick);
     }
 
     public void onLateTick(){

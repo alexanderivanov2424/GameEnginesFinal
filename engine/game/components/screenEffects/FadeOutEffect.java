@@ -22,10 +22,6 @@ public class FadeOutEffect extends ScreenEffectComponent{
     private double orig_duration;
     private double duration;
 
-    private boolean firstFrame = true;
-
-    private boolean done = false;
-
     public FadeOutEffect(int viewport_id, double duration){
         this.viewport_id = viewport_id;
         this.orig_duration = duration;
@@ -44,12 +40,10 @@ public class FadeOutEffect extends ScreenEffectComponent{
 
     @Override
     public void postEffect(GraphicsContext g) {
-
-        if(firstFrame){
-            snapshot = new WritableImage((int)g.getCanvas().getWidth(),(int)g.getCanvas().getHeight());
-            g.getCanvas().snapshot(null, snapshot);
-            firstFrame = false;
-        } else if(this.viewport != null){
+        if(this.viewport == null){
+            this.viewport = this.gameObject.gameWorld.getViewport(this.viewport_id);
+        }
+        if(this.viewport != null){
             Vec2d corner = this.viewport.getGameWorldViewCorner();
             Vec2d size = this.viewport.getGameWorldViewSize();
 
@@ -65,12 +59,8 @@ public class FadeOutEffect extends ScreenEffectComponent{
 
     @Override
     public void onTick(long nanosSincePreviousTick) {
-        if(this.viewport == null){
-            this.viewport = this.gameObject.gameWorld.getViewport(this.viewport_id);
-        }
         this.duration -= nanosSincePreviousTick/1000000000.0;
-        if(duration <= 0 && !done){
-            done = true;
+        if(duration <= 0){
             this.gameObject.removeComponent(this);
             if(this.delayedEvent != null)
                 this.delayedEvent.execute(this.gameObject);

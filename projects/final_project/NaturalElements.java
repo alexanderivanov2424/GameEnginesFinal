@@ -45,7 +45,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places rocks int the game world
+     * Places rocks into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param size integer in {0, 1, 2, 3, 4}
@@ -67,7 +67,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places flowers int the game world
+     * Places flowers into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param type integer in 0 small patch, 1 large patch, 2 trunk
@@ -98,7 +98,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places flowers int the game world
+     * Places flowers into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param type integer in 0 small patch, 1 large patch, 2 trunk
@@ -129,7 +129,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places flowers int the game world
+     * Places flowers into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param type integer in 0 small patch, 1 large patch, 2 trunk
@@ -160,7 +160,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places flowers int the game world
+     * Places flowers into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param type integer in 0 small patch, 1 large patch, 2 trunk
@@ -191,7 +191,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places rock flowers int the game world
+     * Places rock flowers into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param color integer: 0 is white, 1 is yellow
@@ -220,7 +220,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places cactus int the game world
+     * Places cactus into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param size 0 is plain, 1 is right arm, 2 is left arm, 3 is full size.
@@ -265,7 +265,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places rocks int the game world
+     * Places stump into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      */
@@ -283,7 +283,7 @@ public class NaturalElements {
     }
 
     /**
-     * Places bush int the game world
+     * Places bush into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      * @param size 0 is small, 1 is medium, 2 is large, 3 is double.

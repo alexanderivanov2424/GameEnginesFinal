@@ -16,7 +16,7 @@ import projects.final_project.FinalGame;
 public class OldMan {
 
     public static void placeOldMan(GameWorld gameWorld, Vec2d position){
-        GameObject oldMan = new GameObject(gameWorld, 0);
+        GameObject oldMan = new GameObject(gameWorld, 1);
         AnimationGraphComponent agc = Characters.getCharacterAnimationGraph(new Vec2d(2,2), "old_man");
         agc.updateState(new Vec2d(0,1));
         oldMan.addComponent(agc);
@@ -61,32 +61,33 @@ public class OldMan {
     }
 
     private static AnimationGraphComponent getAnimationGraph(Vec2d CharacterSize, String spriteSheet){
+        Vec2d spriteOffset = new Vec2d(-1,-2);
         AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_left = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 1, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 1, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_down = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_left = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 9, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 9, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_down = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_left = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_down = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
-                new Vec2d(0,0), CharacterSize, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+                spriteOffset, CharacterSize, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
                 new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},

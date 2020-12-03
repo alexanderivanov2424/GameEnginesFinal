@@ -10,10 +10,18 @@ import org.w3c.dom.NamedNodeMap;
 public class VelocityComponent extends Component{
 
     public Vec2d velocity;
+    public double friction;
 
     public VelocityComponent(Vec2d velocity) {
         super();
         this.velocity = velocity;
+        friction = 1;
+    }
+
+    public VelocityComponent(Vec2d velocity, double friction) {
+        super();
+        this.velocity = velocity;
+        this.friction = friction;
     }
 
     @Override
@@ -32,6 +40,7 @@ public class VelocityComponent extends Component{
         Vec2d position = this.gameObject.getTransform().position;
         this.gameObject.getTransform().position =
                 new Vec2d(position.x + dt*this.velocity.x,position.y + dt*this.velocity.y);
+        this.velocity = this.velocity.smult(this.friction);
     };
 
     @Override

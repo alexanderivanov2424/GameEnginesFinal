@@ -2,6 +2,7 @@ package engine.game.components.animation;
 
 import engine.game.SpriteLoader;
 import engine.game.components.Component;
+import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -50,7 +51,7 @@ public class SpriteAnimationComponent extends AnimationComponent {
 
         this.cropStart = new Vec2d(0,0);
         this.cropSize = cropSize;
-        this.cropShift = cropSize;
+        this.cropShift = new Vec2d(cropSize.x, cropSize.y);
     }
 
     public SpriteAnimationComponent(String spriteSheetPath,
@@ -63,7 +64,7 @@ public class SpriteAnimationComponent extends AnimationComponent {
 
         this.cropStart = cropStart;
         this.cropSize = cropSize;
-        this.cropShift = cropSize;
+        this.cropShift = new Vec2d(cropSize.x, cropSize.y);
     }
 
     public SpriteAnimationComponent(String spriteSheetPath,
@@ -104,8 +105,6 @@ public class SpriteAnimationComponent extends AnimationComponent {
     @Override
     public void onDraw(GraphicsContext g){
         Vec2d pos = this.gameObject.getTransform().position;
-        Vec2d size = this.gameObject.getTransform().size;
-
         if(this.horizontalFlip) {
             g.drawImage(this.spriteSheet,
                     this.cropStart.x + this.cropShift.x * this.currentStep,
@@ -126,6 +125,11 @@ public class SpriteAnimationComponent extends AnimationComponent {
     @Override
     public String getTag() {
         return "SpriteAnimationComponent";
+    }
+
+    @Override
+    public int getSystemFlags() {
+        return SystemFlag.TickSystem | SystemFlag.RenderSystem;
     }
 
     public Element getXML(Document doc){

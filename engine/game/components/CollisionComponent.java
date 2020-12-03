@@ -150,7 +150,17 @@ public class CollisionComponent extends Component{
             g.strokeOval(pos.x + ((CircleShape) this.shape).getRelativeCenter().x - R,
                     pos.y + ((CircleShape) this.shape).getRelativeCenter().y - R, 2*R, 2*R);
         } else if(this.shape instanceof PolygonShape){
-            System.err.println("POLYGON COLLISION DEBUG NOT YET IMPLEMENTED");
+            g.setStroke(color);
+            g.setLineWidth(.05);
+            PolygonShape poly = (PolygonShape)this.shape;
+            double[] xpoints = new double[poly.getNumPoints()];
+            double[] ypoints = new double[poly.getNumPoints()];
+            for(int i = 0; i < poly.getNumPoints(); i++){
+                Vec2d p = poly.getRelativePoints()[i].plus(pos);
+                xpoints[i] = p.x;
+                ypoints[i] = p.y;
+            }
+            g.strokePolygon(xpoints, ypoints, poly.getNumPoints());
         }
 
     }

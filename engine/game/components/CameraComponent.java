@@ -19,6 +19,8 @@ public class CameraComponent extends Component{
     private Vec2d horizontalRange;
     private Vec2d verticalRange;
 
+    private boolean rangeDisabled = false;
+
     //TODO add smoothness
     //TODO add option for level bounds (camera cant go past certain point but player can).
 
@@ -34,6 +36,14 @@ public class CameraComponent extends Component{
         this.offset = offset;
         this.horizontalRange = horizontalRange;
         this.verticalRange = verticalRange;
+    }
+
+    public void enableRange(){
+        this.rangeDisabled = false;
+    }
+
+    public void disableRange(){
+        this.rangeDisabled = true;
     }
 
     public void setHorizontalRange(Vec2d horizontalRange){
@@ -62,9 +72,9 @@ public class CameraComponent extends Component{
 
         double camera_x = pos.x + this.offset.x/2;
         double camera_y = pos.y + this.offset.y/2;
-        if(horizontalRange != null)
+        if(horizontalRange != null && !this.rangeDisabled)
             camera_x = Math.max(this.horizontalRange.x+view_size.x/2, Math.min(this.horizontalRange.y-view_size.x/2,camera_x));
-        if(verticalRange != null)
+        if(verticalRange != null && !this.rangeDisabled)
             camera_y = Math.max(this.verticalRange.x+view_size.y/2, Math.min(this.verticalRange.y-view_size.y/2,camera_y));
         this.viewport.setGamePosition(new Vec2d(camera_x, camera_y));
     };
