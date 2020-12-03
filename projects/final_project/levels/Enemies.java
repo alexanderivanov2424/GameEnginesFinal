@@ -33,8 +33,15 @@ public class Enemies {
         enemy.addComponent(agc);
         enemy.addComponent(new GoombaMovementComponent(2, agc));
 
+
         enemy.addComponent(new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)),
-                false, true, ENEMY_LAYER, ENEMY_MASK));
+                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
+
+        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)),
+                false, false, FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
+        hitCollisionComponent.linkCollisionCallback(Enemies::onHitCallback);
+        enemy.addComponent(hitCollisionComponent);
+
 
         HealthComponent healthComponent = new HealthComponent(5);
         healthComponent.linkDeathCallback(Enemies::enemyDeathCallback);
@@ -45,6 +52,19 @@ public class Enemies {
         enemy.getTransform().position = pos;
         enemy.getTransform().size = new Vec2d(2,2);
         gameWorld.addGameObject(enemy);
+    }
+
+    private static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo) {
+
+        if(collisionInfo.gameObjectSelf.getComponent("ShakeComponent") == null) {
+            System.out.println("hit recognized");
+            collisionInfo.gameObjectSelf.addComponent(new ShakeComponent(.1, .1));
+            HealthComponent health = (HealthComponent)collisionInfo.gameObjectSelf.getComponent("HealthComponent");
+            if(health != null){
+                health.hit(1);
+            }
+
+        }
     }
 
     private static void enemyDeathCallback(GameObject enemy){

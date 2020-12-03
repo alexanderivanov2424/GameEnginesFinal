@@ -228,18 +228,6 @@ public class Player {
                 this.animationGraphComponent.queueAnimation("attack", true);
 
                 swing.start();
-
-                for(GameObject object : gameObject.gameWorld.getGameObjects()) {
-
-                    //TODO very scuffed way of doing damage
-                    if(!object.equals(this.getGameObject()) &&
-                            object.getTransform().position.dist(this.getGameObject().getTransform().position) < 4) {
-                        if(! (object.getComponent("HealthComponent") == null)) {
-                            HealthComponent healthComponent = (HealthComponent)object.getComponent("HealthComponent");
-                            healthComponent.hit(.1);
-                        }
-                    }
-                }
             }
 
             CollisionComponent talk = (CollisionComponent)this.gameObject.getComponent("TalkCollisionComponent");

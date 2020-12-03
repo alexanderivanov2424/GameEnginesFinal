@@ -166,7 +166,7 @@ public class App extends Application {
     gameScreen.addUIElement(new UIRect(new Vec2d(8,5), new Vec2d(46, 29),
             Color.rgb(90,90,90,0.9)));
     gameScreen.addUIElement(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"HP",
-            Color.rgb(180,180,180), fontHP));
+            Color.rgb(220,220,220), fontHP));
     gameScreen.addUIElement(new UIRect(new Vec2d(62,6), new Vec2d(140, 30),
             Color.rgb(70,70,70,0.9)));
     gameScreen.addUIElement(new HPRect(new Vec2d(68,12), new Vec2d(128, 18),
