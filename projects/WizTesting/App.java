@@ -79,8 +79,6 @@ public class App extends Application {
     gameScreen.addUIElement(new UIRect(new Vec2d(0,0),
             new Vec2d(this.currentStageSize.x,this.currentStageSize.y), colorBackground));
 
-
-
     UIViewport viewport = new UIViewport(new Vec2d(0,0),
             new Vec2d(this.originalStageSize.x, this.originalStageSize.y),
             gameWorld, new Vec2d(0,0), 50, true);

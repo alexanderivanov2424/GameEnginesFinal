@@ -35,8 +35,15 @@ public class Enemies {
         enemy.addComponent(agc);
         enemy.addComponent(new GoombaMovementComponent(2, agc));
 
+
         enemy.addComponent(new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)),
-                false, true, ENEMY_LAYER, ENEMY_MASK));
+                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
+
+        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)),
+                false, false, FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
+        hitCollisionComponent.linkCollisionCallback(Enemies::onHitCallback);
+        enemy.addComponent(hitCollisionComponent);
+
 
         HealthComponent healthComponent = new HealthComponent(5);
         healthComponent.linkDeathCallback(Enemies::enemyDeathCallback);

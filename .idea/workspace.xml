@@ -15,20 +15,10 @@
   <component name="ChangeListManager">
     <list default="true" id="af822c5d-616a-4757-99b4-148efcbef835" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/components/CollisionComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/CollisionComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/game/components/LightComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/game/components/LightComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/BackgroundMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/BackgroundMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/FinalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/FinalGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/MiscElements.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/MiscElements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/WizTesting/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/WizTesting/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/final_project/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/assets/house.png" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/assets/house.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/assets/house.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/assets/house.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area1.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Area2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/CaveLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Cave1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Enemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Enemies.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/House1.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/House1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/final_project/levels/Levels.java" beforeDir="false" afterPath="$PROJECT_DIR$/projects/final_project/levels/Levels.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
