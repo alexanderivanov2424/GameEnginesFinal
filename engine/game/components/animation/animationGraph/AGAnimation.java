@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public abstract class AGAnimation extends AGNode {
+public class AGAnimation extends AGNode {
     private AnimationComponent animationComponent;
 
     public AGAnimation(String name, AnimationComponent animationComponent){

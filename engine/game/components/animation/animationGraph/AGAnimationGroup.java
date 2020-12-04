@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 
 public class AGAnimationGroup  extends AGNode {
 
-    private AnimationComponent[] animationComponents;
+    private AGNode[] animationComponents;
     private Vec2d[] stateSpacePosition;
 
     private Vec2d state = new Vec2d(0,0);
@@ -17,7 +17,7 @@ public class AGAnimationGroup  extends AGNode {
     private int current_animation = 0;
     private boolean stateUpdated = true;
 
-    public AGAnimationGroup(String name, AnimationComponent[] animationComponents, Vec2d[] stateSpacePosition) {
+    public AGAnimationGroup(String name, AGNode[] animationComponents, Vec2d[] stateSpacePosition) {
         super(name);
         this.animationComponents = animationComponents;
         this.stateSpacePosition = stateSpacePosition;
@@ -25,7 +25,7 @@ public class AGAnimationGroup  extends AGNode {
         assert(animationComponents.length>0);
     }
 
-    public AGAnimationGroup(String name, String onFinishTransitionTo, AnimationComponent[] animationComponents, Vec2d[] stateSpacePosition){
+    public AGAnimationGroup(String name, String onFinishTransitionTo, AGNode[] animationComponents, Vec2d[] stateSpacePosition){
         super(name, onFinishTransitionTo);
         this.animationComponents = animationComponents;
         this.stateSpacePosition = stateSpacePosition;
@@ -33,13 +33,23 @@ public class AGAnimationGroup  extends AGNode {
         assert(animationComponents.length>0);
     }
 
-    public void updateState(Vec2d newState){
-        this.state = newState;
-        stateUpdated = true;
+    @Override
+    public void updateState(Vec2d[] newState){
+        if(newState.length > 0){
+            this.state = newState[0];
+            stateUpdated = true;
+            Vec2d[] shortened = new Vec2d[newState.length-1];
+            for(int i = 1; i < newState.length; i++){
+                shortened[i-1] = newState[i];
+            }
+            for(AGNode agn : this.animationComponents){
+                agn.updateState(shortened);
+            }
+        }
     }
 
     public boolean justFinished(){
-        return animationComponents[this.current_animation].justFinished;
+        return animationComponents[this.current_animation].justFinished();
     }
 
     public void restart(){
@@ -67,7 +77,7 @@ public class AGAnimationGroup  extends AGNode {
     }
 
     public void setGameObject(GameObject g){
-        for(AnimationComponent ac: this.animationComponents){
+        for(AGNode ac: this.animationComponents){
             ac.setGameObject(g);
         }
     }

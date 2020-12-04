@@ -7,6 +7,7 @@ import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.animation.AnimationComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
+import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
 import engine.game.components.animation.animationGraph.AnimationGraphComponent;
@@ -40,7 +41,7 @@ public class Enemies {
                 false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
 
         CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)),
-                false, false, FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
+                false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
         hitCollisionComponent.linkCollisionCallback(Enemies::onHitCallback);
         enemy.addComponent(hitCollisionComponent);
 
@@ -96,6 +97,10 @@ public class Enemies {
                 spriteOffset, GOOMBA_SIZE, 1, new Vec2d(0,0*22), cropSize, new Vec2d(25,0), .05);
         AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
                 spriteOffset, GOOMBA_SIZE, 1, new Vec2d(0,3*22), cropSize, new Vec2d(25,0), .05);
+        AGNode N_idle_up = new AGAnimation("idle_up", idle_up);
+        AGNode N_idle_left = new AGAnimation("idle_left", idle_left);
+        AGNode N_idle_down = new AGAnimation("idle_down", idle_down);
+        AGNode N_idle_right = new AGAnimation("idle_right", idle_right);
 
         AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
                 spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,1*22), cropSize, new Vec2d(25,0), .1);
@@ -105,14 +110,18 @@ public class Enemies {
                 spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,0*22), cropSize, new Vec2d(25,0), .1);
         AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
                 spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,3*22), cropSize, new Vec2d(25,0), .1);
+        AGNode N_walk_up = new AGAnimation("walk_up", walk_up);
+        AGNode N_walk_left = new AGAnimation("walk_left", walk_left);
+        AGNode N_walk_down = new AGAnimation("walk_down", walk_down);
+        AGNode N_walk_right = new AGAnimation("walk_right", walk_right);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
-                new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},
+                new AGNode[]{N_idle_up, N_idle_left, N_idle_down, N_idle_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         idle.setInterruptible(true);
 
         AGAnimationGroup walk = new AGAnimationGroup("walk",
-                new AnimationComponent[]{walk_up, walk_left, walk_down, walk_right},
+                new AGNode[]{N_walk_up, N_walk_left, N_walk_down, N_walk_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         walk.setInterruptible(true);
 
@@ -165,19 +174,19 @@ public class Enemies {
 
                 if(direction.equals("up")) {
                     dy += speed * dt;
-                    this.animationGraphComponent.updateState(new Vec2d(0,-1));
+                    this.animationGraphComponent.updateState(new Vec2d[]{new Vec2d(0,-1)});
                 }
                 if(direction.equals("left")) {
                     dx += speed * dt;
-                    this.animationGraphComponent.updateState(new Vec2d(-1,0));
+                    this.animationGraphComponent.updateState(new Vec2d[]{new Vec2d(-1,0)});
                 }
                 if(direction.equals("down")) {
                     dy -= speed * dt;
-                    this.animationGraphComponent.updateState(new Vec2d(0,1));
+                    this.animationGraphComponent.updateState(new Vec2d[]{new Vec2d(0,1)});
                 }
                 if(direction.equals("right")) {
                     dx -= speed * dt;
-                    this.animationGraphComponent.updateState(new Vec2d(1,0));
+                    this.animationGraphComponent.updateState(new Vec2d[]{new Vec2d(1,0)});
                 }
             }
 

@@ -25,7 +25,7 @@ public class MiscElements {
                 FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
 
         CollisionComponent hitComponent = new CollisionComponent(new CircleShape(new Vec2d(0,-.25), .5), true, false,
-                FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
+                CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
         hitComponent.linkCollisionCallback(MiscElements::onHitCallback);
         barrel.addComponent(hitComponent);
 
@@ -68,6 +68,10 @@ public class MiscElements {
         SpriteAnimationComponent animation = new SpriteAnimationComponent(FinalGame.getSpritePath("coin"),
                 new Vec2d(-.25,-.25), new Vec2d(.5,.5), 8, new Vec2d(0,0), new Vec2d(16,16), new Vec2d(16,0), .05);
         coin.addComponent(animation);
+
+        CollisionComponent coinCollision = new CollisionComponent(new CircleShape(new Vec2d(0,0), .5), false, true,
+                CollisionSystem.CollisionMask.NONE, FinalGame.TILE_LAYER); //collide with tiles
+        coin.addComponent(coinCollision);
 
         CollisionComponent coinPickup = new CollisionComponent(new CircleShape(new Vec2d(0,0), .5), true, false,
                 FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);

@@ -1,11 +1,13 @@
 package engine.game.components.animation.animationGraph;
 
 import engine.game.GameObject;
+import engine.game.components.animation.AnimationComponent;
+import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public abstract class AGNode {
+public abstract class AGNode{
     public String name;
 
     public String onFinishTransitionTo = null;
@@ -24,6 +26,8 @@ public abstract class AGNode {
     public void setInterruptible(boolean interruptible){
         this.interruptible = interruptible;
     }
+
+    public void updateState(Vec2d[] newState){return;}
 
     public abstract boolean justFinished();
 

@@ -5,6 +5,7 @@ import engine.game.GameWorld;
 import engine.game.components.TextBoxComponent;
 import engine.game.components.animation.AnimationComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
+import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
 import engine.game.components.animation.animationGraph.AnimationGraphComponent;
@@ -55,6 +56,10 @@ public class Characters {
                 spriteOffset, CharacterSize, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
                 spriteOffset, CharacterSize, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AGNode N_idle_up = new AGAnimation("idle_up", idle_up);
+        AGNode N_idle_left = new AGAnimation("idle_left", idle_left);
+        AGNode N_idle_down = new AGAnimation("idle_down", idle_down);
+        AGNode N_idle_right = new AGAnimation("idle_right", idle_right);
 
         AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
                 spriteOffset, CharacterSize, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
@@ -64,6 +69,10 @@ public class Characters {
                 spriteOffset, CharacterSize, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
                 spriteOffset, CharacterSize, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AGNode N_walk_up = new AGAnimation("walk_up", walk_up);
+        AGNode N_walk_left = new AGAnimation("walk_left", walk_left);
+        AGNode N_walk_down = new AGAnimation("walk_down", walk_down);
+        AGNode N_walk_right = new AGAnimation("walk_right", walk_right);
 
         AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
                 spriteOffset, CharacterSize, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
@@ -73,19 +82,23 @@ public class Characters {
                 spriteOffset, CharacterSize, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath(spriteSheet),
                 spriteOffset, CharacterSize, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AGNode N_attack_up = new AGAnimation("attack_up", attack_up);
+        AGNode N_attack_left = new AGAnimation("attack_left", attack_left);
+        AGNode N_attack_down = new AGAnimation("attack_down", attack_down);
+        AGNode N_attack_right = new AGAnimation("attack_right", attack_right);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
-                new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},
+                new AGNode[]{N_idle_up, N_idle_left, N_idle_down, N_idle_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         idle.setInterruptible(true);
 
         AGAnimationGroup walk = new AGAnimationGroup("walk",
-                new AnimationComponent[]{walk_up, walk_left, walk_down, walk_right},
+                new AGNode[]{N_walk_up, N_walk_left, N_walk_down, N_walk_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         walk.setInterruptible(true);
 
         AGAnimationGroup attack = new AGAnimationGroup("attack", "idle",
-                new AnimationComponent[]{attack_up, attack_left, attack_down, attack_right},
+                new AGNode[]{N_attack_up, N_attack_left, N_attack_down, N_attack_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         attack.setInterruptible(false);
 

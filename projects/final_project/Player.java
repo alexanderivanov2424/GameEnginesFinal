@@ -4,6 +4,7 @@ import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
+import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
 import engine.game.components.animation.animationGraph.AnimationGraphComponent;
@@ -109,70 +110,189 @@ public class Player {
 
     private static AnimationGraphComponent getPlayerAnimationGraph(CollisionComponent playerAttackBox){
         Vec2d spriteOffset = new Vec2d(-1,-2);
-        AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+
+        //IDLE SWORD
+        AnimationComponent idle_sword_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent idle_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent idle_sword_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent idle_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent idle_sword_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent idle_sword_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        idle_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
-        idle_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
-        idle_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
-        idle_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_sword_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_sword_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_sword_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_sword_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        AGNode N_idle_sword_up = new AGAnimation("idle_sword_up", idle_sword_up);
+        AGNode N_idle_sword_left = new AGAnimation("idle_sword_left", idle_sword_left);
+        AGNode N_idle_sword_down = new AGAnimation("idle_sword_down", idle_sword_down);
+        AGNode N_idle_sword_right = new AGAnimation("idle_sword_right", idle_sword_right);
 
-        AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        //WALK SWORD
+        AnimationComponent walk_sword_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent walk_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent walk_sword_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent walk_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent walk_sword_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent walk_sword_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        walk_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
-        walk_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
-        walk_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
-        walk_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_sword_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_sword_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_sword_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_sword_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        AGNode N_walk_sword_up = new AGAnimation("walk_sword_up", walk_sword_up);
+        AGNode N_walk_sword_left = new AGAnimation("walk_sword_left", walk_sword_left);
+        AGNode N_walk_sword_down = new AGAnimation("walk_sword_down", walk_sword_down);
+        AGNode N_walk_sword_right = new AGAnimation("walk_sword_right", walk_sword_right);
 
-        AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        //ATTACK SWORD
+        AnimationComponent attack_sword_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,7*192), new Vec2d(192,192), new Vec2d(192,0), .05);
-        AnimationComponent attack_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent attack_sword_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,8*192), new Vec2d(192,192), new Vec2d(192,0), .05);
-        AnimationComponent attack_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent attack_sword_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,9*192), new Vec2d(192,192), new Vec2d(192,0), .05);
-        AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
+        AnimationComponent attack_sword_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
                 new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,10*192), new Vec2d(192,192), new Vec2d(192,0), .05);
-        attack_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
-        attack_up.addAnimationSequence(playerAttackBox.position,
+        attack_sword_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_sword_up.addAnimationSequence(playerAttackBox.position,
                 new Vec2d[]{new Vec2d(0,0),new Vec2d(-1,-.5),new Vec2d(-.5,-.5),new Vec2d(-1,-1),new Vec2d(0,-2),new Vec2d(1.5,-1)});
 
-        attack_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
-        attack_left.addAnimationSequence(playerAttackBox.position,
+        attack_sword_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_sword_left.addAnimationSequence(playerAttackBox.position,
                 new Vec2d[]{new Vec2d(0,0),new Vec2d(0,0),new Vec2d(.5,-.75),new Vec2d(0,-.5),new Vec2d(-2,-1),new Vec2d(-.75,-1)});
 
-        attack_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
-        attack_down.addAnimationSequence(playerAttackBox.position,
+        attack_sword_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_sword_down.addAnimationSequence(playerAttackBox.position,
                 new Vec2d[]{new Vec2d(0,0),new Vec2d(-.5,-.5),new Vec2d(-.75,-1),new Vec2d(-.75,-1),new Vec2d(0,.5),new Vec2d(1.5,-.5)});
 
-        attack_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
-        attack_right.addAnimationSequence(playerAttackBox.position,
+        attack_sword_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_sword_right.addAnimationSequence(playerAttackBox.position,
                 new Vec2d[]{new Vec2d(0,0),new Vec2d(0,0),new Vec2d(-.5,-.75),new Vec2d(0,-.5),new Vec2d(2,-1),new Vec2d(.75,-1)});
+        AGNode N_attack_sword_up = new AGAnimation("attack_sword_up", attack_sword_up);
+        AGNode N_attack_sword_left = new AGAnimation("attack_sword_left", attack_sword_left);
+        AGNode N_attack_sword_down = new AGAnimation("attack_sword_down", attack_sword_down);
+        AGNode N_attack_sword_right = new AGAnimation("attack_sword_right", attack_sword_right);
+
+
+
+        //IDLE AXE
+        AnimationComponent idle_axe_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent idle_axe_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent idle_axe_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent idle_axe_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        idle_axe_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_axe_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_axe_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        idle_axe_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true});
+        AGNode N_idle_axe_up = new AGAnimation("idle_axe_up", idle_axe_up);
+        AGNode N_idle_axe_left = new AGAnimation("idle_axe_left", idle_axe_left);
+        AGNode N_idle_axe_down = new AGAnimation("idle_axe_down", idle_axe_down);
+        AGNode N_idle_axe_right = new AGAnimation("idle_axe_right", idle_axe_right);
+
+        //WALK AXE
+        AnimationComponent walk_axe_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent walk_axe_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent walk_axe_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent walk_axe_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                spriteOffset, PLAYER_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        walk_axe_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_axe_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_axe_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        walk_axe_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,true,true,true,true,true,true,true,true});
+        AGNode N_walk_axe_up = new AGAnimation("walk_axe_up", walk_axe_up);
+        AGNode N_walk_axe_left = new AGAnimation("walk_axe_left", walk_axe_left);
+        AGNode N_walk_axe_down = new AGAnimation("walk_axe_down", walk_axe_down);
+        AGNode N_walk_axe_right = new AGAnimation("walk_axe_right", walk_axe_right);
+
+        //ATTACK AXE
+        AnimationComponent attack_axe_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,7*192), new Vec2d(192,192), new Vec2d(192,0), .1);
+        AnimationComponent attack_axe_left = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,8*192), new Vec2d(192,192), new Vec2d(192,0), .1);
+        AnimationComponent attack_axe_down = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,9*192), new Vec2d(192,192), new Vec2d(192,0), .1);
+        AnimationComponent attack_axe_right = new SpriteAnimationComponent(FinalGame.getSpritePath("player_axe"),
+                new Vec2d(-3,-4), PLAYER_SIZE.smult(3), 6, new Vec2d(0,10*192), new Vec2d(192,192), new Vec2d(192,0), .1);
+        attack_axe_up.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_axe_up.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(0,0),new Vec2d(-.5,-.5),new Vec2d(-.5,-.5),new Vec2d(-.5,-1),new Vec2d(0,-1.5),new Vec2d(1.5,-1)});
+
+        attack_axe_left.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_axe_left.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(0,0),new Vec2d(0,-.25),new Vec2d(.25,-.75),new Vec2d(-.5,-.5),new Vec2d(-1,-1),new Vec2d(-.75,-1)});
+
+        attack_axe_down.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_axe_down.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(0,0),new Vec2d(-.5,-.5),new Vec2d(-.5,-.5),new Vec2d(-.5,-.5),new Vec2d(0,0),new Vec2d(1,-.5)});
+
+        attack_axe_right.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true,false,false,false,false,false});
+        attack_axe_right.addAnimationSequence(playerAttackBox.position,
+                new Vec2d[]{new Vec2d(0,0),new Vec2d(0,0),new Vec2d(-.5,-.25),new Vec2d(.5,-.5),new Vec2d(1,-1),new Vec2d(.75,-1)});
+        AGNode N_attack_axe_up = new AGAnimation("attack_axe_up", attack_axe_up);
+        AGNode N_attack_axe_left = new AGAnimation("attack_axe_left", attack_axe_left);
+        AGNode N_attack_axe_down = new AGAnimation("attack_axe_down", attack_axe_down);
+        AGNode N_attack_axe_right = new AGAnimation("attack_axe_right", attack_axe_right);
+
+        //GROUPS
+
+        //SWORD
+        AGAnimationGroup idle_sword = new AGAnimationGroup("idle_sword",
+                new AGNode[]{N_idle_sword_up, N_idle_sword_left, N_idle_sword_down, N_idle_sword_right},
+                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        idle_sword.setInterruptible(true);
+
+        AGAnimationGroup walk_sword = new AGAnimationGroup("walk_sword",
+                new AGNode[]{N_walk_sword_up, N_walk_sword_left, N_walk_sword_down, N_walk_sword_right},
+                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        walk_sword.setInterruptible(true);
+
+        AGAnimationGroup attack_sword = new AGAnimationGroup("attack_sword", "idle_sword",
+                new AGNode[]{N_attack_sword_up, N_attack_sword_left, N_attack_sword_down, N_attack_sword_right},
+                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        attack_sword.setInterruptible(false);
+
+        //AXE
+        AGAnimationGroup idle_axe = new AGAnimationGroup("idle_axe",
+                new AGNode[]{N_idle_axe_up, N_idle_axe_left, N_idle_axe_down, N_idle_axe_right},
+                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        idle_axe.setInterruptible(true);
+
+        AGAnimationGroup walk_axe = new AGAnimationGroup("walk_axe",
+                new AGNode[]{N_walk_axe_up, N_walk_axe_left, N_walk_axe_down, N_walk_axe_right},
+                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        walk_axe.setInterruptible(true);
+
+        AGAnimationGroup attack_axe = new AGAnimationGroup("attack_axe", "idle_axe",
+                new AGNode[]{N_attack_axe_up, N_attack_axe_left, N_attack_axe_down, N_attack_axe_right},
+                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+        attack_axe.setInterruptible(false);
+
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
-                new AnimationComponent[]{idle_up, idle_left, idle_down, idle_right},
-                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+                new AGNode[]{idle_sword, idle_axe},
+                new Vec2d[]{new Vec2d(0,0), new Vec2d(0,1)});
         idle.setInterruptible(true);
 
         AGAnimationGroup walk = new AGAnimationGroup("walk",
-                new AnimationComponent[]{walk_up, walk_left, walk_down, walk_right},
-                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+                new AGNode[]{walk_sword, walk_axe},
+                new Vec2d[]{new Vec2d(0,0), new Vec2d(0,1)});
         walk.setInterruptible(true);
 
         AGAnimationGroup attack = new AGAnimationGroup("attack", "idle",
-                new AnimationComponent[]{attack_up, attack_left, attack_down, attack_right},
-                new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
+                new AGNode[]{attack_sword, attack_axe},
+                new Vec2d[]{new Vec2d(0,0), new Vec2d(0,1)});
         attack.setInterruptible(false);
+
 
         AGNode[] animationNodes = new AGNode[]{idle, walk, attack};
         AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
@@ -184,6 +304,9 @@ public class Player {
 
         private Vec2d direction = new Vec2d(0,1);
         private double speed;
+
+        private int currentWeapon = 0; // 0-sword 1-axe 2-bow
+        private boolean justSwitched = false;
 
         private AnimationGraphComponent animationGraphComponent;
 
@@ -208,10 +331,19 @@ public class Player {
             boolean D = keyState.contains(KeyCode.D);
             boolean ATTACK = keyState.contains(KeyCode.SPACE);
             boolean E = keyState.contains(KeyCode.E);
+            boolean Q = keyState.contains(KeyCode.Q);
             if(W) dy += speed * dt;
             if(S) dy -= speed * dt;
             if(A) dx += speed * dt;
             if(D) dx -= speed * dt;
+
+            if(Q && !justSwitched){
+                this.currentWeapon += 1;
+                this.currentWeapon = this.currentWeapon % 3;
+                justSwitched = true;
+            } else if(!Q){
+                justSwitched = false;
+            }
 
             if(!(W || A || S || D || ATTACK)){
                 swing.stop();
@@ -239,7 +371,7 @@ public class Player {
                     talk.disable();
                 }
             }
-            this.animationGraphComponent.updateState(this.direction);
+            this.animationGraphComponent.updateState(new Vec2d[]{new Vec2d(0,this.currentWeapon), this.direction});
 
 
 

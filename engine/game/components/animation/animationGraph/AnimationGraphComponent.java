@@ -36,7 +36,7 @@ public class AnimationGraphComponent extends Component {
         }
     }
 
-    public void updateState(Vec2d state){
+    public void updateState(Vec2d[] state){
         if(this.nodes[this.currentNode] instanceof AGAnimationGroup){
             AGAnimationGroup g = (AGAnimationGroup)(this.nodes[this.currentNode]);
             g.updateState(state);
