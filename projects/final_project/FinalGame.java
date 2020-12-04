@@ -77,10 +77,18 @@ public class FinalGame {
         Area2.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
-        //create area2 Region
+        //create house Region
         Levels.house = new Region();
         gameWorld.loadRegion(Levels.house);
         House1.addGameObjects(gameWorld);
+        gameWorld.unloadRegion();
+
+        //create area2 Region
+        Levels.area3 = new Region();
+        gameWorld.loadRegion(Levels.area3);
+        Area3.setTiles(worldTileMap);
+        worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
+        Area3.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
         gameWorld.processQueues();

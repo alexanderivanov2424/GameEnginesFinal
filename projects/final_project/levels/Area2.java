@@ -185,7 +185,7 @@ public class Area2 {
         gameObject.gameWorld.loadRegion(Levels.cave);
         gameObject.getTransform().position = new Vec2d(5,1.5);
         DrawFogComponent fog = (DrawFogComponent)gameObject.getComponent("DrawFogComponent");
-        //fog.enable();
+        fog.enable();
         CameraComponent camera = (CameraComponent)gameObject.getComponent("CameraComponent");
         camera.setHorizontalRange(new Vec2d(0,60));
         camera.setVerticalRange(new Vec2d(0,30));

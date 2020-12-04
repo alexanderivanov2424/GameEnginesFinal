@@ -24,4 +24,10 @@ public class Levels {
     A little house in Area 2 to flex the lighting.
      */
     public static Region house;
+
+
+    /*
+    The home of Slippy the Toad
+     */
+    public static Region area3;
 }

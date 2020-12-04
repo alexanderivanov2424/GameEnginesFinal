@@ -8,8 +8,27 @@ import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class MiscElements {
+
+    /**
+     * Places torch into the game world
+     * @param gameWorld Gameworld to add to
+     * @param pos location in game world
+     */
+    public static void placeTorch(GameWorld gameWorld, int layer, Vec2d pos){
+        GameObject torch = new GameObject(gameWorld, layer);
+
+        SpriteAnimationComponent animation = new SpriteAnimationComponent(FinalGame.getSpritePath("cave_sprite_sheet"),
+                new Vec2d(-1,-2), new Vec2d(2, 2), 4, new Vec2d(256,408), new Vec2d(24,24), new Vec2d(24,0), .1);
+        torch.addComponent(animation);
+
+        torch.addComponent(new LightComponent(Color.WHITE, 0, 5, new Vec2d(0,0)));
+
+        torch.getTransform().position = pos;
+        gameWorld.addGameObject(torch);
+    }
 
     /**
      * Places barrel into the game world
@@ -58,7 +77,7 @@ public class MiscElements {
 
 
     /**
-     * Places barrel into the game world
+     * Places coin into the game world
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      */

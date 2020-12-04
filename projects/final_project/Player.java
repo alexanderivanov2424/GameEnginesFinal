@@ -339,7 +339,7 @@ public class Player {
 
             if(Q && !justSwitched){
                 this.currentWeapon += 1;
-                this.currentWeapon = this.currentWeapon % 3;
+                this.currentWeapon = this.currentWeapon % 2;
                 justSwitched = true;
             } else if(!Q){
                 justSwitched = false;
