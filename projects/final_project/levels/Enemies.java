@@ -49,11 +49,6 @@ public class Enemies {
         healthComponent.linkDeathCallback(Enemies::enemyDeathCallback);
         enemy.addComponent(healthComponent);
 
-        CollisionComponent hitComponent = new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)), true, false,
-                FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
-        hitComponent.linkCollisionCallback(Enemies::onHitCallback);
-        enemy.addComponent(hitComponent);
-
         enemy.addComponent(new IDComponent("goomba"));
 
         enemy.getTransform().position = pos;
