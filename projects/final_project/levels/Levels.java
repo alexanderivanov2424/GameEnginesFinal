@@ -19,4 +19,9 @@ public class Levels {
     The player explores the dark cave.
      */
     public static Region cave;
+
+    /*
+    A little house in Area 2 to flex the lighting.
+     */
+    public static Region house;
 }

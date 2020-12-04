@@ -21,8 +21,6 @@ import java.nio.channels.GatheringByteChannel;
 
 public class Area2 {
 
-    private static GameWorld gameWorld;
-
     public static void setTiles(TileMap tileMap){
         int[][] tiles_int = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -86,9 +84,6 @@ public class Area2 {
     public static void addGameObjects(GameWorld gameWorld){
         //TODO need to add rendering order first
         //Decorative.placeTree(gameWorld, new Vec2d(12,32));
-
-        Area2.gameWorld = gameWorld;
-
         placeHouse(gameWorld, new Vec2d(6,1), 1);
 
         NaturalElements.placeRocks(gameWorld, 1, new Vec2d(12,32), 2);
@@ -141,6 +136,7 @@ public class Area2 {
 
         placeWarpToArea1(gameWorld);
         placeWarpToCave(gameWorld);
+        placeWarpToHouse(gameWorld);
     }
 
     public static void placeWarpToArea1(GameWorld gameWorld){
@@ -187,14 +183,14 @@ public class Area2 {
         gameObject.addComponent(new FadeInEffect(0, 1));
         gameObject.gameWorld.unloadRegion();
         gameObject.gameWorld.loadRegion(Levels.cave);
-        gameObject.getTransform().position = new Vec2d(5,5);
+        gameObject.getTransform().position = new Vec2d(5,1.5);
         DrawFogComponent fog = (DrawFogComponent)gameObject.getComponent("DrawFogComponent");
         fog.enable();
         CameraComponent camera = (CameraComponent)gameObject.getComponent("CameraComponent");
         camera.setHorizontalRange(new Vec2d(0,60));
         camera.setVerticalRange(new Vec2d(0,30));
-        BackgroundMusic.stopBGM(gameWorld);
-        BackgroundMusic.playBGM2(gameWorld);
+        BackgroundMusic.stopBGM(gameObject.gameWorld);
+        BackgroundMusic.playBGM2(gameObject.gameWorld);
         Player.isBetweenAreas = false;
     }
 
@@ -286,11 +282,11 @@ public class Area2 {
 
     public static void placeWarpToHouse(GameWorld gameWorld){
         GameObject warp = new GameObject(gameWorld, 0);
-        CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(2,1)),
+        CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(1,.5)),
                 true, false, CollisionSystem.CollisionMask.NONE, FinalGame.PLAYER_LAYER);// only cares about player collision
         collisionComponent.linkCollisionCallback(Area2::FadeOutArea2_House);
         warp.addComponent(collisionComponent);
-        warp.getTransform().position = new Vec2d(32,7);
+        warp.getTransform().position = new Vec2d(11.5,9.75);
 
         gameWorld.addGameObject(warp);
     }
@@ -299,15 +295,13 @@ public class Area2 {
     public static void LoadHouse(GameObject gameObject){
         gameObject.addComponent(new FadeInEffect(0, 1));
         gameObject.gameWorld.unloadRegion();
-        gameObject.gameWorld.loadRegion(Levels.cave);
-        gameObject.getTransform().position = new Vec2d(5,5);
+        gameObject.gameWorld.loadRegion(Levels.house);
+        gameObject.getTransform().position = new Vec2d(5,7);
         DrawFogComponent fog = (DrawFogComponent)gameObject.getComponent("DrawFogComponent");
         fog.enable();
         CameraComponent camera = (CameraComponent)gameObject.getComponent("CameraComponent");
         camera.setHorizontalRange(new Vec2d(0,0));
-        camera.setVerticalRange(new Vec2d(0,0));
-        BackgroundMusic.stopBGM(gameWorld);
-        BackgroundMusic.playBGM2(gameWorld);
+        camera.setVerticalRange(new Vec2d(0,15));
         Player.isBetweenAreas = false;
     }
 

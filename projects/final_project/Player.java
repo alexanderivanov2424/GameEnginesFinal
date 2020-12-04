@@ -223,23 +223,23 @@ public class Player {
 
                 Vec2d pos = this.gameObject.getTransform().position;
                 this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
-                //System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
+                System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
             } else {
                 this.animationGraphComponent.queueAnimation("attack", true);
 
                 swing.start();
 
-                for(GameObject object : gameObject.gameWorld.getGameObjects()) {
-
-                    //TODO very scuffed way of doing damage
-                    if(!object.equals(this.getGameObject()) &&
-                            object.getTransform().position.dist(this.getGameObject().getTransform().position) < 4) {
-                        if(! (object.getComponent("HealthComponent") == null)) {
-                            HealthComponent healthComponent = (HealthComponent)object.getComponent("HealthComponent");
-                            healthComponent.hit(.1);
-                        }
-                    }
-                }
+//                for(GameObject object : gameObject.gameWorld.getGameObjects()) {
+//
+//                    //TODO very scuffed way of doing damage
+//                    if(!object.equals(this.getGameObject()) &&
+//                            object.getTransform().position.dist(this.getGameObject().getTransform().position) < 4) {
+//                        if(! (object.getComponent("HealthComponent") == null)) {
+//                            HealthComponent healthComponent = (HealthComponent)object.getComponent("HealthComponent");
+//                            healthComponent.hit(.1);
+//                        }
+//                    }
+//                }
             }
 
             CollisionComponent talk = (CollisionComponent)this.gameObject.getComponent("TalkCollisionComponent");

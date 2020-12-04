@@ -111,7 +111,13 @@ public class Area1 {
 
         OldMan.placeOldMan(gameWorld, new Vec2d(7,33));
 
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(7,35));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(6.5,9));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(15,11));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(26,13));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(31.5,35));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(16.5,25));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(9,19));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(27,19));
 
         placeWarpToArea2(gameWorld);
     }

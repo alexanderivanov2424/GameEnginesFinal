@@ -88,8 +88,7 @@ public class CollisionComponent extends Component{
     public void onCollision(CollisionSystem.CollisionInfo collisionInfo){
         if(!this.isStatic && this.isSolid) {
             Vec2d pos = this.gameObject.getTransform().position;
-            this.gameObject.getTransform().position = new Vec2d(pos.x + collisionInfo.MTV.x,
-                    pos.y + collisionInfo.MTV.y);
+            this.gameObject.getTransform().position = pos.plus(collisionInfo.MTV);
         }
         if(this.onCollisionFunction == null) return;
         this.onCollisionFunction.onCollision(collisionInfo);

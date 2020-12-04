@@ -20,11 +20,6 @@ public class BackgroundMusic {
         gameWorld.addGameObject(music);
     }
 
-    public static void stopBGM(GameWorld gameWorld) {
-        ((AudioComponent)(music.getComponent("AudioComponent"))).stop();
-        gameWorld.removeGameObject(music);
-    }
-
     public static void playBGM2(GameWorld gameWorld) {
         music = new GameObject(gameWorld);
 
@@ -35,4 +30,10 @@ public class BackgroundMusic {
 
         gameWorld.addGameObject(music);
     }
+
+    public static void stopBGM(GameWorld gameWorld) {
+        ((AudioComponent)(music.getComponent("AudioComponent"))).stop();
+        gameWorld.removeGameObject(music);
+    }
+
 }

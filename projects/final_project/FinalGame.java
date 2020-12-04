@@ -4,10 +4,7 @@ import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.Region;
-import engine.game.components.CollisionComponent;
-import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.tileSystem.TileMap;
-import engine.game.components.screenEffects.ShakeEffect;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import projects.final_project.levels.*;
@@ -59,8 +56,9 @@ public class FinalGame {
         //create cave Region
         Levels.cave = new Region();
         gameWorld.loadRegion(Levels.cave);
-        CaveLevel.setCaveLevel(caveTileMap);
+        Cave1.setCaveLevel(caveTileMap);
         caveTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
+        Cave1.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
         //create area1 Region
@@ -73,11 +71,16 @@ public class FinalGame {
 
         //create area2 Region
         Levels.area2 = new Region();
-        gameWorld.loadRegion(Levels.area2 );
+        gameWorld.loadRegion(Levels.area2);
         Area2.setTiles(worldTileMap);
-
         worldTileMap.addTilesToGameWorld(this.gameWorld, 0, 2, TILE_LAYER, TILE_MASK);
         Area2.addGameObjects(gameWorld);
+        gameWorld.unloadRegion();
+
+        //create area2 Region
+        Levels.house = new Region();
+        gameWorld.loadRegion(Levels.house);
+        House1.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
         gameWorld.processQueues();

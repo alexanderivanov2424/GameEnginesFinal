@@ -3,6 +3,7 @@ package projects.final_project.levels;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
+import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.animation.AnimationComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
@@ -15,6 +16,7 @@ import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
 import projects.WizTesting.WizGame;
 import projects.final_project.FinalGame;
+import projects.final_project.MiscElements;
 
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -40,6 +42,11 @@ public class Enemies {
         healthComponent.linkDeathCallback(Enemies::enemyDeathCallback);
         enemy.addComponent(healthComponent);
 
+        CollisionComponent hitComponent = new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)), true, false,
+                FinalGame.ATTACK_LAYER, FinalGame.ATTACK_MASK);
+        hitComponent.linkCollisionCallback(Enemies::onHitCallback);
+        enemy.addComponent(hitComponent);
+
         enemy.addComponent(new IDComponent("goomba"));
 
         enemy.getTransform().position = pos;
@@ -47,9 +54,25 @@ public class Enemies {
         gameWorld.addGameObject(enemy);
     }
 
+    public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
+        if(collisionInfo.gameObjectSelf.getComponent("ShakeComponent") == null) {
+            collisionInfo.gameObjectSelf.addComponent(new ShakeComponent(.1, .1));
+            HealthComponent health = (HealthComponent)collisionInfo.gameObjectSelf.getComponent("HealthComponent");
+            if(health != null){
+                health.hit(1);
+            }
+        }
+    }
+
     private static void enemyDeathCallback(GameObject enemy){
         CollisionComponent collision = (CollisionComponent)enemy.getComponent("CollisionComponent");
         collision.disable();
+
+        Vec2d pos = enemy.getTransform().position;
+        for(int i = 0; i < 5; i++) {
+            MiscElements.placeCoin(enemy.gameWorld, 2, new Vec2d(pos.x, pos.y),
+                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
+        }
 
         DelayEventComponent delayEventComponent = new DelayEventComponent(.1);
         delayEventComponent.linkEventCallback(Enemies::enemyRemoveCallback);

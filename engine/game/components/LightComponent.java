@@ -1,10 +1,7 @@
 package engine.game.components;
 
-import engine.game.GameObject;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.paint.Color;
 
 public class LightComponent extends Component {
@@ -12,7 +9,7 @@ public class LightComponent extends Component {
     //TODO There are a lot of parameters that can be added to specify how the light diffuses
     // For now just a range and linear fall in brightness.
 
-    protected double brightness;
+    protected double innerRange;
     protected double range;
 
     protected Color color = Color.rgb(255,255,255,0.0);
@@ -20,15 +17,15 @@ public class LightComponent extends Component {
     private Vec2d offset;
 
     //brightness should be from 0 to 1. 0 being full dark and 1 being full light
-    public LightComponent(Color color, double brightness, double range, Vec2d offset) {
-        this.brightness = brightness;
+    public LightComponent(Color color, double innerRange, double range, Vec2d offset) {
+        this.innerRange = innerRange;
         this.range = range;
         this.color = color;
         this.offset = offset;
     }
 
     public LightComponent(Color color, double range, Vec2d offset) {
-        this.brightness = 1;
+        this.innerRange = 1;
         this.range = range;
         this.color = color;
         this.offset = offset;
@@ -51,15 +48,16 @@ public class LightComponent extends Component {
         Vec2d pos = this.gameObject.getTransform().position;
         double dist = pos.plus(this.offset).dist(loc);
         if(dist > this.range) return 0;
-        return 1 - dist/range;
+        if(dist < this.innerRange) return 1;
+        return 1 - (dist - this.innerRange)/(this.range - this.innerRange);
     }
 
-    public double getBrightness() {
-        return brightness;
+    public double getInnerRange() {
+        return innerRange;
     }
 
-    public void setBrightness(double brightness) {
-        this.brightness = brightness;
+    public void setInnerRange(double innerRange) {
+        this.innerRange = innerRange;
     }
 
     public Color getColor() {

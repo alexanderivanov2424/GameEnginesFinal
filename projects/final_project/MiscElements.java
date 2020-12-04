@@ -48,10 +48,11 @@ public class MiscElements {
     }
 
     public static void onBreakCallback(GameObject gameObject){
-        double x = (Math.random()*2 - 1)*1;
-        double y = (Math.random()*2 - 1)*1;
         Vec2d pos = gameObject.getTransform().position;
-        placeCoin(gameObject.gameWorld, 1, new Vec2d(pos.x, pos.y), new Vec2d(x,y).normalize().smult(2));
+        for(int i = 0; i < 3; i++) {
+            placeCoin(gameObject.gameWorld, 2, new Vec2d(pos.x, pos.y),
+                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
+        }
         gameObject.gameWorld.removeGameObject(gameObject);
     }
 
