@@ -16,13 +16,14 @@ public class HealthComponent extends Component{
 
     private OnDeath onDeath;
 
-    private double health;
+    private double health, maxHealth;
 
     private boolean done = false;
 
     public HealthComponent(double health) {
         super();
         this.health = health;
+        maxHealth = health;
     }
 
     public void linkDeathCallback(OnDeath onDeath){
@@ -74,5 +75,10 @@ public class HealthComponent extends Component{
 
     public double getHealth() {
         return health;
+    }
+
+    public void resetHealth() {
+        health = maxHealth;
+        done = false;
     }
 }

@@ -4,6 +4,8 @@ import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.Region;
+import engine.game.components.HealthComponent;
+import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.tileSystem.TileMap;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
@@ -29,9 +31,9 @@ public class FinalGame {
     public static final int TALK_LAYER = CollisionSystem.CollisionMask.layer5;
     public static final int TALK_MASK = CollisionSystem.CollisionMask.layer5;
 
-    private GameWorld gameWorld;
+    private static GameWorld gameWorld;
     private UIViewport viewport;
-    private GameObject player;
+    private static GameObject player;
 
     public FinalGame(GameWorld gameWorld, UIViewport viewport) {
         this.gameWorld = gameWorld;
@@ -105,6 +107,15 @@ public class FinalGame {
         File sprite = new File(folder, name.concat(".png"));
         return sprite.toString();
     }
+
+    public static void onDeath(GameObject player){
+        player.getTransform().position = new Vec2d(9,32);
+        gameWorld.loadRegion(Levels.area1);
+
+        ((HealthComponent)(player.getComponent("HealthComponent"))).resetHealth();
+    }
+
+
 
     public GameObject getPlayer() {
         return player;

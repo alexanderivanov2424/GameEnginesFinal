@@ -11,11 +11,13 @@ import engine.game.components.animation.animationGraph.AnimationGraphComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.AnimationComponent;
 import engine.game.components.TextBoxComponent;
+import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import projects.WizTesting.WizEnemies;
 
 import java.util.Optional;
 import java.util.Set;
@@ -26,6 +28,7 @@ public class Player {
 
     public static final Vec2d PLAYER_SIZE = new Vec2d(2,2);
     protected static AudioComponent swing;
+    protected static AnimationGraphComponent animationGraphComponent;
 
     //creates player
     public static GameObject createPlayer(GameWorld gameWorld, Vec2d pos){
@@ -44,10 +47,10 @@ public class Player {
                 };
         player.addComponent(attackHitBox);
 
-        AnimationGraphComponent agc = getPlayerAnimationGraph(attackHitBox);
-        player.addComponent(agc);
+        animationGraphComponent = getPlayerAnimationGraph(attackHitBox);
+        player.addComponent(animationGraphComponent);
 
-        player.addComponent(new PlayerMovementComponent(5,agc));
+        player.addComponent(new PlayerMovementComponent(5));
 
         LightComponent lightComponent = new LightComponent(Color.WHITE, 5, new Vec2d(0,0));
         player.addComponent(lightComponent);
@@ -92,7 +95,6 @@ public class Player {
         IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
 
         if(id != null && id.getId().equals("goomba")){
-            //TODO HURT ANIMATION
 
             ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.1);
 
@@ -103,9 +105,25 @@ public class Player {
     }
 
     private static void playerDeathCallback(GameObject player){
-        //TODO game over/restart
-        System.out.println("you dead");
+        animationGraphComponent.queueAnimation("death");
+       /* DelayEventComponent delayEventComponent = new DelayEventComponent(100);
+        delayEventComponent.linkEventCallback(Player::playerRespawnCallback);
+        player.addComponent(delayEventComponent);*/
+
+        deathFadeout(player);
+
         //TODO probably just respawn player (area1) and lower the score
+    }
+
+    public static void deathFadeout(GameObject player) {
+        //Fadeout
+        FadeOutEffect fadeout = new FadeOutEffect(0, 1);
+        fadeout.linkEventCallback(FinalGame::onDeath);
+        player.addComponent(fadeout);
+    }
+
+    private static void playerRespawnCallback(GameObject player){
+        FinalGame.onDeath(player);
     }
 
     private static AnimationGraphComponent getPlayerAnimationGraph(CollisionComponent playerAttackBox){
@@ -146,6 +164,7 @@ public class Player {
         AGNode N_walk_sword_left = new AGAnimation("walk_sword_left", walk_sword_left);
         AGNode N_walk_sword_down = new AGAnimation("walk_sword_down", walk_sword_down);
         AGNode N_walk_sword_right = new AGAnimation("walk_sword_right", walk_sword_right);
+
 
         //ATTACK SWORD
         AnimationComponent attack_sword_up = new SpriteAnimationComponent(FinalGame.getSpritePath("player_sword"),
@@ -243,6 +262,13 @@ public class Player {
         AGNode N_attack_axe_down = new AGAnimation("attack_axe_down", attack_axe_down);
         AGNode N_attack_axe_right = new AGAnimation("attack_axe_right", attack_axe_right);
 
+        //DEATH
+        AnimationComponent deathAnimation = new SpriteAnimationComponent(FinalGame.getSpritePath("player"),
+                spriteOffset, PLAYER_SIZE, 6, new Vec2d(0,20*64), new Vec2d(64,64), new Vec2d(64,0),
+                .15);
+        deathAnimation.addAnimationSequence(playerAttackBox.disabled, new Boolean[]{true, true, true, true, true, true});
+        AGNode N_death = new AGAnimation("death", deathAnimation);
+
         //GROUPS
 
         //SWORD
@@ -293,8 +319,14 @@ public class Player {
                 new Vec2d[]{new Vec2d(0,0), new Vec2d(0,1)});
         attack.setInterruptible(false);
 
+        AGAnimationGroup death = new AGAnimationGroup("death",
+                new AGNode[]{N_death},
+                new Vec2d[]{new Vec2d(0,0), new Vec2d(0,1)});
+        attack.setInterruptible(false);
 
-        AGNode[] animationNodes = new AGNode[]{idle, walk, attack};
+
+
+        AGNode[] animationNodes = new AGNode[]{idle, walk, attack, death};
         AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
 
         return agc;
@@ -308,12 +340,11 @@ public class Player {
         private int currentWeapon = 0; // 0-sword 1-axe 2-bow
         private boolean justSwitched = false;
 
-        private AnimationGraphComponent animationGraphComponent;
 
-        public PlayerMovementComponent(double speed, AnimationGraphComponent animationGraphComponent) {
+
+        public PlayerMovementComponent(double speed) {
             super();
             this.speed = speed;
-            this.animationGraphComponent = animationGraphComponent;
         }
 
 
@@ -347,17 +378,17 @@ public class Player {
 
             if(!(W || A || S || D || ATTACK)){
                 swing.stop();
-                this.animationGraphComponent.queueAnimation("idle", true);
+                animationGraphComponent.queueAnimation("idle", true);
             } else if(!ATTACK) {
                 swing.stop();
                 this.direction = new Vec2d(-dx, -dy);
-                this.animationGraphComponent.queueAnimation("walk");
+                animationGraphComponent.queueAnimation("walk");
 
                 Vec2d pos = this.gameObject.getTransform().position;
                 this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
                 System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
             } else {
-                this.animationGraphComponent.queueAnimation("attack", true);
+                animationGraphComponent.queueAnimation("attack", true);
 
                 swing.start();
 
@@ -371,7 +402,7 @@ public class Player {
                     talk.disable();
                 }
             }
-            this.animationGraphComponent.updateState(new Vec2d[]{new Vec2d(0,this.currentWeapon), this.direction});
+            animationGraphComponent.updateState(new Vec2d[]{new Vec2d(0,this.currentWeapon), this.direction});
 
 
 
