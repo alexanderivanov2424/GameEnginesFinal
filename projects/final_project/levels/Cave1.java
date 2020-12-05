@@ -70,6 +70,14 @@ public class Cave1 {
         MiscElements.placeTorch(gameWorld, 0, new Vec2d(29,14));
         MiscElements.placeTorch(gameWorld, 0, new Vec2d(20,3));
 
+
+        Enemies.placeGoomba(gameWorld, new Vec2d(20, 5));
+        Enemies.placeGoomba(gameWorld, new Vec2d(25, 10));
+        Enemies.placeGoomba(gameWorld, new Vec2d(43, 15));
+        Enemies.placeGoomba(gameWorld, new Vec2d(53, 25));
+        Enemies.placeGoomba(gameWorld, new Vec2d(35, 25));
+        Enemies.placeGoomba(gameWorld, new Vec2d(11, 25));
+
         placeWarpToArea2(gameWorld);
         placeWarpToArea3(gameWorld);
     }

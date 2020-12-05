@@ -132,10 +132,11 @@ public class Area2 {
         NaturalElements.placeTree(gameWorld, 1, new Vec2d(38,9));
 
 
-        //Enemies.placeGoomba(gameWorld, new Vec2d(20, 24));
+        Enemies.placeGoomba(gameWorld, new Vec2d(20, 24));
         Enemies.placeGoomba(gameWorld, new Vec2d(22, 26));
+        Enemies.placeGoomba(gameWorld, new Vec2d(32, 20));
 
-        Slippy.placeSlippy(gameWorld, new Vec2d(21, 28));
+
 
         placeWarpToArea1(gameWorld);
         placeWarpToCave(gameWorld);

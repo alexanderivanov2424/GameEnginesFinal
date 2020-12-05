@@ -176,8 +176,6 @@ public class Enemies {
             double dt = nanosSincePreviousTick/1000000000.0; //seconds since last tick
 
             time -= dt;
-            System.out.println(this.state);
-            System.out.println(this.player);
 
             if(this.state.equals("idle")){
                 if(time <= 0) {//Randomly pick a new direction every 2 seconds.

@@ -7,6 +7,7 @@ import projects.final_project.BackgroundMusic;
 import projects.final_project.MiscElements;
 import projects.final_project.NaturalElements;
 import projects.final_project.characters.OldMan;
+import projects.final_project.characters.Slippy;
 
 public class Area3 {
 
@@ -71,6 +72,6 @@ public class Area3 {
     }
 
     public static void addGameObjects(GameWorld gameWorld){
-
+        Slippy.placeSlippy(gameWorld, new Vec2d(21, 28));
     }
 }
