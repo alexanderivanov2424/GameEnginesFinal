@@ -67,8 +67,8 @@ public class House1 {
         house.addComponent(chairRight);
         house.addComponent(chairBottom);
 
-        LightComponent tableCandle = new LightComponent(Color.WHITE, 1, 4, new Vec2d(9.5,4));
-        LightComponent shelfCandle = new LightComponent(Color.WHITE, 1, 4, new Vec2d(10.2,11.9));
+        LightComponent tableCandle = new LightComponent(1, 4, new Vec2d(9.5,4));
+        LightComponent shelfCandle = new LightComponent(1, 4, new Vec2d(10.2,11.9));
 
         house.addComponent(tableCandle);
         house.addComponent(shelfCandle);

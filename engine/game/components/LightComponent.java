@@ -12,24 +12,21 @@ public class LightComponent extends Component {
     protected double innerRange;
     protected double range;
 
-    protected Color color = Color.rgb(255,255,255,0.0);
-
     private Vec2d offset;
 
     //brightness should be from 0 to 1. 0 being full dark and 1 being full light
-    public LightComponent(Color color, double innerRange, double range, Vec2d offset) {
+    public LightComponent(double innerRange, double range, Vec2d offset) {
         this.innerRange = innerRange;
         this.range = range;
-        this.color = color;
         this.offset = offset;
     }
 
-    public LightComponent(Color color, double range, Vec2d offset) {
+    public LightComponent(double range, Vec2d offset) {
         this.innerRange = 1;
         this.range = range;
-        this.color = color;
         this.offset = offset;
     }
+
 
     @Override
     public int getSystemFlags() {
@@ -52,28 +49,12 @@ public class LightComponent extends Component {
         return 1 - (dist - this.innerRange)/(this.range - this.innerRange);
     }
 
-//    public Color getColorAtLocation(Vec2d loc){
-//        Vec2d pos = this.gameObject.getTransform().position;
-//        double dist = pos.plus(this.offset).dist(loc);
-//        if(dist > this.range) return new Color(0,0,0,0);
-//        if(dist < this.innerRange) return this.color;
-//        return 1 - (dist - this.innerRange)/(this.range - this.innerRange);
-//    }
-
     public double getInnerRange() {
         return innerRange;
     }
 
     public void setInnerRange(double innerRange) {
         this.innerRange = innerRange;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public Vec2d getOffset(){

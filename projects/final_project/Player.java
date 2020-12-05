@@ -52,12 +52,14 @@ public class Player {
 
         player.addComponent(new PlayerMovementComponent(5));
 
-        LightComponent lightComponent = new LightComponent(Color.WHITE, 5, new Vec2d(0,0));
+        LightComponent lightComponent = new LightComponent(0, 5, new Vec2d(0,0));
         player.addComponent(lightComponent);
 
         DrawFogComponent drawFogComponent = new DrawFogComponent(0, new Vec2d(0,0), .05, 1);
         drawFogComponent.disable();
         player.addComponent(drawFogComponent);
+
+
 
         swing = new AudioComponent("swing.wav", true);
         player.addComponent(swing);

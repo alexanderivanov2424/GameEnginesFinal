@@ -41,8 +41,6 @@ public class DrawFogComponent extends Component {
 
         Vec2d pos = this.gameObject.getTransform().position;
 
-        //How to know viewport size? (for now do 19x12?)
-        //Needed to add some new functions. There isn't really a good way to do this :(
         Vec2d corner = this.viewport.getGameWorldViewCorner();
         Vec2d size = this.viewport.getGameWorldViewSize();
 
