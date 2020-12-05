@@ -21,9 +21,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Enemies {
 
-    private static final int ENEMY_LAYER = CollisionSystem.CollisionMask.layer1;
-    private static final int ENEMY_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer1;
-
     private static final Vec2d GOOMBA_SIZE = new Vec2d(1.13,1);
 
     public static void placeGoomba(GameWorld gameWorld, Vec2d pos){

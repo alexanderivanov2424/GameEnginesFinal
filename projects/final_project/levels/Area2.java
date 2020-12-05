@@ -16,6 +16,7 @@ import projects.final_project.BackgroundMusic;
 import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
 import projects.final_project.Player;
+import projects.final_project.characters.Slippy;
 
 import java.nio.channels.GatheringByteChannel;
 
@@ -133,6 +134,8 @@ public class Area2 {
 
         //Enemies.placeGoomba(gameWorld, new Vec2d(20, 24));
         Enemies.placeGoomba(gameWorld, new Vec2d(22, 26));
+
+        Slippy.placeSlippy(gameWorld, new Vec2d(21, 28));
 
         placeWarpToArea1(gameWorld);
         placeWarpToCave(gameWorld);
