@@ -52,6 +52,14 @@ public class LightComponent extends Component {
         return 1 - (dist - this.innerRange)/(this.range - this.innerRange);
     }
 
+//    public Color getColorAtLocation(Vec2d loc){
+//        Vec2d pos = this.gameObject.getTransform().position;
+//        double dist = pos.plus(this.offset).dist(loc);
+//        if(dist > this.range) return new Color(0,0,0,0);
+//        if(dist < this.innerRange) return this.color;
+//        return 1 - (dist - this.innerRange)/(this.range - this.innerRange);
+//    }
+
     public double getInnerRange() {
         return innerRange;
     }

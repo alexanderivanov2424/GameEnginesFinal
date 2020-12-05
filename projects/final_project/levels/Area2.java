@@ -131,7 +131,7 @@ public class Area2 {
         NaturalElements.placeTree(gameWorld, 1, new Vec2d(38,9));
 
 
-        Enemies.placeGoomba(gameWorld, new Vec2d(20, 24));
+        //Enemies.placeGoomba(gameWorld, new Vec2d(20, 24));
         Enemies.placeGoomba(gameWorld, new Vec2d(22, 26));
 
         placeWarpToArea1(gameWorld);

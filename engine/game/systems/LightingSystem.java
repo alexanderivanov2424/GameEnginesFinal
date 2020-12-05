@@ -18,6 +18,8 @@ public class LightingSystem extends GeneralSystem {
     public double getBrightnessAt(Vec2d location){
         //TODO when lights have colors need to do proper color mixing here instead of just adding the colors together
         double totalBrightness = 0;
+        double r = 0, g = 0, b = 0, a = 0;
+        double count = 0;
         for(int i =0; i < this.components.size(); i++) {
             if (this.components.get(i).isDisabled()) continue;
             LightComponent lightComponent = (LightComponent)this.components.get(i);

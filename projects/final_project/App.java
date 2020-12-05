@@ -115,21 +115,22 @@ public class App extends Application {
     creditsScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"Credits",
             colorBorder, fontLarge));
     String text = "Universal-LPC-spritesheet : https://github.com/jrconway3/Universal-LPC-spritesheet\n" +
-            " - Credit goes to authors listed in credits directory under these licences\n" +
-            " - CC-BY-SA 3.0 licence http://creativecommons.org/licenses/by-sa/3.0/ \n" +
-            " - GNU GPL 3.0 licence http://www.gnu.org/licenses/gpl-3.0.html \n" +
+            " - Credit goes to authors listed in credits directory, CC-BY-SA 3.0 and GNU GPL 3.0 licences\n" +
+            "Thanks to Ivan Voirol for creating the RPG tilemap, \n" +
+            " - OpenGameArt Link: https://opengameart.org/comment/31378, CC-BY-SA 3.0, GNU GPL 3.0, and GNU GPL 2.0 licences\n" +
+            "Thanks to Davias for the Simulation RPG Tsukuru spritesheet for cave levels\n" +
+            " - Link: https://www.spriters-resource.com/playstation/simrpgtsu/sheet/38986/\n" +
+            "Thanks to Butch for the HUD sprite: https://opengameart.org/users/buch\n" +
+            "Thanks to Bonsaiheldin for the interior tile set: https://opengameart.org/content/interior-tileset-16x16\n" +
             "\n" +
-            "Thanks to Ivan Voirol for creating the RPG tilemap\n" +
-            " - OpenGameArt Link: https://opengameart.org/comment/31378\n" +
+            "Special thanks to friends and family for play testing\n" +
+            "Special thanks to the TA's of CSCI1950N for debugging help and general guidance\n" +
+            "\n" +
+            "Licence Links:\n" +
             " - CC-BY-SA 3.0 licence https://creativecommons.org/licenses/by/3.0/\n" +
             " - GNU GPL 3.0 licence http://www.gnu.org/licenses/gpl-3.0.html\n" +
             " - GNU GPL 2.0 licence http://www.gnu.org/licenses/old-licenses/gpl-2.0.html\n" +
-            "\n" +
-            "Thanks to Davias for the Simulation RPG Tsukuru spritesheet for cave levels\n" +
-            " - Link: https://www.spriters-resource.com/playstation/simrpgtsu/sheet/38986/\n" +
-            "\n" +
-            "Special thanks to friends and family for play testing\n" +
-            "Special thanks to the TA's of CSCI1950N for debugging help and general guidance\n";
+            "\n";
     creditsScreen.addUIElement(new UIText(new Vec2d(100,120), new Vec2d(400, 500),text, Color.BLACK, fontSmall));
 
 
