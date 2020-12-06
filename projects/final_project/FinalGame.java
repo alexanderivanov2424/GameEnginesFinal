@@ -85,7 +85,7 @@ public class FinalGame {
         House1.addGameObjects(gameWorld);
         gameWorld.unloadRegion();
 
-        //create area2 Region
+        //create area3 Region
         Levels.area3 = new Region();
         gameWorld.loadRegion(Levels.area3);
         Area3.setTiles(worldTileMap);
@@ -96,7 +96,7 @@ public class FinalGame {
         gameWorld.processQueues();
 
         player.getTransform().position = new Vec2d(35,10);
-        gameWorld.loadRegion(Levels.area2);
+        gameWorld.loadRegion(Levels.area3);
     }
 
     /*
