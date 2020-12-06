@@ -69,18 +69,23 @@ public class Slippy {
         }
     }
 
-    private static void onDeathCallback(GameObject enemy){
-        CollisionComponent collision = (CollisionComponent)enemy.getComponent("CollisionComponent");
+    private static void onDeathCallback(GameObject slippy){
+        CollisionComponent collision = (CollisionComponent)slippy.getComponent("CollisionComponent");
         collision.disable();
 
+        SlippyMovementComponent smc = (SlippyMovementComponent)slippy.getComponent("SlippyMovementComponent");
+        smc.setDead();
+        System.out.println("dead");
         animationGraphComponent.queueAnimation("death");
-        //TODO freeze on dead frame?
 
-        //Vec2d pos = enemy.getTransform().position;
-        /*for(int i = 0; i < 5; i++) {
-            MiscElements.placeCoin(enemy.gameWorld, 2, new Vec2d(pos.x, pos.y),
-                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
-        }*/
+        //TODO victory?
+        DelayEventComponent delayEventComponent = new DelayEventComponent(3.5);
+        delayEventComponent.linkEventCallback(Slippy::enemyRemoveCallback);
+        slippy.addComponent(delayEventComponent);
+    }
+
+    private static void enemyRemoveCallback(GameObject gameObject){
+        gameObject.gameWorld.removeGameObject(gameObject);
     }
 
 
@@ -143,8 +148,14 @@ public class Slippy {
 
         AGNode N_death = new AGAnimation("death", death);
 
+        AnimationComponent dead = new SpriteAnimationComponent(FinalGame.getSpritePath("slippy"),
+                spriteOffset, new Vec2d(1.45,1.6), 1, new Vec2d(100,217), new Vec2d(20,24),
+                new Vec2d(20,0), 8);
+
+        AGNode N_dead = new AGAnimation("dead", dead);
+
         AnimationComponent summon = new SpriteAnimationComponent(FinalGame.getSpritePath("slippy"),
-                spriteOffset, new Vec2d(1.7,1.9), 4, new Vec2d(0,248), new Vec2d(26,24),
+                spriteOffset, new Vec2d(1.9,1.9), 4, new Vec2d(0,248), new Vec2d(26,24),
                 new Vec2d(26,0), .6);
 
         AGNode N_summon = new AGAnimation("summon", summon);
@@ -164,25 +175,30 @@ public class Slippy {
         AGAnimationGroup spit = new AGAnimationGroup("spit",
                 new AGNode[]{N_spit_up, N_spit_left, N_spit_down, N_spit_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
-        walk.setInterruptible(false);
+        spit.setInterruptible(true);
 
         AGAnimationGroup stompAG = new AGAnimationGroup("stomp",
                 new AGNode[]{N_stomp},
                 new Vec2d[]{new Vec2d(0,1)});
-        walk.setInterruptible(false);
+        stompAG.setInterruptible(true);
 
         AGAnimationGroup deathAG = new AGAnimationGroup("death",
                 new AGNode[]{N_death},
                 new Vec2d[]{new Vec2d(0,1)});
-        walk.setInterruptible(false);
+        deathAG.setInterruptible(true);
+
+        AGAnimationGroup deadAG = new AGAnimationGroup("dead",
+                new AGNode[]{N_dead},
+                new Vec2d[]{new Vec2d(0,1)});
+        deadAG.setInterruptible(false);
 
         AGAnimationGroup summonAG = new AGAnimationGroup("summon",
                 new AGNode[]{N_summon},
                 new Vec2d[]{new Vec2d(0,1)});
-        walk.setInterruptible(false);
+        summonAG.setInterruptible(true);
 
 
-        AGNode[] animationNodes = new AGNode[]{idle, walk, spit, stompAG, deathAG, summonAG};
+        AGNode[] animationNodes = new AGNode[]{idle, walk, spit, stompAG, deathAG, summonAG, deadAG};
         AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
 
         return agc;
@@ -228,7 +244,7 @@ public class Slippy {
         private Vec2d direction = new Vec2d(0,0);
         private double speed, time = 2, spitCooldown = 0.6, summonCooldown = 1.5;
 
-        private String state = "idle"; // idle, follow, prep, spit, stomp
+        private String state = "idle"; // idle, follow, prep, spit, stomp, dead, summon
 
         public GameObject player;
 
@@ -366,11 +382,19 @@ public class Slippy {
                 dx = 0;
                 dy = 0;
             }
+            else if(this.state.equals("dead")){
+                dx = 0;
+                dy = 0;
+            }
 
 
             this.animationGraphComponent.updateState(new Vec2d[]{this.direction});
             Vec2d pos = this.gameObject.getTransform().position;
             this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
+        }
+
+        public void setDead() {
+            this.state = "dead";
         }
 
         public void followPlayer(GameObject player){
