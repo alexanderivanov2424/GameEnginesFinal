@@ -48,7 +48,7 @@ public class Slippy {
         nearPlayer.linkCollisionCallback(Slippy::slippynearPlayer);
         slippy.addComponent(nearPlayer);
 
-        HealthComponent healthComponent = new HealthComponent(7);
+        HealthComponent healthComponent = new HealthComponent(10); //TODO Change hp so fair difficulty
         healthComponent.linkDeathCallback(Slippy::onDeathCallback);
         slippy.addComponent(healthComponent);
 
@@ -143,6 +143,12 @@ public class Slippy {
 
         AGNode N_death = new AGAnimation("death", death);
 
+        AnimationComponent summon = new SpriteAnimationComponent(FinalGame.getSpritePath("slippy"),
+                spriteOffset, new Vec2d(1.7,1.9), 4, new Vec2d(0,248), new Vec2d(26,24),
+                new Vec2d(26,0), .6);
+
+        AGNode N_summon = new AGAnimation("summon", summon);
+
 
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
@@ -170,8 +176,13 @@ public class Slippy {
                 new Vec2d[]{new Vec2d(0,1)});
         walk.setInterruptible(false);
 
+        AGAnimationGroup summonAG = new AGAnimationGroup("summon",
+                new AGNode[]{N_summon},
+                new Vec2d[]{new Vec2d(0,1)});
+        walk.setInterruptible(false);
 
-        AGNode[] animationNodes = new AGNode[]{idle, walk, spit, stompAG, deathAG};
+
+        AGNode[] animationNodes = new AGNode[]{idle, walk, spit, stompAG, deathAG, summonAG};
         AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
 
         return agc;
@@ -215,7 +226,7 @@ public class Slippy {
     private static class SlippyMovementComponent extends Component {
 
         private Vec2d direction = new Vec2d(0,0);
-        private double speed, time = 2, spitCooldown = 0.6;
+        private double speed, time = 2, spitCooldown = 0.6, summonCooldown = 1.5;
 
         private String state = "idle"; // idle, follow, prep, spit, stomp
 
@@ -241,6 +252,7 @@ public class Slippy {
 
             time -= dt;
             spitCooldown -= dt;
+            summonCooldown -= dt;
 
             if(this.state.equals("idle")){
                 if(time <= 0) {//Randomly pick a new direction every 2 seconds.
@@ -279,9 +291,13 @@ public class Slippy {
                 Vec2d delta = this.player.getTransform().position.minus(this.gameObject.getTransform().position);
                 this.direction = delta.normalize();
                 if(time < 0){
-                    int pickAttack = ThreadLocalRandom.current().nextInt(0, 2);
+                    int pickAttack = ThreadLocalRandom.current().nextInt(0, 3);
                     if(pickAttack == 0) {
                         this.state = "spit";
+                        time = 3;
+                    }
+                    else if(pickAttack == 1) {
+                        this.state = "summon";
                         time = 3;
                     }
                     else {
@@ -328,11 +344,28 @@ public class Slippy {
                         }
                     }
                 }
-
                 dx = 0;
                 dy = 0;
             }
-            //TODO summon goomba.
+            else if(this.state.equals("summon")){
+                if(summonCooldown <= 0) {
+
+                    if(summonCooldown <= 0.5) {
+                        Vec2d playerDirection = player.getTransform().position.minus(this.gameObject.getTransform().position).normalize();
+
+                        Enemies.placeGoomba(gameWorld, this.gameObject.getTransform().position.plus(playerDirection.smult(2)));
+                    }
+                    summonCooldown = 1.5;
+                }
+                if(time <= 0) {
+                    this.state = "idle";
+                    this.player = null;
+                }
+
+                this.animationGraphComponent.queueAnimation("summon");
+                dx = 0;
+                dy = 0;
+            }
 
 
             this.animationGraphComponent.updateState(new Vec2d[]{this.direction});
