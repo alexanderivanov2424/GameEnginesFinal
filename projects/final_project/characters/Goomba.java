@@ -179,6 +179,9 @@ public class Goomba {
 
             time -= dt;
 
+            //being hit
+            if(this.gameObject.getComponent("ShakeComponent") != null) return;
+
             if(this.state.equals("idle")){
                 if(time <= 0) {//Randomly pick a new direction every 2 seconds.
                     int pickDirection = ThreadLocalRandom.current().nextInt(0, 4);

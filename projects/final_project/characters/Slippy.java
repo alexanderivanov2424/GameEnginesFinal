@@ -14,11 +14,7 @@ import engine.game.components.animation.animationGraph.AnimationGraphComponent;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
-import projects.WizTesting.WizGame;
-import projects.WizTesting.WizPlayer;
 import projects.final_project.FinalGame;
-import projects.final_project.MiscElements;
-import projects.final_project.levels.Enemies;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -369,7 +365,7 @@ public class Slippy {
                     if(summonCooldown <= 0.5) {
                         Vec2d playerDirection = player.getTransform().position.minus(this.gameObject.getTransform().position).normalize();
 
-                        Enemies.placeGoomba(gameWorld, this.gameObject.getTransform().position.plus(playerDirection.smult(2)));
+                        Goomba.placeGoomba(gameWorld, this.gameObject.getTransform().position.plus(playerDirection.smult(2)));
                     }
                     summonCooldown = 1.5;
                 }

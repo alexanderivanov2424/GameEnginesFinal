@@ -84,46 +84,45 @@ public class Skeleton {
     }
 
     private static AnimationGraphComponent getSkeletonAnimationGraph(){
-        Vec2d spriteOffset = new Vec2d(-SKELETON_SIZE.x/2,-SKELETON_SIZE.y);
-        Vec2d cropSize = new Vec2d(25,22);
+        Vec2d spriteOffset = new Vec2d(-1,-2);
         AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,1*22), cropSize, new Vec2d(25,0), .05);
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,2*22), cropSize, new Vec2d(25,0), .05);
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,0*22), cropSize, new Vec2d(25,0), .05);
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,3*22), cropSize, new Vec2d(25,0), .05);
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AGNode N_idle_up = new AGAnimation("idle_up", idle_up);
         AGNode N_idle_left = new AGAnimation("idle_left", idle_left);
         AGNode N_idle_down = new AGAnimation("idle_down", idle_down);
         AGNode N_idle_right = new AGAnimation("idle_right", idle_right);
 
         AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,1*22), cropSize, new Vec2d(25,0), .1);
+                spriteOffset, SKELETON_SIZE, 9, new Vec2d(0,8*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,2*22), cropSize, new Vec2d(25,0), .1);
+                spriteOffset, SKELETON_SIZE, 9, new Vec2d(0,9*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,0*22), cropSize, new Vec2d(25,0), .1);
+                spriteOffset, SKELETON_SIZE, 9, new Vec2d(0,10*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,3*22), cropSize, new Vec2d(25,0), .1);
+                spriteOffset, SKELETON_SIZE, 9, new Vec2d(0,11*64), new Vec2d(64,64), new Vec2d(64,0), .05);
         AGNode N_walk_up = new AGAnimation("walk_up", walk_up);
         AGNode N_walk_left = new AGAnimation("walk_left", walk_left);
         AGNode N_walk_down = new AGAnimation("walk_down", walk_down);
         AGNode N_walk_right = new AGAnimation("walk_right", walk_right);
 
-        AnimationComponent charge_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,1*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent charge_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,2*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent charge_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,0*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent charge_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,3*22), cropSize, new Vec2d(25,0), .1);
-        AGNode N_charge_up = new AGAnimation("charge_up", charge_up);
-        AGNode N_charge_left = new AGAnimation("charge_left", charge_left);
-        AGNode N_charge_down = new AGAnimation("charge_down", charge_down);
-        AGNode N_charge_right = new AGAnimation("charge_right", charge_right);
+        AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent attack_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent attack_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AGNode N_attack_up = new AGAnimation("attack_up", attack_up);
+        AGNode N_attack_left = new AGAnimation("attack_left", attack_left);
+        AGNode N_attack_down = new AGAnimation("attack_down", attack_down);
+        AGNode N_attack_right = new AGAnimation("attack_right", attack_right);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
                 new AGNode[]{N_idle_up, N_idle_left, N_idle_down, N_idle_right},
@@ -135,14 +134,13 @@ public class Skeleton {
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         walk.setInterruptible(true);
 
-        AGAnimationGroup charge = new AGAnimationGroup("charge",
-                new AGNode[]{N_charge_up, N_charge_left, N_charge_down, N_charge_right},
+        AGAnimationGroup attack = new AGAnimationGroup("attack", "idle",
+                new AGNode[]{N_attack_up, N_attack_left, N_attack_down, N_attack_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
-        charge.setInterruptible(true);
+        attack.setInterruptible(false);
 
-        AGNode[] animationNodes = new AGNode[]{idle, walk, charge};
+        AGNode[] animationNodes = new AGNode[]{idle, walk, attack};
         AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
-
         return agc;
     }
 
