@@ -44,7 +44,7 @@ public class FinalGame {
     }
 
     public void init() {
-        player = Player.createPlayer(this.gameWorld,new Vec2d(3,37));
+        this.player = Player.createPlayer(this.gameWorld,new Vec2d(3,37));
         this.gameWorld.addGameObject(player);
 
         //this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));

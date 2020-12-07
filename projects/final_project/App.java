@@ -2,15 +2,13 @@ package projects.final_project;
 
 import engine.Application;
 import engine.Screen;
-import engine.UIToolKit.UIButton;
-import engine.UIToolKit.UIRect;
-import engine.UIToolKit.UIText;
-import engine.UIToolKit.UIViewport;
+import engine.UIToolKit.*;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.components.HealthComponent;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -164,15 +162,17 @@ public class App extends Application {
      */
 
     //Health bar UI
-    gameScreen.addUIElement(new UIRect(new Vec2d(8,6), new Vec2d(46, 29),
-            Color.rgb(90,90,90,0.9)));
-    gameScreen.addUIElement(new UIText(new Vec2d(10,31), new Vec2d(400, 50),"HP",
-            Color.rgb(220,220,220), fontHP));
-    gameScreen.addUIElement(new UIRect(new Vec2d(62,6), new Vec2d(140, 30),
-            Color.rgb(70,70,70,0.9)));
-    gameScreen.addUIElement(new HPRect(new Vec2d(68,12), new Vec2d(128, 18),
-            Color.rgb(204,89,89,0.6),
-            finalGame.getPlayer()));
+//    gameScreen.addUIElement(new UIRect(new Vec2d(8,6), new Vec2d(46, 29),
+//            Color.rgb(90,90,90,0.9)));
+//    gameScreen.addUIElement(new UIText(new Vec2d(10,31), new Vec2d(400, 50),"HP",
+//            Color.rgb(220,220,220), fontHP));
+//    gameScreen.addUIElement(new UIRect(new Vec2d(62,6), new Vec2d(140, 30),
+//            Color.rgb(70,70,70,0.9)));
+//    gameScreen.addUIElement(new HPRect(new Vec2d(68,12), new Vec2d(128, 18),
+//            Color.rgb(204,89,89,0.6),
+//            finalGame.getPlayer()));
+    Image hud = new Image(FinalGame.getSpritePath("HUD"));
+    gameScreen.addUIElement(new UIImage(new Vec2d(10,10), new Vec2d(163,32),hud));
 
 
 
