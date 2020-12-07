@@ -79,6 +79,8 @@ public class Enemies {
         DelayEventComponent delayEventComponent = new DelayEventComponent(.1);
         delayEventComponent.linkEventCallback(Enemies::enemyRemoveCallback);
         enemy.addComponent(delayEventComponent);
+
+
     }
 
     private static void enemyRemoveCallback(GameObject gameObject){

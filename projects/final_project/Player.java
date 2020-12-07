@@ -97,12 +97,11 @@ public class Player {
         IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
 
         if(id != null && id.getId().equals("goomba")){
-
             ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.1);
+        }
 
-            /*DelayEventComponent delayEventComponent = new DelayEventComponent(.5);
-            delayEventComponent.linkEventCallback(WizPlayer::playerDeath);
-            player.addComponent(delayEventComponent);*/
+        if(id != null && id.getId().equals("slippy")){
+            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.2);
         }
     }
 
