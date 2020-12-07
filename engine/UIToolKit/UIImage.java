@@ -8,15 +8,32 @@ public class UIImage extends UIElement{
 
     private Image image;
 
-    public UIImage(Vec2d position, Vec2d size, Image image) {
+    protected Vec2d size; //size of sprite
+
+    protected Vec2d offset; //offset on sprite sheet
+    protected Vec2d cropSize; //size of region from which to draw
+
+    public UIImage(Image image, Vec2d position, Vec2d size) {
         super(position, size);
         this.image = image;
+        this.offset = new Vec2d(0,0);
+        this.cropSize = new Vec2d(this.image.getWidth(), this.image.getHeight());
+    }
+
+    public UIImage(Image image, Vec2d position, Vec2d size, Vec2d offset, Vec2d cropSize){
+        super(position, size);
+        this.image = image;
+        this.position = position;
+        this.size = size;
+        this.offset = offset;
+        this.cropSize = cropSize;
     }
 
     @Override
     public void onDraw(GraphicsContext g) {
         Vec2d pos = this.getOffset();
-        g.drawImage(this.image, pos.x, pos.y);
+        g.drawImage(this.image, this.offset.x, this.offset.y, this.cropSize.x, this.cropSize.y,
+                pos.x, pos.y, this.size.x, this.size.y);
         super.onDraw(g);
     }
 }

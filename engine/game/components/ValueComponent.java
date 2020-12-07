@@ -1,17 +1,15 @@
 package engine.game.components;
 
-import engine.game.GameObject;
 import engine.game.systems.SystemFlag;
-import engine.support.Vec2d;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
-public class HeightComponent extends Component{
+public class ValueComponent extends Component{
 
     public double value;
 
-    public HeightComponent(double value) {
+    public ValueComponent(double value) {
         super();
         this.value = value;
     }
@@ -23,7 +21,7 @@ public class HeightComponent extends Component{
 
     @Override
     public String getTag() {
-        return "HeightComponent";
+        return "ValueComponent";
     }
 
     public Element getXML(Document doc){
@@ -35,7 +33,7 @@ public class HeightComponent extends Component{
     public static Component loadFromXML(Element n) {
         NamedNodeMap attr = n.getAttributes();
         Double value = Double.parseDouble(attr.getNamedItem("value").getNodeValue());
-        HeightComponent c = new HeightComponent(value);
+        ValueComponent c = new ValueComponent(value);
         return c;
     }
 }

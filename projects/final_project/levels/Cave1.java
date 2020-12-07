@@ -9,11 +9,11 @@ import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.systems.CollisionSystem;
 import engine.game.tileSystem.TileMap;
 import engine.support.Vec2d;
-import javafx.scene.paint.Color;
 import projects.final_project.BackgroundMusic;
 import projects.final_project.FinalGame;
 import projects.final_project.MiscElements;
 import projects.final_project.Player;
+import projects.final_project.characters.Goomba;
 
 public class Cave1 {
 
@@ -71,12 +71,12 @@ public class Cave1 {
         MiscElements.placeTorch(gameWorld, 0, new Vec2d(20,3));
 
 
-        Enemies.placeGoomba(gameWorld, new Vec2d(20, 5));
-        Enemies.placeGoomba(gameWorld, new Vec2d(25, 10));
-        Enemies.placeGoomba(gameWorld, new Vec2d(43, 15));
-        Enemies.placeGoomba(gameWorld, new Vec2d(53, 25));
-        Enemies.placeGoomba(gameWorld, new Vec2d(35, 25));
-        Enemies.placeGoomba(gameWorld, new Vec2d(11, 25));
+        Goomba.placeGoomba(gameWorld, new Vec2d(20, 5));
+        Goomba.placeGoomba(gameWorld, new Vec2d(25, 10));
+        Goomba.placeGoomba(gameWorld, new Vec2d(43, 15));
+        Goomba.placeGoomba(gameWorld, new Vec2d(53, 25));
+        Goomba.placeGoomba(gameWorld, new Vec2d(35, 25));
+        Goomba.placeGoomba(gameWorld, new Vec2d(11, 25));
 
         placeWarpToArea2(gameWorld);
         placeWarpToArea3(gameWorld);

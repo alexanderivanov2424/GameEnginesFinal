@@ -145,7 +145,7 @@ public class WizPlayer {
                 false, true,PROJECTILE_LAYER, PROJECTILE_MASK){
                     @Override
                     public boolean caresAboutCollision(GameObject g){
-                        HeightComponent height = (HeightComponent) g.getComponent("HeightComponent");
+                        ValueComponent height = (ValueComponent) g.getComponent("HeightComponent");
                         if(height == null) return true;
                         return projctile_height < height.value;
                     }
@@ -153,7 +153,7 @@ public class WizPlayer {
         collisionComponent.linkCollisionCallback(WizPlayer::projectileCollisionCallback);
         projectile.addComponent(collisionComponent);
 
-        projectile.addComponent(new HeightComponent(7));
+        projectile.addComponent(new ValueComponent(7));
         projectile.addComponent(new VelocityComponent(velocity));
 
         projectile.getTransform().position = position;
@@ -187,14 +187,14 @@ public class WizPlayer {
                 false, true, PROJECTILE_LAYER, PROJECTILE_MASK){
             @Override
             public boolean caresAboutCollision(GameObject g){
-                HeightComponent height = (HeightComponent) g.getComponent("HeightComponent");
+                ValueComponent height = (ValueComponent) g.getComponent("HeightComponent");
                 if(height == null) return true;
                 return projctile_height < height.value;
             }
         };
         collisionComponent.linkCollisionCallback(WizPlayer::bigProjectileCollisionCallback);
         projectile.addComponent(collisionComponent);
-        projectile.addComponent(new HeightComponent(7));
+        projectile.addComponent(new ValueComponent(7));
         projectile.addComponent(new VelocityComponent(velocity));
 
         projectile.getTransform().position = position;

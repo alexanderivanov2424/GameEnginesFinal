@@ -61,7 +61,7 @@ public class WizEnemies {
         enemy.addComponent(healthComponent);
 
         enemy.addComponent(new BehaviorTreeComponent(createEnemyAI(enemy,player,grid)));
-        enemy.addComponent(new HeightComponent(100));
+        enemy.addComponent(new ValueComponent(100));
         enemy.getTransform().position = pos;
         enemy.getTransform().size = new Vec2d(2,2);
         return enemy;

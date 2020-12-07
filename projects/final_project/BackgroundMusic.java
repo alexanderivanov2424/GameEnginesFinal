@@ -10,25 +10,25 @@ public class BackgroundMusic {
     private static GameObject music;
 
     public static void playBGM1(GameWorld gameWorld) {
-        music = new GameObject(gameWorld);
-
-        AudioComponent bgm = new AudioComponent("bgm1.wav", true);
-        bgm.start();
-
-        music.addComponent(bgm);
-
-        gameWorld.addGameObject(music);
+//        music = new GameObject(gameWorld);
+//
+//        AudioComponent bgm = new AudioComponent("bgm1.wav", true);
+//        bgm.start();
+//
+//        music.addComponent(bgm);
+//
+//        gameWorld.addGameObject(music);
     }
 
     public static void playBGM2(GameWorld gameWorld) {
-        music = new GameObject(gameWorld);
-
-        AudioComponent bgm = new AudioComponent("bgm2.wav", true);
-        bgm.start();
-
-        music.addComponent(bgm);
-
-        gameWorld.addGameObject(music);
+//        music = new GameObject(gameWorld);
+//
+//        AudioComponent bgm = new AudioComponent("bgm2.wav", true);
+//        bgm.start();
+//
+//        music.addComponent(bgm);
+//
+//        gameWorld.addGameObject(music);
     }
 
     public static void stopBGM(GameWorld gameWorld) {

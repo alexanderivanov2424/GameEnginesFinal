@@ -61,6 +61,10 @@ public class AnimationGraphComponent extends Component {
         this.transitionWithInterupt = false;
     }
 
+    public String getCurrentAnimation(){
+        return this.nodes[this.currentNode].name;
+    }
+
     public void onTick(long nanosSincePreviousTick) {
         AGNode current = this.nodes[this.currentNode];
         if(current.interruptible && transitionWithInterupt && this.nextAnimation != null){

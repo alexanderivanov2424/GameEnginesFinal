@@ -54,6 +54,7 @@ public class UIText extends UIElement{
         this.textColor = textColor;
     }
 
+
     /**
      *  Called periodically and meant to draw graphical components.
      * @param g		a {@link GraphicsContext} object used for drawing.

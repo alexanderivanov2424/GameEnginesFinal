@@ -1,16 +1,12 @@
-package projects.final_project.levels;
+package projects.final_project.characters;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
-import engine.game.components.animation.AnimationComponent;
-import engine.game.components.animation.SpriteAnimationComponent;
-import engine.game.components.animation.animationGraph.AGAnimation;
-import engine.game.components.animation.animationGraph.AGAnimationGroup;
-import engine.game.components.animation.animationGraph.AGNode;
-import engine.game.components.animation.animationGraph.AnimationGraphComponent;
+import engine.game.components.animation.*;
+import engine.game.components.animation.animationGraph.*;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
@@ -19,37 +15,37 @@ import projects.final_project.MiscElements;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Enemies {
+public class Skeleton {
 
-    private static final Vec2d GOOMBA_SIZE = new Vec2d(1.13,1);
+    private static final Vec2d SKELETON_SIZE = new Vec2d(2,2);
 
-    public static void placeGoomba(GameWorld gameWorld, Vec2d pos){
+    public static void placeSkeleton(GameWorld gameWorld, Vec2d pos){
         GameObject enemy = new GameObject(gameWorld, 1);
 
-        AnimationGraphComponent agc = getGoombaAnimationGraph();
+        AnimationGraphComponent agc = getSkeletonAnimationGraph();
         enemy.addComponent(agc);
-        enemy.addComponent(new GoombaMovementComponent(2, agc));
+        enemy.addComponent(new SkeletonMovementComponent(2, agc));
 
 
-        enemy.addComponent(new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)),
+        enemy.addComponent(new CollisionComponent(new AABShape(new Vec2d(-.46,-.3),new Vec2d(0.7,0.65)),
                 false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
 
-        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(0.1,0.2),new Vec2d(0.7,0.65)),
+        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(-.46,-.3),new Vec2d(0.7,0.65)),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
-        hitCollisionComponent.linkCollisionCallback(Enemies::onHitCallback);
+        hitCollisionComponent.linkCollisionCallback(Skeleton::onHitCallback);
         enemy.addComponent(hitCollisionComponent);
 
         CollisionComponent nearPlayer = new CollisionComponent(new CircleShape(new Vec2d(0,0),5),
                 false, false, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
-        nearPlayer.linkCollisionCallback(Enemies::goombaNearPlayer);
+        nearPlayer.linkCollisionCallback(Skeleton::skeletonNearPlayer);
         enemy.addComponent(nearPlayer);
 
 
         HealthComponent healthComponent = new HealthComponent(5);
-        healthComponent.linkDeathCallback(Enemies::enemyDeathCallback);
+        healthComponent.linkDeathCallback(Skeleton::enemyDeathCallback);
         enemy.addComponent(healthComponent);
 
-        enemy.addComponent(new IDComponent("goomba"));
+        enemy.addComponent(new IDComponent("skeleton"));
 
         enemy.getTransform().position = pos;
         enemy.getTransform().size = new Vec2d(2,2);
@@ -77,7 +73,7 @@ public class Enemies {
         }
 
         DelayEventComponent delayEventComponent = new DelayEventComponent(.1);
-        delayEventComponent.linkEventCallback(Enemies::enemyRemoveCallback);
+        delayEventComponent.linkEventCallback(Skeleton::enemyRemoveCallback);
         enemy.addComponent(delayEventComponent);
 
 
@@ -87,43 +83,43 @@ public class Enemies {
         gameObject.gameWorld.removeGameObject(gameObject);
     }
 
-    private static AnimationGraphComponent getGoombaAnimationGraph(){
-        Vec2d spriteOffset = new Vec2d(0,0);
+    private static AnimationGraphComponent getSkeletonAnimationGraph(){
+        Vec2d spriteOffset = new Vec2d(-SKELETON_SIZE.x/2,-SKELETON_SIZE.y);
         Vec2d cropSize = new Vec2d(25,22);
-        AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 1, new Vec2d(0,1*22), cropSize, new Vec2d(25,0), .05);
-        AnimationComponent idle_left = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 1, new Vec2d(0,2*22), cropSize, new Vec2d(25,0), .05);
-        AnimationComponent idle_down = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 1, new Vec2d(0,0*22), cropSize, new Vec2d(25,0), .05);
-        AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 1, new Vec2d(0,3*22), cropSize, new Vec2d(25,0), .05);
+        AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,1*22), cropSize, new Vec2d(25,0), .05);
+        AnimationComponent idle_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,2*22), cropSize, new Vec2d(25,0), .05);
+        AnimationComponent idle_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,0*22), cropSize, new Vec2d(25,0), .05);
+        AnimationComponent idle_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 1, new Vec2d(0,3*22), cropSize, new Vec2d(25,0), .05);
         AGNode N_idle_up = new AGAnimation("idle_up", idle_up);
         AGNode N_idle_left = new AGAnimation("idle_left", idle_left);
         AGNode N_idle_down = new AGAnimation("idle_down", idle_down);
         AGNode N_idle_right = new AGAnimation("idle_right", idle_right);
 
-        AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,1*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent walk_left = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,2*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent walk_down = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,0*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,3*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent walk_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,1*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent walk_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,2*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent walk_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,0*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent walk_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,3*22), cropSize, new Vec2d(25,0), .1);
         AGNode N_walk_up = new AGAnimation("walk_up", walk_up);
         AGNode N_walk_left = new AGAnimation("walk_left", walk_left);
         AGNode N_walk_down = new AGAnimation("walk_down", walk_down);
         AGNode N_walk_right = new AGAnimation("walk_right", walk_right);
 
-        AnimationComponent charge_up = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,1*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent charge_left = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,2*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent charge_down = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,0*22), cropSize, new Vec2d(25,0), .1);
-        AnimationComponent charge_right = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
-                spriteOffset, GOOMBA_SIZE, 7, new Vec2d(25,3*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent charge_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,1*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent charge_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,2*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent charge_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,0*22), cropSize, new Vec2d(25,0), .1);
+        AnimationComponent charge_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 7, new Vec2d(25,3*22), cropSize, new Vec2d(25,0), .1);
         AGNode N_charge_up = new AGAnimation("charge_up", charge_up);
         AGNode N_charge_left = new AGAnimation("charge_left", charge_left);
         AGNode N_charge_down = new AGAnimation("charge_down", charge_down);
@@ -150,7 +146,7 @@ public class Enemies {
         return agc;
     }
 
-    private static class GoombaMovementComponent extends Component{
+    private static class SkeletonMovementComponent extends Component{
 
         private Vec2d direction = new Vec2d(0,0);
         private double speed, time = 2;
@@ -163,7 +159,7 @@ public class Enemies {
 
         private AnimationGraphComponent animationGraphComponent;
 
-        public GoombaMovementComponent(double speed, AnimationGraphComponent animationGraphComponent) {
+        public SkeletonMovementComponent(double speed, AnimationGraphComponent animationGraphComponent) {
             super();
             this.speed = speed;
             this.animationGraphComponent = animationGraphComponent;
@@ -248,12 +244,12 @@ public class Enemies {
 
         @Override
         public String getTag() {
-            return "GoombaMovementComponent";
+            return "SkeletonMovementComponent";
         }
     }
 
-    public static void goombaNearPlayer(CollisionSystem.CollisionInfo collisionInfo){
-        GoombaMovementComponent gmc = (GoombaMovementComponent)collisionInfo.gameObjectSelf.getComponent("GoombaMovementComponent");
+    public static void skeletonNearPlayer(CollisionSystem.CollisionInfo collisionInfo){
+        SkeletonMovementComponent gmc = (SkeletonMovementComponent)collisionInfo.gameObjectSelf.getComponent("SkeletonMovementComponent");
         if(gmc == null) return;
         IDComponent idComponent = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
         if(idComponent == null) return;

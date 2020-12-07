@@ -148,7 +148,7 @@ public class WizLevelGenerator {
 
         if(map[i][j] == 1) {
             tile.addComponent(new IDComponent("wall"));
-            tile.addComponent(new HeightComponent(10));
+            tile.addComponent(new ValueComponent(10));
         } else {
             if(is_low_tile){
                 map[i][j] = 1;
@@ -157,10 +157,10 @@ public class WizLevelGenerator {
                 HealthComponent healthComponent = new HealthComponent(5);
                 healthComponent.linkDeathCallback(WizLevelGenerator::tileBreakCallback);
                 tile.addComponent(healthComponent);
-                tile.addComponent(new HeightComponent(5));
+                tile.addComponent(new ValueComponent(5));
                 tile.addComponent(new IDComponent("wall"));
             } else {
-                tile.addComponent(new HeightComponent(0));
+                tile.addComponent(new ValueComponent(0));
                 tile.addComponent(new IDComponent("grass"));
             }
         }
@@ -174,7 +174,7 @@ public class WizLevelGenerator {
         SpriteComponent sprite = (SpriteComponent)tile.getComponent("SpriteComponent");
         sprite.resetSprite(WizGame.getSpritePath("tiles"),
                 new Vec2d(0, 0), new Vec2d(2, 2), new Vec2d(34, 68), new Vec2d(32, 32));
-        HeightComponent height = (HeightComponent)tile.getComponent("HeightComponent");
+        ValueComponent height = (ValueComponent)tile.getComponent("HeightComponent");
         if(height != null) height.value = 0;
         CollisionComponent collision = (CollisionComponent)tile.getComponent("CollisionComponent");
         collision.setCollisionLayer(CollisionSystem.CollisionMask.NONE);

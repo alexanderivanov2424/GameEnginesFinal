@@ -5,6 +5,9 @@ import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.Region;
 import engine.game.components.HealthComponent;
+import engine.game.components.ValueComponent;
+import engine.game.components.animation.animationGraph.AnimationGraphComponent;
+import engine.game.components.screenEffects.FadeInEffect;
 import engine.game.components.screenEffects.FadeOutEffect;
 import engine.game.tileSystem.TileMap;
 import engine.game.systems.CollisionSystem;
@@ -112,7 +115,22 @@ public class FinalGame {
         player.getTransform().position = new Vec2d(9,32);
         gameWorld.loadRegion(Levels.area1);
 
-        ((HealthComponent)(player.getComponent("HealthComponent"))).resetHealth();
+        ((HealthComponent)player.getComponent("HealthComponent")).resetHealth();
+        ((ValueComponent)player.getComponent("ValueComponent")).value -= 10;
+        if(((ValueComponent)player.getComponent("ValueComponent")).value < 0){
+            ((ValueComponent)player.getComponent("ValueComponent")).value = 0;
+        }
+        AnimationGraphComponent agc = (AnimationGraphComponent)player.getComponent("AnimationGraphComponent");
+        agc.queueAnimation("idle",true);
+
+        FadeInEffect fadein = new FadeInEffect(0, 3);
+        fadein.linkEventCallback(FinalGame::startPlayer);
+        player.addComponent(fadein);
+    }
+
+    public static void startPlayer(GameObject player){
+        Player.PlayerComponent playerComponent = (Player.PlayerComponent)player.getComponent("PlayerComponent");
+        playerComponent.enable();
     }
 
 

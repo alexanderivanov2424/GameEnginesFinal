@@ -6,6 +6,7 @@ import engine.UIToolKit.*;
 import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.components.HealthComponent;
+import engine.game.components.ValueComponent;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -22,8 +23,8 @@ public class App extends Application {
 
   private final Font fontLarge = Font.font("Ariel", FontWeight.BOLD, 50);
   private final Font fontNormal = Font.font("Ariel", FontWeight.NORMAL, 30);
-  private final Font fontSmall = Font.font("Ariel", FontWeight.NORMAL, 15);
-  private final Font fontHP = Font.font("Ariel", FontWeight.BOLD, 30);
+  private final Font fontSmall = Font.font("Ariel", FontWeight.NORMAL, 12);
+  private final Font fontSCORE = Font.font("Ariel", FontWeight.BOLD, 30);
 
 
   public App(String title) {
@@ -56,7 +57,7 @@ public class App extends Application {
   private void createMainMenu(Screen mainMenu){
     mainMenu.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
 
-    mainMenu.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"S L I P P Y ' S   D E M I S E'",
+    mainMenu.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"S L I P P Y ' S   D E M I S E",
 
             colorBorder, fontLarge));
 
@@ -119,7 +120,10 @@ public class App extends Application {
             "Thanks to Davias for the Simulation RPG Tsukuru spritesheet for cave levels\n" +
             " - Link: https://www.spriters-resource.com/playstation/simrpgtsu/sheet/38986/\n" +
             "Thanks to Butch for the HUD sprite: https://opengameart.org/users/buch\n" +
-            "Thanks to Bonsaiheldin for the interior tile set: https://opengameart.org/content/interior-tileset-16x16\n" +
+            "Thanks to Bonsaiheldin for the interior tile set and potion sprites: \n" +
+            " - https://opengameart.org/content/interior-tileset-16x16\n" +
+            " - https://opengameart.org/content/rpg-potions-16x16\n" +
+            "Thanks to Joe Williamson roguelike item sprites: https://opengameart.org/content/roguelikerpg-items\n" +
             "\n" +
             "Special thanks to friends and family for play testing\n" +
             "Special thanks to the TA's of CSCI1950N for debugging help and general guidance\n" +
@@ -160,44 +164,88 @@ public class App extends Application {
     /**
      * Other Game Screen UI below
      */
+    //HUD
+    gameScreen.addUIElement(new HUD(new Vec2d(8,6), new Vec2d(200,64), finalGame.getPlayer()));
 
-    //Health bar UI
-//    gameScreen.addUIElement(new UIRect(new Vec2d(8,6), new Vec2d(46, 29),
-//            Color.rgb(90,90,90,0.9)));
-//    gameScreen.addUIElement(new UIText(new Vec2d(10,31), new Vec2d(400, 50),"HP",
-//            Color.rgb(220,220,220), fontHP));
-//    gameScreen.addUIElement(new UIRect(new Vec2d(62,6), new Vec2d(140, 30),
-//            Color.rgb(70,70,70,0.9)));
-//    gameScreen.addUIElement(new HPRect(new Vec2d(68,12), new Vec2d(128, 18),
-//            Color.rgb(204,89,89,0.6),
-//            finalGame.getPlayer()));
-    Image hud = new Image(FinalGame.getSpritePath("HUD"));
-    gameScreen.addUIElement(new UIImage(new Vec2d(10,10), new Vec2d(163,32),hud));
+    //SCORE
+    UIRect scorebox = new UIRect(new Vec2d(830,6), new Vec2d(120, 40),
+            Color.rgb(90,90,90,0.9));
+    scorebox.addChild(new Score(new Vec2d(60,30), new Vec2d(120, 30),
+            true, "0", Color.WHITESMOKE, fontSCORE, finalGame.getPlayer()));
+    gameScreen.addUIElement(scorebox);
 
-
+//
 
     this.addScreen(gameScreen, "gameScreen");
 
   }
 
-  private static class HPRect extends UIRect {
+  private static class HUD extends UIElement {
 
-    private double maxSize = size.x;
     private GameObject player;
 
-    public HPRect(Vec2d position, Vec2d size, Color color, GameObject player) {
-      super(position, size, color);
+    private Image HUD_image;
+    private Image weapon_image;
+
+
+    public HUD(Vec2d position, Vec2d size, GameObject player) {
+      super(position, size);
       this.player = player;
+      this.HUD_image = new Image(FinalGame.getSpritePath("HUD"));
+      this.weapon_image = new Image(FinalGame.getSpritePath("roguelikeitems"));
+
     }
 
     @Override
     public void onDraw(GraphicsContext g) {
       Vec2d pos = this.getOffset();
 
-      size.x = (maxSize * ((HealthComponent)(player.getComponent("HealthComponent"))).getHealth()/10);
+      g.save();
+      g.setImageSmoothing(false);
 
-      g.setFill(this.color);
-      g.fillRect(pos.x,pos.y,this.size.x,this.size.y);
+      HealthComponent healthComponent = (HealthComponent)player.getComponent("HealthComponent");
+      Player.PlayerComponent playerComponent = (Player.PlayerComponent)player.getComponent("PlayerComponent");
+      int weapon = playerComponent.getCurrentWeapon();
+
+      double crop_width = 51 * healthComponent.getHealthRatio();
+      double image_ratio = 32 / 100.0; // y over x
+      double W = this.size.x;
+      double H = image_ratio * W;
+
+      g.drawImage(this.HUD_image, 100, 0, crop_width, 8,
+              pos.x + 37 / 100.0 * W, pos.y, crop_width / 100.0 * W, 8 / 32.0 * H);
+
+      g.drawImage(this.HUD_image, 0, 0, 100, 32,
+              pos.x, pos.y, W, H);
+
+      Vec2d crop_start = new Vec2d(0,0);
+      if(weapon == 0){
+        crop_start = new Vec2d(16,112);
+      } else {
+        crop_start = new Vec2d(64,112);
+      }
+      g.drawImage(this.weapon_image, crop_start.x, crop_start.y, 16, 16,
+              pos.x + 9/ 100.0 * W, pos.y + 9/ 100.0 * W, 14/100.0*W, 14/100.0*W);
+
+
+      g.restore();
+      super.onDraw(g);
+    }
+  }
+
+  private static class Score extends UIText {
+
+    private GameObject player;
+
+    public Score(Vec2d position, Vec2d size, boolean centered, String text, Color textColor, Font font, GameObject player) {
+      super(position, size, centered, text, textColor, font);
+      this.player = player;
+    }
+
+    @Override
+    public void onDraw(GraphicsContext g) {
+      ValueComponent score = (ValueComponent)player.getComponent("ValueComponent");
+      this.text = "" + (int)score.value;
       super.onDraw(g);
     }
   }

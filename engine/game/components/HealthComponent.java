@@ -77,6 +77,10 @@ public class HealthComponent extends Component{
         return health;
     }
 
+    public double getHealthRatio(){
+        return health/maxHealth;
+    }
+
     public void resetHealth() {
         health = maxHealth;
         done = false;

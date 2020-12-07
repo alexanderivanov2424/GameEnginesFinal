@@ -93,7 +93,7 @@ public class MiscElements {
         coin.addComponent(coinCollision);
 
         CollisionComponent coinPickup = new CollisionComponent(new CircleShape(new Vec2d(0,0), .5), true, false,
-                FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+                CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
         coinPickup.linkCollisionCallback(MiscElements::onPickUp);
         coin.addComponent(coinPickup);
 
@@ -106,11 +106,15 @@ public class MiscElements {
     }
 
     public static void onPickUp(CollisionSystem.CollisionInfo collisionInfo){
-
         IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
         if(id != null && id.getId().equals("player")){
 
-            //TODO give player points
+            IDComponent coin_id = (IDComponent)collisionInfo.gameObjectSelf.getComponent("IDComponent");
+            if(coin_id != null) return;
+            collisionInfo.gameObjectSelf.addComponent(new IDComponent("picked up"));
+
+            ValueComponent score = (ValueComponent)collisionInfo.gameObjectOther.getComponent("ValueComponent");
+            score.value += 1;
 
             VelocityComponent vel = (VelocityComponent)collisionInfo.gameObjectSelf.getComponent("VelocityComponent");
             if(vel != null){

@@ -16,9 +16,7 @@ import projects.final_project.BackgroundMusic;
 import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
 import projects.final_project.Player;
-import projects.final_project.characters.Slippy;
-
-import java.nio.channels.GatheringByteChannel;
+import projects.final_project.characters.Goomba;
 
 public class Area2 {
 
@@ -132,9 +130,9 @@ public class Area2 {
         NaturalElements.placeTree(gameWorld, 1, new Vec2d(38,9));
 
 
-        Enemies.placeGoomba(gameWorld, new Vec2d(20, 24));
-        Enemies.placeGoomba(gameWorld, new Vec2d(22, 26));
-        Enemies.placeGoomba(gameWorld, new Vec2d(32, 20));
+        Goomba.placeGoomba(gameWorld, new Vec2d(20, 24));
+        Goomba.placeGoomba(gameWorld, new Vec2d(22, 26));
+        Goomba.placeGoomba(gameWorld, new Vec2d(32, 20));
 
 
 
