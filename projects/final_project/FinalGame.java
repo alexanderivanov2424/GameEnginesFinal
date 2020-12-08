@@ -100,8 +100,8 @@ public class FinalGame {
 
         gameWorld.processQueues();
 
-        player.getTransform().position = new Vec2d(35,10);
-        gameWorld.loadRegion(Levels.area3);
+        //player.getTransform().position = new Vec2d(35,10);
+        gameWorld.loadRegion(Levels.area2);
     }
 
     /*

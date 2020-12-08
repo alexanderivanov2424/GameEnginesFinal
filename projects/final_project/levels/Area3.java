@@ -74,7 +74,5 @@ public class Area3 {
 
     public static void addGameObjects(GameWorld gameWorld){
         Slippy.placeSlippy(gameWorld, new Vec2d(21, 28));
-
-        Skeleton.placeSkeleton(gameWorld, new Vec2d(21, 10));
     }
 }

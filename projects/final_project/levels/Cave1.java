@@ -14,6 +14,7 @@ import projects.final_project.FinalGame;
 import projects.final_project.MiscElements;
 import projects.final_project.Player;
 import projects.final_project.characters.Goomba;
+import projects.final_project.characters.Skeleton;
 
 public class Cave1 {
 
@@ -74,9 +75,9 @@ public class Cave1 {
         Goomba.placeGoomba(gameWorld, new Vec2d(20, 5));
         Goomba.placeGoomba(gameWorld, new Vec2d(25, 10));
         Goomba.placeGoomba(gameWorld, new Vec2d(43, 15));
-        Goomba.placeGoomba(gameWorld, new Vec2d(53, 25));
-        Goomba.placeGoomba(gameWorld, new Vec2d(35, 25));
-        Goomba.placeGoomba(gameWorld, new Vec2d(11, 25));
+        Skeleton.placeSkeleton(gameWorld, new Vec2d(53, 25));
+        Skeleton.placeSkeleton(gameWorld, new Vec2d(35, 25));
+        Skeleton.placeSkeleton(gameWorld, new Vec2d(11, 25));
 
         placeWarpToArea2(gameWorld);
         placeWarpToArea3(gameWorld);

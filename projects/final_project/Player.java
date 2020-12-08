@@ -8,6 +8,9 @@ import engine.game.components.*;
 import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
+import engine.game.components.screenEffects.ShakeEffect;
+import engine.game.components.screenEffects.TintEffect;
+import javafx.scene.paint.Color;
 import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.AnimationComponent;
@@ -66,7 +69,7 @@ public class Player {
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK);
         player.addComponent(collision);
 
-        CollisionComponent hitbox = new CollisionComponent(new AABShape(new Vec2d(-.25,-1.25),new Vec2d(.5,1.25)),
+        CollisionComponent hitbox = new CollisionComponent(new AABShape(new Vec2d(-.25,-1),new Vec2d(.5,1.26)),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ENEMY_LAYER);
         hitbox.linkCollisionCallback(Player::PlayerCollisionCallback);
         player.addComponent(hitbox);
@@ -74,6 +77,8 @@ public class Player {
         HealthComponent healthComponent = new HealthComponent(10);
         healthComponent.linkDeathCallback(Player::playerDeathCallback);
         player.addComponent(healthComponent);
+
+        player.addComponent(new TintEffect(0, Color.RED, 0));
 
         //TALKING TRIGGER
         //TODO this is very bad design needs to be fixed at some point
@@ -97,19 +102,35 @@ public class Player {
     private static void PlayerCollisionCallback(CollisionSystem.CollisionInfo collisionInfo){
         GameObject player = collisionInfo.gameObjectSelf;
         IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
+        ShakeEffect shake = (ShakeEffect)collisionInfo.gameObjectOther.getComponent("ShakeEffect");
+        if(shake != null) return; //taking damage
         if(id == null) return;
+        double damage = 0;
         if(id.getId().equals("goomba")){
-            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.1);
+            damage = .1;
         }
         if(id.getId().equals("skeleton")){
-            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.15);
+            damage = .15;
         }
         if(id.getId().equals("arrow")){
-            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.05);
+            damage = .05;
         }
         if(id.getId().equals("slippy")){
-            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.2);
+            damage = .2;
         }
+        if(damage > 0) {
+            ((HealthComponent) (player.getComponent("HealthComponent"))).hit(damage);
+
+            DelayEventComponent delayEventComponent = new DelayEventComponent(damage);
+            delayEventComponent.linkEventCallback(Player::deleteScreenShake);
+            ShakeEffect shakeEffect = new ShakeEffect(.1, damage);
+            player.addComponent(delayEventComponent);
+            player.addComponent(shakeEffect);
+        }
+    }
+
+    public static void deleteScreenShake(GameObject player){
+
     }
 
     private static void playerDeathCallback(GameObject player){
@@ -409,16 +430,9 @@ public class Player {
             animationGraphComponent.updateState(new Vec2d[]{new Vec2d(0,this.currentWeapon), this.direction});
 
 
-
-            TextBoxComponent tb = (TextBoxComponent)this.gameObject.getComponent("TextBoxComponent");
-            if(tb != null){
-                if(keyState.contains(KeyCode.I)){
-                    tb.open();
-                }
-                if(keyState.contains(KeyCode.K)){
-                    tb.close();
-                }
-            }
+            TintEffect tint = (TintEffect)this.gameObject.getComponent("TintEffect");
+            HealthComponent healthComponent = (HealthComponent)this.gameObject.getComponent("HealthComponent");
+            tint.setTint((1-healthComponent.getHealthRatio()) * .3);
         }
 
         @Override
