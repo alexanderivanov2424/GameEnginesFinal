@@ -183,28 +183,9 @@ public class Slippy {
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         spit.setInterruptible(true);
 
-        AGAnimationGroup stompAG = new AGAnimationGroup("stomp",
-                new AGNode[]{N_stomp},
-                new Vec2d[]{new Vec2d(0,1)});
-        stompAG.setInterruptible(true);
-
-        AGAnimationGroup deathAG = new AGAnimationGroup("death",
-                new AGNode[]{N_death},
-                new Vec2d[]{new Vec2d(0,1)});
-        deathAG.setInterruptible(true);
-
-        AGAnimationGroup deadAG = new AGAnimationGroup("dead",
-                new AGNode[]{N_dead},
-                new Vec2d[]{new Vec2d(0,1)});
-        deadAG.setInterruptible(false);
-
-        AGAnimationGroup summonAG = new AGAnimationGroup("summon",
-                new AGNode[]{N_summon},
-                new Vec2d[]{new Vec2d(0,1)});
-        summonAG.setInterruptible(true);
 
 
-        AGNode[] animationNodes = new AGNode[]{idle, walk, spit, stompAG, deathAG, summonAG, deadAG};
+        AGNode[] animationNodes = new AGNode[]{idle, walk, spit, N_stomp, N_death, N_summon, N_dead};
         AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
 
         return agc;
