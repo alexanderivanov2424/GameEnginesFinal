@@ -75,7 +75,7 @@ public class Slippy {
         animationGraphComponent.queueAnimation("death");
 
         //TODO victory?
-        DelayEventComponent delayEventComponent = new DelayEventComponent(3.5);
+        DelayEventComponent delayEventComponent = new DelayEventComponent(3.3);
         delayEventComponent.linkEventCallback(Slippy::enemyRemoveCallback);
         slippy.addComponent(delayEventComponent);
     }

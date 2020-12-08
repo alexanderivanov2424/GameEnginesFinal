@@ -1,5 +1,6 @@
 package projects.final_project;
 
+import engine.Screen;
 import engine.UIToolKit.UIViewport;
 import engine.game.GameObject;
 import engine.game.GameWorld;
@@ -128,6 +129,12 @@ public class FinalGame {
         FadeInEffect fadein = new FadeInEffect(0, 3);
         fadein.linkEventCallback(FinalGame::startPlayer);
         player.addComponent(fadein);
+    }
+
+    public void gameVictory(GameObject player){
+        Screen screen = new Screen();
+
+        App.createEndScreen(screen, player);
     }
 
     public static void startPlayer(GameObject player){

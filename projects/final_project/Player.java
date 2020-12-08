@@ -148,6 +148,11 @@ public class Player {
         FadeOutEffect fadeout = new FadeOutEffect(0, 1);
         fadeout.linkEventCallback(FinalGame::onDeath);
         player.addComponent(fadeout);
+        DrawFogComponent fog = (DrawFogComponent)player.getComponent("DrawFogComponent");
+        fog.disable();
+        CameraComponent camera = (CameraComponent)player.getComponent("CameraComponent");
+        camera.setHorizontalRange(new Vec2d(0,40));
+        camera.setVerticalRange(new Vec2d(0,40));
     }
 
     private static AnimationGraphComponent getPlayerAnimationGraph(CollisionComponent playerAttackBox){

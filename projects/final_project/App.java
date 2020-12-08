@@ -146,6 +146,31 @@ public class App extends Application {
     this.addScreen(creditsScreen, "creditsScreen");
   }
 
+  public void createEndScreen(Screen endScreen, GameObject player){
+    ValueComponent score = (ValueComponent)player.getComponent("ValueComponent");
+
+    endScreen.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
+    endScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"Thanks for Playing",
+            colorBorder, fontLarge));
+    String text = "After defeating Slippy, our hero brought peace to the town and was rewarded handsomely.";
+    endScreen.addUIElement(new UIText(new Vec2d(100,120), new Vec2d(400, 500),text, Color.BLACK, fontSmall));
+
+    endScreen.addUIElement(new UIText(new Vec2d(100,150), new Vec2d(400, 50),"" +
+            "Final Score",
+            colorBorder, fontLarge));
+    endScreen.addUIElement(new UIText(new Vec2d(100,180), new Vec2d(400, 50),"" +
+            (int)score.value,
+            colorBorder, fontNormal));
+    UIButton returnButton = new UIButton(new Vec2d(100,460), new Vec2d(130,50), colorMain, colorBorder);
+    returnButton.setOnMouseClicked(() -> {
+      this.setCurrentScreen("mainMenu");
+    });
+    returnButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"Back", colorBorder, fontNormal));
+
+    endScreen.addUIElement(returnButton);
+    this.addScreen(endScreen, "endScreen");
+  }
+
   private void createGameScreen(Screen gameScreen){
     GameWorld gameWorld = new GameWorld();
 
