@@ -25,6 +25,7 @@ public class Slippy {
 
     private static final Vec2d SLIPPY_SIZE = new Vec2d(1.6,1.8);
     private static AnimationGraphComponent animationGraphComponent;
+    private static GameObject player;
 
     public static void placeSlippy(GameWorld gameWorld, Vec2d pos){
         GameObject slippy = new GameObject(gameWorld, 1);
@@ -32,7 +33,7 @@ public class Slippy {
         slippy.addComponent(animationGraphComponent);
         slippy.addComponent(new SlippyMovementComponent(3, animationGraphComponent, gameWorld));
 
-        slippy.addComponent(new CollisionComponent(new AABShape(new Vec2d(0.4,0.7),new Vec2d(0.7,0.7)),
+        slippy.addComponent(new CollisionComponent(new AABShape(new Vec2d(0.4,0.85),new Vec2d(0.7,0.8)),
                 false, true,  FinalGame.ENEMY_LAYER, FinalGame.ENEMY_MASK));
 
         CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(0.4,0.7),new Vec2d(0.7,0.7)),
@@ -76,7 +77,7 @@ public class Slippy {
         System.out.println("dead");
         animationGraphComponent.queueAnimation("death");
 
-        //TODO victory?
+
         DelayEventComponent delayEventComponent = new DelayEventComponent(3.3);
         delayEventComponent.linkEventCallback(Slippy::enemyRemoveCallback);
         slippy.addComponent(delayEventComponent);
@@ -84,6 +85,8 @@ public class Slippy {
 
     private static void enemyRemoveCallback(GameObject gameObject){
         gameObject.gameWorld.removeGameObject(gameObject);
+        //Setting the game victory boolean to true
+        ((BooleanComponent)player.getComponent("BooleanComponent")).setBool(true);
     }
 
 
@@ -420,8 +423,8 @@ public class Slippy {
         if(idComponent == null) return;
         if(!idComponent.getId().equals("player")) return;
         smc.followPlayer(collisionInfo.gameObjectOther);
+        player = collisionInfo.gameObjectOther;
 
     }
-
 
 }

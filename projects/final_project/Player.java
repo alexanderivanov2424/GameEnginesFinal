@@ -80,6 +80,9 @@ public class Player {
 
         player.addComponent(new TintEffect(0, Color.RED, 0));
 
+        //For knowing if the game has been won
+        player.addComponent(new BooleanComponent(false));
+
         //TALKING TRIGGER
         //TODO this is very bad design needs to be fixed at some point
         // need to somehow differentiate between multiple components of same type. Maybe give components names?

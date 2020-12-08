@@ -131,10 +131,11 @@ public class FinalGame {
         player.addComponent(fadein);
     }
 
-    public void gameVictory(GameObject player){
-        Screen screen = new Screen();
-
-        //App.createEndScreen(screen, player);
+    public void resetGameWorld(){
+        BackgroundMusic.stopBGM(gameWorld);
+        gameWorld.unloadRegion();
+        gameWorld.clearAllGameObjects();
+        init();
     }
 
     public static void startPlayer(GameObject player){
