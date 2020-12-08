@@ -11,13 +11,12 @@ import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
 import javafx.scene.paint.Color;
-import projects.final_project.HealthBarComponent;
-import projects.final_project.Player;
+import projects.final_project.*;
 import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
-import projects.final_project.FinalGame;
+import projects.final_project.levels.Area3;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -28,6 +27,7 @@ public class Slippy {
     private static final Vec2d SLIPPY_SIZE = new Vec2d(1.6,1.8);
     private static AnimationGraphComponent animationGraphComponent;
     private static GameObject player;
+    private static boolean dead = false;
 
     public static void placeSlippy(GameWorld gameWorld, Vec2d pos){
         GameObject slippy = new GameObject(gameWorld, 1);
@@ -49,7 +49,7 @@ public class Slippy {
         nearPlayer.linkCollisionCallback(Slippy::slippynearPlayer);
         slippy.addComponent(nearPlayer);
 
-        HealthComponent healthComponent = new HealthComponent(20); //TODO Change hp so fair difficulty
+        HealthComponent healthComponent = new HealthComponent(3); //TODO Change hp so fair difficulty
         healthComponent.linkDeathCallback(Slippy::onDeathCallback);
         slippy.addComponent(healthComponent);
 
@@ -74,24 +74,34 @@ public class Slippy {
     }
 
     private static void onDeathCallback(GameObject slippy){
+        dead = true;
+
         CollisionComponent collision = (CollisionComponent)slippy.getComponent("CollisionComponent");
         collision.disable();
 
         SlippyMovementComponent smc = (SlippyMovementComponent)slippy.getComponent("SlippyMovementComponent");
         smc.setDead();
-        System.out.println("dead");
         animationGraphComponent.queueAnimation("death");
+
 
 
         DelayEventComponent delayEventComponent = new DelayEventComponent(3.3);
         delayEventComponent.linkEventCallback(Slippy::enemyRemoveCallback);
         slippy.addComponent(delayEventComponent);
+
+        BackgroundMusic.stopBGM(slippy.gameWorld);
+        BackgroundMusic.playBGM1(slippy.gameWorld);
     }
 
     private static void enemyRemoveCallback(GameObject gameObject){
         gameObject.gameWorld.removeGameObject(gameObject);
+        Vec2d pos = gameObject.getTransform().position;
+        for(int i = 0; i < 20; i++) {
+            MiscElements.placeCoin(gameObject.gameWorld, 2, new Vec2d(pos.x, pos.y),
+                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
+        }
         //Setting the game victory boolean to true
-        ((BooleanComponent)player.getComponent("BooleanComponent")).setBool(true);
+        Area3.placeWarpToCave(player);
     }
 
 
@@ -408,6 +418,10 @@ public class Slippy {
         smc.followPlayer(collisionInfo.gameObjectOther);
         player = collisionInfo.gameObjectOther;
 
+        if(!BackgroundMusic.getName().equals("boss") && !dead) {
+            BackgroundMusic.stopBGM(player.gameWorld);
+            BackgroundMusic.playBossBGM(player.gameWorld);
+        }
     }
 
 }

@@ -191,11 +191,11 @@ public class GameWorld {
         }
     }
 
-    public void deprocessComponet(Component componet){
-        int flags = componet.getSystemFlags();
+    public void deprocessComponet(Component component){
+        int flags = component.getSystemFlags();
         for(GeneralSystem system : systemsList){
-            if ((flags & system.getSystemFlag()) != 0 && system.hasComponent(componet)) {
-                system.removeComponent(componet);
+            if ((flags & system.getSystemFlag()) != 0 && system.hasComponent(component)) {
+                system.removeComponent(component);
             }
         }
     }

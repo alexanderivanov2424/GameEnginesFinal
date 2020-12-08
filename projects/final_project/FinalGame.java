@@ -116,6 +116,9 @@ public class FinalGame {
     }
 
     public static void onDeath(GameObject player){
+        BackgroundMusic.stopBGM(gameWorld);
+        BackgroundMusic.playBGM1(gameWorld);
+
         player.getTransform().position = new Vec2d(9,32);
         gameWorld.loadRegion(Levels.area1);
 
