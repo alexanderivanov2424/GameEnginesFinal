@@ -10,6 +10,8 @@ import engine.game.components.ValueComponent;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -44,7 +46,15 @@ public class App extends Application {
     Screen mainMenu = new Screen();
     Screen controlsScreen = new Screen();
     Screen creditsScreen = new Screen();
-    Screen gameScreen = new Screen();
+    Screen gameScreen = new Screen(){
+      @Override
+      protected void onKeyReleased(KeyEvent e) {
+        super.onKeyReleased(e);
+        if(e.getCode() == KeyCode.ESCAPE){
+          setCurrentScreen("mainMenu");
+        }
+      }
+    };
 
     createMainMenu(mainMenu);
     createControlsScreen(controlsScreen);
