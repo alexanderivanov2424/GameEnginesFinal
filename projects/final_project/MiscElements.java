@@ -35,7 +35,7 @@ public class MiscElements {
      * @param gameWorld Gameworld to add to
      * @param pos location in game world
      */
-    public static void placeBarrel(GameWorld gameWorld, int layer, Vec2d pos){
+    public static void placeBarrel(GameWorld gameWorld, int layer, Vec2d pos, int value){
         GameObject barrel = new GameObject(gameWorld, layer);
 
         SpriteComponent sprite = new SpriteComponent(FinalGame.getSpritePath("barrel"), new Vec2d(-.375,-1), new Vec2d(.75, 1.125));
@@ -52,6 +52,8 @@ public class MiscElements {
         healthComponent.linkDeathCallback(MiscElements::onBreakCallback);
         barrel.addComponent(healthComponent);
 
+        barrel.addComponent(new ValueComponent(value));
+
         barrel.getTransform().position = pos;
         gameWorld.addGameObject(barrel);
     }
@@ -67,10 +69,11 @@ public class MiscElements {
     }
 
     public static void onBreakCallback(GameObject gameObject){
+        ValueComponent vc = (ValueComponent)gameObject.getComponent("ValueComponent");
         Vec2d pos = gameObject.getTransform().position;
-        for(int i = 0; i < 3; i++) {
-            placeCoin(gameObject.gameWorld, 2, new Vec2d(pos.x, pos.y),
-                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
+        for(int i = 0; i < vc.value; i++) {
+            placeCoin(gameObject.gameWorld, 1, new Vec2d(pos.x, pos.y),
+                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(Math.random()*3));
         }
         gameObject.gameWorld.removeGameObject(gameObject);
     }

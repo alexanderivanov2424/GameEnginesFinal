@@ -10,6 +10,7 @@ import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import javafx.scene.paint.Color;
 import projects.final_project.FinalGame;
+import projects.final_project.MiscElements;
 import projects.final_project.Player;
 
 public class House1 {
@@ -72,6 +73,8 @@ public class House1 {
 
         house.addComponent(tableCandle);
         house.addComponent(shelfCandle);
+
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(13.5,6.5), 200);
 
         gameWorld.addGameObject(house);
     }

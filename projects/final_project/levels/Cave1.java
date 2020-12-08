@@ -51,17 +51,17 @@ public class Cave1 {
 
     public static void addGameObjects(GameWorld gameWorld){
 
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(19.6, 12));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(19.1, 12));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(19.6, 13));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(7.6, 2));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(5, 27.6));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(9, 20.6));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(55, 10.6));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(50, 27.6));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(50, 26.6));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(50.5, 27.6));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(15, 2.6));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(19.6, 12),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(19.1, 12),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(19.6, 13),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(7.6, 2),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(5, 27.6),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(9, 20.6),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(55, 10.6),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(50, 27.6),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(50, 26.6),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(50.5, 27.6),(int)(Math.random()*7.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(15, 2.6),(int)(Math.random()*30.0));
 
         MiscElements.placeTorch(gameWorld, 0, new Vec2d(8,13));
         MiscElements.placeTorch(gameWorld, 0, new Vec2d(6,21));

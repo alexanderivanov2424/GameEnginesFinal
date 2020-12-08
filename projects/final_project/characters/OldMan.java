@@ -4,6 +4,7 @@ import engine.game.GameObject;
 import engine.game.GameWorld;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.CollisionComponent;
+import projects.final_project.Player;
 import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
@@ -30,30 +31,32 @@ public class OldMan {
     }
 
     public static void speakToOldMan(CollisionSystem.CollisionInfo collisionInfo){
+        Player.PlayerComponent playerComponent = (Player.PlayerComponent)collisionInfo.gameObjectOther.getComponent("PlayerComponent");
+        if(playerComponent == null) return;
+        playerComponent.hasAxe = true;
         DialogComponent dc = (DialogComponent)collisionInfo.gameObjectSelf.getComponent("DialogComponent");
         if(dc == null) return;
         dc.startDialog();
     }
 
     private static DialogNode getDialog(){
-        DialogNode dialog = new DialogNode("Hey you! You're finally asleep!");
-        DialogNode quest = new DialogNode("Quickly now! You must save the town...");
-        DialogNode question = new DialogNode("Do you even know what is happening?");
+        DialogNode A = new DialogNode("Oh, what a wonderful day it would have been!\n" +
+                "I was going to chop down my tree and then rest my cold old\n" +
+                "bones by the fireplace this winter.");
+        DialogNode B = new DialogNode("But that DARN TOAD STOLE MY TREEE!");
+        DialogNode C = new DialogNode("*cough* *cough*\n" +
+                "Oh well, I guess I don't need my axe anymore.");
+        DialogNode D = new DialogNode("Here, you can have it. Maybe you can make better use of it.\n" +
+                "\n" +
+                "Just press Q to switch to it and get swinging");
 
-        DialogNode A = new DialogNode("The evil villain, Slippy the Toad, has invaded our lands. \n" +
-                "You are the only person in these parts that has the power to take him on in battle.\n" +
-                "Be warned! He has many followers that have been corrupted to his evil ways");
-        DialogNode B = new DialogNode("Good, good! Jabralter must have already told you everything.");
+        DialogNode E = new DialogNode("Kids these days. Always swinging things all over the place.");
 
-        DialogNode sendoff = new DialogNode("Now go, defeat Slippy and his henchmen!\n" +
-                "For the TOWN!!");
-
-        dialog.setNextNode(quest);
-        quest.setNextNode(question);
-        question.setOptions(new String[]{"No", "Yes"}, new DialogNode[]{A,B});
-        A.setNextNode(sendoff);
-        B.setNextNode(sendoff);
-        return dialog;
+        A.setNextNode(B);
+        B.setNextNode(C);
+        C.setNextNode(D);
+        D.setNextNode(E);
+        return A;
     }
 
 }

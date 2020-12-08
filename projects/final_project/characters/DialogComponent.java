@@ -97,10 +97,10 @@ public class DialogComponent extends ScreenEffectComponent {
     @Override
     public void onKeyPressed(KeyEvent e) {
         if(this.currentNode == null) return;
-        if(e.getCode() == KeyCode.ENTER){
+        if(e.getCode() == KeyCode.E || e.getCode() == KeyCode.ENTER){
             this.transition();
         }
-        if(e.getCode() == KeyCode.ESCAPE){
+        if(e.getCode() == KeyCode.ALT){
             this.endDialog();
         }
         if(e.getCode() == KeyCode.I | e.getCode() == KeyCode.UP){

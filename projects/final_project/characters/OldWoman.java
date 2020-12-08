@@ -36,24 +36,16 @@ public class OldWoman {
     }
 
     private static DialogNode getDialog(){
-        DialogNode dialog = new DialogNode("Hey you! You're finally asleep!");
-        DialogNode quest = new DialogNode("Quickly now! You must save the town...");
-        DialogNode question = new DialogNode("Do you even know what is happening?");
+        DialogNode A = new DialogNode("My poor Henrietta");
+        DialogNode B = new DialogNode("Slippy had another episode yesterday. He raided our home and stole my chicken.");
+        DialogNode C = new DialogNode("At least he didn't steal our life savings that I hid behind the bed in our house.");
 
-        DialogNode A = new DialogNode("The evil villain, Slippy the Toad, has invaded our lands. \n" +
-                "You are the only person in these parts that has the power to take him on in battle.\n" +
-                "Be warned! He has many followers that have been corrupted to his evil ways");
-        DialogNode B = new DialogNode("Good, good! Jabralter must have already told you everything.");
+        DialogNode D = new DialogNode("Shhh... just don't tell the Toad.");
 
-        DialogNode sendoff = new DialogNode("Now go, defeat Slippy and his henchmen!\n" +
-                "For the TOWN!!");
-
-        dialog.setNextNode(quest);
-        quest.setNextNode(question);
-        question.setOptions(new String[]{"No", "Yes"}, new DialogNode[]{A,B});
-        A.setNextNode(sendoff);
-        B.setNextNode(sendoff);
-        return dialog;
+        A.setNextNode(B);
+        B.setNextNode(C);
+        C.setNextNode(D);
+        return A;
     }
 
 }

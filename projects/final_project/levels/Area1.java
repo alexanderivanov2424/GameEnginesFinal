@@ -111,15 +111,15 @@ public class Area1 {
 
         BackgroundMusic.playBGM1(gameWorld);
 
-        NhoKlu.placeNhoKlu(gameWorld, new Vec2d(13,21));
+        NhoKlu.placeNhoKlu(gameWorld, new Vec2d(13,21), new Vec2d(19,23));
 
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(6.5,9));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(15,11));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(26,13));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(31.5,35));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(16.5,25));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(9,19));
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(27,19));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(6.5,9),(int)(Math.random()*5.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(15,11),(int)(Math.random()*5.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(26,13),(int)(Math.random()*5.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(31.5,35),(int)(Math.random()*5.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(16.5,25),(int)(Math.random()*5.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(9,19),(int)(Math.random()*5.0));
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(27,19),(int)(Math.random()*5.0));
 
         placeWarpToArea2(gameWorld);
     }
