@@ -246,7 +246,7 @@ public class NaturalElements {
 
         } else if(size == 2) {
             SpriteComponent sprite = new SpriteComponent(FinalGame.getSpritePath("tile_sprite_sheet"),
-                    new Vec2d(-1,-1), new Vec2d(2, 2), new Vec2d(4, 10).smult(32), new Vec2d(32, 32));
+                    new Vec2d(-1,-1), new Vec2d(2, 2), new Vec2d(5, 10).smult(32), new Vec2d(32, 32));
             cactus.addComponent(sprite);
 
             cactus.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,.5), .2), true, true,

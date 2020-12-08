@@ -10,6 +10,8 @@ import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
+import javafx.scene.paint.Color;
+import projects.final_project.HealthBarComponent;
 import projects.final_project.Player;
 import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.game.systems.CollisionSystem;
@@ -49,6 +51,8 @@ public class Goomba {
         HealthComponent healthComponent = new HealthComponent(5);
         healthComponent.linkDeathCallback(Goomba::enemyDeathCallback);
         enemy.addComponent(healthComponent);
+
+        enemy.addComponent(new HealthBarComponent(Color.RED, new Vec2d(0,-1.5), new Vec2d(.8,.1), healthComponent, true));
 
         enemy.addComponent(new IDComponent("goomba"));
 

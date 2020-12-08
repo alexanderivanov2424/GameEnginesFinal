@@ -121,6 +121,9 @@ public class Player {
         if(id.getId().equals("slippy")){
             damage = .2;
         }
+        if(id.getId().equals("SlippySpit")){
+            damage = .2;
+        }
         if(damage > 0) {
             ((HealthComponent) (player.getComponent("HealthComponent"))).hit(damage);
 

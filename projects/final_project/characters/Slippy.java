@@ -10,6 +10,8 @@ import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
+import javafx.scene.paint.Color;
+import projects.final_project.HealthBarComponent;
 import projects.final_project.Player;
 import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.game.systems.CollisionSystem;
@@ -33,10 +35,11 @@ public class Slippy {
         slippy.addComponent(animationGraphComponent);
         slippy.addComponent(new SlippyMovementComponent(3, animationGraphComponent, gameWorld));
 
-        slippy.addComponent(new CollisionComponent(new AABShape(new Vec2d(0.4,0.85),new Vec2d(0.7,0.8)),
+
+        slippy.addComponent(new CollisionComponent(new AABShape(new Vec2d(-.35,-0.7),new Vec2d(0.7,0.7)),
                 false, true,  FinalGame.ENEMY_LAYER, FinalGame.ENEMY_MASK));
 
-        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(0.4,0.7),new Vec2d(0.7,0.7)),
+        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(-.35,-0.7),new Vec2d(0.7,0.7)),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
         hitCollisionComponent.linkCollisionCallback(Slippy::onHitCallback);
         slippy.addComponent(hitCollisionComponent);
@@ -46,9 +49,11 @@ public class Slippy {
         nearPlayer.linkCollisionCallback(Slippy::slippynearPlayer);
         slippy.addComponent(nearPlayer);
 
-        HealthComponent healthComponent = new HealthComponent(10); //TODO Change hp so fair difficulty
+        HealthComponent healthComponent = new HealthComponent(20); //TODO Change hp so fair difficulty
         healthComponent.linkDeathCallback(Slippy::onDeathCallback);
         slippy.addComponent(healthComponent);
+
+        slippy.addComponent(new HealthBarComponent(Color.RED, new Vec2d(0,-2), new Vec2d(2,.2), healthComponent, true));
 
         slippy.addComponent(new IDComponent("slippy"));
 
@@ -91,7 +96,7 @@ public class Slippy {
 
 
     public static AnimationGraphComponent getSlippyAnimationGraph() {
-        Vec2d spriteOffset = new Vec2d(0,0);
+        Vec2d spriteOffset = new Vec2d(-SLIPPY_SIZE.x/2,-SLIPPY_SIZE.y);
         Vec2d cropSizeWalk = new Vec2d(21,28);
 
         AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("slippy"),
@@ -138,7 +143,7 @@ public class Slippy {
         AGNode N_spit_right = new AGAnimation("spit_right", spit_right);
 
         AnimationComponent stomp = new SpriteAnimationComponent(FinalGame.getSpritePath("slippy"),
-                new Vec2d(0,-0.2), new Vec2d(2,2.4), 4, new Vec2d(11,164), new Vec2d(28,38),
+                new Vec2d(-1,-1.2), new Vec2d(2,2.4), 4, new Vec2d(11,164), new Vec2d(28,38),
                 new Vec2d(29,0), .3);
 
         AGNode N_stomp = new AGAnimation("stomp", stomp);
@@ -209,18 +214,19 @@ public class Slippy {
         GameObject projectile = new GameObject(gameWorld, 2);
 
         projectile.addComponent(new SpriteComponent(FinalGame.getSpritePath("projectile"),
-                new Vec2d(0,0), new Vec2d(1,1)));
+                new Vec2d(-.5,-.5), new Vec2d(1,1)));
 
-        CollisionComponent collisionComponent = new CollisionComponent(new CircleShape(new Vec2d(.5,.5),.3),
-                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+        CollisionComponent collisionComponent = new CollisionComponent(new CircleShape(new Vec2d(0,0),.3),
+                false, true, FinalGame.ENEMY_LAYER, FinalGame.ENEMY_MASK);
         collisionComponent.linkCollisionCallback(Slippy::projectileCollisionCallback);
         projectile.addComponent(collisionComponent);
 
-        projectile.addComponent(new VelocityComponent(new Vec2d(target.getTransform().position.minus(position)
+        projectile.addComponent(new VelocityComponent(new Vec2d(target.getTransform().position.plus(0,-1).minus(position)
         .smult(1.5))));
 
+        projectile.addComponent(new IDComponent("SlippySpit"));
+
         projectile.getTransform().position = position;
-        projectile.getTransform().size = new Vec2d(1.5,1.5);
         gameWorld.addGameObject(projectile);
     }
 
@@ -231,10 +237,6 @@ public class Slippy {
         }
         else if(id.getId().equals("slippy")) {
             return;
-        }
-        HealthComponent health = (HealthComponent)collisionInfo.gameObjectOther.getComponent("HealthComponent");
-        if(health != null){
-            health.hit(1);
         }
         collisionInfo.gameObjectSelf.gameWorld.removeGameObject(collisionInfo.gameObjectSelf);
 
@@ -327,7 +329,7 @@ public class Slippy {
             else if(this.state.equals("spit")){
                 if(spitCooldown <= 0) {
 
-                    createProjectile(gameWorld, player, this.gameObject.getTransform().position);
+                    createProjectile(gameWorld, player, this.gameObject.getTransform().position.plus(0,-1));
                     spitCooldown = 0.6;
                 }
                 if(time <= 0) {
