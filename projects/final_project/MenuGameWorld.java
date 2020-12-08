@@ -54,14 +54,15 @@ public class MenuGameWorld {
         NaturalElements.placeRockFlowers(gameWorld, 1, new Vec2d(10,14), 2);
         NaturalElements.placeStump(gameWorld, 1, new Vec2d(2,15));
 
-        placeGoomba(gameWorld, new Vec2d(10,10));
-        placeGoomba(gameWorld, new Vec2d(10,15));
+        placeGoomba(gameWorld, new Vec2d(5,8));
+        placeGoomba(gameWorld, new Vec2d(12,15));
+        placeGoomba(gameWorld, new Vec2d(10,5));
     }
 
     public void setTerrain(TileMap tileMap){
         int[][] tiles_int = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0},
                 {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 1, 0, 0, 1, 3, 0, 1},
                 {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
@@ -72,7 +73,7 @@ public class MenuGameWorld {
         };
 
         int[][] heights = new int[][]{
-                {1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0},
+                {1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 0},
                 {1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0},
                 {1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1},
                 {1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 0},
@@ -97,7 +98,7 @@ public class MenuGameWorld {
     }
 
     public static void placeGoomba(GameWorld gameWorld, Vec2d pos){
-        GameObject enemy = new GameObject(gameWorld, 2);
+        GameObject enemy = new GameObject(gameWorld, 1);
 
         AnimationGraphComponent agc = Goomba.getGoombaAnimationGraph();
         enemy.addComponent(agc);
