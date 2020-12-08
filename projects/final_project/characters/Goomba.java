@@ -93,7 +93,7 @@ public class Goomba {
         gameObject.gameWorld.removeGameObject(gameObject);
     }
 
-    private static AnimationGraphComponent getGoombaAnimationGraph(){
+    public static AnimationGraphComponent getGoombaAnimationGraph(){
         Vec2d spriteOffset = new Vec2d(-GOOMBA_SIZE.x/2,-GOOMBA_SIZE.y);
         Vec2d cropSize = new Vec2d(25,22);
         AnimationComponent idle_up = new SpriteAnimationComponent(FinalGame.getSpritePath("goomba"),
@@ -173,6 +173,7 @@ public class Goomba {
             super();
             this.speed = speed;
             this.animationGraphComponent = animationGraphComponent;
+            this.animationGraphComponent.queueAnimation("idle");
         }
 
 
@@ -182,7 +183,6 @@ public class Goomba {
             double dx = 0;
             double dy = 0;
             double dt = nanosSincePreviousTick/1000000000.0; //seconds since last tick
-
             time -= dt;
 
             //being hit

@@ -20,7 +20,7 @@ import javafx.scene.text.FontWeight;
 
 public class App extends Application {
 
-  private final Color colorMain = Color.color(.5, .9, .8, .9);
+  private final Color colorMain = Color.color(.6, .95, .9, .9);
   private final Color colorBorder = Color.color(.4, 0, .15);
   private final Color colorBackground = Color.color(.5, .9, .8, .9);
 
@@ -30,7 +30,6 @@ public class App extends Application {
   private final Font fontSCORE = Font.font("Ariel", FontWeight.BOLD, 30);
 
   private FinalGame finalGame;
-
   private MenuGameWorld menuWorld;
 
   public App(String title) {
@@ -79,7 +78,7 @@ public class App extends Application {
     menuWorld = new MenuGameWorld(gameWorld, viewport);
     menuWorld.init();
 
-    mainMenu.addUIElement(new UIRect(new Vec2d(100,30), new Vec2d(640, 70), colorBackground));
+    mainMenu.addUIElement(new UIRect(new Vec2d(100,30), new Vec2d(640, 70), colorMain));
     mainMenu.addUIElement(new UIText(new Vec2d(120,80), new Vec2d(400, 50),"S L I P P Y ' S   D E M I S E",
             colorBorder, fontLarge));
 
