@@ -10,7 +10,7 @@ import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
-import engine.game.components.animation.animationGraph.AnimationGraphComponent;
+import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;

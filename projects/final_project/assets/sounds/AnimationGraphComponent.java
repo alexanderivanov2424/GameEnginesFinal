@@ -1,7 +1,9 @@
-package engine.game.components.animation.animationGraph;
+package projects.final_project.assets.sounds;
 
 import engine.game.GameObject;
 import engine.game.components.Component;
+import engine.game.components.animation.animationGraph.AGAnimationGroup;
+import engine.game.components.animation.animationGraph.AGNode;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -63,6 +65,10 @@ public class AnimationGraphComponent extends Component {
 
     public String getCurrentAnimation(){
         return this.nodes[this.currentNode].name;
+    }
+
+    public boolean justFinished(){
+        return this.nodes[this.currentNode].justFinished();
     }
 
     public void onTick(long nanosSincePreviousTick) {

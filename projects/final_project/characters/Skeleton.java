@@ -12,6 +12,7 @@ import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
 import projects.final_project.FinalGame;
 import projects.final_project.MiscElements;
+import projects.final_project.assets.sounds.AnimationGraphComponent;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -35,8 +36,8 @@ public class Skeleton {
         hitCollisionComponent.linkCollisionCallback(Skeleton::onHitCallback);
         enemy.addComponent(hitCollisionComponent);
 
-        CollisionComponent nearPlayer = new CollisionComponent(new CircleShape(new Vec2d(0,0),5),
-                false, false, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+        CollisionComponent nearPlayer = new CollisionComponent(new CircleShape(new Vec2d(0,0),7),
+                false, false, CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
         nearPlayer.linkCollisionCallback(Skeleton::skeletonNearPlayer);
         enemy.addComponent(nearPlayer);
 
@@ -111,18 +112,18 @@ public class Skeleton {
         AGNode N_walk_down = new AGAnimation("walk_down", walk_down);
         AGNode N_walk_right = new AGAnimation("walk_right", walk_right);
 
-        AnimationComponent attack_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,12*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent attack_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,13*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent attack_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,14*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AnimationComponent attack_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
-                spriteOffset, SKELETON_SIZE, 6, new Vec2d(0,15*64), new Vec2d(64,64), new Vec2d(64,0), .05);
-        AGNode N_attack_up = new AGAnimation("attack_up", attack_up);
-        AGNode N_attack_left = new AGAnimation("attack_left", attack_left);
-        AGNode N_attack_down = new AGAnimation("attack_down", attack_down);
-        AGNode N_attack_right = new AGAnimation("attack_right", attack_right);
+        AnimationComponent shoot_up = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 12, new Vec2d(0,16*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent shoot_left = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 12, new Vec2d(0,17*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent shoot_down = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 12, new Vec2d(0,18*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AnimationComponent shoot_right = new SpriteAnimationComponent(FinalGame.getSpritePath("skeleton"),
+                spriteOffset, SKELETON_SIZE, 12, new Vec2d(0,19*64), new Vec2d(64,64), new Vec2d(64,0), .05);
+        AGNode N_shoot_up = new AGAnimation("shoot_up", shoot_up);
+        AGNode N_shoot_left = new AGAnimation("shoot_left", shoot_left);
+        AGNode N_shoot_down = new AGAnimation("shoot_down", shoot_down);
+        AGNode N_shoot_right = new AGAnimation("shoot_right", shoot_right);
 
         AGAnimationGroup idle = new AGAnimationGroup("idle",
                 new AGNode[]{N_idle_up, N_idle_left, N_idle_down, N_idle_right},
@@ -134,12 +135,12 @@ public class Skeleton {
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
         walk.setInterruptible(true);
 
-        AGAnimationGroup attack = new AGAnimationGroup("attack", "idle",
-                new AGNode[]{N_attack_up, N_attack_left, N_attack_down, N_attack_right},
+        AGAnimationGroup shoot = new AGAnimationGroup("shoot", "idle",
+                new AGNode[]{N_shoot_up, N_shoot_left, N_shoot_down, N_shoot_right},
                 new Vec2d[]{new Vec2d(0,-1), new Vec2d(-1,0), new Vec2d(0,1), new Vec2d(1,0)});
-        attack.setInterruptible(false);
+        shoot.setInterruptible(false);
 
-        AGNode[] animationNodes = new AGNode[]{idle, walk, attack};
+        AGNode[] animationNodes = new AGNode[]{idle, walk, shoot};
         AnimationGraphComponent agc = new AnimationGraphComponent(animationNodes);
         return agc;
     }
@@ -147,11 +148,12 @@ public class Skeleton {
     private static class SkeletonMovementComponent extends Component{
 
         private Vec2d direction = new Vec2d(0,0);
-        private double speed, time = 2;
+        private double speed = 1.5;
+        private double time = 2;
 
         private double margin = .5;
 
-        private String state = "idle"; // idle, follow, prep, charge
+        private String state = "standing"; //standing, idle, follow, retreat, shoot
 
         public GameObject player;
 
@@ -173,9 +175,18 @@ public class Skeleton {
 
             time -= dt;
 
-            if(this.state.equals("idle")){
+            Vec2d pos = this.gameObject.getTransform().position;
+
+            //being hit
+            if(this.gameObject.getComponent("ShakeComponent") != null) return;
+            if(this.state.equals("standing")){
+                if(time <= 0) {
+                    this.state = "idle";
+                }
+                this.animationGraphComponent.queueAnimation("idle");
+            } else if(this.state.equals("idle")){
                 if(time <= 0) {//Randomly pick a new direction every 2 seconds.
-                    int pickDirection = ThreadLocalRandom.current().nextInt(0, 4);
+                    int pickDirection = ThreadLocalRandom.current().nextInt(0, 6);
                     if(pickDirection == 0) direction = new Vec2d(0,1);
                     else if(pickDirection == 1) direction = new Vec2d(0,-1);
                     else if(pickDirection == 2) direction = new Vec2d(-1,0);
@@ -193,45 +204,57 @@ public class Skeleton {
                 dy -= direction.y * dt * speed;
 
             } else if(this.state.equals("follow")){
-                Vec2d delta = this.player.getTransform().position.minus(this.gameObject.getTransform().position);
-                this.direction = delta.normalize();
-                if(time < 0){
-                    this.state = "prep";
+                Vec2d delta = this.player.getTransform().position.minus(pos);
+                if(delta.mag() < 3){
+                    this.state = "retreat";
                     time = 1;
+                }
+                this.direction = delta.normalize();
+                if(this.time < 0){
+                    this.state = "shoot";
+                    time = .6;
                 }
                 this.animationGraphComponent.queueAnimation("walk");
                 dx -= direction.x * dt * speed;
                 dy -= direction.y * dt * speed;
-            } else if(this.state.equals("prep")){
-                Vec2d delta = this.player.getTransform().position.minus(this.gameObject.getTransform().position);
+            } else if(this.state.equals("retreat")){
+                Vec2d delta = this.player.getTransform().position.minus(pos);
+                if(delta.mag() > 6){
+                    this.state = "follow";
+                    time = 1;
+                }
                 this.direction = delta.normalize();
-                if(time < 0){
-                    this.state = "charge";
-                    time = 3;
+                if(this.time < 0){
+                    this.state = "shoot";
+                    time = .6;
                 }
+                this.direction = this.direction.smult(-1);
                 this.animationGraphComponent.queueAnimation("walk");
-            }else if(this.state.equals("charge")){
-                if(time <= 0) {
-                    this.state = "idle";
+                dx -= direction.x * dt * speed;
+                dy -= direction.y * dt * speed;
+            } else if(this.state.equals("shoot")){
+                Vec2d delta = this.player.getTransform().position.minus(pos);
+                this.direction = delta.normalize();
+                this.animationGraphComponent.queueAnimation("shoot");
+                if(this.animationGraphComponent.justFinished()) {
+                    placeArrow(this.gameObject.gameWorld, pos, this.direction);
+                    this.state = "standing";
                     this.player = null;
+                    this.time = 1;
                 }
-                this.animationGraphComponent.queueAnimation("charge");
-                dx -= direction.x * dt * speed * 2;
-                dy -= direction.y * dt * speed * 2;
             }
 
 
             this.animationGraphComponent.updateState(new Vec2d[]{this.direction});
-            Vec2d pos = this.gameObject.getTransform().position;
             this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
 
         }
 
         public void followPlayer(GameObject player){
-            if(this.player == null) {
+            if(this.player == null && (this.state.equals("idle"))) {
                 this.state = "follow";
                 this.player = player;
-                this.time = 2;
+                this.time = 3;
             }
         }
 
@@ -244,6 +267,20 @@ public class Skeleton {
         public String getTag() {
             return "SkeletonMovementComponent";
         }
+    }
+
+    public static void placeArrow(GameWorld gameWorld, Vec2d pos, Vec2d direction){
+        GameObject arrow = new GameObject(gameWorld, 1);
+
+        int crop = ((int)Math.round(8.0*direction.angle()/(2.0*Math.PI)) + 1) % 8;
+        SpriteComponent sprite = new SpriteComponent("projectiles", new Vec2d(-.5,-.5), new Vec2d(1,1),
+                new Vec2d(32.0*crop, 0), new Vec2d(0,32));
+        arrow.addComponent(sprite);
+
+        arrow.addComponent(new VelocityComponent(direction.normalize().smult(3)));
+
+        arrow.getTransform().position = pos.plus(new Vec2d(0,0)); //make a copy
+        gameWorld.addGameObject(arrow);
     }
 
     public static void skeletonNearPlayer(CollisionSystem.CollisionInfo collisionInfo){

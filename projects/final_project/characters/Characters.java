@@ -1,14 +1,12 @@
 package projects.final_project.characters;
 
-import engine.game.GameObject;
-import engine.game.GameWorld;
 import engine.game.components.TextBoxComponent;
 import engine.game.components.animation.AnimationComponent;
 import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
-import engine.game.components.animation.animationGraph.AnimationGraphComponent;
+import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.support.Vec2d;
 import javafx.scene.text.Font;
 import projects.final_project.FinalGame;
