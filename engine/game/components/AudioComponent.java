@@ -13,7 +13,7 @@ public class AudioComponent extends Component {
     protected FloatControl gainControl;
     protected GameObject source;
     protected Clip clip;
-    protected boolean loop;
+    protected boolean loop = false;
 
     public AudioComponent(String filePath, GameObject source, boolean loop) {
         super();
@@ -48,6 +48,10 @@ public class AudioComponent extends Component {
 
     //Starts the clip from the very beginning
     public void start() {
+        if(clip != null && !clip.isRunning()) {
+            clip = null;
+        }
+
         if(clip == null) {
             clip = setup();
 

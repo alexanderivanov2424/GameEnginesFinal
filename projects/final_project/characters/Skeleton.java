@@ -49,6 +49,8 @@ public class Skeleton {
         healthComponent.linkDeathCallback(Skeleton::enemyDeathCallback);
         enemy.addComponent(healthComponent);
 
+        enemy.addComponent(new AudioComponent("skeleton.wav"));
+
         enemy.addComponent(new HealthBarComponent(Color.RED, new Vec2d(0,-1.75), new Vec2d(1,.1), healthComponent, true));
 
         enemy.addComponent(new IDComponent("skeleton"));
@@ -61,6 +63,7 @@ public class Skeleton {
     public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
         if(collisionInfo.gameObjectSelf.getComponent("ShakeComponent") == null) {
             collisionInfo.gameObjectSelf.addComponent(new ShakeComponent(.1, .1));
+            ((AudioComponent)(collisionInfo.gameObjectSelf.getComponent("AudioComponent"))).start();
             Player.PlayerComponent playerComponent = (Player.PlayerComponent)collisionInfo.gameObjectOther.getComponent("PlayerComponent");
             HealthComponent health = (HealthComponent)collisionInfo.gameObjectSelf.getComponent("HealthComponent");
             if(health != null && playerComponent != null){

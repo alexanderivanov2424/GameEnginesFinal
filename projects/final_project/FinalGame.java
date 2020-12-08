@@ -104,10 +104,11 @@ public class FinalGame {
         gameWorld.unloadRegion();
 
         gameWorld.processQueues();
-
+        
 //        player.getTransform().position = new Vec2d(30,10);
 //        player.getTransform().position = new Vec2d(14,20);
         gameWorld.loadRegion(Levels.area1);
+
 
         hasStarted = true;
     }

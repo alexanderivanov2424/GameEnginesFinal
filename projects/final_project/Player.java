@@ -63,7 +63,8 @@ public class Player {
 
 
         swing = new AudioComponent("swing.wav", true);
-        player.addComponent(swing);
+
+        player.addComponent(new AudioComponent("playerDamage.wav"));
 
         CollisionComponent collision = new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK);
@@ -130,6 +131,8 @@ public class Player {
             DelayEventComponent delayEventComponent = new DelayEventComponent(damage);
             delayEventComponent.linkEventCallback(Player::deleteScreenShake);
             ShakeEffect shakeEffect = new ShakeEffect(.1, damage);
+
+            ((AudioComponent)(collisionInfo.gameObjectSelf.getComponent("AudioComponent"))).start();
             player.addComponent(delayEventComponent);
             player.addComponent(shakeEffect);
         }

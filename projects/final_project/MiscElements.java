@@ -55,6 +55,7 @@ public class MiscElements {
         barrel.addComponent(healthComponent);
 
         barrel.addComponent(new ValueComponent(value));
+        barrel.addComponent(new AudioComponent("barrel.wav"));
 
         barrel.getTransform().position = pos;
         gameWorld.addGameObject(barrel);
@@ -63,6 +64,7 @@ public class MiscElements {
     public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
         if(collisionInfo.gameObjectSelf.getComponent("ShakeComponent") == null) {
             collisionInfo.gameObjectSelf.addComponent(new ShakeComponent(.1, .1));
+            ((AudioComponent)(collisionInfo.gameObjectSelf.getComponent("AudioComponent"))).start();
             HealthComponent health = (HealthComponent)collisionInfo.gameObjectSelf.getComponent("HealthComponent");
             if(health != null){
                 health.hit(1);

@@ -56,6 +56,7 @@ public class Slippy {
         slippy.addComponent(new HealthBarComponent(Color.RED, new Vec2d(0,-2), new Vec2d(2,.2), healthComponent, true));
 
         slippy.addComponent(new IDComponent("slippy"));
+        slippy.addComponent(new AudioComponent("slippyDamage.wav"));
 
         slippy.getTransform().position = pos;
         slippy.getTransform().size = SLIPPY_SIZE;
@@ -65,6 +66,7 @@ public class Slippy {
     public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
         if(collisionInfo.gameObjectSelf.getComponent("ShakeComponent") == null) {
             collisionInfo.gameObjectSelf.addComponent(new ShakeComponent(.1, .1));
+            ((AudioComponent)(collisionInfo.gameObjectSelf.getComponent("AudioComponent"))).start();
             Player.PlayerComponent playerComponent = (Player.PlayerComponent)collisionInfo.gameObjectOther.getComponent("PlayerComponent");
             HealthComponent health = (HealthComponent)collisionInfo.gameObjectSelf.getComponent("HealthComponent");
             if(health != null && playerComponent != null){

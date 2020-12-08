@@ -46,7 +46,8 @@ public class Goomba {
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
         nearPlayer.linkCollisionCallback(Goomba::goombaNearPlayer);
         enemy.addComponent(nearPlayer);
-
+        
+        enemy.addComponent(new AudioComponent("goomba.wav"));
 
         HealthComponent healthComponent = new HealthComponent(5);
         healthComponent.linkDeathCallback(Goomba::enemyDeathCallback);
@@ -64,6 +65,7 @@ public class Goomba {
     public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
         if(collisionInfo.gameObjectSelf.getComponent("ShakeComponent") == null) {
             collisionInfo.gameObjectSelf.addComponent(new ShakeComponent(.1, .1));
+            ((AudioComponent)(collisionInfo.gameObjectSelf.getComponent("AudioComponent"))).start();
             Player.PlayerComponent playerComponent = (Player.PlayerComponent)collisionInfo.gameObjectOther.getComponent("PlayerComponent");
             HealthComponent health = (HealthComponent)collisionInfo.gameObjectSelf.getComponent("HealthComponent");
             if(health != null && playerComponent != null){
