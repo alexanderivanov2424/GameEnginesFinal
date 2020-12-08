@@ -83,6 +83,10 @@ public class Area3 {
                 NaturalElements.placeCactus(gameWorld, 0, p, (int)(Math.random()*4));
             }
         }
+        NaturalElements.placeTree(gameWorld, 1, new Vec2d(27,7.5));
+        NaturalElements.placeChicken(gameWorld, 1, new Vec2d(29,7.5));
+
+
         Slippy.placeSlippy(gameWorld, new Vec2d(21, 28));
     }
 }

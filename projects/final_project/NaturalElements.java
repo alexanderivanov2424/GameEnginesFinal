@@ -322,4 +322,18 @@ public class NaturalElements {
         bush.getTransform().position = pos;
         gameWorld.addGameObject(bush);
     }
+
+    public static void placeChicken(GameWorld gameWorld, int layer, Vec2d pos){
+        GameObject chicken = new GameObject(gameWorld, layer);
+
+
+        SpriteComponent sprite = new SpriteComponent(FinalGame.getSpritePath("chicken"),
+                new Vec2d(-.5,-1), new Vec2d(1, 1), new Vec2d(48, 0), new Vec2d(24, 24));
+        chicken.addComponent(sprite);
+//        chicken.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,-.5), .1), true, true,
+//                    FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
+
+        chicken.getTransform().position = pos;
+        gameWorld.addGameObject(chicken);
+    }
 }
