@@ -3,11 +3,7 @@ package projects.final_project.levels;
 import engine.game.GameWorld;
 import engine.game.tileSystem.TileMap;
 import engine.support.Vec2d;
-import projects.final_project.BackgroundMusic;
-import projects.final_project.MiscElements;
 import projects.final_project.NaturalElements;
-import projects.final_project.characters.OldMan;
-import projects.final_project.characters.Skeleton;
 import projects.final_project.characters.Slippy;
 
 public class Area3 {

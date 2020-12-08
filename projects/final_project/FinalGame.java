@@ -37,9 +37,9 @@ public class FinalGame {
     public static final int TALK_LAYER = CollisionSystem.CollisionMask.layer5;
     public static final int TALK_MASK = CollisionSystem.CollisionMask.layer5;
 
-    private static GameWorld gameWorld;
+    private GameWorld gameWorld;
     private UIViewport viewport;
-    private static GameObject player;
+    private GameObject player;
 
     public FinalGame(GameWorld gameWorld, UIViewport viewport) {
         this.gameWorld = gameWorld;
@@ -117,7 +117,7 @@ public class FinalGame {
 
     public static void onDeath(GameObject player){
         player.getTransform().position = new Vec2d(9,32);
-        gameWorld.loadRegion(Levels.area1);
+        player.gameWorld.loadRegion(Levels.area1);
 
         ((HealthComponent)player.getComponent("HealthComponent")).resetHealth();
         ((ValueComponent)player.getComponent("ValueComponent")).value -= 10;

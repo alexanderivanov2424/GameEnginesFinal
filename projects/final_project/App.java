@@ -20,9 +20,9 @@ import javafx.scene.text.FontWeight;
 
 public class App extends Application {
 
-  private final Color colorMain = Color.color(.2, .7, .35);
+  private final Color colorMain = Color.color(.5, .9, .8, .9);
   private final Color colorBorder = Color.color(.4, 0, .15);
-  private final Color colorBackground = Color.color(.5, .9, .8);
+  private final Color colorBackground = Color.color(.5, .9, .8, .9);
 
   private final Font fontLarge = Font.font("Ariel", FontWeight.BOLD, 50);
   private final Font fontNormal = Font.font("Ariel", FontWeight.NORMAL, 30);
@@ -30,6 +30,8 @@ public class App extends Application {
   private final Font fontSCORE = Font.font("Ariel", FontWeight.BOLD, 30);
 
   private FinalGame finalGame;
+
+  private MenuGameWorld menuWorld;
 
   public App(String title) {
     super(title);
@@ -67,10 +69,18 @@ public class App extends Application {
   }
 
   private void createMainMenu(Screen mainMenu){
-    mainMenu.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
+//    mainMenu.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
+    GameWorld gameWorld = new GameWorld();
 
-    mainMenu.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"S L I P P Y ' S   D E M I S E",
+    UIViewport viewport = new UIViewport(new Vec2d(0,0),
+            new Vec2d(this.originalStageSize.x, this.originalStageSize.y),
+            gameWorld, new Vec2d(0,0), 50, true);
+    mainMenu.addUIElement(viewport);
+    menuWorld = new MenuGameWorld(gameWorld, viewport);
+    menuWorld.init();
 
+    mainMenu.addUIElement(new UIRect(new Vec2d(100,30), new Vec2d(640, 70), colorBackground));
+    mainMenu.addUIElement(new UIText(new Vec2d(120,80), new Vec2d(400, 50),"S L I P P Y ' S   D E M I S E",
             colorBorder, fontLarge));
 
     UIButton startButton = new UIButton(new Vec2d(100,120), new Vec2d(250,50), colorMain, colorBorder);
@@ -189,7 +199,7 @@ public class App extends Application {
     GameWorld gameWorld = new GameWorld();
 
     gameScreen.addUIElement(new UIRect(new Vec2d(0,0),
-            new Vec2d(this.currentStageSize.x,this.currentStageSize.y), colorBackground));
+            new Vec2d(this.currentStageSize.x,this.currentStageSize.y), Color.rgb(148, 100, 58)));
 
 
     UIViewport viewport = new UIViewport(new Vec2d(0,0),

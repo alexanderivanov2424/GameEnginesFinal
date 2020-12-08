@@ -273,7 +273,7 @@ public class NaturalElements {
         GameObject stump = new GameObject(gameWorld, layer);
 
         SpriteComponent sprite = new SpriteComponent(FinalGame.getSpritePath("tile_sprite_sheet"),
-                new Vec2d(-1,-1), new Vec2d(2, 2), new Vec2d(0, 10).smult(32), new Vec2d(32, 32));
+                new Vec2d(-1,-1), new Vec2d(2, 2), new Vec2d(1, 7).smult(32), new Vec2d(32, 32));
         stump.addComponent(sprite);
         stump.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,0), .5), true, true,
                 FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
