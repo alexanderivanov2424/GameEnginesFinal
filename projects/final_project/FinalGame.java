@@ -134,7 +134,7 @@ public class FinalGame {
     public void gameVictory(GameObject player){
         Screen screen = new Screen();
 
-        App.createEndScreen(screen, player);
+        //App.createEndScreen(screen, player);
     }
 
     public static void startPlayer(GameObject player){

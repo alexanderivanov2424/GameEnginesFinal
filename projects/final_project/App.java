@@ -190,7 +190,7 @@ public class App extends Application {
      * Other Game Screen UI below
      */
     //HUD
-    gameScreen.addUIElement(new HUD(new Vec2d(8,6), new Vec2d(200,64), finalGame.getPlayer()));
+    gameScreen.addUIElement(new HUD(new Vec2d(8,6), new Vec2d(250, 250 * 32.0/100.0), finalGame.getPlayer()));
 
     //SCORE
     UIRect scorebox = new UIRect(new Vec2d(830,6), new Vec2d(120, 40),

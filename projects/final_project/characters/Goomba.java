@@ -10,6 +10,7 @@ import engine.game.components.animation.SpriteAnimationComponent;
 import engine.game.components.animation.animationGraph.AGAnimation;
 import engine.game.components.animation.animationGraph.AGAnimationGroup;
 import engine.game.components.animation.animationGraph.AGNode;
+import projects.final_project.Player;
 import projects.final_project.assets.sounds.AnimationGraphComponent;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
@@ -59,9 +60,10 @@ public class Goomba {
     public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
         if(collisionInfo.gameObjectSelf.getComponent("ShakeComponent") == null) {
             collisionInfo.gameObjectSelf.addComponent(new ShakeComponent(.1, .1));
+            Player.PlayerComponent playerComponent = (Player.PlayerComponent)collisionInfo.gameObjectOther.getComponent("PlayerComponent");
             HealthComponent health = (HealthComponent)collisionInfo.gameObjectSelf.getComponent("HealthComponent");
-            if(health != null){
-                health.hit(1);
+            if(health != null && playerComponent != null){
+                health.hit(playerComponent.getAttack());
             }
         }
     }

@@ -379,6 +379,11 @@ public class Player {
             return this.currentWeapon;
         }
 
+        public double getAttack(){
+            if(this.currentWeapon == 0) return 1;
+            if(this.currentWeapon == 1) return 2;
+            return 1;
+        }
 
         @Override
         public void onTick(long nanosSincePreviousTick){
