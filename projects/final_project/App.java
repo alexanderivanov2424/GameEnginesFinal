@@ -5,6 +5,7 @@ import engine.Screen;
 import engine.UIToolKit.*;
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.components.BooleanComponent;
 import engine.game.components.HealthComponent;
 import engine.game.components.ValueComponent;
 import engine.support.Vec2d;
@@ -28,6 +29,7 @@ public class App extends Application {
   private final Font fontSmall = Font.font("Ariel", FontWeight.NORMAL, 12);
   private final Font fontSCORE = Font.font("Ariel", FontWeight.BOLD, 30);
 
+  private FinalGame finalGame;
 
   public App(String title) {
     super(title);
@@ -160,17 +162,19 @@ public class App extends Application {
     ValueComponent score = (ValueComponent)player.getComponent("ValueComponent");
 
     endScreen.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
-    endScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"Thanks for Playing",
+    endScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"THANKS FOR PLAYING!",
             colorBorder, fontLarge));
-    String text = "After defeating Slippy, our hero brought peace to the town and was rewarded handsomely.";
-    endScreen.addUIElement(new UIText(new Vec2d(100,120), new Vec2d(400, 500),text, Color.BLACK, fontSmall));
 
     endScreen.addUIElement(new UIText(new Vec2d(100,150), new Vec2d(400, 50),"" +
-            "Final Score",
+            "Final Score: ",
             colorBorder, fontLarge));
-    endScreen.addUIElement(new UIText(new Vec2d(100,180), new Vec2d(400, 50),"" +
+    endScreen.addUIElement(new UIText(new Vec2d(400,155), new Vec2d(400, 50),"" +
             (int)score.value,
-            colorBorder, fontNormal));
+            colorBorder, fontLarge));
+
+    String text = "After defeating Slippy, our hero brought peace\nto the town and was rewarded handsomely.";
+    endScreen.addUIElement(new UIText(new Vec2d(100,270), new Vec2d(400, 500),text, Color.BLACK, fontNormal));
+
     UIButton returnButton = new UIButton(new Vec2d(100,460), new Vec2d(130,50), colorMain, colorBorder);
     returnButton.setOnMouseClicked(() -> {
       this.setCurrentScreen("mainMenu");
@@ -193,7 +197,7 @@ public class App extends Application {
             gameWorld, new Vec2d(0,0), 50, true);
     gameScreen.addUIElement(viewport);
 
-    FinalGame finalGame = new FinalGame(gameWorld, viewport);
+    finalGame = new FinalGame(gameWorld, viewport);
     finalGame.init();
 
     /**
@@ -208,6 +212,9 @@ public class App extends Application {
     scorebox.addChild(new Score(new Vec2d(60,30), new Vec2d(120, 30),
             true, "0", Color.WHITESMOKE, fontSCORE, finalGame.getPlayer()));
     gameScreen.addUIElement(scorebox);
+
+    gameScreen.addUIElement(new GameOverCheck(new Vec2d(60,30), new Vec2d(120, 30),
+            true, "0", Color.WHITESMOKE, fontSCORE, finalGame.getPlayer()));
 
 //
 
@@ -282,6 +289,28 @@ public class App extends Application {
       ValueComponent score = (ValueComponent)player.getComponent("ValueComponent");
       this.text = "" + (int)score.value;
       super.onDraw(g);
+    }
+  }
+
+  private class GameOverCheck extends UIText {
+    private GameObject player;
+
+    public GameOverCheck(Vec2d position, Vec2d size, boolean centered, String text, Color textColor, Font font, GameObject player) {
+      super(position, size, centered, text, textColor, font);
+      this.player = player;
+    }
+
+    @Override
+    public void onDraw(GraphicsContext g) {
+      if (((BooleanComponent)player.getComponent("BooleanComponent")).getBool()) {
+        ((BooleanComponent)player.getComponent("BooleanComponent")).setBool(false);
+        Screen screen = new Screen();
+        createEndScreen(screen, player);
+        setCurrentScreen("endScreen");
+        //TODO delete all things in game world?
+        finalGame.resetGameWorld();
+
+      }
     }
   }
 
