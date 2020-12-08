@@ -78,7 +78,12 @@ public class Skeleton {
             MiscElements.placeCoin(enemy.gameWorld, 2, new Vec2d(pos.x, pos.y),
                     new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
         }
-
+        //2/3 chance to drop a potion
+        int potion = ThreadLocalRandom.current().nextInt(0, 3);
+        if(potion != 2) {
+            MiscElements.placePotion(enemy.gameWorld, 1, new Vec2d(pos.x, pos.y),
+                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(Math.random()*3));
+        }
         DelayEventComponent delayEventComponent = new DelayEventComponent(.1);
         delayEventComponent.linkEventCallback(Skeleton::enemyRemoveCallback);
         enemy.addComponent(delayEventComponent);

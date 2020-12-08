@@ -34,6 +34,11 @@ public class HealthComponent extends Component{
         this.health -= damage;
     }
 
+    public void restore(double health){
+        this.health += health;
+        if(this.health > maxHealth) this.health = maxHealth;
+    }
+
     @Override
     public void onTick(long nanosSincePreviousTick){
         if(this.health <= 0 && !done){
