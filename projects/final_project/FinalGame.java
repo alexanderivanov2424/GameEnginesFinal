@@ -61,10 +61,6 @@ public class FinalGame {
         }
         this.gameWorld.addGameObject(player);
 
-        //this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));
-
-        /*TileMap tileMap = LevelTileMaps.createTileMap();
-        LevelTileMaps.setTestingLevel(tileMap);*/
         TileMap caveTileMap = CaveTileMap.createTileMap();
         TileMap worldTileMap = WorldTileMap.createTileMap();
 
@@ -109,9 +105,9 @@ public class FinalGame {
 
         gameWorld.processQueues();
 
-        player.getTransform().position = new Vec2d(30,10);
+//        player.getTransform().position = new Vec2d(30,10);
 //        player.getTransform().position = new Vec2d(14,20);
-        gameWorld.loadRegion(Levels.area3);
+        gameWorld.loadRegion(Levels.area1);
 
         hasStarted = true;
     }

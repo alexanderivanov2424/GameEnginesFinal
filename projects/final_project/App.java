@@ -86,6 +86,7 @@ public class App extends Application {
     UIButton startButton = new UIButton(new Vec2d(100,120), new Vec2d(200,50), colorMain, colorBorder);
     startButton.setOnMouseClicked(() -> {
       finalGame.resetGameWorld();
+      finalGame.loadPlayer();
       finalGame.init();
       this.setCurrentScreen("gameScreen");
     });
@@ -235,17 +236,17 @@ public class App extends Application {
      * Other Game Screen UI below
      */
     //HUD
-    gameScreen.addUIElement(new HUD(new Vec2d(8,6), new Vec2d(250, 250 * 32.0/100.0), finalGame.getPlayer()));
+    gameScreen.addUIElement(new HUD(new Vec2d(8,6), new Vec2d(250, 250 * 32.0/100.0), finalGame));
 
     //SCORE
     UIRect scorebox = new UIRect(new Vec2d(830,6), new Vec2d(120, 40),
             Color.rgb(90,90,90,0.9));
     scorebox.addChild(new Score(new Vec2d(60,30), new Vec2d(120, 30),
-            true, "0", Color.WHITESMOKE, fontSCORE, finalGame.getPlayer()));
+            true, "0", Color.WHITESMOKE, fontSCORE, finalGame));
     gameScreen.addUIElement(scorebox);
 
     gameScreen.addUIElement(new GameOverCheck(new Vec2d(60,30), new Vec2d(120, 30),
-            true, "0", Color.WHITESMOKE, fontSCORE, finalGame.getPlayer()));
+            true, "0", Color.WHITESMOKE, fontSCORE, finalGame));
 
 //
 
@@ -255,15 +256,15 @@ public class App extends Application {
 
   private static class HUD extends UIElement {
 
-    private GameObject player;
+    private FinalGame finalGame;
 
     private Image HUD_image;
     private Image weapon_image;
 
 
-    public HUD(Vec2d position, Vec2d size, GameObject player) {
+    public HUD(Vec2d position, Vec2d size, FinalGame finalGame) {
       super(position, size);
-      this.player = player;
+      this.finalGame = finalGame;
       this.HUD_image = new Image(FinalGame.getSpritePath("HUD"));
       this.weapon_image = new Image(FinalGame.getSpritePath("roguelikeitems"));
 
@@ -272,6 +273,8 @@ public class App extends Application {
     @Override
     public void onDraw(GraphicsContext g) {
       Vec2d pos = this.getOffset();
+
+      GameObject player = this.finalGame.getPlayer();
 
       g.save();
       g.setImageSmoothing(false);
@@ -308,15 +311,16 @@ public class App extends Application {
 
   private static class Score extends UIText {
 
-    private GameObject player;
+    private FinalGame finalGame;
 
-    public Score(Vec2d position, Vec2d size, boolean centered, String text, Color textColor, Font font, GameObject player) {
+    public Score(Vec2d position, Vec2d size, boolean centered, String text, Color textColor, Font font, FinalGame finalGame) {
       super(position, size, centered, text, textColor, font);
-      this.player = player;
+      this.finalGame = finalGame;
     }
 
     @Override
     public void onDraw(GraphicsContext g) {
+      GameObject player = this.finalGame.getPlayer();
       ValueComponent score = (ValueComponent)player.getComponent("ValueComponent");
       this.text = "" + (int)score.value;
       super.onDraw(g);
@@ -324,15 +328,16 @@ public class App extends Application {
   }
 
   private class GameOverCheck extends UIText {
-    private GameObject player;
+    private FinalGame finalGame;
 
-    public GameOverCheck(Vec2d position, Vec2d size, boolean centered, String text, Color textColor, Font font, GameObject player) {
+    public GameOverCheck(Vec2d position, Vec2d size, boolean centered, String text, Color textColor, Font font, FinalGame finalGame) {
       super(position, size, centered, text, textColor, font);
-      this.player = player;
+      this.finalGame = finalGame;
     }
 
     @Override
     public void onDraw(GraphicsContext g) {
+      GameObject player = this.finalGame.getPlayer();
       if (((BooleanComponent)player.getComponent("BooleanComponent")).getBool()) {
         ((BooleanComponent)player.getComponent("BooleanComponent")).setBool(false);
         Screen screen = new Screen();
