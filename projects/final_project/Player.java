@@ -2,6 +2,7 @@ package projects.final_project;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.animation.animationGraph.AGAnimation;
@@ -61,8 +62,12 @@ public class Player {
         swing = new AudioComponent("swing.wav", true);
         player.addComponent(swing);
 
-        CollisionComponent hitbox = new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
+        CollisionComponent collision = new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
                 false, true, FinalGame.PLAYER_LAYER, FinalGame.PLAYER_MASK);
+        player.addComponent(collision);
+
+        CollisionComponent hitbox = new CollisionComponent(new AABShape(new Vec2d(-.25,-1.25),new Vec2d(.5,1.25)),
+                false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ENEMY_LAYER);
         hitbox.linkCollisionCallback(Player::PlayerCollisionCallback);
         player.addComponent(hitbox);
 
@@ -92,12 +97,17 @@ public class Player {
     private static void PlayerCollisionCallback(CollisionSystem.CollisionInfo collisionInfo){
         GameObject player = collisionInfo.gameObjectSelf;
         IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
-
-        if(id != null && id.getId().equals("goomba")){
+        if(id == null) return;
+        if(id.getId().equals("goomba")){
             ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.1);
         }
-
-        if(id != null && id.getId().equals("slippy")){
+        if(id.getId().equals("skeleton")){
+            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.15);
+        }
+        if(id.getId().equals("arrow")){
+            ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.05);
+        }
+        if(id.getId().equals("slippy")){
             ((HealthComponent)(player.getComponent("HealthComponent"))).hit(0.2);
         }
     }

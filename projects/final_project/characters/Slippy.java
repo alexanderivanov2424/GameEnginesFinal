@@ -32,7 +32,7 @@ public class Slippy {
         slippy.addComponent(new SlippyMovementComponent(3, animationGraphComponent, gameWorld));
 
         slippy.addComponent(new CollisionComponent(new AABShape(new Vec2d(0.4,0.7),new Vec2d(0.7,0.7)),
-                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
+                false, true,  FinalGame.ENEMY_LAYER, FinalGame.ENEMY_MASK));
 
         CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(0.4,0.7),new Vec2d(0.7,0.7)),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
@@ -40,7 +40,7 @@ public class Slippy {
         slippy.addComponent(hitCollisionComponent);
 
         CollisionComponent nearPlayer = new CollisionComponent(new CircleShape(new Vec2d(0,0),10),
-                false, false, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+                false, false, CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
         nearPlayer.linkCollisionCallback(Slippy::slippynearPlayer);
         slippy.addComponent(nearPlayer);
 

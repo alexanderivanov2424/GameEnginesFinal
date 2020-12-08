@@ -24,6 +24,9 @@ public class FinalGame {
     public static final int PLAYER_LAYER = CollisionSystem.CollisionMask.layer3;
     public static final int PLAYER_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer1;
 
+    public static final int ENEMY_LAYER = CollisionSystem.CollisionMask.layer2 | CollisionSystem.CollisionMask.layer1;
+    public static final int ENEMY_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer2 | CollisionSystem.CollisionMask.layer1 | CollisionSystem.CollisionMask.layer3;
+
     public static final int OBJECT_LAYER = CollisionSystem.CollisionMask.layer1;
     public static final int OBJECT_MASK = CollisionSystem.CollisionMask.layer0 | CollisionSystem.CollisionMask.layer1 | CollisionSystem.CollisionMask.layer3;
 

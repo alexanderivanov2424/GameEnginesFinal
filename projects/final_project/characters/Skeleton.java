@@ -28,15 +28,15 @@ public class Skeleton {
         enemy.addComponent(new SkeletonMovementComponent(2, agc));
 
 
-        enemy.addComponent(new CollisionComponent(new AABShape(new Vec2d(-.46,-.3),new Vec2d(0.7,0.65)),
-                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
+        enemy.addComponent(new CollisionComponent(new CircleShape(new Vec2d(0,-.5),.3),
+                false, true, FinalGame.ENEMY_LAYER, FinalGame.ENEMY_MASK));
 
-        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(-.46,-.3),new Vec2d(0.7,0.65)),
+        CollisionComponent hitCollisionComponent = new CollisionComponent(new CircleShape(new Vec2d(0,-.5),.3),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
         hitCollisionComponent.linkCollisionCallback(Skeleton::onHitCallback);
         enemy.addComponent(hitCollisionComponent);
 
-        CollisionComponent nearPlayer = new CollisionComponent(new CircleShape(new Vec2d(0,0),7),
+        CollisionComponent nearPlayer = new CollisionComponent(new CircleShape(new Vec2d(0,0),8),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
         nearPlayer.linkCollisionCallback(Skeleton::skeletonNearPlayer);
         enemy.addComponent(nearPlayer);
@@ -205,7 +205,7 @@ public class Skeleton {
 
             } else if(this.state.equals("follow")){
                 Vec2d delta = this.player.getTransform().position.minus(pos);
-                if(delta.mag() < 3){
+                if(delta.mag() < 4){
                     this.state = "retreat";
                     time = 1;
                 }
@@ -219,7 +219,7 @@ public class Skeleton {
                 dy -= direction.y * dt * speed;
             } else if(this.state.equals("retreat")){
                 Vec2d delta = this.player.getTransform().position.minus(pos);
-                if(delta.mag() > 6){
+                if(delta.mag() > 7){
                     this.state = "follow";
                     time = 1;
                 }
@@ -237,7 +237,8 @@ public class Skeleton {
                 this.direction = delta.normalize();
                 this.animationGraphComponent.queueAnimation("shoot");
                 if(this.animationGraphComponent.justFinished()) {
-                    placeArrow(this.gameObject.gameWorld, pos, this.direction);
+                    Vec2d arrowDir = this.player.getTransform().position.plus(0,0).minus(pos);
+                    placeArrow(this.gameObject.gameWorld, pos.plus(0,-1), arrowDir);
                     this.state = "standing";
                     this.player = null;
                     this.time = 1;
@@ -272,15 +273,26 @@ public class Skeleton {
     public static void placeArrow(GameWorld gameWorld, Vec2d pos, Vec2d direction){
         GameObject arrow = new GameObject(gameWorld, 1);
 
-        int crop = ((int)Math.round(8.0*direction.angle()/(2.0*Math.PI)) + 1) % 8;
-        SpriteComponent sprite = new SpriteComponent("projectiles", new Vec2d(-.5,-.5), new Vec2d(1,1),
-                new Vec2d(32.0*crop, 0), new Vec2d(0,32));
+        int crop = ((int)Math.round(-8.0*direction.angle()/(2.0*Math.PI)) + 1 + 8) % 8;
+        SpriteComponent sprite = new SpriteComponent(FinalGame.getSpritePath("projectiles"), new Vec2d(-.5,-.5), new Vec2d(1,1),
+                new Vec2d(32.0*crop, 0), new Vec2d(32,32));
         arrow.addComponent(sprite);
 
-        arrow.addComponent(new VelocityComponent(direction.normalize().smult(3)));
+        arrow.addComponent(new VelocityComponent(direction.normalize().smult(6)));
+
+        CollisionComponent collisionComponent = new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
+                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+        collisionComponent.linkCollisionCallback(Skeleton::deleteArrow);
+        arrow.addComponent(collisionComponent);
+
+        arrow.addComponent(new IDComponent("arrow"));
 
         arrow.getTransform().position = pos.plus(new Vec2d(0,0)); //make a copy
         gameWorld.addGameObject(arrow);
+    }
+
+    public static void deleteArrow(CollisionSystem.CollisionInfo collisionInfo){
+        collisionInfo.gameObjectSelf.gameWorld.removeGameObject(collisionInfo.gameObjectSelf);
     }
 
     public static void skeletonNearPlayer(CollisionSystem.CollisionInfo collisionInfo){

@@ -32,7 +32,7 @@ public class Goomba {
 
 
         enemy.addComponent(new CollisionComponent(new AABShape(new Vec2d(-.46,-.3),new Vec2d(0.7,0.65)),
-                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK));
+                false, true, FinalGame.ENEMY_LAYER, FinalGame.ENEMY_MASK));
 
         CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(-.46,-.3),new Vec2d(0.7,0.65)),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
@@ -40,7 +40,7 @@ public class Goomba {
         enemy.addComponent(hitCollisionComponent);
 
         CollisionComponent nearPlayer = new CollisionComponent(new CircleShape(new Vec2d(0,0),5),
-                false, false, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+                false, false, CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
         nearPlayer.linkCollisionCallback(Goomba::goombaNearPlayer);
         enemy.addComponent(nearPlayer);
 

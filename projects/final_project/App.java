@@ -207,7 +207,7 @@ public class App extends Application {
       Player.PlayerComponent playerComponent = (Player.PlayerComponent)player.getComponent("PlayerComponent");
       int weapon = playerComponent.getCurrentWeapon();
 
-      double crop_width = 51 * healthComponent.getHealthRatio();
+      double crop_width = 51.0 * healthComponent.getHealthRatio();
       double image_ratio = 32 / 100.0; // y over x
       double W = this.size.x;
       double H = image_ratio * W;
