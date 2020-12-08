@@ -360,6 +360,8 @@ public class Player {
         private int currentWeapon = 0; // 0-sword 1-axe 2-bow
         private boolean justSwitched = false;
 
+        public boolean hasAxe = false;
+
         private AnimationGraphComponent animationGraphComponent;
 
         public PlayerComponent(AnimationGraphComponent animationGraphComponent, double speed) {
@@ -395,6 +397,7 @@ public class Player {
 
             if(Q && !justSwitched){
                 this.currentWeapon += 1;
+                if(!hasAxe && this.currentWeapon == 1) this.currentWeapon += 1;
                 this.currentWeapon = this.currentWeapon % 2;
                 justSwitched = true;
             } else if(!Q){
@@ -411,7 +414,7 @@ public class Player {
 
                 Vec2d pos = this.gameObject.getTransform().position;
                 this.gameObject.getTransform().position = new Vec2d(pos.x - dx, pos.y - dy);
-//                System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
+                System.out.println(new Vec2d(pos.x - dx, pos.y - dy));
             } else {
                 animationGraphComponent.queueAnimation("attack", true);
 

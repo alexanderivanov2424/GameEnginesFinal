@@ -10,6 +10,7 @@ import engine.game.components.CollisionComponent;
 import engine.game.systems.CollisionSystem;
 import engine.support.Vec2d;
 import projects.final_project.*;
+import projects.final_project.characters.NhoKlu;
 import projects.final_project.characters.OldMan;
 
 public class Area1 {
@@ -109,7 +110,7 @@ public class Area1 {
 
         BackgroundMusic.playBGM1(gameWorld);
 
-        OldMan.placeOldMan(gameWorld, new Vec2d(7,33));
+        NhoKlu.placeNhoKlu(gameWorld, new Vec2d(13,21));
 
         MiscElements.placeBarrel(gameWorld, 1, new Vec2d(6.5,9));
         MiscElements.placeBarrel(gameWorld, 1, new Vec2d(15,11));

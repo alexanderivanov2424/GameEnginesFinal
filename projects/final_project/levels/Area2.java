@@ -17,6 +17,8 @@ import projects.final_project.NaturalElements;
 import projects.final_project.FinalGame;
 import projects.final_project.Player;
 import projects.final_project.characters.Goomba;
+import projects.final_project.characters.OldMan;
+import projects.final_project.characters.OldWoman;
 
 public class Area2 {
 
@@ -134,7 +136,8 @@ public class Area2 {
         Goomba.placeGoomba(gameWorld, new Vec2d(22, 26));
         Goomba.placeGoomba(gameWorld, new Vec2d(32, 20));
 
-
+        OldMan.placeOldMan(gameWorld, new Vec2d(9,13));
+        OldWoman.placeOldWoman(gameWorld, new Vec2d(17,9));
 
         placeWarpToArea1(gameWorld);
         placeWarpToCave(gameWorld);
