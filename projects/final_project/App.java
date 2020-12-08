@@ -13,6 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -82,22 +83,43 @@ public class App extends Application {
     mainMenu.addUIElement(new UIText(new Vec2d(120,80), new Vec2d(400, 50),"S L I P P Y ' S   D E M I S E",
             colorBorder, fontLarge));
 
-    UIButton startButton = new UIButton(new Vec2d(100,120), new Vec2d(250,50), colorMain, colorBorder);
-
+    UIButton startButton = new UIButton(new Vec2d(100,120), new Vec2d(200,50), colorMain, colorBorder);
     startButton.setOnMouseClicked(() -> {
+      finalGame.resetGameWorld();
+      finalGame.init();
       this.setCurrentScreen("gameScreen");
     });
-    startButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"Start", colorBorder, fontNormal));
+    startButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"New Game", colorBorder, fontNormal));
     mainMenu.addUIElement(startButton);
 
-    UIButton controlsButton = new UIButton(new Vec2d(100,200), new Vec2d(250,50), colorMain, colorBorder);
+    UIButton continueButton = new UIButton(new Vec2d(350,120), new Vec2d(200,50), colorMain, colorBorder){
+      @Override
+      public void onDraw(GraphicsContext g) {
+        if(finalGame.hasStarted) super.onDraw(g);
+      }
+      @Override
+      public void onTick(long nanosSincePreviousTick) {
+        if(finalGame.hasStarted) super.onTick(nanosSincePreviousTick);
+      }
+      @Override
+      public void onMouseClicked(MouseEvent e, Vec2d shift) {
+        if(finalGame.hasStarted) super.onMouseClicked(e, shift);
+      }
+    };
+    continueButton.setOnMouseClicked(() -> {
+      this.setCurrentScreen("gameScreen");
+    });
+    continueButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"Continue", colorBorder, fontNormal));
+    mainMenu.addUIElement(continueButton);
+
+    UIButton controlsButton = new UIButton(new Vec2d(100,200), new Vec2d(200,50), colorMain, colorBorder);
     controlsButton.setOnMouseClicked(() -> {
       this.setCurrentScreen("controlsScreen");
     });
     controlsButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"Controls", colorBorder, fontNormal));
     mainMenu.addUIElement(controlsButton);
 
-    UIButton creditsButton = new UIButton(new Vec2d(100,280), new Vec2d(250,50), colorMain, colorBorder);
+    UIButton creditsButton = new UIButton(new Vec2d(100,280), new Vec2d(200,50), colorMain, colorBorder);
     creditsButton.setOnMouseClicked(() -> {
       this.setCurrentScreen("creditsScreen");
     });
@@ -207,7 +229,7 @@ public class App extends Application {
     gameScreen.addUIElement(viewport);
 
     finalGame = new FinalGame(gameWorld, viewport);
-    finalGame.init();
+    finalGame.loadPlayer();
 
     /**
      * Other Game Screen UI below
@@ -316,7 +338,7 @@ public class App extends Application {
         Screen screen = new Screen();
         createEndScreen(screen, player);
         setCurrentScreen("endScreen");
-        //TODO delete all things in game world?
+
         finalGame.resetGameWorld();
 
       }

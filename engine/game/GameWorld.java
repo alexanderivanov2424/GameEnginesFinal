@@ -148,6 +148,7 @@ public class GameWorld {
     }
 
     public void unloadRegion(){
+        if(this.region == null) return; //nothing to unload
         this.removeQueue.addAll(this.region.getGameObjects());
         this.region = null;
     }

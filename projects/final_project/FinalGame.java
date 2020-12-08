@@ -41,6 +41,8 @@ public class FinalGame {
     private UIViewport viewport;
     private GameObject player;
 
+    public boolean hasStarted = false;
+
     public FinalGame(GameWorld gameWorld, UIViewport viewport) {
         this.gameWorld = gameWorld;
         this.viewport = viewport;
@@ -49,8 +51,14 @@ public class FinalGame {
         gameWorld.linkViewport(0, this.viewport);
     }
 
-    public void init() {
+    public void loadPlayer(){
         this.player = Player.createPlayer(this.gameWorld,new Vec2d(3,37));
+    }
+
+    public void init() {
+        if(this.player == null) {
+            this.player = Player.createPlayer(this.gameWorld, new Vec2d(3, 37));
+        }
         this.gameWorld.addGameObject(player);
 
         //this.gameWorld.getRoot().addComponent(new ShakeEffect(10,5));
@@ -104,6 +112,8 @@ public class FinalGame {
         player.getTransform().position = new Vec2d(30,10);
 //        player.getTransform().position = new Vec2d(14,20);
         gameWorld.loadRegion(Levels.area3);
+
+        hasStarted = true;
     }
 
     /*
@@ -116,8 +126,8 @@ public class FinalGame {
     }
 
     public static void onDeath(GameObject player){
-        BackgroundMusic.stopBGM(gameWorld);
-        BackgroundMusic.playBGM1(gameWorld);
+        BackgroundMusic.stopBGM(player.gameWorld);
+        BackgroundMusic.playBGM1(player.gameWorld);
 
         player.getTransform().position = new Vec2d(9,32);
         player.gameWorld.loadRegion(Levels.area1);
@@ -136,10 +146,11 @@ public class FinalGame {
     }
 
     public void resetGameWorld(){
+        if(this.gameWorld == null) return; //nothing to reset
         BackgroundMusic.stopBGM(gameWorld);
         gameWorld.unloadRegion();
         gameWorld.clearAllGameObjects();
-        init();
+        hasStarted = false;
     }
 
     public static void startPlayer(GameObject player){

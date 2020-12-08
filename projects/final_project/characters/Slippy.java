@@ -48,7 +48,7 @@ public class Slippy {
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
         nearPlayer.linkCollisionCallback(Slippy::slippynearPlayer);
         slippy.addComponent(nearPlayer);
-        
+
         HealthComponent healthComponent = new HealthComponent(3); //TODO Change hp so fair difficulty
         healthComponent.linkDeathCallback(Slippy::onDeathCallback);
         slippy.addComponent(healthComponent);

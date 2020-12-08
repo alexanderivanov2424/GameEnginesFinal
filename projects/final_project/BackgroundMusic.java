@@ -48,6 +48,7 @@ public class BackgroundMusic {
     }
 
     public static void stopBGM(GameWorld gameWorld) {
+        if(music == null) return;
         ((AudioComponent)(music.getComponent("AudioComponent"))).stop();
         gameWorld.removeGameObject(music);
         name = "none";
