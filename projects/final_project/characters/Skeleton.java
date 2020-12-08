@@ -10,7 +10,9 @@ import engine.game.components.animation.animationGraph.*;
 import engine.game.systems.CollisionSystem;
 import engine.game.systems.SystemFlag;
 import engine.support.Vec2d;
+import javafx.scene.paint.Color;
 import projects.final_project.FinalGame;
+import projects.final_project.HealthBarComponent;
 import projects.final_project.MiscElements;
 import projects.final_project.Player;
 import projects.final_project.assets.sounds.AnimationGraphComponent;
@@ -46,6 +48,8 @@ public class Skeleton {
         HealthComponent healthComponent = new HealthComponent(5);
         healthComponent.linkDeathCallback(Skeleton::enemyDeathCallback);
         enemy.addComponent(healthComponent);
+
+        enemy.addComponent(new HealthBarComponent(Color.RED, new Vec2d(0,-1.75), new Vec2d(1,.1), healthComponent, true));
 
         enemy.addComponent(new IDComponent("skeleton"));
 
@@ -240,7 +244,7 @@ public class Skeleton {
                 this.animationGraphComponent.queueAnimation("shoot");
                 if(this.animationGraphComponent.justFinished()) {
                     Vec2d arrowDir = this.player.getTransform().position.plus(0,0).minus(pos);
-                    placeArrow(this.gameObject.gameWorld, pos.plus(0,-1), arrowDir);
+                    placeArrow(this.gameObject.gameWorld, pos.plus(0,0), arrowDir);
                     this.state = "standing";
                     this.player = null;
                     this.time = 1;
@@ -283,7 +287,7 @@ public class Skeleton {
         arrow.addComponent(new VelocityComponent(direction.normalize().smult(6)));
 
         CollisionComponent collisionComponent = new CollisionComponent(new CircleShape(new Vec2d(0,0),.25),
-                false, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+                false, false, FinalGame.ENEMY_LAYER, FinalGame.ENEMY_MASK);
         collisionComponent.linkCollisionCallback(Skeleton::deleteArrow);
         arrow.addComponent(collisionComponent);
 
@@ -294,6 +298,10 @@ public class Skeleton {
     }
 
     public static void deleteArrow(CollisionSystem.CollisionInfo collisionInfo){
+        IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
+        if(id != null){
+            if(id.getId().equals("skeleton")) return;
+        }
         collisionInfo.gameObjectSelf.gameWorld.removeGameObject(collisionInfo.gameObjectSelf);
     }
 
