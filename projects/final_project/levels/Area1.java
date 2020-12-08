@@ -107,6 +107,7 @@ public class Area1 {
         NaturalElements.placeWhiteFlowers(gameWorld, 0, new Vec2d(13,23), 0);
         NaturalElements.placeRedFlowers(gameWorld, 0, new Vec2d(33,11), 0);
         NaturalElements.placeRedFlowers(gameWorld, 1, new Vec2d(19,9), 2);
+        NaturalElements.placeRedFlowers(gameWorld, 0, new Vec2d(2,31), 0);
 
         BackgroundMusic.playBGM1(gameWorld);
 
