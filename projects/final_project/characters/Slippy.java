@@ -100,6 +100,10 @@ public class Slippy {
             MiscElements.placeCoin(gameObject.gameWorld, 2, new Vec2d(pos.x, pos.y),
                     new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
         }
+        for(int i = 0; i < 2; i++) {
+            MiscElements.placePotion(gameObject.gameWorld, 2, new Vec2d(pos.x, pos.y),
+                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(2));
+        }
         //Setting the game victory boolean to true
         Area3.placeWarpToCave(player);
     }

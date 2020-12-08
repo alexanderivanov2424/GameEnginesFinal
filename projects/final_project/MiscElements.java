@@ -10,6 +10,8 @@ import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class MiscElements {
 
     /**
@@ -75,6 +77,12 @@ public class MiscElements {
             placeCoin(gameObject.gameWorld, 1, new Vec2d(pos.x, pos.y),
                     new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(Math.random()*3));
         }
+        //2/3 chance to drop a potion
+        int potion = ThreadLocalRandom.current().nextInt(0, 3);
+        if(potion != 2) {
+            placePotion(gameObject.gameWorld, 1, new Vec2d(pos.x, pos.y),
+                    new Vec2d(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize().smult(Math.random()*3));
+        }
         gameObject.gameWorld.removeGameObject(gameObject);
     }
 
@@ -132,5 +140,62 @@ public class MiscElements {
 
     public static void coinDeleteCallback(GameObject coin){
         coin.gameWorld.removeGameObject(coin);
+    }
+
+    /**
+     * Places potion into the game world
+     * @param gameWorld Gameworld to add to
+     * @param pos location in game world
+     */
+    public static void placePotion(GameWorld gameWorld, int layer, Vec2d pos, Vec2d vel){
+        GameObject potion = new GameObject(gameWorld, layer);
+
+        SpriteComponent sprite = new SpriteComponent(FinalGame.getSpritePath("potion"),
+                new Vec2d(-.25,-.25), new Vec2d(.5,.5));
+        potion.addComponent(sprite);
+
+        CollisionComponent coinCollision = new CollisionComponent(new CircleShape(new Vec2d(0,0), .5), false, true,
+                CollisionSystem.CollisionMask.NONE, FinalGame.TILE_LAYER); //collide with tiles
+        potion.addComponent(coinCollision);
+
+        CollisionComponent coinPickup = new CollisionComponent(new CircleShape(new Vec2d(0,0), .5), true, false,
+                CollisionSystem.CollisionMask.NONE, FinalGame.OBJECT_MASK);
+        coinPickup.linkCollisionCallback(MiscElements::onPotionPickUp);
+        potion.addComponent(coinPickup);
+
+        if(vel != null) {
+            potion.addComponent(new VelocityComponent(vel, .9));
+        }
+
+        potion.getTransform().position = pos;
+        gameWorld.addGameObject(potion);
+    }
+
+    public static void onPotionPickUp(CollisionSystem.CollisionInfo collisionInfo){
+        IDComponent id = (IDComponent)collisionInfo.gameObjectOther.getComponent("IDComponent");
+        if(id != null && id.getId().equals("player")){
+
+            IDComponent potion_id = (IDComponent)collisionInfo.gameObjectSelf.getComponent("IDComponent");
+            if(potion_id != null) return;
+            collisionInfo.gameObjectSelf.addComponent(new IDComponent("picked up"));
+
+            HealthComponent healthComponent = (HealthComponent)collisionInfo.gameObjectOther.getComponent("HealthComponent");
+            if(healthComponent.getHealthRatio() < 1.0) {
+                healthComponent.restore(1.0);
+            }
+
+            VelocityComponent vel = (VelocityComponent)collisionInfo.gameObjectSelf.getComponent("VelocityComponent");
+            if(vel != null){
+                vel.velocity = new Vec2d(0,-2);
+            }
+
+            DelayEventComponent delete = new DelayEventComponent(.2);
+            delete.linkEventCallback(MiscElements::potionDelete);
+            collisionInfo.gameObjectSelf.addComponent(delete);
+        }
+    }
+
+    public static void potionDelete(GameObject potion){
+        potion.gameWorld.removeGameObject(potion);
     }
 }
