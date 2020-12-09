@@ -424,10 +424,10 @@ public class Slippy {
         smc.followPlayer(collisionInfo.gameObjectOther);
         player = collisionInfo.gameObjectOther;
 
-        if(!BackgroundMusic.getName().equals("boss") && !dead) {
-            BackgroundMusic.stopBGM(player.gameWorld);
-            BackgroundMusic.playBossBGM(player.gameWorld);
-        }
+//        if(!BackgroundMusic.getName().equals("boss") && !dead) {
+//            BackgroundMusic.stopBGM(player.gameWorld);
+//            BackgroundMusic.playBossBGM(player.gameWorld);
+//        }
     }
 
 }

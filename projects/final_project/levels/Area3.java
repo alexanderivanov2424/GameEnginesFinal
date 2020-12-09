@@ -13,6 +13,7 @@ import projects.final_project.BackgroundMusic;
 import projects.final_project.FinalGame;
 import projects.final_project.MiscElements;
 import projects.final_project.NaturalElements;
+import projects.final_project.characters.Frog;
 import projects.final_project.characters.Slippy;
 
 public class Area3 {
@@ -91,9 +92,9 @@ public class Area3 {
         NaturalElements.placeTree(gameWorld, 1, new Vec2d(27,7.5));
         NaturalElements.placeChicken(gameWorld, 1, new Vec2d(29,7.5));
 
-        MiscElements.placeInvisWall(gameWorld, new Vec2d(32,7), new Vec2d(4,0.5));
+        MiscElements.placeInvisWall(gameWorld, new Vec2d(20,0), new Vec2d(4,0.5));
 
-        Slippy.placeSlippy(gameWorld, new Vec2d(21, 28));
+        Frog.placeFrog(gameWorld, new Vec2d(21, 28));
     }
 
 
