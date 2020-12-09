@@ -135,6 +135,9 @@ public class MiscElements {
             IDComponent coin_id = (IDComponent)collisionInfo.gameObjectSelf.getComponent("IDComponent");
             if(coin_id != null) return;
             collisionInfo.gameObjectSelf.addComponent(new IDComponent("picked up"));
+            AudioComponent audioComponent = new AudioComponent("coin.wav");
+            collisionInfo.gameObjectSelf.addComponent(audioComponent);
+            audioComponent.start();
 
             ValueComponent score = (ValueComponent)collisionInfo.gameObjectOther.getComponent("ValueComponent");
             score.value += 1;
@@ -190,6 +193,10 @@ public class MiscElements {
             IDComponent potion_id = (IDComponent)collisionInfo.gameObjectSelf.getComponent("IDComponent");
             if(potion_id != null) return;
             collisionInfo.gameObjectSelf.addComponent(new IDComponent("picked up"));
+
+            AudioComponent audioComponent = new AudioComponent("coin.wav");
+            collisionInfo.gameObjectSelf.addComponent(audioComponent);
+            audioComponent.start();
 
             HealthComponent healthComponent = (HealthComponent)collisionInfo.gameObjectOther.getComponent("HealthComponent");
             if(healthComponent.getHealthRatio() < 1.0) {
