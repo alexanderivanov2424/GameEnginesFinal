@@ -139,18 +139,17 @@ public class App extends Application {
 
   private void createControlsScreen(Screen controlsScreen){
     controlsScreen.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
-    controlsScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"Controls",
+
+
+    controlsScreen.addUIElement(new UIImage(new Image(FinalGame.getSpritePath("keyboard")),
+            new Vec2d(10,65),
+            new Vec2d(940,400)));
+
+    controlsScreen.addUIElement(new UIText(new Vec2d(20,45), new Vec2d(400, 50),"Controls",
             colorBorder, fontLarge));
-    String text =
-            "WASD - to move Up, Left, Down, and Right\n" +
-            "Space Bar - to attack\n" +
-            "E - to talk\n" +
-            "I/J or Arrow Keys - to change dialog options\n" +
-            "Enter - to select dialog option";
-    controlsScreen.addUIElement(new UIText(new Vec2d(100,120), new Vec2d(400, 500),text, Color.BLACK, fontNormal));
 
 
-    UIButton returnButton = new UIButton(new Vec2d(100,460), new Vec2d(130,50), colorMain, colorBorder);
+    UIButton returnButton = new UIButton(new Vec2d(800,460), new Vec2d(130,50), colorMain, colorBorder);
     returnButton.setOnMouseClicked(() -> {
       this.setCurrentScreen("mainMenu");
     });
@@ -200,7 +199,10 @@ public class App extends Application {
   public void createEndScreen(Screen endScreen, GameObject player){
     ValueComponent score = (ValueComponent)player.getComponent("ValueComponent");
 
-    endScreen.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
+    endScreen.addUIElement(new UIImage (new Image(FinalGame.getSpritePath("endBackground"))
+            ,new Vec2d(0,0), this.originalStageSize));
+
+
     endScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"THANKS FOR PLAYING!",
             colorBorder, fontLarge));
 
