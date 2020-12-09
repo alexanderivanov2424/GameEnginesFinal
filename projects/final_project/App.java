@@ -27,7 +27,7 @@ public class App extends Application {
 
   private final Font fontLarge = Font.font("Ariel", FontWeight.BOLD, 50);
   private final Font fontNormal = Font.font("Ariel", FontWeight.NORMAL, 30);
-  private final Font fontSmall = Font.font("Ariel", FontWeight.NORMAL, 12);
+  private final Font fontSmall = Font.font("Ariel", FontWeight.NORMAL, 14);
   private final Font fontSCORE = Font.font("Ariel", FontWeight.BOLD, 30);
 
   private FinalGame finalGame;
@@ -160,7 +160,8 @@ public class App extends Application {
   }
 
   private void createCreditsScreen(Screen creditsScreen){
-    creditsScreen.addUIElement(new UIRect(new Vec2d(0,0), this.originalStageSize, colorBackground));
+    creditsScreen.addUIElement(new UIImage(new Image(FinalGame.getSpritePath("ControlsBackground")), new Vec2d(0,0), this.originalStageSize));
+    creditsScreen.addUIElement(new UIRect(new Vec2d(80,30), new Vec2d(800,500), colorBackground));
     creditsScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"Credits",
             colorBorder, fontLarge));
     String text = "Universal-LPC-spritesheet : https://github.com/jrconway3/Universal-LPC-spritesheet\n" +
@@ -186,7 +187,7 @@ public class App extends Application {
     creditsScreen.addUIElement(new UIText(new Vec2d(100,120), new Vec2d(400, 500),text, Color.BLACK, fontSmall));
 
 
-    UIButton returnButton = new UIButton(new Vec2d(100,460), new Vec2d(130,50), colorMain, colorBorder);
+    UIButton returnButton = new UIButton(new Vec2d(730,460), new Vec2d(130,50), colorMain, colorBorder);
     returnButton.setOnMouseClicked(() -> {
       this.setCurrentScreen("mainMenu");
     });

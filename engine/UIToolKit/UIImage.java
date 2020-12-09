@@ -16,6 +16,7 @@ public class UIImage extends UIElement{
     public UIImage(Image image, Vec2d position, Vec2d size) {
         super(position, size);
         this.image = image;
+        this.size = size;
         this.offset = new Vec2d(0,0);
         this.cropSize = new Vec2d(this.image.getWidth(), this.image.getHeight());
         this.size = size;
