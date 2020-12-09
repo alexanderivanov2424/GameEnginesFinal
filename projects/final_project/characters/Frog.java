@@ -90,20 +90,20 @@ public class Frog {
     }
 
     private static void onDeathCallback(GameObject frog){
-        DelayEventComponent delayEventComponent = new DelayEventComponent(.1);
+        DelayEventComponent delayEventComponent = new DelayEventComponent(2);
         delayEventComponent.linkEventCallback(Frog::enemyRemoveCallback);
         frog.addComponent(delayEventComponent);
 
         //TODO particles
 
-        BackgroundMusic.stopBGM(frog.gameWorld);
-        BackgroundMusic.playBossBGM(frog.gameWorld);
     }
 
     private static void enemyRemoveCallback(GameObject gameObject){
         gameObject.gameWorld.removeGameObject(gameObject);
         Vec2d pos = gameObject.getTransform().position;
 
+        BackgroundMusic.stopBGM(gameObject.gameWorld);
+        BackgroundMusic.playBossBGM(gameObject.gameWorld);
         Slippy.placeSlippy(gameObject.gameWorld, pos);
     }
 
