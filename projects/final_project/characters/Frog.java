@@ -58,22 +58,21 @@ public class Frog {
     }
 
     private static DialogNode getDialog(){
-        DialogNode A = new DialogNode("Oh, what a wonderful day it would have been!\n" +
-                "I was going to chop down my tree and then rest my cold old\n" +
-                "bones by the fireplace this winter.");
-        DialogNode B = new DialogNode("But that DARN TOAD STOLE MY TREEE!");
-        DialogNode C = new DialogNode("*cough* *cough*\n" +
-                "Oh well, I guess I don't need my axe anymore.");
-        DialogNode D = new DialogNode("Here, you can have it. Maybe you can make better use of it.\n" +
+        DialogNode A = new DialogNode("So... you have defeated my minions.\n" +
                 "\n" +
-                "Just press Q to switch to it and get swinging");
+                "You must think you are very brave standing against me!");
+        DialogNode B = new DialogNode("I will tell you now that you cannot best me MORTAL!!!");
+        DialogNode C = new DialogNode("But maybe you want to be my minion instead...?");
+        DialogNode D = new DialogNode("Hahaha you thought I would take you as my minion!!\n" +
+                "You are too weak! I bet you won't even be able to kill me.",2);
 
-        DialogNode E = new DialogNode("Kids these days. Always swinging things all over the place.");
+        DialogNode E = new DialogNode("No? Well, in that case i will have to kill you with my...");
+        DialogNode F = new DialogNode("Stare!!! HAHAHAHA!",1);
 
         A.setNextNode(B);
         B.setNextNode(C);
-        C.setNextNode(D);
-        D.setNextNode(E);
+        C.setOptions(new String[]{"Yes!", "No way!"}, new DialogNode[]{D,E});
+        E.setNextNode(F);
         return A;
     }
 

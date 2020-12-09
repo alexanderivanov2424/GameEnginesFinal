@@ -3,6 +3,14 @@ Miru Yang: B01530353
 
 Alexander Ivanov: B01540800
 
+
+Final Checkpoint:
+
+Playtesting reports are in projects/PlaytestingReports
+
+
+------------------------------------------
+
 Third Checkpoint:
 
 Playtesting reports are in projects/PlaytestingReports
