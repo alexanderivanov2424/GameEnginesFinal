@@ -64,10 +64,10 @@ public class Frog {
         DialogNode B = new DialogNode("I will tell you now that you cannot best me MORTAL!!!");
         DialogNode C = new DialogNode("But maybe you want to be my minion instead...?");
         DialogNode D = new DialogNode("Hahaha you thought I would take you as my minion!!\n" +
-                "You are too weak! I bet you won't even be able to kill me.",2);
+                "You are too weak! I bet you won't even be able to kill me.",10);
 
         DialogNode E = new DialogNode("No? Well, in that case i will have to kill you with my...");
-        DialogNode F = new DialogNode("Stare!!! HAHAHAHA!",1);
+        DialogNode F = new DialogNode("Stare!!! HAHAHAHA!",5);
 
         A.setNextNode(B);
         B.setNextNode(C);
