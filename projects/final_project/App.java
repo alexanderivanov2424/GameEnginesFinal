@@ -203,18 +203,19 @@ public class App extends Application {
             ,new Vec2d(0,0), this.originalStageSize));
 
 
-    endScreen.addUIElement(new UIText(new Vec2d(100,80), new Vec2d(400, 50),"THANKS FOR PLAYING!",
+    endScreen.addUIElement(new UIText(new Vec2d(100,50), new Vec2d(400, 50),"THANKS FOR PLAYING!",
             colorBorder, fontLarge));
 
-    endScreen.addUIElement(new UIText(new Vec2d(100,150), new Vec2d(400, 50),"" +
+    endScreen.addUIElement(new UIText(new Vec2d(100,120), new Vec2d(400, 50),"" +
             "Final Score: ",
             colorBorder, fontLarge));
-    endScreen.addUIElement(new UIText(new Vec2d(400,155), new Vec2d(400, 50),"" +
+    endScreen.addUIElement(new UIText(new Vec2d(400,125), new Vec2d(400, 50),"" +
             (int)score.value,
             colorBorder, fontLarge));
 
     String text = "After defeating Slippy, our hero brought peace\nto the town and was rewarded handsomely.";
-    endScreen.addUIElement(new UIText(new Vec2d(100,270), new Vec2d(400, 500),text, Color.BLACK, fontNormal));
+    endScreen.addUIElement(new UIText(new Vec2d(100,210), new Vec2d(400, 500),text, Color.rgb(255,245,196)
+            , fontNormal));
 
     UIButton returnButton = new UIButton(new Vec2d(100,460), new Vec2d(130,50), colorMain, colorBorder);
     returnButton.setOnMouseClicked(() -> {
