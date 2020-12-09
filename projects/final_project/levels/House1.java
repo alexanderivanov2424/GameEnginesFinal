@@ -74,7 +74,7 @@ public class House1 {
         house.addComponent(tableCandle);
         house.addComponent(shelfCandle);
 
-        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(13.5,6.5), 100);
+        MiscElements.placeBarrel(gameWorld, 1, new Vec2d(13.5,6.5), 50);
 
         gameWorld.addGameObject(house);
     }
