@@ -41,14 +41,13 @@ public class OldMan {
 
     private static DialogNode getDialog(){
         DialogNode A = new DialogNode("Oh, what a wonderful day it would have been!\n" +
-                "I was going to chop down my tree and then rest my cold old\n" +
-                "bones by the fireplace this winter.");
+                "I was going to chop down my tree and then rest my cold old bones by the fireplace this winter.");
         DialogNode B = new DialogNode("But that DARN TOAD STOLE MY TREEE!");
         DialogNode C = new DialogNode("*cough* *cough*\n" +
                 "Oh well, I guess I don't need my axe anymore.");
         DialogNode D = new DialogNode("Here, you can have it. Maybe you can make better use of it.\n" +
                 "\n" +
-                "Just press Q to switch to it and get swinging");
+                "Just press Q to switch to your axe and get swinging");
 
         DialogNode E = new DialogNode("Kids these days. Always swinging things all over the place.");
 
