@@ -205,7 +205,7 @@ public class App extends Application {
 
 
     endScreen.addUIElement(new UIText(new Vec2d(35,70), new Vec2d(400, 50),"THANKS FOR PLAYING!",
-            colorBorder, fontLarge));
+            Color.rgb(255,245,196), fontLarge));
 
     endScreen.addUIElement(new UIText(new Vec2d(35,140), new Vec2d(400, 50),"" +
             "Final Score: ",
