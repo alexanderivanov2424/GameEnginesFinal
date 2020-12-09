@@ -52,8 +52,17 @@ public class AudioComponent extends Component {
             clip = null;
         }
 
+
+
+
         if(clip == null) {
             clip = setup();
+
+            gainControl =
+                    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
+            gainControl.setValue(-20.0f); //TODO ALEX CHANGE
+
 
             if(source != null) {
                 gainControl =
