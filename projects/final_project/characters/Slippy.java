@@ -87,7 +87,7 @@ public class Slippy {
 
 
 
-        DelayEventComponent delayEventComponent = new DelayEventComponent(3.3);
+        DelayEventComponent delayEventComponent = new DelayEventComponent(3.25);
         delayEventComponent.linkEventCallback(Slippy::enemyRemoveCallback);
         slippy.addComponent(delayEventComponent);
 
