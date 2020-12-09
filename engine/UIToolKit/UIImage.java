@@ -8,8 +8,6 @@ public class UIImage extends UIElement{
 
     private Image image;
 
-    protected Vec2d size; //size of sprite
-
     protected Vec2d offset; //offset on sprite sheet
     protected Vec2d cropSize; //size of region from which to draw
 
