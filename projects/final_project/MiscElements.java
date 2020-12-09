@@ -2,6 +2,7 @@ package projects.final_project;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.animation.SpriteAnimationComponent;
@@ -59,6 +60,15 @@ public class MiscElements {
 
         barrel.getTransform().position = pos;
         gameWorld.addGameObject(barrel);
+    }
+
+    public static void placeInvisWall(GameWorld gameWorld, Vec2d pos, Vec2d size){
+        GameObject invisible = new GameObject(gameWorld, 0);
+        CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), size),
+                true, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+        invisible.addComponent(collisionComponent);
+        invisible.getTransform().position = pos;
+        gameWorld.addGameObject(invisible);
     }
 
     public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
@@ -125,6 +135,9 @@ public class MiscElements {
             IDComponent coin_id = (IDComponent)collisionInfo.gameObjectSelf.getComponent("IDComponent");
             if(coin_id != null) return;
             collisionInfo.gameObjectSelf.addComponent(new IDComponent("picked up"));
+            AudioComponent audioComponent = new AudioComponent("coin.wav");
+            collisionInfo.gameObjectSelf.addComponent(audioComponent);
+            audioComponent.start();
 
             ValueComponent score = (ValueComponent)collisionInfo.gameObjectOther.getComponent("ValueComponent");
             score.value += 1;
@@ -180,6 +193,10 @@ public class MiscElements {
             IDComponent potion_id = (IDComponent)collisionInfo.gameObjectSelf.getComponent("IDComponent");
             if(potion_id != null) return;
             collisionInfo.gameObjectSelf.addComponent(new IDComponent("picked up"));
+
+            AudioComponent audioComponent = new AudioComponent("coin.wav");
+            collisionInfo.gameObjectSelf.addComponent(audioComponent);
+            audioComponent.start();
 
             HealthComponent healthComponent = (HealthComponent)collisionInfo.gameObjectOther.getComponent("HealthComponent");
             if(healthComponent.getHealthRatio() < 1.0) {

@@ -91,19 +91,12 @@ public class Area3 {
         NaturalElements.placeTree(gameWorld, 1, new Vec2d(27,7.5));
         NaturalElements.placeChicken(gameWorld, 1, new Vec2d(29,7.5));
 
-        placeInvisWall(gameWorld);
+        MiscElements.placeInvisWall(gameWorld, new Vec2d(32,7), new Vec2d(4,0.5));
 
         Slippy.placeSlippy(gameWorld, new Vec2d(21, 28));
     }
 
-    public static void placeInvisWall(GameWorld gameWorld){
-        GameObject invisible = new GameObject(gameWorld, 0);
-        CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), new Vec2d(4,0.5)),
-                true, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
-        invisible.addComponent(collisionComponent);
-        invisible.getTransform().position = new Vec2d(20,0);
-        gameWorld.addGameObject(invisible);
-    }
+
 
     public static void placeWarpToCave(GameObject player){
         GameObject warp = new GameObject(player.gameWorld, 0);

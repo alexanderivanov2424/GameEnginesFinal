@@ -95,7 +95,7 @@ public class NhoKlu {
         enemy.addComponent(agc);
         enemy.addComponent(new NhoKlu.SillyGoombaMovementComponent(agc,nhoKlu));
 
-        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(-.46,-.3),new Vec2d(0.7,0.65)),
+        CollisionComponent hitCollisionComponent = new CollisionComponent(new AABShape(new Vec2d(-.46,-.9),new Vec2d(0.7,0.65)),
                 false, false, CollisionSystem.CollisionMask.NONE, FinalGame.ATTACK_MASK);
         hitCollisionComponent.linkCollisionCallback(NhoKlu::onHitCallback);
         enemy.addComponent(hitCollisionComponent);
