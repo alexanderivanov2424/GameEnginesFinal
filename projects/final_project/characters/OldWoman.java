@@ -36,7 +36,7 @@ public class OldWoman {
     }
 
     private static DialogNode getDialog(){
-        DialogNode A = new DialogNode("My poor Henrietta");
+        DialogNode A = new DialogNode("My poor Henrietta...");
         DialogNode B = new DialogNode("Slippy had another episode yesterday. He raided our home and stole my chicken.");
         DialogNode C = new DialogNode("At least he didn't steal our life savings that I hid behind the bed in our house.");
 

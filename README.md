@@ -14,7 +14,8 @@ and the in game sounds really bring everything together.
 
 Definitely, more can be added as mentioned in the play tests and there are some strange 
 bugs that we were able to find through playing the game ourselves but, this is definitely 
-a satisfying stopping point.
+a satisfying stopping point. If we had more time, we would've loved to add more features, areas, characters, attacks,
+enemies, etc...
 
 A lot of smaller additions to the game/engine can be found in the commit history.
 The most significant of these are:
@@ -23,6 +24,13 @@ The most significant of these are:
 - The Skeleton enemy
 - Health potions
 - proper end screen
+
+Known Bugs/Unintended Features:
+
+There are a couple places in the game where you can clip past walls by being pushed by an object/enemy.
+None of them are game breaking.
+It also seems like depending on the computer running the game, the tick size differs, so these bugs/clips are
+inconsistent. One bug for Alex was not replicable for Miru, perhaps because of the difference in computers.
 
 ------------------------------------------
 
