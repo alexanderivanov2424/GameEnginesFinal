@@ -175,6 +175,8 @@ public class App extends Application {
             " - https://opengameart.org/content/interior-tileset-16x16\n" +
             " - https://opengameart.org/content/rpg-potions-16x16\n" +
             "Thanks to Joe Williamson roguelike item sprites: https://opengameart.org/content/roguelikerpg-items\n" +
+            "Thanks to Gerald Burke for the key prompt sprites: https://opengameart.org/users/gerald-burke\n" +
+            "Thanks to AntumDeluge for the chicken sprite, used under Creative Commons Zero: https://opengameart.org/content/chick\n" +
             "\n" +
             "Special thanks to friends and family for play testing\n" +
             "Special thanks to the TA's of CSCI1950N for debugging help and general guidance\n" +
