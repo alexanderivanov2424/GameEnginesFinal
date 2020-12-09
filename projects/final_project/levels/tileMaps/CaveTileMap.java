@@ -24,8 +24,8 @@ public class CaveTileMap {
         tileTypes.add(caveTile);
 
         Tile exitTile = new Tile("exit", FinalGame.getSpritePath("cave_sprite_sheet"));
-        exitTile.addVariant(new SpriteTileVariant(0,0,0,0,"exit", new Vec2d(2,10).smult(24), TS));
-
+        exitTile.addVariant(new SpriteTileVariant(0,1,0,1,"exit", new Vec2d(2,10).smult(24), TS));
+//        exitTile.setAllVariantCollisionThickness(.2);
         tileTypes.add(exitTile);
 
         //wall tile
