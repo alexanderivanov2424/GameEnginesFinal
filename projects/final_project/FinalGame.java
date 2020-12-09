@@ -37,7 +37,7 @@ public class FinalGame {
     public static final int TALK_LAYER = CollisionSystem.CollisionMask.layer5;
     public static final int TALK_MASK = CollisionSystem.CollisionMask.layer5;
 
-    private GameWorld gameWorld;
+    public GameWorld gameWorld;
     private UIViewport viewport;
     private GameObject player;
 

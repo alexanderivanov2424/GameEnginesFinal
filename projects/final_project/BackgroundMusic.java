@@ -47,12 +47,36 @@ public class BackgroundMusic {
         name = "boss";
     }
 
+    public static void playMenuBGM(GameWorld gameWorld) {
+        music = new GameObject(gameWorld);
+
+        AudioComponent bgm = new AudioComponent("bgm1.wav", true);
+        bgm.start();
+
+        music.addComponent(bgm);
+
+        gameWorld.addGameObject(music);
+        name = "menu";
+    }
+
     public static void stopBGM(GameWorld gameWorld) {
         if(music == null) return;
         ((AudioComponent)(music.getComponent("AudioComponent"))).stop();
         gameWorld.removeGameObject(music);
         name = "none";
     }
+
+    public static void pauseBGM(GameWorld gameWorld) {
+        if(music == null) return;
+        ((AudioComponent)(music.getComponent("AudioComponent"))).stop();
+    }
+
+    public static void resumeBGM(GameWorld gameWorld) {
+        if(music == null) return;
+        ((AudioComponent)(music.getComponent("AudioComponent"))).start();
+    }
+
+
 
     public static String getName() {
         return name;

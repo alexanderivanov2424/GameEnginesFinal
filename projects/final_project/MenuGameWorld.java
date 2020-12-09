@@ -19,7 +19,7 @@ public class MenuGameWorld {
 
     public static final int LAYER = CollisionSystem.CollisionMask.layer0;
 
-    private GameWorld gameWorld;
+    public GameWorld gameWorld;
     private UIViewport viewport;
     private GameObject player;
 

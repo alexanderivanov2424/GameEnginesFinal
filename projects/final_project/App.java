@@ -55,7 +55,9 @@ public class App extends Application {
       protected void onKeyReleased(KeyEvent e) {
         super.onKeyReleased(e);
         if(e.getCode() == KeyCode.ESCAPE){
+          BackgroundMusic.pauseBGM(finalGame.gameWorld);
           setCurrentScreen("mainMenu");
+          BackgroundMusic.resumeBGM(menuWorld.gameWorld);
         }
       }
     };
@@ -66,6 +68,7 @@ public class App extends Application {
     createGameScreen(gameScreen);
 
     this.setCurrentScreen("mainMenu");
+    BackgroundMusic.playMenuBGM(menuWorld.gameWorld);
   }
 
   private void createMainMenu(Screen mainMenu){
@@ -88,7 +91,9 @@ public class App extends Application {
       finalGame.resetGameWorld();
       finalGame.loadPlayer();
       finalGame.init();
+      BackgroundMusic.pauseBGM(menuWorld.gameWorld);
       this.setCurrentScreen("gameScreen");
+      BackgroundMusic.resumeBGM(finalGame.gameWorld);
     });
     startButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"New Game", colorBorder, fontNormal));
     mainMenu.addUIElement(startButton);
@@ -108,7 +113,9 @@ public class App extends Application {
       }
     };
     continueButton.setOnMouseClicked(() -> {
+      BackgroundMusic.pauseBGM(menuWorld.gameWorld);
       this.setCurrentScreen("gameScreen");
+      BackgroundMusic.resumeBGM(finalGame.gameWorld);
     });
     continueButton.addChild(new UIText(new Vec2d(10,30), new Vec2d(400, 50),"Continue", colorBorder, fontNormal));
     mainMenu.addUIElement(continueButton);
