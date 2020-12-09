@@ -105,7 +105,7 @@ public class FinalGame {
 
         gameWorld.processQueues();
 
-        gameWorld.loadRegion(Levels.area3);
+        gameWorld.loadRegion(Levels.area1);
 
 
         hasStarted = true;
