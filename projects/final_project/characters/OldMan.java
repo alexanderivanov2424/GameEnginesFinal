@@ -41,7 +41,8 @@ public class OldMan {
 
     private static DialogNode getDialog(){
         DialogNode A = new DialogNode("Oh, what a wonderful day it would have been!\n" +
-                "I was going to chop down my tree and then rest my cold old bones by the fireplace this winter.");
+                "I was going to chop down my tree and then rest my cold old bones\n" +
+                " by the fireplace this winter.");
         DialogNode B = new DialogNode("But that DARN TOAD STOLE MY TREEE!");
         DialogNode C = new DialogNode("*cough* *cough*\n" +
                 "Oh well, I guess I don't need my axe anymore.");
