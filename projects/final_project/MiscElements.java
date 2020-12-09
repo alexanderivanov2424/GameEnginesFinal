@@ -2,6 +2,7 @@ package projects.final_project;
 
 import engine.game.GameObject;
 import engine.game.GameWorld;
+import engine.game.collisionShapes.AABShape;
 import engine.game.collisionShapes.CircleShape;
 import engine.game.components.*;
 import engine.game.components.animation.SpriteAnimationComponent;
@@ -59,6 +60,15 @@ public class MiscElements {
 
         barrel.getTransform().position = pos;
         gameWorld.addGameObject(barrel);
+    }
+
+    public static void placeInvisWall(GameWorld gameWorld, Vec2d pos, Vec2d size){
+        GameObject invisible = new GameObject(gameWorld, 0);
+        CollisionComponent collisionComponent = new CollisionComponent(new AABShape(new Vec2d(0,0), size),
+                true, true, FinalGame.OBJECT_LAYER, FinalGame.OBJECT_MASK);
+        invisible.addComponent(collisionComponent);
+        invisible.getTransform().position = pos;
+        gameWorld.addGameObject(invisible);
     }
 
     public static void onHitCallback(CollisionSystem.CollisionInfo collisionInfo){
