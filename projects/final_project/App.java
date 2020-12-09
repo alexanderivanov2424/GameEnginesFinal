@@ -354,6 +354,7 @@ public class App extends Application {
         Screen screen = new Screen();
         createEndScreen(screen, player);
         setCurrentScreen("endScreen");
+        BackgroundMusic.playMenuBGM(this.finalGame.getPlayer().gameWorld);
 
         finalGame.resetGameWorld();
 

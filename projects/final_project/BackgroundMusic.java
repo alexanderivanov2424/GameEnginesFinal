@@ -50,7 +50,7 @@ public class BackgroundMusic {
     public static void playMenuBGM(GameWorld gameWorld) {
         music = new GameObject(gameWorld);
 
-        AudioComponent bgm = new AudioComponent("bgm1.wav", true);
+        AudioComponent bgm = new AudioComponent("menu.wav", true);
         bgm.start();
 
         music.addComponent(bgm);
