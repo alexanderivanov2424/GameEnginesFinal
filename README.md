@@ -8,6 +8,21 @@ Final Checkpoint:
 
 Playtesting reports are in projects/PlaytestingReports
 
+Added quite a bit of content to the game.
+The story is now cohesive, main menu looks significantly better with a proper background, 
+and the in game sounds really bring everything together.
+
+Definitely, more can be added as mentioned in the play tests and there are some strange 
+bugs that we were able to find through playing the game ourselves but, this is definitely 
+a satisfying stopping point.
+
+A lot of smaller additions to the game/engine can be found in the commit history.
+The most significant of these are:
+- the Slippy AI and attacks.
+- HUD with HP and weapons
+- The Skeleton enemy
+- Health potions
+- proper end screen
 
 ------------------------------------------
 
